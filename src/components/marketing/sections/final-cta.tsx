@@ -1,0 +1,58 @@
+"use client";
+
+import Link from "next/link";
+import { ScrollReveal } from "@/components/marketing/animation/scroll-reveal";
+import { MagneticButton } from "@/components/marketing/animation/magnetic-button";
+
+export function FinalCtaSection() {
+  return (
+    <section className="relative py-24 md:py-32 bg-[oklch(0.08_0.01_95)] overflow-hidden">
+      {/* Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-[oklch(0.86_0.27_148/0.08)] blur-[120px]" />
+
+      {/* Grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage:
+            "linear-gradient(oklch(0.86 0.27 148) 1px, transparent 1px), linear-gradient(90deg, oklch(0.86 0.27 148) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+        <ScrollReveal>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+            Tu competencia ya empezó.
+            <br />
+            <span className="text-neon">¿Y tú?</span>
+          </h2>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.15}>
+          <p className="mt-6 text-lg text-[oklch(0.55_0.005_95)] max-w-xl mx-auto">
+            Cada día sin automatizar es un día de clientes perdidos. Empieza hoy
+            y ve resultados en la primera semana.
+          </p>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.3}>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <MagneticButton strength={0.2}>
+              <Link
+                href="#pricing"
+                className="inline-flex items-center justify-center rounded-full bg-neon px-10 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.86_0.27_148/0.4)] hover:shadow-[0_0_50px_oklch(0.86_0.27_148/0.6)] transition-shadow"
+              >
+                Empezar gratis — 14 días
+              </Link>
+            </MagneticButton>
+          </div>
+          <p className="mt-4 text-sm text-[oklch(0.4_0.005_95)]">
+            Sin tarjeta de crédito · Configuración en 5 minutos · Cancela
+            cuando quieras
+          </p>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}

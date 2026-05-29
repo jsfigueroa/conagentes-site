@@ -1,0 +1,287 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-sans);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-neon: var(--neon);
+  --color-neon-deep: var(--neon-deep);
+  --color-neon-soft: var(--neon-soft);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-green: var(--neon);
+  --color-green-glow: var(--neon-deep);
+  --color-green-dark: var(--neon-deep);
+  --color-green-soft: var(--neon-soft);
+  --color-green-ring: var(--neon-ring);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
+  --radius-2xl: calc(var(--r-xl) * 1.2);
+  --radius-3xl: calc(var(--r-xl) * 1.5);
+  --radius-4xl: calc(var(--r-xl) * 2);
+  --radius-pill: 999px;
+}
+
+:root {
+  /* ——— conagentes design tokens · v1 ——— */
+
+  /* Brand palette — oklch · neon green + warm off-white + warm ink */
+  --neon:           oklch(0.86 0.27 148);
+  --neon-deep:      oklch(0.72 0.25 148);
+  --neon-soft:      oklch(0.94 0.10 148);
+  --ink:            oklch(0.20 0.01 95);
+  --ink-soft:       oklch(0.32 0.008 95);
+  --muted-tone:     oklch(0.55 0.008 95);
+  --canvas:         oklch(0.985 0.004 95);
+  --hair-soft:      oklch(0.96 0.003 95);
+  --hair:           oklch(0.92 0.004 95);
+  --dark:           oklch(0.16 0.01 95);
+  --dark-elev:      oklch(0.22 0.01 95);
+  --neon-ring:      oklch(0.86 0.27 148 / 0.35);
+
+  /* Core surfaces — conagentes light theme */
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+
+  /* Brand primary — neon green · ink on neon, always */
+  --primary: var(--neon);
+  --primary-foreground: var(--ink);
+
+  /* Secondary & muted — warm subtle surfaces */
+  --secondary: var(--hair-soft);
+  --secondary-foreground: var(--ink);
+  --muted: var(--hair-soft);
+  --muted-foreground: var(--muted-tone);
+  --accent: var(--hair-soft);
+  --accent-foreground: var(--ink);
+
+  /* Semantic */
+  --destructive: oklch(0.62 0.20 30);
+  --warning: oklch(0.78 0.15 75);
+  --success: var(--neon-deep);
+
+  /* Borders, inputs, focus */
+  --border: var(--hair);
+  --input: var(--hair);
+  --ring: var(--neon-ring);
+
+  /* Charts — neon-anchored */
+  --chart-1: var(--neon);
+  --chart-2: var(--neon-deep);
+  --chart-3: oklch(0.65 0.18 148);
+  --chart-4: oklch(0.78 0.15 75);
+  --chart-5: oklch(0.62 0.20 30);
+
+  /* Radii — 10px base (matches the mark's corner radius) */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --radius: 0.625rem;
+
+  /* Shadows — minimal, warm-toned */
+  --shadow-sm: 0 2px 6px oklch(0.20 0.01 95 / 0.05);
+  --shadow-md: 0 8px 24px oklch(0.20 0.01 95 / 0.06);
+  --shadow-lg: 0 16px 48px oklch(0.20 0.01 95 / 0.08);
+  --shadow-focus: 0 0 0 3px oklch(0.86 0.27 148 / 0.35);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.0, 0, 1);
+  --dur-fast: 160ms;
+  --dur-base: 220ms;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  html {
+    @apply font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background: oklch(0.86 0.27 148 / 0.25);
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--hair);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.55 0.008 95);
+  }
+}
+
+/* ——— Marketing page animations ——— */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes gradient-xy {
+  0%, 100% {
+    background-size: 400% 400%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+@layer utilities {
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+  .animate-gradient-xy {
+    animation: gradient-xy 15s ease infinite;
+  }
+}
+
+/* ——— Blog typography ——— */
+
+.prose-blog {
+  --tw-prose-body: var(--ink);
+  --tw-prose-headings: var(--ink);
+  --tw-prose-links: var(--neon-deep);
+  line-height: 1.8;
+}
+
+.prose-blog h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.prose-blog h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-blog p {
+  margin-bottom: 1.25rem;
+}
+
+.prose-blog a {
+  color: var(--neon-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+.prose-blog a:hover {
+  color: var(--neon);
+}
+
+.prose-blog blockquote {
+  border-left: 3px solid var(--neon);
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.prose-blog ul, .prose-blog ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose-blog li {
+  margin-bottom: 0.5rem;
+}
+
+.prose-blog code {
+  background: var(--hair-soft);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: var(--font-mono);
+}
+
+.prose-blog pre {
+  background: var(--dark);
+  color: oklch(0.92 0.005 95);
+  padding: 1.25rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.prose-blog pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.prose-blog img {
+  border-radius: 10px;
+  margin: 1.5rem 0;
+}
+
+.prose-blog table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.prose-blog th, .prose-blog td {
+  border: 1px solid var(--hair);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.prose-blog th {
+  background: var(--hair-soft);
+  font-weight: 600;
+}
