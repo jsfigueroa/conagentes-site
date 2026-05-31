@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   authors: [{ name: "conagentes" }],
   creator: "conagentes",
   publisher: "conagentes",
+  verification: {
+    google: "tbNdSjXQ-IVZEZ1cdXufk1NroEXGQwWnxrHqazTyRcc",
+  },
   openGraph: {
     type: "website",
     locale: "es_CO",
