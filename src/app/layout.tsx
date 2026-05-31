@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   publisher: "conagentes",
   verification: {
     google: "tbNdSjXQ-IVZEZ1cdXufk1NroEXGQwWnxrHqazTyRcc",
+    other: {
+      "msvalidate.01": "D4F3B576D8BC6D413BDD41F62A35B6F1",
+    },
   },
   openGraph: {
     type: "website",
