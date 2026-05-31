@@ -23,10 +23,28 @@ export const metadata: Metadata = {
   },
   description:
     "Plataforma CRM con agentes de IA que venden por WhatsApp, agendan citas y gestionan documentos 24/7",
+  authors: [{ name: "conagentes" }],
+  creator: "conagentes",
+  publisher: "conagentes",
   openGraph: {
     type: "website",
     locale: "es_CO",
     siteName: "conagentes",
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@conagentes",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -37,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="es"
+      lang="es-CO"
       className={`${plusJakarta.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

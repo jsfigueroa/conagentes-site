@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Artículos prácticos sobre IA, automatización y CRM para PYMEs en Latinoamérica. Aprende a usar la tecnología para crecer tu negocio.",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default async function BlogPage({

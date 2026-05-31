@@ -25,7 +25,7 @@ export function generateArticleJsonLd(post: BlogPost) {
       "@id": `${SITE_URL}/blog/${post.slug}`,
     },
     wordCount: post.word_count,
-    inLanguage: "es",
+    inLanguage: "es-CO",
   };
 }
 
