@@ -1,15 +1,13 @@
 "use client";
 
 import { Check } from "lucide-react";
-import Link from "next/link";
 import { ScrollReveal } from "@/components/marketing/animation/scroll-reveal";
-
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.conagentes.com";
 import {
   StaggerContainer,
   StaggerItem,
 } from "@/components/marketing/animation/stagger";
 import { cn } from "@/lib/utils";
+import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
 
 const plans = [
   {
@@ -24,7 +22,7 @@ const plans = [
       "Pipeline de ventas",
       "Analítica básica",
     ],
-    cta: "Empezar gratis",
+    cta: "Solicitar demo",
     popular: false,
   },
   {
@@ -42,7 +40,7 @@ const plans = [
       "Procesamiento de pagos",
       "Soporte prioritario",
     ],
-    cta: "Empezar gratis",
+    cta: "Solicitar demo",
     popular: true,
   },
   {
@@ -71,6 +69,8 @@ function formatCOP(amount: number) {
 }
 
 export function PricingSection() {
+  const { open } = useDemoForm();
+
   return (
     <section id="pricing" className="py-24 md:py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6">
@@ -143,17 +143,17 @@ export function PricingSection() {
                   ))}
                 </ul>
 
-                <Link
-                  href={plan.cta === "Contactar ventas" ? "#contact" : `${APP_URL}/signup?plan=${plan.name.toLowerCase()}`}
+                <button
+                  onClick={() => open(`pricing-${plan.name.toLowerCase()}`)}
                   className={cn(
-                    "mt-8 block text-center py-3 px-6 rounded-full text-sm font-semibold transition-all",
+                    "mt-8 block w-full text-center py-3 px-6 rounded-full text-sm font-semibold transition-all cursor-pointer",
                     plan.popular
                       ? "bg-neon text-ink hover:brightness-110 shadow-[0_0_20px_oklch(0.86_0.27_148/0.3)]"
                       : "bg-secondary text-foreground hover:bg-accent"
                   )}
                 >
                   {plan.cta}
-                </Link>
+                </button>
               </div>
             </StaggerItem>
           ))}

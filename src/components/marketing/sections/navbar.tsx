@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { cn } from "@/lib/utils";
+import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
 
 const navLinks = [
   { href: "#features", label: "Producto" },
@@ -17,6 +18,7 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const { open } = useDemoForm();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -62,12 +64,12 @@ export function Navbar() {
           >
             Iniciar sesión
           </a>
-          <a
-            href="#pricing"
-            className="text-sm font-semibold bg-neon text-ink px-5 py-2.5 rounded-full hover:brightness-110 transition-all shadow-[0_0_20px_oklch(0.86_0.27_148/0.3)]"
+          <button
+            onClick={() => open("navbar")}
+            className="text-sm font-semibold bg-neon text-ink px-5 py-2.5 rounded-full hover:brightness-110 transition-all shadow-[0_0_20px_oklch(0.86_0.27_148/0.3)] cursor-pointer"
           >
-            Empezar gratis
-          </a>
+            Demo gratis
+          </button>
         </div>
 
         <button
@@ -105,12 +107,15 @@ export function Navbar() {
                 >
                   Iniciar sesión
                 </a>
-                <a
-                  href="#pricing"
-                  className="block text-center text-sm font-semibold bg-neon text-ink px-5 py-3 rounded-full"
+                <button
+                  onClick={() => {
+                    setMobileOpen(false);
+                    open("navbar");
+                  }}
+                  className="block w-full text-center text-sm font-semibold bg-neon text-ink px-5 py-3 rounded-full cursor-pointer"
                 >
-                  Empezar gratis
-                </a>
+                  Demo gratis
+                </button>
               </div>
             </div>
           </motion.div>

@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { MagneticButton } from "@/components/marketing/animation/magnetic-button";
 import { FloatingElement } from "@/components/marketing/animation/floating-element";
 import { HeroDemo } from "@/components/marketing/hero-demo/hero-demo";
+import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
 
 const containerVariants = {
   hidden: {},
@@ -23,6 +23,8 @@ const itemVariants = {
 };
 
 export function HeroSection() {
+  const { open } = useDemoForm();
+
   return (
     <section className="relative flex flex-col items-center overflow-hidden bg-[oklch(0.08_0.01_95)]">
       {/* Radial glow */}
@@ -103,12 +105,12 @@ export function HeroSection() {
               className="mt-10 flex flex-col sm:flex-row gap-4"
             >
               <MagneticButton strength={0.2}>
-                <Link
-                  href="#pricing"
-                  className="inline-flex items-center justify-center rounded-full bg-neon px-8 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.86_0.27_148/0.3)] hover:shadow-[0_0_40px_oklch(0.86_0.27_148/0.5)] transition-shadow"
+                <button
+                  onClick={() => open("hero")}
+                  className="inline-flex items-center justify-center rounded-full bg-neon px-8 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.86_0.27_148/0.3)] hover:shadow-[0_0_40px_oklch(0.86_0.27_148/0.5)] transition-shadow cursor-pointer"
                 >
-                  Empezar gratis
-                </Link>
+                  Solicitar demo gratis
+                </button>
               </MagneticButton>
               <MagneticButton strength={0.2}>
                 <a
@@ -125,8 +127,7 @@ export function HeroSection() {
               variants={itemVariants}
               className="mt-4 text-sm text-[oklch(0.45_0.005_95)]"
             >
-              Sin tarjeta de crédito · Listo en 5 minutos · Cancela cuando
-              quieras
+              Sin compromiso · Te contactamos en menos de 24 horas
             </motion.p>
           </motion.div>
 

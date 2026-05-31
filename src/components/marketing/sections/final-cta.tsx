@@ -1,10 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { ScrollReveal } from "@/components/marketing/animation/scroll-reveal";
 import { MagneticButton } from "@/components/marketing/animation/magnetic-button";
+import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
 
 export function FinalCtaSection() {
+  const { open } = useDemoForm();
+
   return (
     <section className="relative py-24 md:py-32 bg-[oklch(0.08_0.01_95)] overflow-hidden">
       {/* Glow */}
@@ -39,17 +41,16 @@ export function FinalCtaSection() {
         <ScrollReveal delay={0.3}>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <MagneticButton strength={0.2}>
-              <Link
-                href="#pricing"
-                className="inline-flex items-center justify-center rounded-full bg-neon px-10 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.86_0.27_148/0.4)] hover:shadow-[0_0_50px_oklch(0.86_0.27_148/0.6)] transition-shadow"
+              <button
+                onClick={() => open("final-cta")}
+                className="inline-flex items-center justify-center rounded-full bg-neon px-10 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.86_0.27_148/0.4)] hover:shadow-[0_0_50px_oklch(0.86_0.27_148/0.6)] transition-shadow cursor-pointer"
               >
-                Empezar gratis — 14 días
-              </Link>
+                Solicitar demo gratis
+              </button>
             </MagneticButton>
           </div>
           <p className="mt-4 text-sm text-[oklch(0.4_0.005_95)]">
-            Sin tarjeta de crédito · Configuración en 5 minutos · Cancela
-            cuando quieras
+            Sin compromiso · Te contactamos en menos de 24 horas
           </p>
         </ScrollReveal>
       </div>
