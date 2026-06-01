@@ -1,0 +1,51 @@
+name: Publish Blog Post
+
+on:
+  push:
+    paths:
+      - '_pending_posts/*.json'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find and publish new posts
+        env:
+          PUBLISH_URL: https://www.conagentes.com/api/publish
+          PUBLISH_SECRET: conagentes-revalidate-2026-secret
+        run: |
+          for file in _pending_posts/*.json; do
+            [ "$file" = "_pending_posts/*.json" ] && continue
+            [ "$(basename "$file")" = ".gitkeep" ] && continue
+
+            echo "Publishing: $file"
+
+            response=$(curl -s -L -w "\n%{http_code}" -X POST "$PUBLISH_URL" \
+              -H "Authorization: Bearer $PUBLISH_SECRET" \
+              -H "Content-Type: application/json" \
+              -d @"$file")
+
+            http_code=$(echo "$response" | tail -1)
+            body=$(echo "$response" | head -n -1)
+
+            echo "Response: $body"
+            echo "HTTP Status: $http_code"
+
+            if [ "$http_code" = "200" ]; then
+              echo "✅ Published successfully!"
+              # Delete the file after successful publish
+              git rm "$file"
+            else
+              echo "❌ Failed to publish: $file"
+              exit 1
+            fi
+          done
+
+      - name: Commit cleanup
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --cached --quiet || git commit -m "Published blog post(s) and cleaned up pending files"
+          git push
