@@ -10,17 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Find and publish new posts
         env:
           PUBLISH_URL: https://www.conagentes.com/api/publish
           PUBLISH_SECRET: conagentes-revalidate-2026-secret
         run: |
+          published=0
+          failed=0
+
           for file in _pending_posts/*.json; do
             [ "$file" = "_pending_posts/*.json" ] && continue
             [ "$(basename "$file")" = ".gitkeep" ] && continue
 
-            echo "Publishing: $file"
+            echo "📝 Publishing: $file"
 
             response=$(curl -s -L -w "\n%{http_code}" -X POST "$PUBLISH_URL" \
               -H "Authorization: Bearer $PUBLISH_SECRET" \
@@ -35,17 +40,21 @@ jobs:
 
             if [ "$http_code" = "200" ]; then
               echo "✅ Published successfully!"
-              # Delete the file after successful publish
+              git rm "$file"
+              published=$((published + 1))
+            elif echo "$body" | grep -q "duplicate"; then
+              echo "⏭️ Already published (duplicate slug) — removing file"
               git rm "$file"
             else
-              echo "❌ Failed to publish: $file"
-              exit 1
+              echo "⚠️ Failed to publish: $file (will retry next run)"
+              failed=$((failed + 1))
             fi
           done
+
+          echo "Summary: $published published, $failed failed"
 
       - name: Commit cleanup
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --cached --quiet || git commit -m "Published blog post(s) and cleaned up pending files"
-          git push
+          git diff --cached --quiet || git commit -m "chore: cleanup published blog post files" && git push || true
