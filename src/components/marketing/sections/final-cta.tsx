@@ -33,8 +33,8 @@ export function FinalCtaSection() {
 
         <ScrollReveal delay={0.15}>
           <p className="mt-6 text-lg text-[oklch(0.55_0.005_95)] max-w-xl mx-auto">
-            Cada día sin automatizar es un día de clientes perdidos. Empieza hoy
-            y ve resultados en la primera semana.
+            Del primer mensaje a la próxima recompra, tu agente se encarga.
+            Agenda una demo y ve cómo funciona con tu negocio.
           </p>
         </ScrollReveal>
 

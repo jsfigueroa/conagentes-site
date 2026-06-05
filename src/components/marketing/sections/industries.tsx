@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import {
+  Store,
   BedDouble,
   GraduationCap,
-  Building2,
-  Stethoscope,
+  Sparkles,
+  Check,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "@/components/marketing/animation/scroll-reveal";
@@ -13,77 +14,65 @@ import { cn } from "@/lib/utils";
 
 const industries = [
   {
-    id: "hotels",
-    icon: BedDouble,
-    label: "Hoteles",
-    headline: "El recepcionista IA que nunca duerme",
+    id: "comercio",
+    icon: Store,
+    label: "Comercio",
+    headline: "Vende tu catálogo por WhatsApp",
     description:
-      "Tu agente responde consultas de disponibilidad, muestra fotos de habitaciones, confirma reservas y hace check-in — todo por WhatsApp. Integra con tu sistema de reservaciones para disponibilidad en tiempo real.",
+      "Para tiendas, distribuidoras y mayoristas: tu agente cotiza, arma pedidos completos y ayuda a que cada cliente vuelva a comprar.",
     features: [
-      "Consulta de disponibilidad en tiempo real",
-      "Reservas automáticas por WhatsApp",
-      "Gestión de huéspedes y servicios",
-      "Timeline de ocupación visual",
+      "Catálogo con fotos y precios",
+      "Pedidos consolidados al instante",
+      "Cobros y factura electrónica",
+      "Recompra anticipada por cliente",
     ],
-    stat: "3x",
-    statLabel: "más reservas en 90 días",
-    available: true,
   },
   {
-    id: "education",
+    id: "hoteleria",
+    icon: BedDouble,
+    label: "Hotelería",
+    headline: "El recepcionista que nunca duerme",
+    description:
+      "Tu agente responde por disponibilidad, muestra las habitaciones, confirma reservas y atiende al huésped — todo por WhatsApp.",
+    features: [
+      "Consulta de disponibilidad",
+      "Reservas por WhatsApp",
+      "Gestión de huéspedes y servicios",
+      "Recordatorios automáticos",
+    ],
+  },
+  {
+    id: "educacion",
     icon: GraduationCap,
     label: "Educación",
     headline: "Matricula estudiantes mientras duermes",
     description:
-      "Desde la primera consulta hasta la matrícula completa, el agente guía al estudiante por todo el proceso — respondiendo preguntas sobre programas, requisitos y fechas, y recolectando documentos.",
+      "Desde la primera consulta hasta la matrícula, el agente guía al estudiante, resuelve dudas y recoge los documentos.",
     features: [
-      "Embudo de matrículas automatizado",
-      "Validación de documentos",
-      "Pipeline de admisiones visual",
-      "Campañas masivas por WhatsApp",
+      "Embudo de admisiones automatizado",
+      "Recolección de documentos",
+      "Información de programas y fechas",
+      "Campañas por WhatsApp",
     ],
-    stat: "180%",
-    statLabel: "incremento en matrículas",
-    available: true,
   },
   {
-    id: "realestate",
-    icon: Building2,
-    label: "Inmobiliarias",
-    headline: "Convierte cada consulta en una visita agendada",
+    id: "tusector",
+    icon: Sparkles,
+    label: "Tu sector",
+    headline: "Hecho a la medida de tu negocio",
     description:
-      "El agente captura interesados, califica su presupuesto, muestra propiedades disponibles y agenda visitas — sin que tu equipo levante un dedo.",
+      "Salud, inmobiliarias, servicios y más. conagentes se adapta a cómo trabajas tú — no al revés.",
     features: [
-      "Calificación automática de prospectos",
-      "Agendamiento de visitas por WhatsApp",
-      "Pipeline de ventas inmobiliarias",
-      "Seguimiento automático de leads",
+      "Se ajusta a tu forma de vender",
+      "Atención y agenda por WhatsApp",
+      "CRM y pipeline a tu medida",
+      "Lo configuramos contigo",
     ],
-    stat: "67%",
-    statLabel: "más visitas agendadas",
-    available: false,
-  },
-  {
-    id: "health",
-    icon: Stethoscope,
-    label: "Salud",
-    headline: "Agenda citas médicas sin llamadas",
-    description:
-      "Pacientes agendan citas, reciben recordatorios y confirman asistencia — todo por WhatsApp. Reduce el no-show y libera a tu equipo administrativo.",
-    features: [
-      "Agendamiento de citas por WhatsApp",
-      "Recordatorios automáticos 24h y 1h antes",
-      "Gestión de proveedores y servicios",
-      "Seguimiento post-consulta",
-    ],
-    stat: "45%",
-    statLabel: "reducción en no-shows",
-    available: false,
   },
 ];
 
 export function IndustriesSection() {
-  const [active, setActive] = useState("hotels");
+  const [active, setActive] = useState("comercio");
   const current = industries.find((i) => i.id === active)!;
 
   return (
@@ -91,18 +80,17 @@ export function IndustriesSection() {
       <div className="mx-auto max-w-7xl px-6">
         <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-sm font-semibold text-neon uppercase tracking-widest mb-4">
-            Tu industria
+            Para cualquier negocio
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-            Diseñado para tu negocio
+            Se adapta a tu negocio
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Módulos específicos para cada sector. No es un CRM genérico — es tu
-            CRM.
+            No es un CRM genérico — se ajusta a tu sector y a cómo vendes tú.
           </p>
         </ScrollReveal>
 
-        {/* Industry tabs */}
+        {/* Tabs */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {industries.map((industry) => (
             <button
@@ -117,16 +105,11 @@ export function IndustriesSection() {
             >
               <industry.icon className="w-4 h-4" />
               {industry.label}
-              {!industry.available && (
-                <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-ink/10 text-muted-foreground">
-                  Pronto
-                </span>
-              )}
             </button>
           ))}
         </div>
 
-        {/* Active industry detail */}
+        {/* Active industry */}
         <AnimatePresence mode="wait">
           <motion.div
             key={current.id}
@@ -136,40 +119,26 @@ export function IndustriesSection() {
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             className="grid md:grid-cols-2 gap-12 items-center"
           >
-            {/* Left: Content */}
             <div>
               <h3 className="text-2xl md:text-4xl font-bold text-foreground mb-4">
                 {current.headline}
               </h3>
-              <p className="text-muted-foreground leading-relaxed mb-8">
+              <p className="text-muted-foreground leading-relaxed">
                 {current.description}
               </p>
-              <ul className="space-y-3">
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-8">
+              <ul className="space-y-4">
                 {current.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-start gap-3 text-foreground"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-neon shrink-0" />
-                    <span className="text-sm">{feature}</span>
+                  <li key={feature} className="flex items-center gap-3">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-neon/10">
+                      <Check className="h-3.5 w-3.5 text-neon" />
+                    </span>
+                    <span className="text-foreground">{feature}</span>
                   </li>
                 ))}
               </ul>
-            </div>
-
-            {/* Right: Stat + placeholder */}
-            <div className="flex flex-col items-center justify-center p-12 rounded-2xl border border-border bg-card">
-              <span className="text-6xl md:text-7xl font-bold text-neon">
-                {current.stat}
-              </span>
-              <span className="mt-2 text-muted-foreground text-center">
-                {current.statLabel}
-              </span>
-              {!current.available && (
-                <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-neon/30 bg-neon/5 px-4 py-2 text-sm font-medium text-neon">
-                  Próximamente
-                </span>
-              )}
             </div>
           </motion.div>
         </AnimatePresence>

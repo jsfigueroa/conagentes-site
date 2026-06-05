@@ -11,21 +11,21 @@ const steps = [
     icon: Smartphone,
     title: "Conecta tu WhatsApp",
     description:
-      "Vincula tu número de WhatsApp Business en 2 minutos. Sin código, sin integraciones complejas. Solo escanea un QR y listo.",
+      "Vincula tu número de WhatsApp Business en minutos, con un par de clics. Sin código y sin desarrolladores.",
   },
   {
     number: "02",
     icon: Cpu,
-    title: "Entrena tu asistente IA",
+    title: "Carga tu negocio",
     description:
-      "Sube la información de tu negocio — precios, servicios, horarios, preguntas frecuentes. La IA aprende y responde como si fueras tú.",
+      "Sube tus productos, precios e información. Tu agente aprende cómo vendes y responde como lo harías tú.",
   },
   {
     number: "03",
     icon: Rocket,
-    title: "Deja que la IA trabaje",
+    title: "Empieza a vender",
     description:
-      "Tu agente responde 24/7, califica leads, agenda citas y llena tu CRM automáticamente. Tú solo cierras ventas.",
+      "Tu agente atiende 24/7, arma pedidos, llena tu CRM y te avisa a quién buscar. Tú solo cierras ventas.",
   },
 ];
 

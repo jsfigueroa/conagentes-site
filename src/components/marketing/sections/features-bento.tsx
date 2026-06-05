@@ -1,12 +1,12 @@
 "use client";
 
 import {
-  MessageSquare,
-  Kanban,
-  CalendarDays,
-  Inbox,
-  BarChart3,
-  Users,
+  Camera,
+  Mic,
+  UserCheck,
+  CreditCard,
+  RefreshCw,
+  Image as ImageIcon,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/marketing/animation/scroll-reveal";
 import { GlowCard } from "@/components/marketing/animation/glow-card";
@@ -18,50 +18,50 @@ import {
 
 const features = [
   {
-    icon: MessageSquare,
-    title: "Agente IA 24/7",
+    icon: Camera,
+    title: "WhatsApp e Instagram, una sola bandeja",
     description:
-      "Responde preguntas, califica leads y agenda citas en WhatsApp — en lenguaje natural, sin intervención humana.",
+      "Tus clientes te escriben por donde quieran y tu agente responde igual de bien en ambos. Tu equipo trabaja en un solo lugar, sin saltar entre apps.",
     span: "md:col-span-2 md:row-span-2",
     highlight: true,
   },
   {
-    icon: Kanban,
-    title: "Pipeline visual",
+    icon: Mic,
+    title: "Entiende notas de voz",
     description:
-      "Arrastra cada lead por etapas. Ve exactamente cuántas ventas vas a cerrar esta semana.",
+      "El cliente manda un audio y tu agente lo entiende y responde. Como hablan de verdad en Colombia.",
     span: "",
     highlight: false,
   },
   {
-    icon: CalendarDays,
-    title: "Calendario inteligente",
+    icon: UserCheck,
+    title: "Pasa a un humano sin perder el hilo",
     description:
-      "Agenda citas desde WhatsApp. Recordatorios automáticos y confirmaciones sin levantar un dedo.",
+      "Cuando hace falta una persona, toma la conversación al instante — con todo el contexto a la mano — y la devuelve a la IA cuando quiera.",
     span: "",
     highlight: false,
   },
   {
-    icon: Inbox,
-    title: "Bandeja unificada",
+    icon: CreditCard,
+    title: "Cobra por WhatsApp",
     description:
-      "Todas las conversaciones de WhatsApp en un solo lugar. Asigna, etiqueta y responde desde el dashboard.",
+      "Envía el link de pago en el chat y recibe con tarjeta, PSE o Nequi. La plata llega directo a tu cuenta.",
     span: "",
     highlight: false,
   },
   {
-    icon: BarChart3,
-    title: "Analítica en tiempo real",
+    icon: RefreshCw,
+    title: "Conecta tu contabilidad",
     description:
-      "Tasa de conversión, volumen de mensajes, rendimiento del equipo — todo en dashboards que se actualizan al instante.",
+      "Tus clientes, productos y ventas se sincronizan con tu sistema contable. Tus libros siempre al día, sin doble digitación.",
     span: "",
     highlight: false,
   },
   {
-    icon: Users,
-    title: "Gestión de equipo",
+    icon: ImageIcon,
+    title: "Catálogo con fotos",
     description:
-      "Roles, asignaciones y métricas por persona. Sabes quién respondió qué sin pedir reportes.",
+      "Carga tus productos con imagen, variantes y precio. El agente los muestra en el chat como lo haría tu mejor vendedor.",
     span: "",
     highlight: false,
   },
@@ -69,33 +69,18 @@ const features = [
 
 export function FeaturesBentoSection() {
   return (
-    <section
-      id="features"
-      className="relative py-24 md:py-32 bg-[oklch(0.08_0.01_95)] overflow-hidden"
-    >
-      {/* Glow accents */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-[oklch(0.86_0.27_148/0.06)] blur-[120px]" />
-
-      {/* Grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(oklch(0.86 0.27 148) 1px, transparent 1px), linear-gradient(90deg, oklch(0.86 0.27 148) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
-
+    <section className="relative py-24 md:py-32 bg-background overflow-hidden">
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-sm font-semibold text-neon uppercase tracking-widest mb-4">
-            Todo lo que necesitas
+            Y mucho más
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
-            Una plataforma completa para tu negocio
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+            Todo lo que tu negocio necesita, en un solo lugar
           </h2>
-          <p className="mt-4 text-lg text-[oklch(0.55_0.005_95)]">
-            No más herramientas desconectadas. Todo en un solo lugar.
+          <p className="mt-4 text-lg text-muted-foreground">
+            Más allá del recorrido, conagentes trae todo lo que esperas de una
+            plataforma completa.
           </p>
         </ScrollReveal>
 
@@ -107,10 +92,10 @@ export function FeaturesBentoSection() {
             <StaggerItem key={feature.title} className={feature.span}>
               <GlowCard
                 glowColor="oklch(0.86 0.27 148)"
-                className={`h-full rounded-2xl border border-white/[0.06] p-8 ${
+                className={`h-full rounded-2xl border p-8 ${
                   feature.highlight
-                    ? "bg-gradient-to-br from-[oklch(0.86_0.27_148/0.08)] to-[oklch(0.12_0.01_95)]"
-                    : "bg-[oklch(0.1_0.01_95)]"
+                    ? "border-neon/20 bg-gradient-to-br from-[oklch(0.86_0.27_148/0.06)] to-card"
+                    : "border-border bg-card"
                 }`}
               >
                 <TiltCard tiltStrength={12} className="h-full flex flex-col">
@@ -118,33 +103,25 @@ export function FeaturesBentoSection() {
                     className={`flex items-center justify-center w-12 h-12 rounded-xl mb-5 ${
                       feature.highlight
                         ? "bg-neon text-ink"
-                        : "bg-white/[0.06] text-neon"
+                        : "bg-neon/10 text-neon"
                     }`}
                   >
                     <feature.icon className="w-6 h-6" />
                   </div>
                   <h3
-                    className={`font-bold mb-3 ${
-                      feature.highlight ? "text-2xl text-white" : "text-lg text-white"
+                    className={`font-bold mb-3 text-foreground ${
+                      feature.highlight ? "text-2xl" : "text-lg"
                     }`}
                   >
                     {feature.title}
                   </h3>
                   <p
-                    className={`text-[oklch(0.55_0.005_95)] leading-relaxed ${
+                    className={`text-muted-foreground leading-relaxed ${
                       feature.highlight ? "text-base" : "text-sm"
                     }`}
                   >
                     {feature.description}
                   </p>
-                  {feature.highlight && (
-                    <div className="mt-auto pt-6">
-                      <span className="inline-flex items-center gap-2 text-sm font-medium text-neon">
-                        Conoce al agente
-                        <span aria-hidden>→</span>
-                      </span>
-                    </div>
-                  )}
                 </TiltCard>
               </GlowCard>
             </StaggerItem>

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/marketing/sections/hero";
-import { PainPointsSection } from "@/components/marketing/sections/pain-points";
-import { SolutionSection } from "@/components/marketing/sections/solution";
+import { ValueOverviewSection } from "@/components/marketing/sections/value-overview";
+import { StorySection } from "@/components/marketing/sections/story-section";
+import { SpotlightsSection } from "@/components/marketing/sections/spotlights";
 import { FeaturesBentoSection } from "@/components/marketing/sections/features-bento";
 import { IndustriesSection } from "@/components/marketing/sections/industries";
 import { HowItWorksSection } from "@/components/marketing/sections/how-it-works";
@@ -64,8 +65,9 @@ export default function LandingPage() {
   return (
     <>
       <HeroSection />
-      <PainPointsSection />
-      <SolutionSection />
+      <ValueOverviewSection />
+      <StorySection />
+      <SpotlightsSection />
       <FeaturesBentoSection />
       <IndustriesSection />
       <HowItWorksSection />
