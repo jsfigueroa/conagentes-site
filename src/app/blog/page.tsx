@@ -2,18 +2,32 @@ import type { Metadata } from "next";
 import { getAllPosts, getCategories } from "@/lib/blog/queries";
 import { PostCard } from "@/components/blog/post-card";
 import { CategoryBadge } from "@/components/blog/category-badge";
+import { generateBreadcrumbList } from "@/lib/blog/structured-data";
 import Link from "next/link";
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Artículos prácticos sobre IA, automatización y CRM para PYMEs en Latinoamérica. Aprende a usar la tecnología para crecer tu negocio.",
-  alternates: {
-    canonical: "/blog",
-  },
-};
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}): Promise<Metadata> {
+  const page = Math.max(1, parseInt((await searchParams).page ?? "1", 10));
+
+  return {
+    title: page > 1 ? `Blog (página ${page})` : "Blog",
+    description:
+      "Artículos prácticos sobre IA, automatización y CRM para PYMEs en Latinoamérica. Aprende a usar la tecnología para crecer tu negocio.",
+    alternates: {
+      // Self-canonical per page; page 1 is the clean /blog URL.
+      canonical: page > 1 ? `/blog?page=${page}` : "/blog",
+    },
+    // Deep listing pages: keep out of the index, follow through to articles.
+    robots: page > 1 ? { index: false, follow: true } : undefined,
+  };
+}
 
 export default async function BlogPage({
   searchParams,
@@ -31,8 +45,17 @@ export default async function BlogPage({
 
   const totalPages = Math.ceil(total / limit);
 
+  const breadcrumbLd = generateBreadcrumbList([
+    { name: "Inicio", url: SITE_URL },
+    { name: "Blog" },
+  ]);
+
   return (
     <div className="mx-auto max-w-7xl px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <header className="mb-12">
         <h1 className="text-4xl font-extrabold tracking-tight text-foreground mb-3">
           Blog

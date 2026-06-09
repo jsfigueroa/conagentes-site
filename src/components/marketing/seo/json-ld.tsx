@@ -17,7 +17,7 @@ export function MarketingJsonLd() {
     "@type": "Organization",
     name: "conagentes",
     url: SITE_URL,
-    logo: `${SITE_URL}/opengraph-image`,
+    logo: `${SITE_URL}/logo.png`,
     description:
       "Plataforma CRM con agentes de inteligencia artificial para pequeñas y medianas empresas en Colombia y Latinoamérica. Automatiza ventas, atención y agendamiento por WhatsApp con IA.",
     foundingDate: "2026",

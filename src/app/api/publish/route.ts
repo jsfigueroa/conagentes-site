@@ -1,6 +1,9 @@
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { submitToIndexNow } from "@/lib/seo/indexnow";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -44,14 +47,18 @@ export async function POST(request: NextRequest) {
     tags: body.tags || [],
     meta_title: body.meta_title || null,
     meta_description: body.meta_description || null,
+    canonical_url: body.canonical_url || null,
     key_takeaways: body.key_takeaways || [],
     statistics: body.statistics || [],
     faq: body.faq || [],
+    structured_data: body.structured_data || null,
     status: "published",
     published_at: body.published_at || new Date().toISOString(),
     reading_time_minutes: body.reading_time_minutes || null,
     word_count: body.word_count || null,
     author_name: body.author_name || "Equipo conagentes",
+    author_bio: body.author_bio || null,
+    author_avatar_url: body.author_avatar_url || null,
   };
 
   const { data, error } = await supabase
@@ -70,11 +77,19 @@ export async function POST(request: NextRequest) {
   revalidatePath("/blog");
   revalidatePath(`/blog/${post.slug}`);
   revalidatePath("/sitemap.xml");
+  revalidatePath("/llms.txt");
+
+  // Notify IndexNow (Bing/Yandex → ChatGPT Search/Copilot) so the new post is
+  // discovered in minutes. Non-blocking and self-guarded — never fails publish.
+  await submitToIndexNow([
+    `${SITE_URL}/blog/${post.slug}`,
+    `${SITE_URL}/blog`,
+  ]);
 
   return NextResponse.json({
     success: true,
     slug: data.slug,
     title: data.title,
-    url: `https://conagentes.com/blog/${data.slug}`,
+    url: `${SITE_URL}/blog/${data.slug}`,
   });
 }

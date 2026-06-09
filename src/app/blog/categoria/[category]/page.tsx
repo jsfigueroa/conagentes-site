@@ -3,9 +3,12 @@ import { getPostsByCategory, getCategories } from "@/lib/blog/queries";
 import { getCategoryLabel } from "@/components/blog/category-badge";
 import { PostCard } from "@/components/blog/post-card";
 import { CategoryBadge } from "@/components/blog/category-badge";
+import { generateBreadcrumbList } from "@/lib/blog/structured-data";
 import Link from "next/link";
 
 export const revalidate = 60;
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
 export async function generateStaticParams() {
   try {
@@ -18,15 +21,27 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ category: string }>;
+  searchParams: Promise<{ page?: string }>;
 }): Promise<Metadata> {
   const { category } = await params;
+  const page = Math.max(1, parseInt((await searchParams).page ?? "1", 10));
   const label = getCategoryLabel(category);
+  const base = `/blog/categoria/${category}`;
 
   return {
-    title: `${label} — Blog`,
+    title: page > 1 ? `${label} — Blog (página ${page})` : `${label} — Blog`,
     description: `Artículos sobre ${label.toLowerCase()} para PYMEs en Latinoamérica. Estrategias prácticas de IA y automatización.`,
+    alternates: {
+      // Self-canonical (incl. page param) so each page is its own canonical;
+      // page 1 is the clean category URL.
+      canonical: page > 1 ? `${base}?page=${page}` : base,
+    },
+    // Keep deep listing pages out of the index to avoid thin/duplicate pages,
+    // but let crawlers follow through to the articles.
+    robots: page > 1 ? { index: false, follow: true } : undefined,
   };
 }
 
@@ -50,8 +65,18 @@ export default async function CategoryPage({
   const totalPages = Math.ceil(total / limit);
   const label = getCategoryLabel(category);
 
+  const breadcrumbLd = generateBreadcrumbList([
+    { name: "Inicio", url: SITE_URL },
+    { name: "Blog", url: `${SITE_URL}/blog` },
+    { name: label },
+  ]);
+
   return (
     <div className="mx-auto max-w-7xl px-6 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <header className="mb-12">
         <Link
           href="/blog"

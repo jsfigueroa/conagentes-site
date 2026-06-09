@@ -1,4 +1,5 @@
 import type { BlogPost } from "@/lib/blog/types";
+import Image from "next/image";
 import { CategoryBadge } from "./category-badge";
 import { Clock, Calendar } from "lucide-react";
 
@@ -34,10 +35,17 @@ export function PostHeader({ post }: { post: BlogPost }) {
         </p>
       )}
 
-      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-        <span className="font-medium text-foreground">
-          {post.author_name}
-        </span>
+      <div className="flex items-center gap-3 text-sm text-muted-foreground">
+        {post.author_avatar_url && (
+          <Image
+            src={post.author_avatar_url}
+            alt={post.author_name}
+            width={36}
+            height={36}
+            className="rounded-full object-cover"
+          />
+        )}
+        <span className="font-medium text-foreground">{post.author_name}</span>
         <span className="flex items-center gap-1.5">
           <Calendar size={14} />
           <time dateTime={post.published_at ?? undefined}>
@@ -46,6 +54,69 @@ export function PostHeader({ post }: { post: BlogPost }) {
         </span>
       </div>
     </header>
+  );
+}
+
+// Cited statistics — sourced numbers are exactly what LLM answer engines quote
+// and what builds E-E-A-T. Renders each stat with a linked source. (CON-025, B2.4)
+export function PostStatistics({ stats }: { stats: BlogPost["statistics"] }) {
+  if (!stats || stats.length === 0) return null;
+
+  return (
+    <section className="my-8 grid gap-4 sm:grid-cols-2">
+      {stats.map((s, i) => (
+        <div
+          key={i}
+          className="rounded-[var(--r-lg)] border border-border bg-card p-5"
+        >
+          <p className="text-base font-semibold leading-snug text-foreground">
+            {s.stat}
+          </p>
+          {s.source && (
+            <p className="mt-2 text-xs text-muted-foreground">
+              Fuente:{" "}
+              {s.source_url ? (
+                <a
+                  href={s.source_url}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="underline hover:text-foreground"
+                >
+                  {s.source}
+                </a>
+              ) : (
+                s.source
+              )}
+            </p>
+          )}
+        </div>
+      ))}
+    </section>
+  );
+}
+
+// Author box — visible authorship/attribution at the end of the article (E-E-A-T).
+export function AuthorBox({ post }: { post: BlogPost }) {
+  if (!post.author_bio) return null;
+
+  return (
+    <section className="mt-10 flex gap-4 rounded-[var(--r-lg)] border border-border bg-card p-6">
+      {post.author_avatar_url && (
+        <Image
+          src={post.author_avatar_url}
+          alt={post.author_name}
+          width={56}
+          height={56}
+          className="h-14 w-14 shrink-0 rounded-full object-cover"
+        />
+      )}
+      <div>
+        <p className="font-semibold text-foreground">{post.author_name}</p>
+        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+          {post.author_bio}
+        </p>
+      </div>
+    </section>
   );
 }
 

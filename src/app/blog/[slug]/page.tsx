@@ -12,6 +12,8 @@ import {
   KeyTakeaways,
   PostBody,
   PostFaq,
+  PostStatistics,
+  AuthorBox,
 } from "@/components/blog/post-content";
 import { TableOfContents } from "@/components/blog/table-of-contents";
 import { ShareButtons } from "@/components/blog/share-buttons";
@@ -68,7 +70,7 @@ export default async function BlogPostPage({
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
-  const related = await getRelatedPosts(slug, post.category);
+  const related = await getRelatedPosts(slug, post.category, post.tags);
 
   const articleLd = generateArticleJsonLd(post);
   const faqLd = generateFaqJsonLd(post);
@@ -113,9 +115,13 @@ export default async function BlogPostPage({
               <KeyTakeaways items={post.key_takeaways} />
             )}
 
+            <PostStatistics stats={post.statistics} />
+
             <PostBody html={post.content} />
 
             <PostFaq faq={post.faq} />
+
+            <AuthorBox post={post} />
 
             <div className="mt-10 pt-6 border-t border-border">
               <ShareButtons slug={post.slug} title={post.title} />

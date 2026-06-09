@@ -82,20 +82,46 @@ export async function getCategories(): Promise<CategoryCount[]> {
 export async function getRelatedPosts(
   slug: string,
   category: string,
+  tags: string[] = [],
   limit = 3
 ): Promise<BlogPostCard[]> {
+  // Pull a candidate pool that's either in the same category OR shares tags,
+  // then rank by topical relevance (shared tags weigh most, same category next,
+  // recency breaks ties). Stronger topic clustering than category-only — better
+  // internal-linking signal for both Google and LLM crawlers. (CON-025, B3.1)
+  const tagFilter =
+    tags.length > 0 ? `,tags.ov.{${tags.map((t) => `"${t}"`).join(",")}}` : "";
+
   const { data, error } = await supabase
     .from("blog_posts")
-    .select(CARD_FIELDS)
+    .select(`${CARD_FIELDS}, tags`)
     .eq("status", "published")
-    .eq("category", category)
     .neq("slug", slug)
     .lte("published_at", new Date().toISOString())
+    .or(`category.eq.${category}${tagFilter}`)
     .order("published_at", { ascending: false })
-    .limit(limit);
+    .limit(24);
 
   if (error) throw error;
-  return (data ?? []) as BlogPostCard[];
+
+  const tagSet = new Set(tags);
+  const scored = (data ?? []).map((p) => {
+    const postTags: string[] = (p as { tags?: string[] }).tags ?? [];
+    const sharedTags = postTags.filter((t) => tagSet.has(t)).length;
+    const score = sharedTags * 2 + (p.category === category ? 1 : 0);
+    return { post: p, score };
+  });
+
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return (b.post.published_at ?? "").localeCompare(a.post.published_at ?? "");
+  });
+
+  return scored.slice(0, limit).map(({ post }) => {
+    const { tags: _tags, ...card } = post as BlogPostCard & { tags?: string[] };
+    void _tags;
+    return card as BlogPostCard;
+  });
 }
 
 export async function getAllPublishedSlugs(): Promise<string[]> {
