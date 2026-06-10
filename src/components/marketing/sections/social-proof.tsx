@@ -36,6 +36,7 @@ const trust = [
     icon: ReceiptText,
     title: "Factura electrónica DIAN",
     description: "Facturación válida ante la DIAN, a nombre de tu empresa.",
+    badge: "Próximamente",
   },
   {
     icon: Users,
@@ -76,8 +77,13 @@ export function SocialProofSection() {
                 <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-white/[0.06] text-neon mb-5">
                   <item.icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-base font-bold text-white mb-2">
+                <h3 className="mb-2 flex items-center gap-2 text-base font-bold text-white">
                   {item.title}
+                  {"badge" in item && item.badge && (
+                    <span className="rounded-full border border-white/[0.12] bg-white/[0.04] px-2 py-0.5 text-[10px] font-medium text-[oklch(0.62_0.005_95)]">
+                      {item.badge}
+                    </span>
+                  )}
                 </h3>
                 <p className="text-sm text-[oklch(0.55_0.005_95)] leading-relaxed">
                   {item.description}

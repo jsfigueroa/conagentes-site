@@ -8,6 +8,7 @@ import { formatCOP } from "@/components/marketing/story/story-script";
 
 interface SpotlightProps {
   eyebrow: string;
+  badge?: string;
   title: string;
   highlight: string;
   body: string;
@@ -18,6 +19,7 @@ interface SpotlightProps {
 
 function Spotlight({
   eyebrow,
+  badge,
   title,
   highlight,
   body,
@@ -32,8 +34,13 @@ function Spotlight({
         direction={reverse ? "left" : "right"}
         className={reverse ? "lg:order-2" : ""}
       >
-        <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-neon">
+        <p className="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-widest text-neon">
           {eyebrow}
+          {badge && (
+            <span className="rounded-full border border-white/[0.12] bg-white/[0.04] px-2.5 py-0.5 text-[10px] font-medium normal-case tracking-wide text-[oklch(0.62_0.005_95)]">
+              {badge}
+            </span>
+          )}
         </p>
         <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
           {title}{" "}
@@ -188,6 +195,7 @@ export function SpotlightsSection() {
         <Spotlight
           reverse
           eyebrow="Cumple sin esfuerzo"
+          badge="Próximamente"
           title="Factura electrónica"
           highlight="DIAN, automática"
           body="Cuando el cliente paga, se genera la factura electrónica válida ante la DIAN a nombre de tu empresa — emitida y enviada sola. Sin digitar, sin software contable extra, sin multas."
