@@ -70,7 +70,8 @@ conagentes es un CRM multi-industria (hoteles, educación, servicios) construido
 ## Páginas principales
 - [Inicio](${SITE_URL}/): qué es conagentes, funciones, industrias, precios y demo
 - [Blog](${SITE_URL}/blog): guías prácticas de IA, automatización y CRM para pymes en Latinoamérica
-- [Privacidad](${SITE_URL}/privacy): política de privacidad y tratamiento de datos
+- [Privacidad](${SITE_URL}/privacidad): política de privacidad y tratamiento de datos (Ley 1581 de 2012)
+- [Términos](${SITE_URL}/terminos): términos y condiciones de uso de la plataforma
 
 ## Categorías del blog
 ${categoryLines || "- (sin categorías publicadas todavía)"}

@@ -20,8 +20,8 @@ const footerLinks = {
     { label: "Trabaja con nosotros", href: "#" },
   ],
   Legal: [
-    { label: "Privacidad", href: "/privacy" },
-    { label: "Términos", href: "#" },
+    { label: "Privacidad", href: "/privacidad" },
+    { label: "Términos", href: "/terminos" },
   ],
 };
 
