@@ -5,10 +5,15 @@ import { submitToIndexNow } from "@/lib/seo/indexnow";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+// Lazily create the client inside the handler so `next build` never
+// instantiates it at import time (which throws when Supabase env vars are
+// absent, e.g. on Preview deploys without the vars scoped in).
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
 export async function POST(request: NextRequest) {
   const secret = request.headers.get("authorization")?.replace("Bearer ", "");
@@ -61,7 +66,7 @@ export async function POST(request: NextRequest) {
     author_avatar_url: body.author_avatar_url || null,
   };
 
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from("blog_posts")
     .insert(post)
     .select("slug, title")
