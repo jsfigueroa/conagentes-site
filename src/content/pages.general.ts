@@ -806,15 +806,32 @@ export const GENERAL_PAGES: MarketingPage[] = [
     experience: "general",
     eyebrow: "Recursos",
     title: "Guías y ebooks",
-    lede: "Material práctico para que su negocio venda más y atienda mejor. Pronto disponible para descarga.",
+    lede: "Todo lo que necesita para vender más y atender mejor con IA por WhatsApp. Publicamos guías prácticas cada semana en el blog — aquí están los temas.",
     meta: {
-      title: "Guías y ebooks — conagentes",
-      description: "Guías descargables para vender más por WhatsApp con agentes IA.",
+      title: "Guías de IA para pymes — conagentes",
+      description: "Guías prácticas para vender más por WhatsApp con agentes IA: automatización, atención 24/7, cobros, reactivación y más, para pymes en Latinoamérica.",
     },
     sections: [
-      { type: "prose", heading: "En preparación", body: ["Estamos armando una biblioteca de guías prácticas. Mientras tanto, agende una demo y le compartimos las mejores prácticas para su sector."] },
+      {
+        type: "features",
+        heading: "Lo que va a aprender",
+        items: [
+          { title: "Vender por WhatsApp con IA", body: "Cómo responder al instante y no dejar enfriar ninguna venta.", href: "/blog" },
+          { title: "Atención 24/7 sin ampliar el equipo", body: "Atender a todos, a toda hora, sin contratar más.", href: "/soluciones/atencion-24-7" },
+          { title: "Cobrar y facturar en el chat", body: "Link de pago y factura DIAN sin salir de la conversación.", href: "/producto/cobros-facturacion" },
+          { title: "Reactivar clientes dormidos", body: "Venderle otra vez a quien ya le compró.", href: "/soluciones/reactivacion" },
+        ],
+      },
+      {
+        type: "prose",
+        heading: "Guías nuevas cada semana",
+        body: ["Publicamos contenido práctico en el blog constantemente. ¿Quiere algo específico para su sector? Agende una demo y se lo preparamos a su medida."],
+      },
     ],
-    related: [{ label: "Blog", href: "/blog" }],
+    related: [
+      { label: "Blog", href: "/blog" },
+      { label: "Ver la plataforma", href: "/producto" },
+    ],
     cta: DEFAULT_CTA,
   },
   {
@@ -887,13 +904,33 @@ export const GENERAL_PAGES: MarketingPage[] = [
     },
     sections: [
       {
-        type: "quote",
-        text: "El agente responde al instante, a cualquier hora. Dejamos de perder clientes por no contestar a tiempo.",
-        author: "Cliente conagentes",
+        type: "prose",
+        heading: "Resultados, no anécdotas",
+        body: [
+          "En conagentes medimos el impacto en lo que de verdad importa: ventas que antes se enfriaban por no responder a tiempo, ticket promedio, y clientes que vuelven. Nada de métricas de vanidad.",
+          "Estamos documentando los resultados de nuestros primeros clientes con números reales. Mientras tanto, aquí está exactamente lo que medimos con cada negocio.",
+        ],
       },
-      { type: "prose", heading: "Más casos, pronto", body: ["Estamos documentando los resultados de nuestros clientes. ¿Quiere ser uno de ellos? Agende una demo."] },
+      {
+        type: "features",
+        heading: "Qué medimos con cada cliente",
+        items: [
+          { title: "Tiempo de respuesta", body: "De horas (o nunca) a segundos, a cualquier hora." },
+          { title: "Ventas recuperadas", body: "Oportunidades que antes se perdían por no contestar." },
+          { title: "Ticket promedio", body: "Cuánto suma el upsell del agente a cada venta." },
+          { title: "Clientes que vuelven", body: "Reactivación de quienes ya le compraron." },
+        ],
+      },
+      {
+        type: "prose",
+        heading: "¿Quiere ser uno de los primeros casos?",
+        body: ["Agende una demo y le mostramos, con su propio catálogo y sus precios, cómo trabajaría su agente. Si arrancamos juntos, documentamos sus resultados."],
+      },
     ],
-    related: [{ label: "conagentes para hoteles", href: "/hoteles" }],
+    related: [
+      { label: "conagentes para hoteles", href: "/hoteles" },
+      { label: "Resultados en hoteles", href: "/hoteles/resultados" },
+    ],
     cta: DEFAULT_CTA,
   },
 

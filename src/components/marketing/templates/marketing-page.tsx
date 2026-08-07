@@ -4,6 +4,72 @@ import type { MarketingPage, Section } from "@/content/pages";
 import { DemoButton } from "./page-cta";
 import { PageFaq } from "./page-faq";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
+
+/**
+ * Per-page structured data (GEO): WebPage + BreadcrumbList + FAQPage (when the
+ * page has an FAQ section). Turns every registry page into an individually
+ * citable, entity-anchored source for ChatGPT / Claude / Gemini / Perplexity.
+ */
+function PageStructuredData({ page }: { page: MarketingPage }) {
+  const url = `${SITE_URL}/${page.slug}`;
+  const crumbs: { name: string; item: string }[] = [
+    page.experience === "hotel"
+      ? { name: "Hoteles", item: `${SITE_URL}/hoteles` }
+      : { name: "Inicio", item: SITE_URL },
+  ];
+  const firstSeg = page.slug.split("/")[0];
+  if (page.experience !== "hotel" && firstSeg !== page.slug) {
+    crumbs.push({
+      name: firstSeg.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase()),
+      item: `${SITE_URL}/${firstSeg}`,
+    });
+  }
+  crumbs.push({ name: page.title, item: url });
+
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "WebPage",
+      "@id": url,
+      url,
+      name: page.meta.title,
+      description: page.meta.description,
+      inLanguage: "es-CO",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: crumbs.map((c, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: c.name,
+        item: c.item,
+      })),
+    },
+  ];
+
+  const faqSection = page.sections.find((s) => s.type === "faq");
+  if (faqSection && faqSection.type === "faq") {
+    graph.push({
+      "@type": "FAQPage",
+      mainEntity: faqSection.items.map((q) => ({
+        "@type": "Question",
+        name: q.q,
+        acceptedAnswer: { "@type": "Answer", text: q.a },
+      })),
+    });
+  }
+
+  const data = { "@context": "https://schema.org", "@graph": graph };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
+    />
+  );
+}
+
 /* ————— section renderers ————— */
 
 function SectionHeading({ heading, sub }: { heading?: string; sub?: string }) {
@@ -187,6 +253,8 @@ export function MarketingPageView({ page }: { page: MarketingPage }) {
   const cta = page.cta;
   return (
     <>
+      <PageStructuredData page={page} />
+
       {/* Hero — dark band so the fixed header stays readable */}
       <section className="relative overflow-hidden bg-[oklch(0.08_0.01_95)] px-6 pb-20 pt-36">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />

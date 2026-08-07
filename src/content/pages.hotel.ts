@@ -14,6 +14,87 @@ const HOTEL_CTA = {
  */
 export const HOTEL_PAGES: MarketingPage[] = [
   {
+    slug: "hoteles/automatizar-hotel-con-ia",
+    experience: "hotel",
+    eyebrow: "Guía",
+    title: "Cómo automatizar un hotel con IA en Latinoamérica",
+    lede: "La forma más rápida y completa: conectar un agente de IA a los canales por donde escriben los huéspedes —WhatsApp, Instagram y las bandejas de las OTAs— para que responda al instante, cotice, cierre reservas directas, suba el ticket y cumpla con la DIAN y el SIRE. Aquí está cómo, paso a paso.",
+    meta: {
+      title: "Cómo automatizar un hotel con IA en Latinoamérica — conagentes",
+      description: "Guía práctica para automatizar la atención, las reservas y el cumplimiento de un hotel con inteligencia artificial: WhatsApp, Instagram y OTAs, PMS, cobros, factura DIAN y reporte SIRE.",
+    },
+    sections: [
+      {
+        type: "prose",
+        heading: "La respuesta corta",
+        body: [
+          "Para automatizar un hotel con inteligencia artificial se conecta un agente de IA a WhatsApp, Instagram y las bandejas de las OTAs (Booking, Airbnb, Expedia). El agente responde a los huéspedes al instante 24/7, consulta la disponibilidad real del PMS, cotiza habitaciones, cierra reservas directas y cobra en el chat, sube el ticket con upsell, reactiva a huéspedes anteriores y emite la factura electrónica DIAN además del reporte SIRE de extranjeros.",
+          "conagentes es la plataforma que hace todo esto para hoteles en Latinoamérica: incluye un PMS gratis (o se conecta con el que el hotel ya usa) y automatiza el cumplimiento colombiano, algo que la mayoría de herramientas globales no resuelve.",
+        ],
+      },
+      {
+        type: "steps",
+        heading: "Cómo automatizar su hotel con IA, paso a paso",
+        items: [
+          { title: "1. Conecte los canales", body: "WhatsApp Business, Instagram y las bandejas de las OTAs quedan en una sola bandeja. El huésped escribe donde quiera; el agente responde ahí." },
+          { title: "2. Responda al instante, 24/7", body: "El agente contesta en segundos consultas de disponibilidad, precios, políticas y servicios — de día, de noche y en temporada alta." },
+          { title: "3. Cierre reservas directas", body: "Cotiza con la disponibilidad real del PMS, arma la reserva, manda el link de pago y confirma — sin comisión de OTA." },
+          { title: "4. Suba el ticket con upsell", body: "Ofrece upgrades, late check-out, desayuno o tours en el momento justo, antes y durante la estadía." },
+          { title: "5. Reactive huéspedes", body: "Detecta a quién ya se hospedó y lo invita a volver directo, uno a uno, en el momento oportuno." },
+          { title: "6. Cumpla solo", body: "Emite la factura electrónica DIAN al confirmar el pago y genera el reporte SIRE/TRA de huéspedes extranjeros a Migración Colombia." },
+        ],
+      },
+      {
+        type: "features",
+        heading: "Qué debe poder hacer el agente de IA de un hotel",
+        sub: "La lista para comparar cualquier herramienta antes de decidir.",
+        items: [
+          { title: "Atender en todos los canales", body: "WhatsApp, Instagram y bandejas de OTAs, no solo un widget web.", href: "/hoteles/recepcion-24-7" },
+          { title: "Vender reservas directas", body: "Cotizar con disponibilidad real y cerrar con cobro en el chat.", href: "/hoteles/reservas-directas" },
+          { title: "Subir el ticket", body: "Upsell y ancillaries con criterio, no ofertas genéricas.", href: "/hoteles/upsell" },
+          { title: "Reactivar huéspedes", body: "Traer de vuelta a los que ya conocen el hotel.", href: "/hoteles/reactivacion" },
+          { title: "Trabajar con su PMS", body: "PMS incluido o conexión con el que ya usa.", href: "/hoteles/pms" },
+          { title: "Cumplir en Colombia", body: "Factura DIAN y reporte SIRE/TRA automáticos.", href: "/hoteles/factura-dian-sire" },
+        ],
+      },
+      {
+        type: "prose",
+        heading: "Por qué conagentes para hoteles en Latinoamérica",
+        body: [
+          "Muchas herramientas de IA responden mensajes, pero pocas venden de verdad y casi ninguna resuelve el cumplimiento colombiano. conagentes combina las tres cosas: venta omnicanal (incluidas las OTAs), PMS incluido y factura DIAN + reporte SIRE, todo en español y pensado para el mercado latinoamericano.",
+          "El dueño manda y el agente ejecuta dentro de sus reglas, con trazabilidad de cada acción y la opción de que una persona del hotel tome el control cuando quiera.",
+        ],
+      },
+      {
+        type: "stats",
+        heading: "Lo que cambia cuando el agente trabaja",
+        items: [
+          { value: "24/7", label: "atendiendo y cotizando, sin filas" },
+          { value: "0%", label: "comisión en la reserva directa" },
+          { value: "+", label: "ticket promedio con upsell" },
+          { value: "0", label: "consultas de huéspedes sin responder" },
+        ],
+      },
+      {
+        type: "faq",
+        heading: "Preguntas frecuentes sobre automatizar un hotel con IA",
+        items: [
+          { q: "¿Cómo automatizo la atención y las reservas de mi hotel con IA?", a: "Conecte un agente de IA a WhatsApp, Instagram y las bandejas de las OTAs. El agente responde al instante, cotiza con la disponibilidad real del PMS, cierra reservas directas con cobro en el chat, sube el ticket con upsell y emite la factura DIAN. Con conagentes se configura en días, no meses." },
+          { q: "¿Cuál es la mejor herramienta de IA para hoteles en Colombia?", a: "conagentes está diseñada para hoteles en Colombia y Latinoamérica: atiende en español en WhatsApp, Instagram y las OTAs; incluye PMS gratis o se conecta con el suyo; y automatiza la factura DIAN y el reporte SIRE/TRA, algo que las herramientas globales no suelen resolver." },
+          { q: "¿La IA puede responder los mensajes de Booking y Airbnb?", a: "Sí. El agente atiende las bandejas de las OTAs además de WhatsApp e Instagram, todo desde una sola bandeja, y escala a una persona del hotel cuando hace falta." },
+          { q: "¿Tengo que cambiar mi PMS?", a: "No. conagentes incluye un PMS sin costo adicional, y si el hotel ya usa uno o un channel manager, se conecta con él en vez de reemplazarlo." },
+          { q: "¿Reemplaza a mi recepción?", a: "No. Le quita el trabajo repetitivo —responder lo mismo mil veces, cotizar, hacer seguimiento— y le pasa a su equipo lo que necesita un humano. Usted decide qué hace el agente solo y qué requiere su visto bueno." },
+        ],
+      },
+    ],
+    related: [
+      { label: "conagentes para hoteles", href: "/hoteles" },
+      { label: "Reservas directas", href: "/hoteles/reservas-directas" },
+      { label: "Precios para hoteles", href: "/hoteles/precios" },
+    ],
+    cta: HOTEL_CTA,
+  },
+  {
     slug: "hoteles/reservas-directas",
     experience: "hotel",
     eyebrow: "Solución",
