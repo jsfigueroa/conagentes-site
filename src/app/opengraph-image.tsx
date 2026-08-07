@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "conagentes — CRM con agentes de IA para WhatsApp";
+export const alt = "conagentes — Agentes IA que venden por WhatsApp";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -26,7 +26,7 @@ export default async function Image() {
           <svg width="48" height="48" viewBox="0 0 200 200" fill="none">
             <rect x="28" y="100" width="80" height="80" rx="10" fill="#e8e5df" />
             <rect x="68" y="60" width="80" height="80" rx="10" fill="#e8e5df" />
-            <rect x="108" y="20" width="80" height="80" rx="10" fill="#7dff4a" />
+            <rect x="108" y="20" width="80" height="80" rx="10" fill="#ff8121" />
           </svg>
           <span
             style={{
@@ -53,9 +53,9 @@ export default async function Image() {
             maxWidth: "900px",
           }}
         >
-          CRM con agentes de IA
+          Agentes IA que venden
           <br />
-          para WhatsApp
+          por WhatsApp
         </h1>
 
         {/* Subtitle */}
@@ -65,11 +65,11 @@ export default async function Image() {
             color: "#a3a09a",
             margin: 0,
             lineHeight: 1.4,
-            maxWidth: "700px",
+            maxWidth: "740px",
           }}
         >
-          Vende, agenda y atiende clientes 24/7 con inteligencia artificial.
-          Para hoteles y pymes en Colombia.
+          Reservan, suben el ticket y recuperan clientes 24/7. Para hoteles y
+          pymes en Colombia y Latinoamérica.
         </p>
 
         {/* Accent bar */}
@@ -80,7 +80,7 @@ export default async function Image() {
             left: "0",
             width: "100%",
             height: "6px",
-            background: "linear-gradient(90deg, #7dff4a 0%, #4ade80 100%)",
+            background: "linear-gradient(90deg, #ff8121 0%, #ff4d8d 100%)",
           }}
         />
       </div>

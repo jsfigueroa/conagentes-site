@@ -61,6 +61,25 @@ function PageStructuredData({ page }: { page: MarketingPage }) {
     });
   }
 
+  const howtoSection = page.sections.find(
+    (s) => s.type === "steps" && s.howto,
+  );
+  if (howtoSection && howtoSection.type === "steps") {
+    graph.push({
+      "@type": "HowTo",
+      name: howtoSection.heading ?? page.title,
+      description: page.lede,
+      inLanguage: "es-CO",
+      step: howtoSection.items.map((item, i) => ({
+        "@type": "HowToStep",
+        position: i + 1,
+        name: item.title.replace(/^\d+\.\s*/, ""),
+        text: item.body,
+        url: `${url}#paso-${i + 1}`,
+      })),
+    });
+  }
+
   const data = { "@context": "https://schema.org", "@graph": graph };
   return (
     <script

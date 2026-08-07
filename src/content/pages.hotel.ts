@@ -34,6 +34,7 @@ export const HOTEL_PAGES: MarketingPage[] = [
       },
       {
         type: "steps",
+        howto: true,
         heading: "Cómo automatizar su hotel con IA, paso a paso",
         items: [
           { title: "1. Conecte los canales", body: "WhatsApp Business, Instagram y las bandejas de las OTAs quedan en una sola bandeja. El huésped escribe donde quiera; el agente responde ahí." },

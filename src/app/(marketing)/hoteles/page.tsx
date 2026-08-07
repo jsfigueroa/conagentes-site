@@ -50,9 +50,70 @@ export const metadata: Metadata = {
   },
 };
 
+const hotelJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}/hoteles#service`,
+      name: "Agente IA para hoteles",
+      serviceType: "Automatización de hoteles con inteligencia artificial",
+      description,
+      url: `${SITE_URL}/hoteles`,
+      inLanguage: "es-CO",
+      provider: { "@id": `${SITE_URL}/#organization` },
+      areaServed: [
+        { "@type": "Country", name: "Colombia" },
+        { "@type": "Place", name: "Latinoamérica" },
+      ],
+      audience: { "@type": "BusinessAudience", name: "Hoteles" },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Capacidades del agente IA para hoteles",
+        itemListElement: [
+          "Reservas directas por WhatsApp, Instagram y OTAs",
+          "Upsell y ancillaries (upgrades, late check-out, tours)",
+          "Reactivación de huéspedes",
+          "Recepción virtual 24/7",
+          "PMS incluido o conexión con el existente",
+          "Cobros en el chat y factura electrónica DIAN",
+          "Reporte SIRE / TRA a Migración Colombia",
+        ].map((name) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name },
+        })),
+      },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "COP",
+        url: `${SITE_URL}/hoteles/precios`,
+        availability: "https://schema.org/InStock",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Hoteles",
+          item: `${SITE_URL}/hoteles`,
+        },
+      ],
+    },
+  ],
+};
+
 export default function HotelesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(hotelJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <HotelHero />
       <HotelBody />
     </>

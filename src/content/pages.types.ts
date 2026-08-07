@@ -12,6 +12,8 @@ export type Section =
       type: "steps";
       heading?: string;
       sub?: string;
+      /** Emit HowTo structured data from these steps (GEO). */
+      howto?: boolean;
       items: { title: string; body: string }[];
     }
   | {
