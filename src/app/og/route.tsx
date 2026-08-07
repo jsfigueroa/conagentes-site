@@ -2,22 +2,17 @@ import { ImageResponse } from "next/og";
 import { getPage } from "@/content/pages";
 
 export const runtime = "edge";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
-export const alt = "conagentes";
 
 /**
- * Per-page Open Graph image — a branded, title-specific preview for every
- * data-driven marketing page (social shares + AI answer citations). Atardecer
- * palette, generated from the page registry at build time.
+ * Dynamic per-page Open Graph image: GET /og?slug=<page-slug>.
+ * A dedicated route handler (not the metadata-file convention) so it never
+ * collides with the (marketing) [...slug] catch-all. Title-specific, Atardecer
+ * palette — used by every data-driven marketing page for social + AI previews.
  */
-export default async function Image({
-  params,
-}: {
-  params: Promise<{ slug: string[] }>;
-}) {
-  const { slug } = await params;
-  const page = getPage(slug.join("/"));
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const slug = searchParams.get("slug") ?? "";
+  const page = getPage(slug);
   const title = page?.title ?? "Agentes IA que venden por WhatsApp";
   const eyebrow =
     page?.eyebrow ?? (page?.experience === "hotel" ? "Hoteles" : "conagentes");
@@ -38,7 +33,6 @@ export default async function Image({
           fontFamily: "system-ui, sans-serif",
         }}
       >
-        {/* Logo + wordmark */}
         <div
           style={{
             display: "flex",
@@ -64,7 +58,6 @@ export default async function Image({
           </span>
         </div>
 
-        {/* Eyebrow */}
         <span
           style={{
             fontSize: "22px",
@@ -78,22 +71,20 @@ export default async function Image({
           {eyebrow}
         </span>
 
-        {/* Title */}
-        <h1
+        <div
           style={{
+            display: "flex",
             fontSize: title.length > 48 ? "54px" : "66px",
             fontWeight: 800,
             color: "#ffffff",
             lineHeight: 1.08,
-            margin: 0,
             letterSpacing: "-0.03em",
             maxWidth: "1000px",
           }}
         >
           {title}
-        </h1>
+        </div>
 
-        {/* Accent bar */}
         <div
           style={{
             position: "absolute",
@@ -106,6 +97,6 @@ export default async function Image({
         />
       </div>
     ),
-    { ...size }
+    { width: 1200, height: 630 },
   );
 }
