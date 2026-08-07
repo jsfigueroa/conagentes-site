@@ -30,7 +30,7 @@ export const PIPELINE_STAGES = [
   {
     id: "interesado" as const,
     label: "Interesado",
-    dotColor: "bg-[oklch(0.78_0.15_75)]",
+    dotColor: "bg-[oklch(0.80_0.15_82)]",
   },
   {
     id: "calificado" as const,
@@ -40,7 +40,7 @@ export const PIPELINE_STAGES = [
   {
     id: "cerrado" as const,
     label: "Cerrado",
-    dotColor: "bg-[oklch(0.72_0.25_148)]",
+    dotColor: "bg-[oklch(0.64_0.19_42)]",
   },
 ] as const;
 
@@ -134,7 +134,7 @@ export const ACTS: StoryAct[] = [
     eyebrow: "01 · Atiende",
     title: "La conversación que",
     highlight: "vende sola",
-    body: "Tu cliente escribe por WhatsApp y tu agente responde en segundos, a cualquier hora. Muestra productos con foto y precio, resuelve dudas y mueve el contacto por tu embudo — sin que tú estés.",
+    body: "Su cliente escribe por WhatsApp y su agente responde en segundos, a cualquier hora. Muestra productos con foto y precio, resuelve dudas y mueve el contacto por su embudo — sin que usted esté.",
     bullets: [
       "Responde 24/7, incluso de madrugada",
       "Envía catálogo con precios al instante",
@@ -149,7 +149,7 @@ export const ACTS: StoryAct[] = [
     body: "Cuando el cliente elige, el agente consolida todo en un pedido formal: producto por producto, cantidad, precio unitario y total en pesos. Sin recotizar a mano, sin errores de precio.",
     bullets: [
       "Suma cantidades y totales automáticamente",
-      "Usa siempre los precios de tu catálogo",
+      "Usa siempre los precios de su catálogo",
       "Un chat desordenado se vuelve un pedido claro",
     ],
   },
@@ -157,23 +157,23 @@ export const ACTS: StoryAct[] = [
     id: "dashboard",
     eyebrow: "03 · Organiza",
     title: "Todo llega a",
-    highlight: "tu panel",
-    body: "El pedido, el cliente y la conversación quedan registrados solos en tu panel. ¿Quieres saber cómo va el negocio? Escríbele a tu agente por WhatsApp y te responde con números reales.",
+    highlight: "su panel",
+    body: "El pedido, el cliente y la conversación quedan registrados solos en su panel. ¿Quiere saber cómo va el negocio? Escríbale a su agente por WhatsApp y le responde con números reales.",
     bullets: [
-      "Tu CRM se llena solo, cero digitación",
-      "Tu negocio te responde por WhatsApp",
+      "Su panel se llena solo, cero digitación",
+      "Su negocio le responde por WhatsApp",
       "Decisiones con datos, no a la corazonada",
     ],
   },
   {
     id: "intelligence",
     eyebrow: "04 · Anticipa",
-    title: "Tu agente",
+    title: "Su agente",
     highlight: "se anticipa",
-    body: "Con cada compra tu agente aprende cómo compra cada cliente. Sabe cuándo está por volver a pedir y te lo dice antes — para que vendas primero y no pierdas a nadie.",
+    body: "Con cada compra su agente aprende cómo compra cada cliente. Sabe cuándo está por volver a pedir y se lo dice antes — para que venda primero y no pierda a nadie.",
     bullets: [
       "Reconoce el patrón de recompra de cada cliente",
-      "Te avisa quién está por volver a pedir",
+      "Le avisa quién está por volver a pedir",
       "Recupera clientes antes de perderlos",
     ],
   },
@@ -186,7 +186,7 @@ export const ACTS: StoryAct[] = [
     bullets: [
       "Llega a cientos de clientes con un mensaje",
       "Segmenta por comportamiento de compra",
-      "Sin arriesgar el bloqueo de tu número",
+      "Sin arriesgar el bloqueo de su número",
     ],
   },
 ];

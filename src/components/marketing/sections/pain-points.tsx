@@ -56,7 +56,7 @@ export function PainPointsSection() {
         >
           {pains.map((pain) => (
             <StaggerItem key={pain.title}>
-              <div className="group relative rounded-2xl border border-border bg-card p-8 hover:border-neon/30 hover:shadow-[0_0_30px_oklch(0.86_0.27_148/0.06)] transition-all duration-300">
+              <div className="group relative rounded-2xl border border-border bg-card p-8 hover:border-neon/30 hover:shadow-[0_0_30px_oklch(0.74_0.185_50/0.06)] transition-all duration-300">
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-destructive/10 text-destructive mb-6">
                   <pain.icon className="w-6 h-6" />
                 </div>

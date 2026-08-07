@@ -13,19 +13,19 @@ import { FinalCtaSection } from "@/components/marketing/sections/final-cta";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
 export const metadata: Metadata = {
-  title: "conagentes — CRM con IA para WhatsApp | Ventas automáticas 24/7",
+  title: "conagentes — Agentes IA que venden por WhatsApp | 24/7",
   description:
-    "Plataforma CRM con agentes de inteligencia artificial que responden por WhatsApp, agendan citas y gestionan tu pipeline de ventas. Para hoteles y pymes en Colombia y Latinoamérica.",
+    "Agentes IA que atienden, venden, agendan y hacen seguimiento por WhatsApp — 24/7, sin contratar más gente. Para hoteles y pymes en Colombia y Latinoamérica.",
   keywords: [
-    "CRM WhatsApp",
-    "CRM con inteligencia artificial",
     "agente IA WhatsApp",
+    "agente de ventas con IA",
+    "agentes IA para empresas",
     "chatbot WhatsApp empresas",
-    "automatización ventas Colombia",
-    "CRM para hoteles Colombia",
-    "CRM para pymes",
+    "automatización de ventas Colombia",
+    "agente IA para hoteles Colombia",
+    "software de ventas con IA pymes",
     "WhatsApp Business automatización",
-    "software CRM Latinoamérica",
+    "IA para atención al cliente Colombia",
     "agendamiento automático WhatsApp",
   ],
   alternates: {
@@ -40,23 +40,23 @@ export const metadata: Metadata = {
     locale: "es_CO",
     url: SITE_URL,
     siteName: "conagentes",
-    title: "conagentes — CRM con IA para WhatsApp",
+    title: "conagentes — Agentes IA que venden por WhatsApp",
     description:
-      "Agentes de IA que venden por WhatsApp, agendan citas y gestionan documentos 24/7. Para hoteles y pymes en Colombia.",
+      "Agentes IA que atienden, venden, agendan y hacen seguimiento por WhatsApp — 24/7. Para hoteles y pymes en Colombia.",
     images: [
       {
         url: `${SITE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "conagentes — CRM con agentes de IA para WhatsApp",
+        alt: "conagentes — agentes IA que venden por WhatsApp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "conagentes — CRM con IA para WhatsApp",
+    title: "conagentes — Agentes IA que venden por WhatsApp",
     description:
-      "Agentes de IA que venden por WhatsApp 24/7. Para hoteles y pymes en Colombia.",
+      "Agentes IA que venden por WhatsApp 24/7. Para hoteles y pymes en Colombia.",
     images: [`${SITE_URL}/opengraph-image`],
   },
 };

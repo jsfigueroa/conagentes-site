@@ -26,7 +26,7 @@ export function CampaignScene({ active }: { active: boolean }) {
               Clientes por reordenar
             </p>
           </div>
-          <span className="rounded-full bg-[oklch(0.86_0.27_148/0.15)] px-2.5 py-1 text-[11px] font-bold text-[oklch(0.86_0.27_148)]">
+          <span className="rounded-full bg-[oklch(0.74_0.185_50/0.15)] px-2.5 py-1 text-[11px] font-bold text-[oklch(0.74_0.185_50)]">
             248
           </span>
         </motion.div>
@@ -37,7 +37,7 @@ export function CampaignScene({ active }: { active: boolean }) {
             Mensaje
           </p>
           <div className="rounded-xl rounded-bl-sm bg-[oklch(0.18_0.01_95)] px-3 py-2 text-[11px] leading-relaxed text-[oklch(0.84_0.005_95)]">
-            Hola <span className="text-[oklch(0.86_0.27_148)]">{"{nombre}"}</span>{" "}
+            Hola <span className="text-[oklch(0.74_0.185_50)]">{"{nombre}"}</span>{" "}
             👋 ¿Listo para tu próximo pedido? Tenemos tus Vasos 7 oz para entrega
             en 24 h 🚚
           </div>
@@ -46,7 +46,7 @@ export function CampaignScene({ active }: { active: boolean }) {
         {/* Send */}
         <motion.div
           {...reveal(active, 0.45, 8)}
-          className="mt-3 flex items-center justify-center gap-1.5 rounded-lg bg-[oklch(0.86_0.27_148)] py-2"
+          className="mt-3 flex items-center justify-center gap-1.5 rounded-lg bg-[oklch(0.74_0.185_50)] py-2"
         >
           <span className="text-[12px] font-semibold text-[oklch(0.20_0.01_95)]">
             Campaña enviada ✓
@@ -66,7 +66,7 @@ export function CampaignScene({ active }: { active: boolean }) {
               <AnimatedCounter
                 to={s.to}
                 duration={1.4}
-                className="text-[18px] font-bold text-[oklch(0.86_0.27_148)]"
+                className="text-[18px] font-bold text-[oklch(0.74_0.185_50)]"
               />
               <p className="mt-0.5 text-[9px] text-[oklch(0.50_0.005_95)]">
                 {s.label}

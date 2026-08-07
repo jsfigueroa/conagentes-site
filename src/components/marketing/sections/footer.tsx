@@ -33,8 +33,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Logo size="default" variant="dark" />
             <p className="mt-4 text-sm leading-relaxed max-w-xs">
-              El CRM con agentes de IA que atienden, venden y agendan por
-              WhatsApp — 24/7.
+              Agentes IA que atienden, venden y agendan por WhatsApp — 24/7.
             </p>
           </div>
 

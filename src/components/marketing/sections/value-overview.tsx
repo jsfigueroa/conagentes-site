@@ -10,21 +10,21 @@ import {
 const promises = [
   {
     icon: MessageCircle,
-    title: "Vende por ti",
+    title: "Vende por usted",
     description:
-      "Atiende a cada cliente por WhatsApp al instante, muestra tus productos y cierra la venta — de día y de noche.",
+      "Atiende a cada cliente por WhatsApp al instante, muestra sus productos y cierra la venta — de día y de noche.",
   },
   {
     icon: LayoutDashboard,
     title: "Organiza solo",
     description:
-      "Cada conversación, pedido y cliente queda guardado y ordenado automáticamente. Tú dejas de digitar.",
+      "Cada conversación, pedido y cliente queda guardado y ordenado automáticamente. Usted deja de digitar.",
   },
   {
     icon: Sparkles,
     title: "Se anticipa",
     description:
-      "Aprende cómo compra tu gente y te dice a quién buscar para vender más — antes que tu competencia.",
+      "Aprende cómo compra su gente y le dice a quién buscar para vender más — antes que su competencia.",
   },
 ];
 
@@ -34,16 +34,16 @@ export function ValueOverviewSection() {
       <div className="mx-auto max-w-7xl px-6">
         <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-sm font-semibold text-neon uppercase tracking-widest mb-4">
-            Tu nuevo equipo de ventas
+            Su nuevo equipo de ventas
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
             No es otro chatbot.
             <br />
-            <span className="text-neon">Es quien hace crecer tu negocio.</span>
+            <span className="text-neon">Es quien hace crecer su negocio.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Un asistente con inteligencia artificial que vende, organiza y se
-            anticipa — todo dentro de WhatsApp, donde ya están tus clientes.
+            Un agente IA que vende, organiza y se anticipa — donde ya le
+            escriben sus clientes.
           </p>
         </ScrollReveal>
 

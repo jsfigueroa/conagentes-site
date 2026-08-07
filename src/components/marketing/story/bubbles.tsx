@@ -24,7 +24,7 @@ export function StoryBubble({ message }: { message: StoryChatMessage }) {
       <motion.div {...enter} className="flex justify-start px-3">
         <div className="max-w-[82%] rounded-2xl rounded-bl-md bg-[oklch(0.18_0.01_95)] p-2 overflow-hidden">
           <div className="rounded-xl bg-[oklch(0.13_0.01_95)] border border-white/[0.06] overflow-hidden">
-            <div className="flex h-20 items-center justify-center bg-[oklch(0.86_0.27_148/0.10)] text-3xl">
+            <div className="flex h-20 items-center justify-center bg-[oklch(0.74_0.185_50/0.10)] text-3xl">
               <span aria-hidden>{p.emoji}</span>
             </div>
             <div className="p-2.5">
@@ -34,7 +34,7 @@ export function StoryBubble({ message }: { message: StoryChatMessage }) {
               <p className="mt-0.5 text-[10px] text-[oklch(0.55_0.005_95)]">
                 {p.detail}
               </p>
-              <p className="mt-1.5 text-[13px] font-bold text-[oklch(0.86_0.27_148)]">
+              <p className="mt-1.5 text-[13px] font-bold text-[oklch(0.74_0.185_50)]">
                 {formatCOP(p.price)}
               </p>
             </div>
@@ -53,7 +53,7 @@ export function StoryBubble({ message }: { message: StoryChatMessage }) {
       <div
         className={`max-w-[80%] px-3 py-2 text-[13px] leading-relaxed ${
           isCustomer
-            ? "bg-[oklch(0.86_0.27_148/0.15)] text-[oklch(0.92_0.005_95)] rounded-2xl rounded-br-md"
+            ? "bg-[oklch(0.74_0.185_50/0.15)] text-[oklch(0.92_0.005_95)] rounded-2xl rounded-br-md"
             : "bg-[oklch(0.18_0.01_95)] text-[oklch(0.85_0.005_95)] rounded-2xl rounded-bl-md"
         }`}
       >

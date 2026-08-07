@@ -21,7 +21,7 @@ export function PipelinePanel({ leadStage }: PipelinePanelProps) {
       {/* Header */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06] bg-[oklch(0.12_0.01_95)]">
         <svg
-          className="w-4 h-4 text-[oklch(0.86_0.27_148)]"
+          className="w-4 h-4 text-[oklch(0.74_0.185_50)]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -96,7 +96,7 @@ export function PipelinePanel({ leadStage }: PipelinePanelProps) {
                         {LEAD_NAME}
                       </p>
                       <div className="flex items-center gap-1 mt-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.86_0.27_148)] shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.74_0.185_50)] shrink-0" />
                         <span className="text-[8px] text-[oklch(0.45_0.005_95)]">
                           WhatsApp
                         </span>
@@ -113,7 +113,7 @@ export function PipelinePanel({ leadStage }: PipelinePanelProps) {
                             damping: 15,
                             delay: 0.2,
                           }}
-                          className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[oklch(0.86_0.27_148)] flex items-center justify-center"
+                          className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[oklch(0.74_0.185_50)] flex items-center justify-center"
                         >
                           <svg
                             className="w-2.5 h-2.5 text-[oklch(0.20_0.01_95)]"

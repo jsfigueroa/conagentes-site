@@ -14,7 +14,7 @@ export function TypingIndicator({ sender }: { sender: "customer" | "ai" }) {
         transition={{ duration: 0.2 }}
         className={`flex items-center gap-1.5 px-4 py-3 rounded-2xl ${
           isCustomer
-            ? "bg-[oklch(0.86_0.27_148/0.15)]"
+            ? "bg-[oklch(0.74_0.185_50/0.15)]"
             : "bg-[oklch(0.18_0.01_95)]"
         }`}
       >

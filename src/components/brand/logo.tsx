@@ -8,7 +8,7 @@ function StackMark({
   variant: "light" | "dark";
 }) {
   const ink = variant === "dark" ? "oklch(0.92 0.005 95)" : "oklch(0.20 0.01 95)";
-  const neon = "oklch(0.86 0.27 148)";
+  const neon = "oklch(0.74 0.185 50)";
   return (
     <svg
       viewBox="0 0 200 200"

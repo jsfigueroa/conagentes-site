@@ -39,7 +39,7 @@ function ActNarrative({ act }: { act: StoryAct }) {
       </p>
       <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.1]">
         {act.title}{" "}
-        <span className="bg-gradient-to-r from-[oklch(0.86_0.27_148)] to-[oklch(0.72_0.25_148)] bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-[oklch(0.74_0.185_50)] to-[oklch(0.64_0.19_42)] bg-clip-text text-transparent">
           {act.highlight}
         </span>
       </h3>
@@ -49,8 +49,8 @@ function ActNarrative({ act }: { act: StoryAct }) {
       <ul className="mt-6 space-y-3">
         {act.bullets.map((b) => (
           <li key={b} className="flex items-start gap-3">
-            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[oklch(0.86_0.27_148/0.15)]">
-              <Check className="h-3 w-3 text-[oklch(0.86_0.27_148)]" />
+            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[oklch(0.74_0.185_50/0.15)]">
+              <Check className="h-3 w-3 text-[oklch(0.74_0.185_50)]" />
             </span>
             <span className="text-sm text-[oklch(0.78_0.005_95)]">{b}</span>
           </li>
@@ -93,7 +93,7 @@ function PinnedStory() {
               key={a.id}
               className={`rounded-full transition-all duration-300 ${
                 i === index
-                  ? "h-8 w-1.5 bg-[oklch(0.86_0.27_148)]"
+                  ? "h-8 w-1.5 bg-[oklch(0.74_0.185_50)]"
                   : "h-1.5 w-1.5 bg-white/20"
               }`}
             />
@@ -165,20 +165,20 @@ export function StorySection() {
       {/* ambient glow — clipped in its own layer so it never becomes an
           overflow ancestor of the sticky stage (which would break sticky) */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-1/3 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[oklch(0.86_0.27_148/0.05)] blur-[140px]" />
+        <div className="absolute left-1/2 top-1/3 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[oklch(0.74_0.185_50/0.05)] blur-[140px]" />
       </div>
 
       {/* intro kicker */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-24 text-center lg:pt-28">
         <p className="text-sm font-semibold text-neon uppercase tracking-widest mb-4">
-          El recorrido de tu cliente
+          El recorrido de su cliente
         </p>
         <h2 className="mx-auto max-w-2xl text-3xl md:text-5xl font-bold tracking-tight text-white">
           Una sola historia, de principio a fin
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-lg text-[oklch(0.55_0.005_95)]">
-          Mira cómo un mensaje de WhatsApp se convierte en una venta, en un
-          cliente que vuelve y en tu próxima campaña.
+          Vea cómo un mensaje de WhatsApp se convierte en una venta, en un
+          cliente que vuelve y en su próxima campaña.
         </p>
       </div>
 

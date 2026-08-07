@@ -9,23 +9,23 @@ const steps = [
   {
     number: "01",
     icon: Smartphone,
-    title: "Conecta tu WhatsApp",
+    title: "Conecte su WhatsApp",
     description:
-      "Vincula tu número de WhatsApp Business en minutos, con un par de clics. Sin código y sin desarrolladores.",
+      "Vincule su número de WhatsApp Business en minutos, con un par de clics. Sin código ni desarrolladores.",
   },
   {
     number: "02",
     icon: Cpu,
-    title: "Carga tu negocio",
+    title: "Cargue su negocio",
     description:
-      "Sube tus productos, precios e información. Tu agente aprende cómo vendes y responde como lo harías tú.",
+      "Suba sus productos, precios e información. Su agente aprende cómo vende y responde como lo haría usted.",
   },
   {
     number: "03",
     icon: Rocket,
-    title: "Empieza a vender",
+    title: "Empiece a vender",
     description:
-      "Tu agente atiende 24/7, arma pedidos, llena tu CRM y te avisa a quién buscar. Tú solo cierras ventas.",
+      "Su agente atiende 24/7, arma pedidos, ordena todo en su panel y le avisa a quién buscar. Usted solo cierra ventas.",
   },
 ];
 
@@ -85,8 +85,8 @@ export function HowItWorksSection() {
             Listo en 3 pasos
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Sin desarrolladores. Sin integraciones complejas. Configura tu
-            asistente IA en minutos.
+            Sin desarrolladores. Sin integraciones complejas. Ponga a trabajar
+            su agente IA en minutos.
           </p>
         </ScrollReveal>
 

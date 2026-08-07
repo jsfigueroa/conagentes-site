@@ -44,7 +44,7 @@ function Spotlight({
         </p>
         <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
           {title}{" "}
-          <span className="bg-gradient-to-r from-[oklch(0.86_0.27_148)] to-[oklch(0.72_0.25_148)] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[oklch(0.74_0.185_50)] to-[oklch(0.64_0.19_42)] bg-clip-text text-transparent">
             {highlight}
           </span>
         </h3>
@@ -54,8 +54,8 @@ function Spotlight({
         <ul className="mt-6 space-y-3">
           {bullets.map((b) => (
             <li key={b} className="flex items-start gap-3">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[oklch(0.86_0.27_148/0.15)]">
-                <Check className="h-3 w-3 text-[oklch(0.86_0.27_148)]" />
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[oklch(0.74_0.185_50/0.15)]">
+                <Check className="h-3 w-3 text-[oklch(0.74_0.185_50)]" />
               </span>
               <span className="text-sm text-[oklch(0.78_0.005_95)]">{b}</span>
             </li>
@@ -83,7 +83,7 @@ function LearningVisual() {
       tone: "customer" as const,
     },
     {
-      tag: "El agente le pregunta a tu equipo",
+      tag: "El agente le pregunta a su equipo",
       text: "Sí, llega en 2 días con flete adicional.",
       tone: "team" as const,
     },
@@ -99,14 +99,14 @@ function LearningVisual() {
         {steps.map((s, i) => (
           <div key={s.tag} className="relative">
             {i < steps.length - 1 && (
-              <div className="absolute left-4 top-9 h-[calc(100%-4px)] w-px bg-gradient-to-b from-[oklch(0.86_0.27_148/0.4)] to-transparent" />
+              <div className="absolute left-4 top-9 h-[calc(100%-4px)] w-px bg-gradient-to-b from-[oklch(0.74_0.185_50/0.4)] to-transparent" />
             )}
             <div className="flex gap-3">
               <span
                 className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[12px] font-bold ${
                   s.tone === "learned"
-                    ? "bg-[oklch(0.86_0.27_148)] text-[oklch(0.20_0.01_95)]"
-                    : "bg-white/[0.06] text-[oklch(0.86_0.27_148)]"
+                    ? "bg-[oklch(0.74_0.185_50)] text-[oklch(0.20_0.01_95)]"
+                    : "bg-white/[0.06] text-[oklch(0.74_0.185_50)]"
                 }`}
               >
                 {i + 1}
@@ -118,9 +118,9 @@ function LearningVisual() {
                 <div
                   className={`mt-1 rounded-xl px-3 py-2 text-[12px] leading-relaxed ${
                     s.tone === "customer"
-                      ? "bg-[oklch(0.86_0.27_148/0.12)] text-[oklch(0.90_0.005_95)]"
+                      ? "bg-[oklch(0.74_0.185_50/0.12)] text-[oklch(0.90_0.005_95)]"
                       : s.tone === "learned"
-                        ? "bg-[oklch(0.86_0.27_148/0.10)] text-[oklch(0.86_0.27_148)] font-semibold"
+                        ? "bg-[oklch(0.74_0.185_50/0.10)] text-[oklch(0.74_0.185_50)] font-semibold"
                         : "bg-[oklch(0.18_0.01_95)] text-[oklch(0.84_0.005_95)]"
                   }`}
                 >
@@ -141,12 +141,12 @@ function InvoiceVisual() {
     <GlowCard className="w-[300px] sm:w-[340px] rounded-2xl border border-white/[0.08] bg-[oklch(0.10_0.01_95)] p-5">
       <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
         <div className="flex items-center gap-2">
-          <ReceiptText className="h-4 w-4 text-[oklch(0.86_0.27_148)]" />
+          <ReceiptText className="h-4 w-4 text-[oklch(0.74_0.185_50)]" />
           <span className="text-[13px] font-bold text-white">
             Factura electrónica
           </span>
         </div>
-        <span className="rounded-full bg-[oklch(0.72_0.25_148/0.15)] px-2.5 py-1 text-[9px] font-bold text-[oklch(0.80_0.18_148)]">
+        <span className="rounded-full bg-[oklch(0.64_0.19_42/0.15)] px-2.5 py-1 text-[9px] font-bold text-[oklch(0.80_0.18_148)]">
           DIAN ✓
         </span>
       </div>
@@ -162,12 +162,12 @@ function InvoiceVisual() {
       </div>
       <div className="mt-3 flex items-center justify-between border-t border-white/[0.08] pt-3">
         <span className="text-[12px] text-[oklch(0.70_0.005_95)]">Total</span>
-        <span className="text-[15px] font-bold text-[oklch(0.86_0.27_148)]">
+        <span className="text-[15px] font-bold text-[oklch(0.74_0.185_50)]">
           {formatCOP(401000)}
         </span>
       </div>
-      <div className="mt-3 flex items-center justify-center gap-1.5 rounded-lg bg-[oklch(0.86_0.27_148/0.10)] py-2">
-        <span className="text-[11px] font-semibold text-[oklch(0.86_0.27_148)]">
+      <div className="mt-3 flex items-center justify-center gap-1.5 rounded-lg bg-[oklch(0.74_0.185_50/0.10)] py-2">
+        <span className="text-[11px] font-semibold text-[oklch(0.74_0.185_50)]">
           Emitida y enviada automáticamente
         </span>
       </div>
@@ -178,17 +178,17 @@ function InvoiceVisual() {
 export function SpotlightsSection() {
   return (
     <section className="relative overflow-hidden bg-[oklch(0.08_0.01_95)] py-24 md:py-32">
-      <div className="pointer-events-none absolute right-0 top-1/4 h-[400px] w-[400px] rounded-full bg-[oklch(0.86_0.27_148/0.05)] blur-[120px]" />
+      <div className="pointer-events-none absolute right-0 top-1/4 h-[400px] w-[400px] rounded-full bg-[oklch(0.74_0.185_50/0.05)] blur-[120px]" />
       <div className="relative z-10 mx-auto flex max-w-7xl flex-col gap-24 px-6 md:gap-32">
         <Spotlight
           eyebrow="Aprende solo"
           title="El agente que"
           highlight="se vuelve más inteligente"
-          body="Cuando hay algo que no sabe, no inventa: le pregunta a tu equipo por WhatsApp, le responde al cliente con esa información y la guarda para siempre. Cada semana atiende mejor, sin que tú lo entrenes."
+          body="Cuando hay algo que no sabe, no inventa: le pregunta a su equipo por WhatsApp, le responde al cliente con esa información y la guarda para siempre. Cada semana atiende mejor, sin que usted lo entrene."
           bullets={[
             "Nunca responde “no sé” dos veces",
-            "Aprende de las respuestas de tu equipo",
-            "Dejas de responder lo mismo una y otra vez",
+            "Aprende de las respuestas de su equipo",
+            "Usted deja de responder lo mismo una y otra vez",
           ]}
           visual={<LearningVisual />}
         />
@@ -198,9 +198,9 @@ export function SpotlightsSection() {
           badge="Próximamente"
           title="Factura electrónica"
           highlight="DIAN, automática"
-          body="Cuando el cliente paga, se genera la factura electrónica válida ante la DIAN a nombre de tu empresa — emitida y enviada sola. Sin digitar, sin software contable extra, sin multas."
+          body="Cuando el cliente paga, se genera la factura electrónica válida ante la DIAN a nombre de su empresa — emitida y enviada sola. Sin digitar, sin software contable extra, sin multas."
           bullets={[
-            "Válida ante la DIAN, a nombre de tu negocio",
+            "Válida ante la DIAN, a nombre de su negocio",
             "Se emite sola después del pago",
             "Cero trabajo manual, cero riesgo de sanción",
           ]}

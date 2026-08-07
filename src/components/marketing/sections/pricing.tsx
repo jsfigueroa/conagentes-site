@@ -79,10 +79,10 @@ export function PricingSection() {
             Precios simples
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-            Planes que crecen con tu negocio
+            Planes que crecen con su negocio
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Sin costos ocultos. Sin contratos. Cancela cuando quieras.
+            Sin costos ocultos. Sin contratos. Cancele cuando quiera.
           </p>
         </ScrollReveal>
 
@@ -97,7 +97,7 @@ export function PricingSection() {
                 className={cn(
                   "relative h-full rounded-2xl border p-8 flex flex-col",
                   plan.popular
-                    ? "border-neon/50 bg-card shadow-[0_0_40px_oklch(0.86_0.27_148/0.1)]"
+                    ? "border-neon/50 bg-card shadow-[0_0_40px_oklch(0.74_0.185_50/0.1)]"
                     : "border-border bg-card"
                 )}
               >
@@ -148,7 +148,7 @@ export function PricingSection() {
                   className={cn(
                     "mt-8 block w-full text-center py-3 px-6 rounded-full text-sm font-semibold transition-all cursor-pointer",
                     plan.popular
-                      ? "bg-neon text-ink hover:brightness-110 shadow-[0_0_20px_oklch(0.86_0.27_148/0.3)]"
+                      ? "bg-neon text-ink hover:brightness-110 shadow-[0_0_20px_oklch(0.74_0.185_50/0.3)]"
                       : "bg-secondary text-foreground hover:bg-accent"
                   )}
                 >

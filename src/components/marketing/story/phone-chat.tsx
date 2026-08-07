@@ -14,8 +14,8 @@ import {
 function ChatHeader() {
   return (
     <div className="flex items-center gap-3 px-4 py-3 border-b border-white/[0.06] bg-[oklch(0.12_0.01_95)]">
-      <div className="w-8 h-8 rounded-full bg-[oklch(0.86_0.27_148/0.15)] flex items-center justify-center">
-        <span className="text-[10px] font-bold text-[oklch(0.86_0.27_148)]">
+      <div className="w-8 h-8 rounded-full bg-[oklch(0.74_0.185_50/0.15)] flex items-center justify-center">
+        <span className="text-[10px] font-bold text-[oklch(0.74_0.185_50)]">
           {BUSINESS_INITIALS}
         </span>
       </div>
@@ -24,8 +24,8 @@ function ChatHeader() {
           {BUSINESS_NAME}
         </p>
         <p className="text-[11px] text-[oklch(0.50_0.005_95)] flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.86_0.27_148)] shrink-0" />
-          Asistente IA · en línea
+          <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.74_0.185_50)] shrink-0" />
+          Agente IA · en línea
         </p>
       </div>
     </div>
@@ -38,7 +38,7 @@ function InputBar() {
       <div className="flex-1 rounded-full bg-[oklch(0.16_0.01_95)] px-4 py-2 text-xs text-[oklch(0.40_0.005_95)]">
         Escribe un mensaje...
       </div>
-      <div className="w-8 h-8 rounded-full bg-[oklch(0.86_0.27_148)] flex items-center justify-center shrink-0">
+      <div className="w-8 h-8 rounded-full bg-[oklch(0.74_0.185_50)] flex items-center justify-center shrink-0">
         <svg
           className="w-4 h-4 text-[oklch(0.20_0.01_95)]"
           viewBox="0 0 24 24"

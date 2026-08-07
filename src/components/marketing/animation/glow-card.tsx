@@ -12,7 +12,7 @@ interface GlowCardProps {
 export function GlowCard({
   children,
   className,
-  glowColor = "oklch(0.86 0.27 148)",
+  glowColor = "oklch(0.74 0.185 50)",
   glowSize = 25,
 }: GlowCardProps) {
   const ref = useRef<HTMLDivElement>(null);

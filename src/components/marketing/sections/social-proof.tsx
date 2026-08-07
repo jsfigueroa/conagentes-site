@@ -20,7 +20,7 @@ const trust = [
   {
     icon: MessageCircle,
     title: "WhatsApp API oficial",
-    description: "Conexión directa con Meta. Tu número, seguro y sin bloqueos.",
+    description: "Conexión directa con Meta. Su número, seguro y sin bloqueos.",
   },
   {
     icon: Camera,
@@ -30,17 +30,17 @@ const trust = [
   {
     icon: CreditCard,
     title: "Pagos colombianos",
-    description: "Cobra con PSE, Nequi y tarjeta. La plata llega a tu cuenta.",
+    description: "Cobra con PSE, Nequi y tarjeta. La plata llega a su cuenta.",
   },
   {
     icon: ReceiptText,
     title: "Factura electrónica DIAN",
-    description: "Facturación válida ante la DIAN, a nombre de tu empresa.",
+    description: "Facturación válida ante la DIAN, a nombre de su empresa.",
     badge: "Próximamente",
   },
   {
     icon: Users,
-    title: "Todo tu equipo",
+    title: "Todo su equipo",
     description: "Roles, asignaciones y permisos para trabajar en orden.",
   },
   {
@@ -62,7 +62,7 @@ export function SocialProofSection() {
             Listo para vender desde el primer día
           </h2>
           <p className="mt-4 text-lg text-[oklch(0.55_0.005_95)]">
-            Las conexiones que tu negocio necesita, ya integradas — sin
+            Las conexiones que su negocio necesita, ya integradas — sin
             herramientas sueltas ni configuraciones complicadas.
           </p>
         </ScrollReveal>

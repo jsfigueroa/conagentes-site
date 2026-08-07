@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/marketing/sections/navbar";
+import { MegaMenuHeader } from "@/components/marketing/header/mega-menu-header";
 import { Footer } from "@/components/marketing/sections/footer";
 import { SmoothScrollProvider } from "@/components/marketing/providers/smooth-scroll";
 import { MotionProvider } from "@/components/marketing/providers/motion-provider";
@@ -16,7 +16,7 @@ export default function MarketingLayout({
       <DemoFormProvider>
         <SmoothScrollProvider>
           <MarketingJsonLd />
-          <Navbar />
+          <MegaMenuHeader />
           <main>{children}</main>
           <Footer />
         </SmoothScrollProvider>

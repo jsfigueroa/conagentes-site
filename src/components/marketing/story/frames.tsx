@@ -32,7 +32,7 @@ export function DashboardFrame({
   children: ReactNode;
 }) {
   return (
-    <div className="w-[300px] sm:w-[340px] md:w-[400px] rounded-2xl border border-white/[0.08] bg-[oklch(0.10_0.01_95)] overflow-hidden shadow-[0_8px_60px_oklch(0_0_0/0.5),0_0_80px_oklch(0.86_0.27_148/0.05)]">
+    <div className="w-[300px] sm:w-[340px] md:w-[400px] rounded-2xl border border-white/[0.08] bg-[oklch(0.10_0.01_95)] overflow-hidden shadow-[0_8px_60px_oklch(0_0_0/0.5),0_0_80px_oklch(0.74_0.185_50/0.05)]">
       {/* Window chrome */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06] bg-[oklch(0.12_0.01_95)]">
         <span className="w-2.5 h-2.5 rounded-full bg-[oklch(0.45_0.12_25)]" />
@@ -60,7 +60,7 @@ export function PipelineRail({ stage }: { stage: PipelineStage | null }) {
     <div className="w-full rounded-xl border border-white/[0.08] bg-[oklch(0.10_0.01_95/0.95)] backdrop-blur-sm p-3 shadow-[0_8px_40px_oklch(0_0_0/0.45)]">
       <div className="flex items-center gap-2 mb-2.5">
         <svg
-          className="w-3.5 h-3.5 text-[oklch(0.86_0.27_148)]"
+          className="w-3.5 h-3.5 text-[oklch(0.74_0.185_50)]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -110,7 +110,7 @@ export function PipelineRail({ stage }: { stage: PipelineStage | null }) {
                   </motion.div>
                 )}
                 {isPast && (
-                  <span className="text-[10px] text-[oklch(0.72_0.25_148)]">✓</span>
+                  <span className="text-[10px] text-[oklch(0.64_0.19_42)]">✓</span>
                 )}
               </div>
             </div>

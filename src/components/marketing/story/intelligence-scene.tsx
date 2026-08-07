@@ -12,7 +12,7 @@ export function IntelligenceScene({ active }: { active: boolean }) {
         {/* Customer header */}
         <motion.div {...reveal(active, 0.1, 8)}>
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[oklch(0.86_0.27_148/0.15)] text-[12px] font-bold text-[oklch(0.86_0.27_148)]">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[oklch(0.74_0.185_50/0.15)] text-[12px] font-bold text-[oklch(0.74_0.185_50)]">
               LG
             </div>
             <div>
@@ -45,7 +45,7 @@ export function IntelligenceScene({ active }: { active: boolean }) {
               <span className="text-[10px] text-[oklch(0.55_0.005_95)]">
                 Próxima compra
               </span>
-              <span className="text-[10px] font-semibold text-[oklch(0.86_0.27_148)]">
+              <span className="text-[10px] font-semibold text-[oklch(0.74_0.185_50)]">
                 Está por reordenar
               </span>
             </div>
@@ -54,7 +54,7 @@ export function IntelligenceScene({ active }: { active: boolean }) {
                 initial={{ width: "8%" }}
                 animate={{ width: active ? "90%" : "8%" }}
                 transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
-                className="h-full rounded-full bg-gradient-to-r from-[oklch(0.72_0.25_148)] to-[oklch(0.86_0.27_148)]"
+                className="h-full rounded-full bg-gradient-to-r from-[oklch(0.64_0.19_42)] to-[oklch(0.74_0.185_50)]"
               />
             </div>
           </div>
@@ -62,7 +62,7 @@ export function IntelligenceScene({ active }: { active: boolean }) {
 
         {/* Next-best-action */}
         <motion.div {...reveal(active, 0.8, 8)}>
-          <div className="mt-4 rounded-xl border border-[oklch(0.86_0.27_148/0.25)] bg-[oklch(0.86_0.27_148/0.06)] p-3">
+          <div className="mt-4 rounded-xl border border-[oklch(0.74_0.185_50/0.25)] bg-[oklch(0.74_0.185_50/0.06)] p-3">
             <p className="text-[9px] font-semibold uppercase tracking-wider text-[oklch(0.80_0.18_148)]">
               Sugerencia del agente
             </p>
@@ -70,7 +70,7 @@ export function IntelligenceScene({ active }: { active: boolean }) {
               Escríbele a {CUSTOMER_NAME.split(" ")[0]} y ofrécele su pedido de
               siempre antes de que se le acabe.
             </p>
-            <div className="mt-2.5 flex items-center justify-center gap-1.5 rounded-lg bg-[oklch(0.86_0.27_148)] py-1.5">
+            <div className="mt-2.5 flex items-center justify-center gap-1.5 rounded-lg bg-[oklch(0.74_0.185_50)] py-1.5">
               <span className="text-[11px] font-semibold text-[oklch(0.20_0.01_95)]">
                 Reordenar en 1 toque
               </span>

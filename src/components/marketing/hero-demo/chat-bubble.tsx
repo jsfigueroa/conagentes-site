@@ -16,7 +16,7 @@ export function ChatBubble({ message }: { message: ScriptMessage }) {
       <div
         className={`max-w-[80%] px-3 py-2 text-[13px] leading-relaxed ${
           isCustomer
-            ? "bg-[oklch(0.86_0.27_148/0.15)] text-[oklch(0.92_0.005_95)] rounded-2xl rounded-br-md"
+            ? "bg-[oklch(0.74_0.185_50/0.15)] text-[oklch(0.92_0.005_95)] rounded-2xl rounded-br-md"
             : "bg-[oklch(0.18_0.01_95)] text-[oklch(0.85_0.005_95)] rounded-2xl rounded-bl-md"
         }`}
       >

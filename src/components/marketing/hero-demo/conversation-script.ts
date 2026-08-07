@@ -16,7 +16,7 @@ export const PIPELINE_STAGES = [
   {
     id: "interesado" as const,
     label: "Interesado",
-    dotColor: "bg-[oklch(0.78_0.15_75)]",
+    dotColor: "bg-[oklch(0.80_0.15_82)]",
   },
   {
     id: "calificado" as const,
@@ -26,7 +26,7 @@ export const PIPELINE_STAGES = [
   {
     id: "cerrado" as const,
     label: "Cerrado",
-    dotColor: "bg-[oklch(0.72_0.25_148)]",
+    dotColor: "bg-[oklch(0.64_0.19_42)]",
   },
 ] as const;
 

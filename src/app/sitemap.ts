@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { supabase } from "@/lib/supabase/client";
+import { allPageUrls } from "@/content/pages";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
@@ -28,6 +29,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
+      url: `${SITE_URL}/hoteles`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/blog`,
       lastModified: new Date(),
       changeFrequency: "daily",
@@ -47,6 +54,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  const marketingPages: MetadataRoute.Sitemap = allPageUrls().map((path) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: path.split("/").length > 2 ? 0.6 : 0.8,
+  }));
+
   const postPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.updated_at),
@@ -62,5 +76,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...categoryPages, ...postPages];
+  return [...staticPages, ...marketingPages, ...categoryPages, ...postPages];
 }

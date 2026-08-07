@@ -40,6 +40,10 @@
   --color-green-dark: var(--neon-deep);
   --color-green-soft: var(--neon-soft);
   --color-green-ring: var(--neon-ring);
+  --color-orange: var(--orange);
+  --color-orange-deep: var(--orange-deep);
+  --color-orange-soft: var(--orange-soft);
+  --color-orange-ring: var(--orange-ring);
   --color-warning: var(--warning);
   --color-success: var(--success);
   --radius-sm: var(--r-sm);
@@ -53,12 +57,26 @@
 }
 
 :root {
-  /* ——— conagentes design tokens · v1 ——— */
+  /* ——— conagentes design tokens · v2 «Atardecer» ——— */
 
-  /* Brand palette — oklch · neon green + warm off-white + warm ink */
-  --neon:           oklch(0.86 0.27 148);
-  --neon-deep:      oklch(0.72 0.25 148);
-  --neon-soft:      oklch(0.94 0.10 148);
+  /* Brand accent — flat orange (PRODUCT layer: buttons, active states, UI accents) */
+  --orange:         oklch(0.74 0.185 50);   /* #ff8121 · primary action — INK on orange, always */
+  --orange-deep:    oklch(0.64 0.19 42);    /* #e6590a · hover / press */
+  --orange-soft:    oklch(0.93 0.05 55);    /* #ffe0c9 · tint surfaces, WA outbound bubble */
+  --orange-ring:    oklch(0.74 0.185 50 / 0.35);
+
+  /* Brand gradient — BRAND layer ONLY (mark, wordmark, hero, marketing) · WHITE text on it */
+  --grad-a:         oklch(0.77 0.165 56);   /* naranja */
+  --grad-b:         oklch(0.62 0.23 349);   /* rosa */
+  --brand-gradient: linear-gradient(108deg, var(--grad-a), var(--grad-b));
+
+  /* Deprecated aliases — legacy neon names now resolve to Atardecer orange (keeps bg-neon/text-neon working) */
+  --neon:           var(--orange);
+  --neon-deep:      var(--orange-deep);
+  --neon-soft:      var(--orange-soft);
+  --neon-ring:      var(--orange-ring);
+
+  /* Warm neutrals — unchanged (hue 95) */
   --ink:            oklch(0.20 0.01 95);
   --ink-soft:       oklch(0.32 0.008 95);
   --muted-tone:     oklch(0.55 0.008 95);
@@ -67,7 +85,6 @@
   --hair:           oklch(0.92 0.004 95);
   --dark:           oklch(0.16 0.01 95);
   --dark-elev:      oklch(0.22 0.01 95);
-  --neon-ring:      oklch(0.86 0.27 148 / 0.35);
 
   /* Core surfaces — conagentes light theme */
   --background: var(--canvas);
@@ -77,8 +94,8 @@
   --popover: #ffffff;
   --popover-foreground: var(--ink);
 
-  /* Brand primary — neon green · ink on neon, always */
-  --primary: var(--neon);
+  /* Brand primary — flat orange · ink on orange, always */
+  --primary: var(--orange);
   --primary-foreground: var(--ink);
 
   /* Secondary & muted — warm subtle surfaces */
@@ -89,22 +106,22 @@
   --accent: var(--hair-soft);
   --accent-foreground: var(--ink);
 
-  /* Semantic */
-  --destructive: oklch(0.62 0.20 30);
-  --warning: oklch(0.78 0.15 75);
-  --success: var(--neon-deep);
+  /* Semantic — rebalanced so nothing collides with the warm accent */
+  --destructive: oklch(0.55 0.21 25);   /* deep red */
+  --warning:     oklch(0.80 0.15 82);   /* yellow */
+  --success:     oklch(0.62 0.15 150);  /* green (standalone — no longer tied to the accent) */
 
   /* Borders, inputs, focus */
   --border: var(--hair);
   --input: var(--hair);
-  --ring: var(--neon-ring);
+  --ring: var(--orange-ring);
 
-  /* Charts — neon-anchored */
-  --chart-1: var(--neon);
-  --chart-2: var(--neon-deep);
-  --chart-3: oklch(0.65 0.18 148);
-  --chart-4: oklch(0.78 0.15 75);
-  --chart-5: oklch(0.62 0.20 30);
+  /* Charts — Atardecer-anchored */
+  --chart-1: var(--orange);
+  --chart-2: var(--grad-b);
+  --chart-3: var(--orange-deep);
+  --chart-4: var(--warning);
+  --chart-5: var(--success);
 
   /* Radii — 10px base (matches the mark's corner radius) */
   --r-xs: 4px;
@@ -118,7 +135,7 @@
   --shadow-sm: 0 2px 6px oklch(0.20 0.01 95 / 0.05);
   --shadow-md: 0 8px 24px oklch(0.20 0.01 95 / 0.06);
   --shadow-lg: 0 16px 48px oklch(0.20 0.01 95 / 0.08);
-  --shadow-focus: 0 0 0 3px oklch(0.86 0.27 148 / 0.35);
+  --shadow-focus: 0 0 0 3px var(--orange-ring);
 
   /* Motion */
   --ease-out: cubic-bezier(0.2, 0.0, 0, 1);
@@ -140,7 +157,7 @@
     scroll-behavior: smooth;
   }
   ::selection {
-    background: oklch(0.86 0.27 148 / 0.25);
+    background: oklch(0.74 0.185 50 / 0.22);
   }
   ::-webkit-scrollbar {
     width: 6px;
@@ -182,6 +199,16 @@
   }
   .animate-gradient-xy {
     animation: gradient-xy 15s ease infinite;
+  }
+  /* Atardecer brand gradient — BRAND layer only (mark, wordmark, hero, marketing) */
+  .bg-brand-gradient {
+    background-image: var(--brand-gradient);
+  }
+  .text-brand-gradient {
+    background-image: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }
 

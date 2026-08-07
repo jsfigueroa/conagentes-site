@@ -116,7 +116,7 @@ export function DemoFormModal() {
                 >
                   <CheckCircle
                     size={56}
-                    className="text-[oklch(0.72_0.25_148)]"
+                    className="text-[oklch(0.64_0.19_42)]"
                   />
                 </motion.div>
                 <h3 className="mt-4 text-xl font-bold text-[oklch(0.2_0.01_95)]">
@@ -158,7 +158,7 @@ export function DemoFormModal() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Tu nombre completo"
-                      className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.86_0.27_148)] focus:ring-2 focus:ring-[oklch(0.86_0.27_148/0.2)] transition-all"
+                      className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.74_0.185_50)] focus:ring-2 focus:ring-[oklch(0.74_0.185_50/0.2)] transition-all"
                     />
                   </div>
 
@@ -176,7 +176,7 @@ export function DemoFormModal() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="tu@empresa.com"
-                      className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.86_0.27_148)] focus:ring-2 focus:ring-[oklch(0.86_0.27_148/0.2)] transition-all"
+                      className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.74_0.185_50)] focus:ring-2 focus:ring-[oklch(0.74_0.185_50/0.2)] transition-all"
                     />
                   </div>
 
@@ -196,12 +196,12 @@ export function DemoFormModal() {
                       value={whatsapp}
                       onChange={(e) => setWhatsapp(e.target.value)}
                       placeholder="+57 300 123 4567"
-                      className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.86_0.27_148)] focus:ring-2 focus:ring-[oklch(0.86_0.27_148/0.2)] transition-all"
+                      className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.74_0.185_50)] focus:ring-2 focus:ring-[oklch(0.74_0.185_50/0.2)] transition-all"
                     />
                   </div>
 
                   {status === "error" && (
-                    <p className="text-sm text-[oklch(0.62_0.20_30)]">
+                    <p className="text-sm text-[oklch(0.55_0.21_25)]">
                       {errorMsg}
                     </p>
                   )}
@@ -209,7 +209,7 @@ export function DemoFormModal() {
                   <button
                     type="submit"
                     disabled={status === "submitting"}
-                    className="w-full rounded-full bg-[oklch(0.86_0.27_148)] px-8 py-3.5 text-sm font-semibold text-[oklch(0.2_0.01_95)] shadow-[0_0_24px_oklch(0.86_0.27_148/0.3)] hover:shadow-[0_0_36px_oklch(0.86_0.27_148/0.5)] hover:brightness-105 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full rounded-full bg-[oklch(0.74_0.185_50)] px-8 py-3.5 text-sm font-semibold text-[oklch(0.2_0.01_95)] shadow-[0_0_24px_oklch(0.74_0.185_50/0.3)] hover:shadow-[0_0_36px_oklch(0.74_0.185_50/0.5)] hover:brightness-105 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "submitting" ? (
                       <span className="inline-flex items-center gap-2">

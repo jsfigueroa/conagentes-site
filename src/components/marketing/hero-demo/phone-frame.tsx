@@ -13,7 +13,7 @@ export function PhoneFrame({ children }: PhoneFrameProps) {
       <div className="absolute -left-[3px] top-[116px] w-[3px] h-[26px] rounded-l-sm bg-[oklch(0.22_0.005_95)]" />
 
       {/* Phone body */}
-      <div className="flex flex-col rounded-[2.5rem] border-[3px] border-[oklch(0.22_0.005_95)] bg-black overflow-hidden shadow-[0_8px_60px_oklch(0_0_0/0.6),0_0_80px_oklch(0.86_0.27_148/0.06)] h-[540px] sm:h-[580px] md:h-[620px]">
+      <div className="flex flex-col rounded-[2.5rem] border-[3px] border-[oklch(0.22_0.005_95)] bg-black overflow-hidden shadow-[0_8px_60px_oklch(0_0_0/0.6),0_0_80px_oklch(0.74_0.185_50/0.06)] h-[540px] sm:h-[580px] md:h-[620px]">
         {/* Dynamic island */}
         <div className="shrink-0 flex justify-center pt-2.5 pb-1.5 bg-black">
           <div className="w-[90px] h-[24px] rounded-full bg-[oklch(0.06_0.005_95)]" />

@@ -11,9 +11,10 @@ import { cn } from "@/lib/utils";
 import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
 
 const navLinks = [
-  { href: "#features", label: "Producto" },
-  { href: "#industries", label: "Industrias" },
-  { href: "#pricing", label: "Precios" },
+  { href: "/hoteles", label: "Hoteles" },
+  { href: "/#features", label: "Producto" },
+  { href: "/#industries", label: "Industrias" },
+  { href: "/#pricing", label: "Precios" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -66,7 +67,7 @@ export function Navbar() {
           </a>
           <button
             onClick={() => open("navbar")}
-            className="text-sm font-semibold bg-neon text-ink px-5 py-2.5 rounded-full hover:brightness-110 transition-all shadow-[0_0_20px_oklch(0.86_0.27_148/0.3)] cursor-pointer"
+            className="text-sm font-semibold bg-neon text-ink px-5 py-2.5 rounded-full hover:brightness-110 transition-all shadow-[0_0_20px_oklch(0.74_0.185_50/0.3)] cursor-pointer"
           >
             Demo gratis
           </button>

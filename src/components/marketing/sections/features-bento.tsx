@@ -21,7 +21,7 @@ const features = [
     icon: Camera,
     title: "WhatsApp e Instagram, una sola bandeja",
     description:
-      "Tus clientes te escriben por donde quieran y tu agente responde igual de bien en ambos. Tu equipo trabaja en un solo lugar, sin saltar entre apps.",
+      "Sus clientes le escriben por donde quieran y su agente responde igual de bien en ambos. Su equipo trabaja en un solo lugar, sin saltar entre apps.",
     span: "md:col-span-2 md:row-span-2",
     highlight: true,
   },
@@ -29,7 +29,7 @@ const features = [
     icon: Mic,
     title: "Entiende notas de voz",
     description:
-      "El cliente manda un audio y tu agente lo entiende y responde. Como hablan de verdad en Colombia.",
+      "El cliente manda un audio y su agente lo entiende y responde. Como hablan de verdad en Colombia.",
     span: "",
     highlight: false,
   },
@@ -45,15 +45,15 @@ const features = [
     icon: CreditCard,
     title: "Cobra por WhatsApp",
     description:
-      "Envía el link de pago en el chat y recibe con tarjeta, PSE o Nequi. La plata llega directo a tu cuenta.",
+      "Envía el link de pago en el chat y recibe con tarjeta, PSE o Nequi. La plata llega directo a su cuenta.",
     span: "",
     highlight: false,
   },
   {
     icon: RefreshCw,
-    title: "Conecta tu contabilidad",
+    title: "Conecte su contabilidad",
     description:
-      "Tus clientes, productos y ventas se sincronizan con tu sistema contable. Tus libros siempre al día, sin doble digitación.",
+      "Sus clientes, productos y ventas se sincronizan con su sistema contable. Sus libros siempre al día, sin doble digitación.",
     span: "",
     highlight: false,
   },
@@ -61,7 +61,7 @@ const features = [
     icon: ImageIcon,
     title: "Catálogo con fotos",
     description:
-      "Carga tus productos con imagen, variantes y precio. El agente los muestra en el chat como lo haría tu mejor vendedor.",
+      "Cargue sus productos con imagen, variantes y precio. El agente los muestra en el chat como lo haría su mejor vendedor.",
     span: "",
     highlight: false,
   },
@@ -76,10 +76,10 @@ export function FeaturesBentoSection() {
             Y mucho más
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-            Todo lo que tu negocio necesita, en un solo lugar
+            Todo lo que su negocio necesita, en un solo lugar
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Más allá del recorrido, conagentes trae todo lo que esperas de una
+            Más allá del recorrido, conagentes trae todo lo que espera de una
             plataforma completa.
           </p>
         </ScrollReveal>
@@ -91,10 +91,10 @@ export function FeaturesBentoSection() {
           {features.map((feature) => (
             <StaggerItem key={feature.title} className={feature.span}>
               <GlowCard
-                glowColor="oklch(0.86 0.27 148)"
+                glowColor="oklch(0.74 0.185 50)"
                 className={`h-full rounded-2xl border p-8 ${
                   feature.highlight
-                    ? "border-neon/20 bg-gradient-to-br from-[oklch(0.86_0.27_148/0.06)] to-card"
+                    ? "border-neon/20 bg-gradient-to-br from-[oklch(0.74_0.185_50/0.06)] to-card"
                     : "border-border bg-card"
                 }`}
               >

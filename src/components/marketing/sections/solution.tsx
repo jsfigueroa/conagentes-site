@@ -13,21 +13,21 @@ const pillars = [
     title: "Agentes IA",
     description:
       "Tu agente entiende contexto, responde preguntas, califica leads y agenda citas — en lenguaje natural por WhatsApp.",
-    color: "oklch(0.86 0.27 148)",
+    color: "oklch(0.74 0.185 50)",
   },
   {
     icon: BarChart3,
     title: "CRM inteligente",
     description:
       "Pipeline visual, bandeja de conversaciones unificada, analítica en tiempo real y gestión de equipo — en una sola plataforma.",
-    color: "oklch(0.86 0.27 148)",
+    color: "oklch(0.74 0.185 50)",
   },
   {
     icon: Layers,
     title: "Módulos por industria",
     description:
       "Reservaciones para hoteles, matrículas para educación y más. Cada módulo se adapta a las necesidades de tu sector.",
-    color: "oklch(0.86 0.27 148)",
+    color: "oklch(0.74 0.185 50)",
   },
 ];
 

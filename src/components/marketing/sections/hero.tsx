@@ -28,8 +28,8 @@ export function HeroSection() {
   return (
     <section className="relative flex flex-col items-center overflow-hidden bg-[oklch(0.08_0.01_95)]">
       {/* Radial glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[oklch(0.86_0.27_148/0.08)] blur-[120px]" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[oklch(0.72_0.25_148/0.05)] blur-[100px]" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[oklch(0.74_0.185_50/0.08)] blur-[120px]" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[oklch(0.64_0.19_42/0.05)] blur-[100px]" />
 
       {/* Dot grid pattern */}
       <div
@@ -43,18 +43,18 @@ export function HeroSection() {
 
       {/* Decorative floating elements */}
       <FloatingElement
-        className="absolute top-[15%] right-[10%] w-3 h-3 rounded-full bg-[oklch(0.86_0.27_148/0.4)] hidden lg:block"
+        className="absolute top-[15%] right-[10%] w-3 h-3 rounded-full bg-[oklch(0.74_0.185_50/0.4)] hidden lg:block"
         duration={5}
         distance={30}
       />
       <FloatingElement
-        className="absolute bottom-[25%] left-[8%] w-2 h-2 rounded-full bg-[oklch(0.86_0.27_148/0.3)] hidden lg:block"
+        className="absolute bottom-[25%] left-[8%] w-2 h-2 rounded-full bg-[oklch(0.74_0.185_50/0.3)] hidden lg:block"
         duration={7}
         distance={20}
         delay={1}
       />
       <FloatingElement
-        className="absolute top-[40%] left-[15%] w-4 h-4 rounded-sm bg-[oklch(0.86_0.27_148/0.15)] hidden lg:block"
+        className="absolute top-[40%] left-[15%] w-4 h-4 rounded-sm bg-[oklch(0.74_0.185_50/0.15)] hidden lg:block"
         duration={8}
         distance={25}
         delay={2}
@@ -72,8 +72,8 @@ export function HeroSection() {
           >
             {/* Badge */}
             <motion.div variants={itemVariants}>
-              <span className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.86_0.27_148/0.3)] bg-[oklch(0.86_0.27_148/0.08)] px-4 py-1.5 text-sm font-medium text-[oklch(0.86_0.27_148)] mb-8">
-                Asistente IA para WhatsApp
+              <span className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.74_0.185_50/0.3)] bg-[oklch(0.74_0.185_50/0.08)] px-4 py-1.5 text-sm font-medium text-[oklch(0.74_0.185_50)] mb-8">
+                Agente IA para WhatsApp
               </span>
             </motion.div>
 
@@ -82,10 +82,10 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-white"
             >
-              Responde, vende y agenda
+              No es un chatbot que responde.
               <br />
-              <span className="bg-gradient-to-r from-[oklch(0.86_0.27_148)] to-[oklch(0.72_0.25_148)] bg-clip-text text-transparent">
-                mientras duermes
+              <span className="text-brand-gradient">
+                Es un agente que hace crecer sus ventas.
               </span>
             </motion.h1>
 
@@ -94,9 +94,9 @@ export function HeroSection() {
               variants={itemVariants}
               className="mt-6 text-lg md:text-xl text-[oklch(0.6_0.005_95)] max-w-xl leading-relaxed"
             >
-              El CRM con IA para WhatsApp que convierte cada mensaje en una
-              oportunidad. Agente inteligente + pipeline de ventas + calendario
-              — todo en uno.
+              Su nuevo agente IA atiende WhatsApp al instante, recupera
+              clientes que se enfriaron y cierra más ventas — 24/7. Usted
+              aprueba; un humano toma el control cuando hace falta.
             </motion.p>
 
             {/* CTAs */}
@@ -107,9 +107,9 @@ export function HeroSection() {
               <MagneticButton strength={0.2}>
                 <button
                   onClick={() => open("hero")}
-                  className="inline-flex items-center justify-center rounded-full bg-neon px-8 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.86_0.27_148/0.3)] hover:shadow-[0_0_40px_oklch(0.86_0.27_148/0.5)] transition-shadow cursor-pointer"
+                  className="inline-flex items-center justify-center rounded-full bg-neon px-8 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.74_0.185_50/0.3)] hover:shadow-[0_0_40px_oklch(0.74_0.185_50/0.5)] transition-shadow cursor-pointer"
                 >
-                  Solicitar demo gratis
+                  Pruebe su agente IA
                 </button>
               </MagneticButton>
               <MagneticButton strength={0.2}>
@@ -127,7 +127,7 @@ export function HeroSection() {
               variants={itemVariants}
               className="mt-4 text-sm text-[oklch(0.45_0.005_95)]"
             >
-              Sin compromiso · Te contactamos en menos de 24 horas
+              Sin compromiso · Le respondemos en menos de 24 horas
             </motion.p>
           </motion.div>
 
@@ -140,7 +140,7 @@ export function HeroSection() {
           >
             <motion.div variants={itemVariants}>
               <div className="relative">
-                <div className="absolute -inset-8 bg-[oklch(0.86_0.27_148/0.06)] blur-[60px] rounded-full" />
+                <div className="absolute -inset-8 bg-[oklch(0.74_0.185_50/0.06)] blur-[60px] rounded-full" />
                 <div className="relative">
                   <HeroDemo />
                 </div>
@@ -160,18 +160,18 @@ export function HeroSection() {
             variants={itemVariants}
             className="text-xs font-medium text-[oklch(0.4_0.005_95)] uppercase tracking-widest"
           >
-            Negocios en Colombia que confían en nosotros
+            Un agente IA para cada tipo de negocio
           </motion.p>
           <motion.div
             variants={itemVariants}
             className="flex items-center gap-8 opacity-40"
           >
             {[
-              "Hotel Boutique",
-              "Academia Lingua",
-              "Clínica Vital",
-              "Inmob. Habitat",
-              "Restaurante Sabor",
+              "Hotelería",
+              "Comercio",
+              "Educación",
+              "Servicios",
+              "Salud",
             ].map((name) => (
               <span
                 key={name}

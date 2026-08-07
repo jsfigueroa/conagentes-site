@@ -83,7 +83,7 @@ function OrderCard() {
           <span className="text-[12px] font-medium text-[oklch(0.70_0.005_95)]">
             Total
           </span>
-          <span className="text-[15px] font-bold text-[oklch(0.86_0.27_148)]">
+          <span className="text-[15px] font-bold text-[oklch(0.74_0.185_50)]">
             {formatCOP(ORDER_TOTAL)}
           </span>
         </motion.div>
@@ -97,10 +97,10 @@ function OrderCard() {
             stiffness: 300,
             damping: 20,
           }}
-          className="mt-3 flex items-center justify-center gap-1.5 rounded-lg bg-[oklch(0.86_0.27_148/0.12)] py-2"
+          className="mt-3 flex items-center justify-center gap-1.5 rounded-lg bg-[oklch(0.74_0.185_50/0.12)] py-2"
         >
-          <span className="text-[oklch(0.86_0.27_148)] text-[12px]">✓</span>
-          <span className="text-[11px] font-semibold text-[oklch(0.86_0.27_148)]">
+          <span className="text-[oklch(0.74_0.185_50)] text-[12px]">✓</span>
+          <span className="text-[11px] font-semibold text-[oklch(0.74_0.185_50)]">
             Pedido confirmado
           </span>
         </motion.div>

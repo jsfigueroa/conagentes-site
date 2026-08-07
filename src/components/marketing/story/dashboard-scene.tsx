@@ -44,7 +44,7 @@ export function DashboardScene({ active }: { active: boolean }) {
             <AnimatedCounter to={7} duration={1.2} />
           </MetricTile>
           <MetricTile label="Ventas hoy" active={active} delay={0.2}>
-            <span className="text-[oklch(0.86_0.27_148)]">
+            <span className="text-[oklch(0.74_0.185_50)]">
               {formatCOP(1240000)}
             </span>
           </MetricTile>
@@ -61,7 +61,7 @@ export function DashboardScene({ active }: { active: boolean }) {
               {...reveal(active, 0.3 + i * 0.12)}
               className={`flex items-center justify-between rounded-lg border px-3 py-2 ${
                 r.hot
-                  ? "border-[oklch(0.86_0.27_148/0.3)] bg-[oklch(0.86_0.27_148/0.06)]"
+                  ? "border-[oklch(0.74_0.185_50/0.3)] bg-[oklch(0.74_0.185_50/0.06)]"
                   : "border-white/[0.06] bg-[oklch(0.12_0.01_95)]"
               }`}
             >
@@ -75,7 +75,7 @@ export function DashboardScene({ active }: { active: boolean }) {
                 <span className="text-[11px] font-semibold text-[oklch(0.85_0.005_95)]">
                   {formatCOP(r.total)}
                 </span>
-                <span className="rounded-full bg-[oklch(0.72_0.25_148/0.15)] px-2 py-0.5 text-[8px] font-semibold text-[oklch(0.80_0.18_148)]">
+                <span className="rounded-full bg-[oklch(0.64_0.19_42/0.15)] px-2 py-0.5 text-[8px] font-semibold text-[oklch(0.80_0.18_148)]">
                   {r.status}
                 </span>
               </div>
@@ -90,18 +90,18 @@ export function DashboardScene({ active }: { active: boolean }) {
         className="absolute -bottom-10 -right-2 sm:-right-6 w-[220px] sm:w-[240px] rounded-2xl border border-white/[0.08] bg-[oklch(0.10_0.01_95)] p-2.5 shadow-[0_8px_40px_oklch(0_0_0/0.55)]"
       >
         <p className="mb-1.5 text-[9px] font-medium text-[oklch(0.50_0.005_95)]">
-          Tú · por WhatsApp
+          Usted · por WhatsApp
         </p>
         <div className="flex justify-end mb-1.5">
-          <div className="rounded-xl rounded-br-sm bg-[oklch(0.86_0.27_148/0.15)] px-2.5 py-1.5 text-[10px] text-[oklch(0.90_0.005_95)]">
+          <div className="rounded-xl rounded-br-sm bg-[oklch(0.74_0.185_50/0.15)] px-2.5 py-1.5 text-[10px] text-[oklch(0.90_0.005_95)]">
             ¿Cómo vamos hoy? 📊
           </div>
         </div>
         <div className="flex justify-start">
           <div className="rounded-xl rounded-bl-sm bg-[oklch(0.18_0.01_95)] px-2.5 py-1.5 text-[10px] leading-relaxed text-[oklch(0.82_0.005_95)]">
-            Hoy llevas <b className="text-white">7 pedidos</b> y{" "}
-            <b className="text-[oklch(0.86_0.27_148)]">$1.240.000</b> en ventas
-            💚 Tu producto top: Vaso 7 oz.
+            Hoy lleva <b className="text-white">7 pedidos</b> y{" "}
+            <b className="text-[oklch(0.74_0.185_50)]">$1.240.000</b> en ventas
+            💚 Su producto top: Vaso 7 oz.
           </div>
         </div>
       </motion.div>
