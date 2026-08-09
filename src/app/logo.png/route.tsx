@@ -24,7 +24,7 @@ export async function GET() {
         <svg width="320" height="320" viewBox="0 0 200 200" fill="none">
           <rect x="28" y="100" width="80" height="80" rx="10" fill="#e8e5df" />
           <rect x="68" y="60" width="80" height="80" rx="10" fill="#e8e5df" />
-          <rect x="108" y="20" width="80" height="80" rx="10" fill="#7dff4a" />
+          <rect x="108" y="20" width="80" height="80" rx="10" fill="#ff8121" />
         </svg>
       </div>
     ),
