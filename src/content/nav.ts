@@ -151,7 +151,8 @@ export const NAV_HOTEL: NavItem[] = [
           { label: "Bandeja omnicanal", href: "/hoteles/recepcion-24-7" },
           { label: "PMS incluido", href: "/hoteles/pms", description: "Gratis — o conéctelo con el suyo" },
           { label: "Cobros en el chat", href: "/hoteles/cobros" },
-          { label: "Factura DIAN + SIRE", href: "/hoteles/factura-dian-sire", description: "Cumplimiento automático" },
+          { label: "Factura electrónica DIAN", href: "/hoteles/factura-dian-sire", description: "Facturación automática" },
+          { label: "Reporte TRA", href: "/hoteles/factura-dian-sire", description: "Registro de huéspedes · SIRE en camino" },
         ],
       },
       {
@@ -178,7 +179,7 @@ export const NAV_HOTEL: NavItem[] = [
           { label: "Upsell y ancillaries", href: "/hoteles/upsell" },
           { label: "Reactivación de huéspedes", href: "/hoteles/reactivacion" },
           { label: "Recepción 24/7", href: "/hoteles/recepcion-24-7" },
-          { label: "Cumplimiento (DIAN/SIRE)", href: "/hoteles/factura-dian-sire" },
+          { label: "Cumplimiento (DIAN, TRA, SIRE)", href: "/hoteles/factura-dian-sire" },
         ],
       },
       {

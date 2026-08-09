@@ -243,7 +243,7 @@ export function InvoiceMock() {
           <Check className="h-3.5 w-3.5" /> Enviada a la DIAN
         </span>
         <span className="inline-flex items-center gap-1">
-          <Check className="h-3.5 w-3.5" /> SIRE reportado
+          <Check className="h-3.5 w-3.5" /> TRA registrado
         </span>
       </div>
     </div>
@@ -299,9 +299,9 @@ const frames: {
   },
   {
     tag: "Facturación · Cumplimiento",
-    headline: "Factura y reporta, automático.",
-    body: "Emite factura electrónica ante la DIAN y le ayuda con el reporte SIRE de huéspedes extranjeros a Migración Colombia. Ningún otro agente de IA en Colombia lo hace.",
-    logos: [{ name: "DIAN" }, { name: "Alegra" }, { name: "SIRE" }],
+    headline: "Factura y registra, automático.",
+    body: "Emite la factura electrónica DIAN y registra a los huéspedes en el TRA (Registro Nacional de Turismo). El reporte SIRE de extranjeros a Migración Colombia llega pronto. Ningún otro agente de IA en Colombia resuelve el cumplimiento así.",
+    logos: [{ name: "DIAN" }, { name: "Alegra" }, { name: "TRA" }],
     mock: <InvoiceMock />,
   },
 ];

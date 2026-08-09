@@ -84,10 +84,10 @@ const BEATS: Beat[] = [
   },
   {
     id: "sire",
-    kicker: "06 · SIRE / TRA",
-    title: "Reporta al extranjero",
-    highlight: "a Migración.",
-    body: "Para huéspedes extranjeros, su plataforma arma y envía el reporte SIRE / TRA a Migración Colombia. Cumplimiento automático — sin multas ni trámites a mano.",
+    kicker: "06 · Registro TRA",
+    title: "Registra al huésped",
+    highlight: "ante el RNT.",
+    body: "Su plataforma arma y envía el registro de huéspedes (TRA) al Registro Nacional de Turismo — automático, sin planillas a mano. El reporte SIRE de extranjeros a Migración Colombia llega pronto.",
     surface: "backoffice",
     content: "sire",
   },
@@ -190,7 +190,7 @@ function FacturaBackoffice() {
 
 const SIRE_ROWS: [string, string][] = [
   ["Huésped", "John P."],
-  ["Pasaporte", "X1234567"],
+  ["Documento", "X1234567"],
   ["Nacionalidad", "Estados Unidos"],
   ["Estadía", "12–14 jul"],
 ];
@@ -199,9 +199,9 @@ function SireBackoffice() {
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-sm font-bold text-white">Huésped extranjero</p>
+        <p className="text-sm font-bold text-white">Registro de huésped</p>
         <span className="rounded-md bg-[oklch(0.62_0.15_150/0.18)] px-2 py-1 text-[10px] font-bold text-[oklch(0.74_0.16_150)]">
-          Reportado
+          Registrado
         </span>
       </div>
       <div className="space-y-1.5 rounded-lg border border-white/[0.08] bg-white/[0.02] p-3 text-[12px]">
@@ -213,7 +213,7 @@ function SireBackoffice() {
         ))}
       </div>
       <p className="flex items-center gap-1.5 text-[11px] font-semibold text-[oklch(0.74_0.16_150)]">
-        <Check className="h-3.5 w-3.5" /> Reportado a Migración Colombia · SIRE / TRA
+        <Check className="h-3.5 w-3.5" /> Registrado en el Registro Nacional de Turismo · TRA
       </p>
     </div>
   );
@@ -224,7 +224,7 @@ function BackofficeVisual({ content }: { content: BackofficeKind }) {
     <DashboardFrame
       title={
         content === "sire"
-          ? "SIRE / TRA · Migración Colombia"
+          ? "Registro TRA · RNT"
           : "Facturación · conagentes"
       }
     >

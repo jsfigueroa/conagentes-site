@@ -137,7 +137,7 @@ export function HotelHero() {
           >
             <span className="inline-flex items-center gap-2">
               <ShieldCheck className="h-4 w-4 text-[oklch(0.74_0.185_50)]" /> Factura
-              DIAN · Reporte SIRE
+              DIAN · Registro TRA
             </span>
             <span className="hidden text-white/20 sm:inline">•</span>
             <span>Funciona con su PMS — o use el nuestro, gratis</span>

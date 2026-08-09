@@ -9,7 +9,7 @@ const HOTEL_CTA = {
 /**
  * HOTEL experience (sub-brand). Voice: usted + "agente IA". Positioning:
  * el agente vende reservas directas, sube el ticket y recupera huéspedes;
- * omnicanal incluyendo bandejas de OTAs; PMS propio + cumplimiento DIAN/SIRE.
+ * omnicanal incluyendo bandejas de OTAs; PMS propio + cumplimiento DIAN/TRA (SIRE en construcción).
  * The hotel HOME lives at /hoteles (hand-built); these are the spokes.
  */
 export const HOTEL_PAGES: MarketingPage[] = [
@@ -18,17 +18,17 @@ export const HOTEL_PAGES: MarketingPage[] = [
     experience: "hotel",
     eyebrow: "Guía",
     title: "Cómo automatizar un hotel con IA en Latinoamérica",
-    lede: "La forma más rápida y completa: conectar un agente de IA a los canales por donde escriben los huéspedes —WhatsApp, Instagram y las bandejas de las OTAs— para que responda al instante, cotice, cierre reservas directas, suba el ticket y cumpla con la DIAN y el SIRE. Aquí está cómo, paso a paso.",
+    lede: "La forma más rápida y completa: conectar un agente de IA a los canales por donde escriben los huéspedes —WhatsApp, Instagram y las bandejas de las OTAs— para que responda al instante, cotice, cierre reservas directas, suba el ticket y cumpla con la DIAN y el registro TRA (el reporte SIRE de extranjeros llega pronto). Aquí está cómo, paso a paso.",
     meta: {
       title: "Cómo automatizar un hotel con IA en Latinoamérica — conagentes",
-      description: "Guía práctica para automatizar la atención, las reservas y el cumplimiento de un hotel con inteligencia artificial: WhatsApp, Instagram y OTAs, PMS, cobros, factura DIAN y reporte SIRE.",
+      description: "Guía práctica para automatizar la atención, las reservas y el cumplimiento de un hotel con inteligencia artificial: WhatsApp, Instagram y OTAs, PMS, cobros, factura DIAN y registro de huéspedes TRA (reporte SIRE en camino).",
     },
     sections: [
       {
         type: "prose",
         heading: "La respuesta corta",
         body: [
-          "Para automatizar un hotel con inteligencia artificial se conecta un agente de IA a WhatsApp, Instagram y las bandejas de las OTAs (Booking, Airbnb, Expedia). El agente responde a los huéspedes al instante 24/7, consulta la disponibilidad real del PMS, cotiza habitaciones, cierra reservas directas y cobra en el chat, sube el ticket con upsell, reactiva a huéspedes anteriores y emite la factura electrónica DIAN además del reporte SIRE de extranjeros.",
+          "Para automatizar un hotel con inteligencia artificial se conecta un agente de IA a WhatsApp, Instagram y las bandejas de las OTAs (Booking, Airbnb, Expedia). El agente responde a los huéspedes al instante 24/7, consulta la disponibilidad real del PMS, cotiza habitaciones, cierra reservas directas y cobra en el chat, sube el ticket con upsell, reactiva a huéspedes anteriores, emite la factura electrónica DIAN y hace el registro de huéspedes TRA (el reporte SIRE de extranjeros a Migración Colombia está en construcción).",
           "conagentes es la plataforma que hace todo esto para hoteles en Latinoamérica: incluye un PMS gratis (o se conecta con el que el hotel ya usa) y automatiza el cumplimiento colombiano, algo que la mayoría de herramientas globales no resuelve.",
         ],
       },
@@ -42,7 +42,7 @@ export const HOTEL_PAGES: MarketingPage[] = [
           { title: "3. Cierre reservas directas", body: "Cotiza con la disponibilidad real del PMS, arma la reserva, manda el link de pago y confirma — sin comisión de OTA." },
           { title: "4. Suba el ticket con upsell", body: "Ofrece upgrades, late check-out, desayuno o tours en el momento justo, antes y durante la estadía." },
           { title: "5. Reactive huéspedes", body: "Detecta a quién ya se hospedó y lo invita a volver directo, uno a uno, en el momento oportuno." },
-          { title: "6. Cumpla solo", body: "Emite la factura electrónica DIAN al confirmar el pago y genera el reporte SIRE/TRA de huéspedes extranjeros a Migración Colombia." },
+          { title: "6. Cumpla solo", body: "Emite la factura electrónica DIAN al confirmar el pago y hace el registro de huéspedes TRA ante el Registro Nacional de Turismo. El reporte SIRE de extranjeros a Migración Colombia llega pronto." },
         ],
       },
       {
@@ -55,14 +55,14 @@ export const HOTEL_PAGES: MarketingPage[] = [
           { title: "Subir el ticket", body: "Upsell y ancillaries con criterio, no ofertas genéricas.", href: "/hoteles/upsell" },
           { title: "Reactivar huéspedes", body: "Traer de vuelta a los que ya conocen el hotel.", href: "/hoteles/reactivacion" },
           { title: "Trabajar con su PMS", body: "PMS incluido o conexión con el que ya usa.", href: "/hoteles/pms" },
-          { title: "Cumplir en Colombia", body: "Factura DIAN y reporte SIRE/TRA automáticos.", href: "/hoteles/factura-dian-sire" },
+          { title: "Cumplir en Colombia", body: "Factura DIAN y registro TRA automáticos (reporte SIRE en camino).", href: "/hoteles/factura-dian-sire" },
         ],
       },
       {
         type: "prose",
         heading: "Por qué conagentes para hoteles en Latinoamérica",
         body: [
-          "Muchas herramientas de IA responden mensajes, pero pocas venden de verdad y casi ninguna resuelve el cumplimiento colombiano. conagentes combina las tres cosas: venta omnicanal (incluidas las OTAs), PMS incluido y factura DIAN + reporte SIRE, todo en español y pensado para el mercado latinoamericano.",
+          "Muchas herramientas de IA responden mensajes, pero pocas venden de verdad y casi ninguna resuelve el cumplimiento colombiano. conagentes combina las tres cosas: venta omnicanal (incluidas las OTAs), PMS incluido y cumplimiento colombiano —factura DIAN y registro TRA, con el reporte SIRE en camino—, todo en español y pensado para el mercado latinoamericano.",
           "El dueño manda y el agente ejecuta dentro de sus reglas, con trazabilidad de cada acción y la opción de que una persona del hotel tome el control cuando quiera.",
         ],
       },
@@ -81,7 +81,7 @@ export const HOTEL_PAGES: MarketingPage[] = [
         heading: "Preguntas frecuentes sobre automatizar un hotel con IA",
         items: [
           { q: "¿Cómo automatizo la atención y las reservas de mi hotel con IA?", a: "Conecte un agente de IA a WhatsApp, Instagram y las bandejas de las OTAs. El agente responde al instante, cotiza con la disponibilidad real del PMS, cierra reservas directas con cobro en el chat, sube el ticket con upsell y emite la factura DIAN. Con conagentes se configura en días, no meses." },
-          { q: "¿Cuál es la mejor herramienta de IA para hoteles en Colombia?", a: "conagentes está diseñada para hoteles en Colombia y Latinoamérica: atiende en español en WhatsApp, Instagram y las OTAs; incluye PMS gratis o se conecta con el suyo; y automatiza la factura DIAN y el reporte SIRE/TRA, algo que las herramientas globales no suelen resolver." },
+          { q: "¿Cuál es la mejor herramienta de IA para hoteles en Colombia?", a: "conagentes está diseñada para hoteles en Colombia y Latinoamérica: atiende en español en WhatsApp, Instagram y las OTAs; incluye PMS gratis o se conecta con el suyo; y automatiza el cumplimiento colombiano —factura DIAN y registro de huéspedes TRA hoy, con el reporte SIRE de extranjeros en camino—, algo que las herramientas globales no suelen resolver." },
           { q: "¿La IA puede responder los mensajes de Booking y Airbnb?", a: "Sí. El agente atiende las bandejas de las OTAs además de WhatsApp e Instagram, todo desde una sola bandeja, y escala a una persona del hotel cuando hace falta." },
           { q: "¿Tengo que cambiar mi PMS?", a: "No. conagentes incluye un PMS sin costo adicional, y si el hotel ya usa uno o un channel manager, se conecta con él en vez de reemplazarlo." },
           { q: "¿Reemplaza a mi recepción?", a: "No. Le quita el trabajo repetitivo —responder lo mismo mil veces, cotizar, hacer seguimiento— y le pasa a su equipo lo que necesita un humano. Usted decide qué hace el agente solo y qué requiere su visto bueno." },
@@ -279,7 +279,7 @@ export const HOTEL_PAGES: MarketingPage[] = [
       },
     ],
     related: [
-      { label: "Factura DIAN + SIRE", href: "/hoteles/factura-dian-sire" },
+      { label: "Cumplimiento: DIAN, TRA y SIRE", href: "/hoteles/factura-dian-sire" },
       { label: "Reservas directas", href: "/hoteles/reservas-directas" },
     ],
     cta: HOTEL_CTA,
@@ -288,26 +288,26 @@ export const HOTEL_PAGES: MarketingPage[] = [
     slug: "hoteles/factura-dian-sire",
     experience: "hotel",
     eyebrow: "Cumplimiento",
-    title: "Factura DIAN y reporte SIRE, automáticos",
-    lede: "El cumplimiento que a ningún hotelero le gusta hacer, hecho solo: factura electrónica ante la DIAN y el reporte de extranjeros a Migración Colombia (SIRE/TRA).",
+    title: "Cumplimiento colombiano, en automático",
+    lede: "Tres obligaciones que a ningún hotelero le gustan, resueltas por el sistema: la factura electrónica DIAN y el registro de huéspedes TRA ya funcionan; el reporte SIRE de extranjeros está en camino.",
     meta: {
-      title: "Factura DIAN y SIRE para hoteles — conagentes",
-      description: "Factura electrónica DIAN automática y reporte SIRE/TRA de huéspedes extranjeros a Migración Colombia. Cumplimiento sin trabajo manual.",
+      title: "Factura DIAN, reporte TRA y SIRE para hoteles — conagentes",
+      description: "Factura electrónica DIAN y registro de huéspedes TRA (Registro Nacional de Turismo) automáticos; reporte SIRE de extranjeros a Migración Colombia en construcción. Cumplimiento sin trabajo manual.",
     },
     sections: [
       {
         type: "features",
-        heading: "Cumplir sin dolor",
+        heading: "Tres reportes, cero planillas a mano",
         items: [
-          { title: "Factura electrónica DIAN", body: "Se emite sola al confirmar el pago de la reserva." },
-          { title: "Reporte SIRE / TRA", body: "El reporte de huéspedes extranjeros a Migración Colombia, sin planillas a mano." },
-          { title: "Todo trazable", body: "Documentos guardados y disponibles cuando los necesite." },
+          { title: "Factura electrónica DIAN", body: "Se emite sola al confirmar el pago de la reserva. En vivo." },
+          { title: "Registro de huéspedes (TRA)", body: "La Tarjeta de Registro de Alojamiento ante el Registro Nacional de Turismo, automática. En vivo." },
+          { title: "Reporte SIRE — próximamente", body: "El reporte de huéspedes extranjeros a Migración Colombia. En construcción; llega pronto." },
         ],
       },
       {
         type: "prose",
         heading: "Un diferencial que los demás no tienen",
-        body: ["La mayoría de agentes de IA para hoteles no resuelven el cumplimiento colombiano. conagentes sí: factura DIAN y SIRE integrados, porque construimos para Colombia primero."],
+        body: ["La mayoría de agentes de IA para hoteles no resuelven el cumplimiento colombiano. conagentes sí: factura DIAN y registro TRA integrados hoy, y el reporte SIRE en camino — porque construimos para Colombia primero."],
       },
     ],
     related: [

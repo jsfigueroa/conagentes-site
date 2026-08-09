@@ -185,19 +185,21 @@ export function DemoFormModal() {
                       htmlFor="demo-whatsapp"
                       className="block text-sm font-medium text-[oklch(0.32_0.008_95)] mb-1.5"
                     >
-                      WhatsApp{" "}
-                      <span className="text-[oklch(0.7_0.005_95)] font-normal">
-                        (opcional)
-                      </span>
+                      Celular / WhatsApp *
                     </label>
                     <input
                       id="demo-whatsapp"
                       type="tel"
+                      inputMode="tel"
+                      required
                       value={whatsapp}
                       onChange={(e) => setWhatsapp(e.target.value)}
                       placeholder="+57 300 123 4567"
-                      className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.74_0.185_50)] focus:ring-2 focus:ring-[oklch(0.74_0.185_50/0.2)] transition-all"
+                      className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-base sm:text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.74_0.185_50)] focus:ring-2 focus:ring-[oklch(0.74_0.185_50/0.2)] transition-all"
                     />
+                    <p className="mt-1.5 text-xs text-[oklch(0.55_0.008_95)]">
+                      Le escribimos por aquí para coordinar su demo.
+                    </p>
                   </div>
 
                   {status === "error" && (

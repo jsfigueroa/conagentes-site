@@ -13,9 +13,9 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { name, email, whatsapp, source } = body;
 
-    if (!name || !email) {
+    if (!name || !email || !whatsapp) {
       return NextResponse.json(
-        { error: "Nombre y email son requeridos" },
+        { error: "Nombre, email y celular son requeridos" },
         { status: 400 }
       );
     }
@@ -28,14 +28,32 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Require a plausible phone number (we contact the prospect by WhatsApp/phone).
+    const phoneDigits = String(whatsapp).replace(/[^0-9]/g, "");
+    if (phoneDigits.length < 7) {
+      return NextResponse.json(
+        { error: "Ingrese un número de celular válido" },
+        { status: 400 }
+      );
+    }
+
+    const cleanName = name.trim();
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanWhatsapp = String(whatsapp).trim();
+    const cleanSource = source || "landing";
+
     const supabase = createAdminClient();
 
-    const { error: dbError } = await supabase.from("demo_requests").insert({
-      name: name.trim(),
-      email: email.trim().toLowerCase(),
-      whatsapp: whatsapp?.trim() || null,
-      source: source || "landing",
-    });
+    const { data: inserted, error: dbError } = await supabase
+      .from("demo_requests")
+      .insert({
+        name: cleanName,
+        email: cleanEmail,
+        whatsapp: cleanWhatsapp,
+        source: cleanSource,
+      })
+      .select("id")
+      .single();
 
     if (dbError) {
       console.error("Supabase insert error:", dbError);
@@ -44,6 +62,19 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Forward into the main app (Conagentes HQ) so the submission becomes a
+    // conversation + funnel lead + Pendiente and the agent can engage. Shared
+    // DB, but the main app owns all that machinery — so we call its webhook.
+    // Awaited (Vercel may kill un-awaited work after the response) but tightly
+    // timed out and fully swallowed: a downstream hiccup must never fail the form.
+    await forwardToHq({
+      demoRequestId: inserted?.id ?? null,
+      name: cleanName,
+      email: cleanEmail,
+      whatsapp: cleanWhatsapp,
+      source: cleanSource,
+    });
 
     if (process.env.RESEND_API_KEY) {
       const domain = process.env.RESEND_DOMAIN || "conagentes.com";
@@ -70,6 +101,45 @@ export async function POST(req: NextRequest) {
       { error: "Error procesando solicitud" },
       { status: 500 }
     );
+  }
+}
+
+/**
+ * Forward a demo request into the main app (Conagentes HQ) so it becomes a
+ * conversation + funnel lead + Pendiente and the agent can engage the prospect.
+ * Best-effort: tightly timed out, all errors swallowed (the form already
+ * succeeded via the demo_requests insert + email).
+ */
+async function forwardToHq(payload: {
+  demoRequestId: string | null;
+  name: string;
+  email: string;
+  whatsapp: string;
+  source: string;
+}): Promise<void> {
+  const base = process.env.CONAGENTES_APP_URL;
+  const secret = process.env.DEMO_REQUEST_WEBHOOK_SECRET;
+  if (!base || !secret) {
+    // Not configured yet — the submission is still stored + emailed.
+    return;
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 4000);
+  try {
+    await fetch(`${base.replace(/\/$/, "")}/api/webhooks/demo-request`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-demo-secret": secret,
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+  } catch (err) {
+    console.error("[demo-request] HQ forward failed (non-fatal):", err);
+  } finally {
+    clearTimeout(timeout);
   }
 }
 

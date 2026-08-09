@@ -109,8 +109,8 @@ const faqs = [
     a: "Dos formas: una tarifa fija sin comisiones, o una tarifa baja más una comisión pequeña que solo se cobra cuando el huésped realmente se hospeda. Hablemos y le mostramos cuál le conviene.",
   },
   {
-    q: "¿Cumple con la DIAN y el SIRE?",
-    a: "Sí. Emite factura electrónica ante la DIAN y le ayuda con el reporte SIRE de huéspedes extranjeros a Migración Colombia.",
+    q: "¿Cumple con la DIAN, el TRA y el SIRE?",
+    a: "Sí a la factura electrónica DIAN y al registro de huéspedes TRA (Registro Nacional de Turismo), hoy mismo. El reporte SIRE de extranjeros a Migración Colombia está en construcción y llega pronto.",
   },
 ];
 
@@ -406,11 +406,11 @@ export function HotelBody() {
                   <ShieldCheck className="h-6 w-6 shrink-0 text-[oklch(0.64_0.19_42)]" />
                   <div>
                     <h3 className="font-bold text-foreground">
-                      Reporte SIRE / TRA
+                      Registro TRA
                     </h3>
                     <p className="text-muted-foreground mt-1">
-                      Le ayuda con el reporte de huéspedes extranjeros a
-                      Migración Colombia.
+                      Registra a los huéspedes ante el Registro Nacional de
+                      Turismo. Reporte SIRE de extranjeros, muy pronto.
                     </p>
                   </div>
                 </div>

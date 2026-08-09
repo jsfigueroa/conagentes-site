@@ -26,7 +26,7 @@ const hotelCaps = [
   "Reservas directas",
   "PMS incluido, gratis",
   "Menos comisión de OTA",
-  "Factura DIAN + reporte SIRE",
+  "Factura DIAN + registro TRA",
 ];
 
 export function IndustriesSection() {

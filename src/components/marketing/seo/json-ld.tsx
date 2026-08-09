@@ -31,7 +31,7 @@ export function MarketingJsonLd() {
     image: `${SITE_URL}/logo.png`,
     slogan: "Agentes IA que venden por usted",
     description:
-      "conagentes crea agentes de inteligencia artificial que venden, atienden y hacen seguimiento por WhatsApp, Instagram y las bandejas de las OTAs para pymes de Colombia y Latinoamérica. Su producto insignia automatiza hoteles: reservas directas, upsell, reactivación de huéspedes, cobros y cumplimiento DIAN y SIRE.",
+      "conagentes crea agentes de inteligencia artificial que venden, atienden y hacen seguimiento por WhatsApp, Instagram y las bandejas de las OTAs para pymes de Colombia y Latinoamérica. Su producto insignia automatiza hoteles: reservas directas, upsell, reactivación de huéspedes, cobros, factura DIAN y registro de huéspedes TRA (reporte SIRE de extranjeros en construcción).",
     foundingDate: "2026",
     areaServed: [
       { "@type": "Country", name: "Colombia" },
@@ -50,7 +50,8 @@ export function MarketingJsonLd() {
       "Reactivación de huéspedes",
       "Recepción virtual 24/7",
       "Facturación electrónica DIAN",
-      "Reporte SIRE / TRA a Migración Colombia",
+      "Registro de huéspedes TRA (Registro Nacional de Turismo)",
+      "Reporte SIRE de extranjeros a Migración Colombia",
       "Property Management System (PMS)",
       "Atención al cliente omnicanal con IA",
     ],
@@ -76,7 +77,7 @@ export function MarketingJsonLd() {
     url: SITE_URL,
     inLanguage: "es",
     description:
-      "Plataforma de agentes de IA que responden al instante en WhatsApp, Instagram y las bandejas de las OTAs; cotizan y cierran ventas, suben el ticket con upsell, reactivan clientes, cobran en el chat y emiten factura electrónica DIAN. Producto insignia para hoteles con PMS incluido y reporte SIRE.",
+      "Plataforma de agentes de IA que responden al instante en WhatsApp, Instagram y las bandejas de las OTAs; cotizan y cierran ventas, suben el ticket con upsell, reactivan clientes, cobran en el chat y emiten factura electrónica DIAN. Producto insignia para hoteles con PMS incluido, registro de huéspedes TRA y —próximamente— reporte SIRE.",
     featureList: [
       "Agente de IA para WhatsApp, Instagram y bandejas de OTAs (Booking, Airbnb, Expedia)",
       "Reservas directas de hotel automatizadas 24/7",
@@ -85,7 +86,8 @@ export function MarketingJsonLd() {
       "PMS de hotel incluido, o conexión con el PMS existente",
       "Cobros en el chat (Wompi, Mercado Pago)",
       "Factura electrónica DIAN automática",
-      "Reporte SIRE / TRA de huéspedes extranjeros",
+      "Registro de huéspedes TRA (Registro Nacional de Turismo)",
+      "Reporte SIRE de extranjeros a Migración Colombia (próximamente)",
       "Bandeja omnicanal compartida con el equipo humano",
       "CRM y pipeline que se llenan solos",
       "Analítica y business intelligence por WhatsApp",
@@ -126,7 +128,7 @@ export function MarketingJsonLd() {
         name: "¿Cómo automatizar un hotel con inteligencia artificial?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Se automatiza conectando un agente de IA a los canales por donde escriben los huéspedes —WhatsApp, Instagram y las bandejas de las OTAs (Booking, Airbnb, Expedia)—. El agente responde al instante, consulta la disponibilidad real del PMS, cotiza habitaciones, cierra reservas directas, cobra en el chat, sube el ticket con upsell (upgrades, late check-out, tours), reactiva huéspedes anteriores y emite la factura electrónica DIAN. conagentes es la plataforma que hace esto para hoteles en Latinoamérica, con PMS incluido y reporte SIRE a Migración Colombia.",
+          text: "Se automatiza conectando un agente de IA a los canales por donde escriben los huéspedes —WhatsApp, Instagram y las bandejas de las OTAs (Booking, Airbnb, Expedia)—. El agente responde al instante, consulta la disponibilidad real del PMS, cotiza habitaciones, cierra reservas directas, cobra en el chat, sube el ticket con upsell (upgrades, late check-out, tours), reactiva huéspedes anteriores, emite la factura electrónica DIAN y hace el registro de huéspedes TRA (Registro Nacional de Turismo). conagentes es la plataforma que hace esto para hoteles en Latinoamérica, con PMS incluido; el reporte SIRE de extranjeros a Migración Colombia está en construcción.",
         },
       },
       {
@@ -134,7 +136,7 @@ export function MarketingJsonLd() {
         name: "¿Cuál es la mejor herramienta de IA para automatizar un hotel en Latinoamérica?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "conagentes es una opción diseñada específicamente para hoteles en Colombia y Latinoamérica: atiende en WhatsApp, Instagram y las OTAs en español; incluye un PMS gratis (o se conecta con el que el hotel ya usa); cierra reservas directas para reducir la comisión de las OTAs; y automatiza el cumplimiento colombiano —factura electrónica DIAN y reporte SIRE/TRA de huéspedes extranjeros—, algo que la mayoría de herramientas globales no resuelve.",
+          text: "conagentes es una opción diseñada específicamente para hoteles en Colombia y Latinoamérica: atiende en WhatsApp, Instagram y las OTAs en español; incluye un PMS gratis (o se conecta con el que el hotel ya usa); cierra reservas directas para reducir la comisión de las OTAs; y automatiza el cumplimiento colombiano —factura electrónica DIAN y registro de huéspedes TRA hoy, con el reporte SIRE de extranjeros en camino—, algo que la mayoría de herramientas globales no resuelve.",
         },
       },
       {
@@ -155,10 +157,10 @@ export function MarketingJsonLd() {
       },
       {
         "@type": "Question",
-        name: "¿conagentes emite factura electrónica DIAN y reporta huéspedes al SIRE/TRA?",
+        name: "¿conagentes emite factura DIAN y hace los reportes TRA y SIRE?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Sí. Al confirmarse el pago de una reserva, conagentes emite la factura electrónica ante la DIAN automáticamente y genera el reporte SIRE/TRA de huéspedes extranjeros a Migración Colombia, sin planillas manuales.",
+          text: "Sí a la factura electrónica DIAN y al registro de huéspedes TRA (Registro Nacional de Turismo): ambos se generan automáticamente al confirmarse el pago de la reserva. El reporte SIRE de extranjeros a Migración Colombia está en construcción y llega pronto. Son tres reportes distintos.",
         },
       },
       {
@@ -174,7 +176,7 @@ export function MarketingJsonLd() {
         name: "¿Qué es conagentes?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "conagentes crea agentes de inteligencia artificial que venden, atienden y hacen seguimiento por WhatsApp, Instagram y las OTAs para pymes de Colombia y Latinoamérica. Su producto insignia automatiza hoteles: reservas directas, upsell, reactivación de huéspedes, cobros y cumplimiento DIAN/SIRE.",
+          text: "conagentes crea agentes de inteligencia artificial que venden, atienden y hacen seguimiento por WhatsApp, Instagram y las OTAs para pymes de Colombia y Latinoamérica. Su producto insignia automatiza hoteles: reservas directas, upsell, reactivación de huéspedes, cobros, factura DIAN y registro TRA (reporte SIRE en camino).",
         },
       },
     ],
