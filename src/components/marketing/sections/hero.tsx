@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { Hotel, ArrowRight } from "lucide-react";
 import { MagneticButton } from "@/components/marketing/animation/magnetic-button";
 import { FloatingElement } from "@/components/marketing/animation/floating-element";
 import { HeroDemo } from "@/components/marketing/hero-demo/hero-demo";
@@ -120,6 +122,26 @@ export function HeroSection() {
                   Ver cómo funciona
                 </a>
               </MagneticButton>
+            </motion.div>
+
+            {/* Flagship industry: hotels */}
+            <motion.div variants={itemVariants} className="mt-6">
+              <Link
+                href="/hoteles"
+                aria-label="conagentes para hoteles — nuestro producto insignia"
+                className="group relative inline-flex rounded-full bg-brand-gradient p-[1.5px] shadow-[0_0_28px_oklch(0.64_0.19_42/0.22)] transition-shadow hover:shadow-[0_0_44px_oklch(0.64_0.19_42/0.4)]"
+              >
+                <span className="inline-flex items-center gap-2.5 rounded-full bg-[oklch(0.08_0.01_95)] px-5 py-3 text-sm font-semibold text-white">
+                  <Hotel className="h-4 w-4 shrink-0 text-[oklch(0.74_0.185_50)]" />
+                  <span>
+                    ¿Tiene un hotel? Vea nuestro{" "}
+                    <span className="text-[oklch(0.74_0.185_50)]">
+                      producto insignia
+                    </span>
+                  </span>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-white/60 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
             </motion.div>
 
             {/* Friction reducer */}
