@@ -5,7 +5,7 @@ import { HotelBody } from "@/components/marketing/hotel/hotel-body";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
 const description =
-  "Un agente IA que atiende por WhatsApp, reserva directo, sube el valor de cada estadía y recupera huéspedes — 24/7 en español, inglés y portugués. PMS incluido, factura DIAN y registro de huéspedes TRA (reporte SIRE en camino). Para hoteles en Colombia.";
+  "Un agente IA que atiende por WhatsApp, reserva directo, sube el valor de cada estadía y recupera huéspedes — 24/7 y en 32 idiomas. PMS incluido, factura DIAN y registro de huéspedes TRA (reporte SIRE en camino). Para hoteles en Colombia.";
 
 export const metadata: Metadata = {
   // No brand suffix here: the root layout's metadata template already appends
@@ -25,6 +25,8 @@ export const metadata: Metadata = {
     "registro TRA hoteles Colombia",
     "reporte SIRE Migración Colombia hoteles",
     "factura electrónica hotel DIAN",
+    "chatbot hotel multilingüe",
+    "atender huéspedes extranjeros en su idioma",
   ],
   alternates: {
     canonical: "/hoteles",
@@ -75,6 +77,7 @@ const hotelJsonLd = {
         "@type": "OfferCatalog",
         name: "Capacidades del agente IA para hoteles",
         itemListElement: [
+          "Atención al huésped en 32 idiomas con detección automática del idioma",
           "Reservas directas por WhatsApp, Instagram y OTAs",
           "Upsell y ancillaries (upgrades, late check-out, tours)",
           "Reactivación de huéspedes",
