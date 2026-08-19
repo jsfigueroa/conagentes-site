@@ -145,49 +145,121 @@ export const NAV_HOTEL: NavItem[] = [
     href: "/hoteles",
     columns: [
       {
-        heading: "Plataforma para hoteles",
+        heading: "La plataforma",
         links: [
-          { label: "Agente IA para hoteles", href: "/hoteles#como-vende", description: "Reserva, sube el ticket y recupera" },
-          { label: "Bandeja omnicanal", href: "/hoteles/recepcion-24-7" },
-          { label: "PMS incluido", href: "/hoteles/pms", description: "Gratis — o conéctelo con el suyo" },
-          { label: "Cobros en el chat", href: "/hoteles/cobros" },
-          { label: "Factura electrónica DIAN", href: "/hoteles/factura-dian-sire", description: "Facturación automática" },
-          { label: "Reporte TRA", href: "/hoteles/factura-dian-sire", description: "Registro de huéspedes · SIRE en camino" },
+          {
+            label: "El agente IA",
+            href: "/hoteles/agente-ia",
+            description: "Atiende, cotiza, cobra y factura",
+          },
+          {
+            label: "Recepción 24/7",
+            href: "/hoteles/recepcion-24-7",
+            description: "Una bandeja para todos los canales",
+          },
+          {
+            label: "PMS incluido",
+            href: "/hoteles/pms",
+            description: "Sin costo aparte — o conecte el suyo",
+          },
+          {
+            label: "Revenue Manager",
+            href: "/hoteles/revenue-manager",
+            description: "Qué tarifa cobrar cada día",
+            badge: "En piloto",
+          },
+          {
+            label: "Agenda de servicios",
+            href: "/hoteles/agenda-servicios",
+            description: "Spa, tours, traslados y restaurante",
+          },
+          {
+            label: "Cobros y anticipos",
+            href: "/hoteles/cobros",
+            description: "Link de pago dentro del chat",
+          },
         ],
       },
       {
         heading: "Canales",
         links: [
-          { label: "WhatsApp", href: "/hoteles#omnicanal" },
-          { label: "Instagram", href: "/hoteles#omnicanal" },
-          { label: "Mensajes de OTAs", href: "/hoteles#omnicanal", description: "Booking, Airbnb, Expedia" },
-          { label: "Voz", href: "/hoteles#omnicanal" },
-          { label: "Webchat", href: "/hoteles#omnicanal" },
+          { label: "WhatsApp", href: "/hoteles/recepcion-24-7" },
+          { label: "Instagram", href: "/hoteles/recepcion-24-7" },
+          {
+            label: "Mensajes de OTAs",
+            href: "/hoteles/otas",
+            description: "Booking, Airbnb y Expedia",
+          },
+          {
+            label: "Teléfono con IA",
+            href: "/hoteles/voz",
+            description: "El agente de voz contesta",
+            badge: "En piloto",
+          },
+          { label: "Webchat", href: "/hoteles/recepcion-24-7" },
+        ],
+      },
+      {
+        heading: "Confianza",
+        links: [
+          {
+            label: "Control y seguridad",
+            href: "/hoteles/control-y-seguridad",
+            description: "Por qué no puede inventar nada",
+          },
+          {
+            label: "Cumplimiento colombiano",
+            href: "/hoteles/factura-dian-sire",
+            description: "Factura DIAN y registro TRA",
+          },
+          { label: "Integraciones", href: "/hoteles/integraciones" },
         ],
       },
     ],
+    featured: {
+      title: "Vea al agente cerrar una reserva",
+      href: "/hoteles/agente-ia",
+      blurb: "La conversación completa: de un «hola» a una reserva pagada y facturada.",
+    },
   },
   {
     kind: "mega",
     label: "Soluciones",
-    href: "/hoteles",
+    href: "/hoteles/resultados",
     columns: [
       {
         heading: "Por objetivo",
         links: [
-          { label: "Reservas directas", href: "/hoteles/reservas-directas" },
-          { label: "Upsell y ancillaries", href: "/hoteles/upsell" },
-          { label: "Reactivación de huéspedes", href: "/hoteles/reactivacion" },
-          { label: "Recepción 24/7", href: "/hoteles/recepcion-24-7" },
-          { label: "Cumplimiento (DIAN, TRA, SIRE)", href: "/hoteles/factura-dian-sire" },
+          {
+            label: "Más reservas directas",
+            href: "/hoteles/reservas-directas",
+            description: "Menos comisión de OTAs",
+          },
+          {
+            label: "Subir el valor de la estadía",
+            href: "/hoteles/upsell",
+            description: "Upgrades, servicios, experiencias",
+          },
+          {
+            label: "Recuperar huéspedes",
+            href: "/hoteles/reactivacion",
+            description: "Que vuelvan directo",
+          },
+          { label: "Atender siempre", href: "/hoteles/recepcion-24-7" },
+          { label: "Cumplir sin trabajo manual", href: "/hoteles/factura-dian-sire" },
         ],
       },
       {
         heading: "Por rol",
         links: [
-          { label: "Recepción / reservas", href: "/hoteles/reservas-directas" },
-          { label: "Revenue", href: "/hoteles/upsell" },
-          { label: "Gerencia (GM)", href: "/hoteles/resultados" },
+          { label: "Recepción y reservas", href: "/hoteles/recepcion-24-7" },
+          { label: "Revenue", href: "/hoteles/revenue-manager" },
+          {
+            label: "Gerencia y dueños",
+            href: "/hoteles/gerencia",
+            description: "Sus números por WhatsApp",
+          },
+          { label: "Resultados y ROI", href: "/hoteles/resultados" },
         ],
       },
     ],
@@ -199,19 +271,38 @@ export const NAV_HOTEL: NavItem[] = [
     href: "/hoteles/recursos",
     columns: [
       {
-        heading: "Aprende",
+        heading: "Aprenda",
         links: [
-          { label: "Automatizar un hotel con IA", href: "/hoteles/automatizar-hotel-con-ia", description: "Guía paso a paso" },
+          {
+            label: "Automatizar un hotel con IA",
+            href: "/hoteles/automatizar-hotel-con-ia",
+            description: "La guía completa, paso a paso",
+          },
           { label: "Blog hotelero", href: "/blog" },
-          { label: "Guías", href: "/hoteles/recursos" },
-          { label: "Casos de éxito", href: "/hoteles/recursos" },
+          { label: "Todos los recursos", href: "/hoteles/recursos" },
         ],
       },
       {
-        heading: "Pruebas",
+        heading: "Calcule",
         links: [
-          { label: "Resultados / ROI", href: "/hoteles/resultados" },
+          {
+            label: "¿Cuánta comisión paga?",
+            href: "/hoteles/reservas-directas",
+            description: "Calculadora de comisión de OTA",
+          },
+          {
+            label: "¿Cuánto deja el upsell?",
+            href: "/hoteles/upsell",
+            description: "Ingreso extra por huésped",
+          },
+          { label: "Las cuatro cuentas del ROI", href: "/hoteles/resultados" },
+        ],
+      },
+      {
+        heading: "Soporte",
+        links: [
           { label: "Centro de ayuda", href: "/recursos/ayuda" },
+          { label: "Contacto", href: "/contacto" },
         ],
       },
     ],

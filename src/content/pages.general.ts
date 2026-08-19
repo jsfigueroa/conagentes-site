@@ -78,7 +78,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "El agente IA: su mejor vendedor, trabajando sin parar",
     lede: "Vende, recomienda, resuelve dudas y hace seguimiento como su vendedor estrella — solo que atiende a todos los clientes a la vez, a toda hora.",
     meta: {
-      title: "Agentes IA que venden — conagentes",
+      title: "Agentes IA que venden",
       description: "Un vendedor con IA que atiende, recomienda, sube el ticket y hace seguimiento por WhatsApp, Instagram y web. Usted manda, él ejecuta.",
     },
     sections: [
@@ -115,7 +115,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Una sola bandeja para WhatsApp, Instagram y web",
     lede: "Todas sus conversaciones en un solo lugar, compartidas con su equipo. El agente atiende; su gente entra cuando quiere, sin perder el hilo.",
     meta: {
-      title: "Bandeja omnicanal — conagentes",
+      title: "Bandeja omnicanal",
       description: "WhatsApp, Instagram y webchat en una bandeja compartida. El agente IA atiende y su equipo toma el control cuando hace falta.",
     },
     sections: [
@@ -144,7 +144,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Un CRM que se llena solo",
     lede: "Cada conversación se convierte en un contacto y una oportunidad en su pipeline. Cero digitación, cero clientes que se pierden en el olvido.",
     meta: {
-      title: "CRM y pipeline — conagentes",
+      title: "CRM y pipeline",
       description: "El agente convierte cada chat en un contacto y una oportunidad de venta. Pipeline visual, sin digitar nada.",
     },
     sections: [
@@ -172,7 +172,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Cobra en el chat y factura ante la DIAN — solo",
     lede: "El agente arma el pedido, manda el link de pago y emite la factura electrónica automáticamente. Sin salir de la conversación.",
     meta: {
-      title: "Cobros y factura electrónica DIAN — conagentes",
+      title: "Cobros y factura electrónica DIAN",
       description: "Link de pago en el chat (Wompi / Mercado Pago) y factura electrónica automática ante la DIAN. Cobro y cumplimiento, en un solo flujo.",
     },
     sections: [
@@ -199,7 +199,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Agenda, confirma y recuerda citas sola",
     lede: "Para servicios y clínicas: el agente ofrece los horarios disponibles, agenda, confirma y recuerda — y llena su calendario sin llamadas.",
     meta: {
-      title: "Agenda y citas — conagentes",
+      title: "Agenda y citas",
       description: "El agente IA agenda, confirma y recuerda citas por WhatsApp. Menos ausencias, agenda llena, sin llamadas.",
     },
     sections: [
@@ -226,7 +226,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Campañas y reactivación por WhatsApp",
     lede: "Reactive clientes dormidos y lance campañas con permiso, sin quemar su número. El agente hace el seguimiento uno a uno.",
     meta: {
-      title: "Campañas y reactivación — conagentes",
+      title: "Campañas y reactivación",
       description: "Reactivación de clientes y campañas por WhatsApp con buenas prácticas anti-bloqueo. Seguimiento uno a uno, no envíos masivos ciegos.",
     },
     sections: [
@@ -253,7 +253,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Pregúntele a su negocio por WhatsApp",
     lede: "«¿Cómo vamos hoy?» y el agente le responde con ventas, productos top, funnel y alertas. Business intelligence sin abrir un tablero.",
     meta: {
-      title: "Analítica y BI — conagentes",
+      title: "Analítica y BI",
       description: "Business intelligence conversacional: pregunte por WhatsApp cómo va su negocio y reciba ventas, top productos y funnel al instante.",
     },
     sections: [
@@ -280,7 +280,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Seguridad y cumplimiento, sin letra menuda",
     lede: "Sus datos aislados por negocio, tratamiento de datos conforme a la Ley 1581 (Habeas Data) y factura electrónica al día con la DIAN.",
     meta: {
-      title: "Seguridad y cumplimiento — conagentes",
+      title: "Seguridad y cumplimiento",
       description: "Aislamiento de datos por negocio, cumplimiento de Habeas Data (Ley 1581) y factura electrónica DIAN. Seguridad desde el diseño.",
     },
     sections: [
@@ -307,7 +307,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Su agente IA en WhatsApp",
     lede: "Donde de verdad le escriben sus clientes en Colombia. El agente atiende, vende y cobra en el canal número uno del país.",
     meta: {
-      title: "Agente IA para WhatsApp — conagentes",
+      title: "Agente IA para WhatsApp",
       description: "Venda por WhatsApp con un agente IA que atiende al instante, recomienda, cobra y factura. El canal donde están sus clientes.",
     },
     sections: [
@@ -334,7 +334,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Su agente IA en Instagram",
     lede: "Responde DMs y comentarios, convierte seguidores en clientes y no deja ni un mensaje sin contestar.",
     meta: {
-      title: "Agente IA para Instagram — conagentes",
+      title: "Agente IA para Instagram",
       description: "El agente responde DMs de Instagram, atiende y vende. Convierta seguidores en ventas sin dejar mensajes sin responder.",
     },
     sections: [
@@ -357,7 +357,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Su agente IA que contesta el teléfono",
     lede: "Atiende llamadas con voz natural en español, resuelve, agenda y toma pedidos. Ninguna llamada se queda sin responder.",
     meta: {
-      title: "Agente IA de voz — conagentes",
+      title: "Agente IA de voz",
       description: "Un agente IA que contesta llamadas con voz natural en español colombiano: atiende, agenda y toma pedidos sin dejar llamadas perdidas.",
     },
     sections: [
@@ -380,7 +380,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Su agente IA en su página web",
     lede: "Convierte visitas en conversaciones: atiende en su sitio y continúa por WhatsApp sin perder el hilo.",
     meta: {
-      title: "Webchat con agente IA — conagentes",
+      title: "Webchat con agente IA",
       description: "Un agente IA en su web que atiende visitas y las convierte en ventas, con continuidad hacia WhatsApp.",
     },
     sections: [
@@ -405,7 +405,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Se conecta con lo que ya usa",
     lede: "Pasarelas de pago, facturación electrónica, e-commerce y más. El agente trabaja sobre sus herramientas, no le impone otras nuevas.",
     meta: {
-      title: "Integraciones — conagentes",
+      title: "Integraciones",
       description: "Wompi, Mercado Pago, Alegra, Siigo, Shopify y más. El agente IA se conecta con las herramientas que ya usa su negocio.",
     },
     sections: [
@@ -440,7 +440,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Un agente IA, a la medida de su negocio",
     lede: "Mismo motor, distinta forma de vender. Encuentre su industria o el objetivo que quiere alcanzar.",
     meta: {
-      title: "Soluciones — conagentes",
+      title: "Soluciones",
       description: "Agentes IA por industria (comercio, servicios, educación, hoteles) y por objetivo (vender más, upsell, reactivación, cobros, 24/7, BI).",
     },
     sections: [
@@ -480,7 +480,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Un agente IA para comercio y distribución",
     lede: "Muestra el catálogo, arma el pedido, cobra y factura por WhatsApp. Sus clientes compran sin esperar y sin llamar.",
     meta: {
-      title: "Agente IA para comercio y distribución — conagentes",
+      title: "Agente IA para comercio y distribución",
       description: "Venda por WhatsApp: catálogo, pedidos consolidados, cobro y factura DIAN automáticos. Ideal para comercio y distribución en Colombia.",
     },
     sections: [
@@ -512,7 +512,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Un agente IA para servicios y clínicas",
     lede: "Agenda, confirma y recuerda citas sola. Llena su calendario y reduce las ausencias, sin que su recepción viva pegada al teléfono.",
     meta: {
-      title: "Agente IA para servicios y clínicas — conagentes",
+      title: "Agente IA para servicios y clínicas",
       description: "Agende citas por WhatsApp con un agente IA: agenda 24/7, recordatorios y reprogramación automática. Menos ausencias, agenda llena.",
     },
     sections: [
@@ -541,7 +541,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Un agente IA para educación",
     lede: "Atrae, orienta y acompaña a cada aspirante hasta la matrícula. Resuelve dudas de programas, requisitos y fechas, y no deja a nadie esperando.",
     meta: {
-      title: "Agente IA para educación — conagentes",
+      title: "Agente IA para educación",
       description: "Oriente y matricule aspirantes por WhatsApp: programas, requisitos, fechas y documentos, con seguimiento hasta la matrícula.",
     },
     sections: [
@@ -570,7 +570,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "¿No ve su sector? Hablemos",
     lede: "El mismo agente IA se adapta a su forma de vender. Si atiende clientes por WhatsApp, tenemos algo para usted.",
     meta: {
-      title: "Agente IA para su sector — conagentes",
+      title: "Agente IA para su sector",
       description: "¿Su industria no está en la lista? El agente IA de conagentes se adapta a su negocio. Cuéntenos cómo vende y le mostramos cómo encaja.",
     },
     sections: [
@@ -592,7 +592,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Vender más, sin contratar más",
     lede: "El problema no es que le falten clientes: es que no alcanza a atenderlos a todos, rápido y bien. El agente sí.",
     meta: {
-      title: "Vender más con un agente IA — conagentes",
+      title: "Vender más con un agente IA",
       description: "Atienda a todos sus clientes al instante y no deje enfriar ninguna oportunidad. Más ventas sin ampliar el equipo.",
     },
     sections: [
@@ -624,7 +624,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Suba el ticket de cada venta",
     lede: "Con criterio de vendedor, el agente propone el complemento o la mejor opción en el momento justo. Más valor por cliente, sin presionar.",
     meta: {
-      title: "Upsell con IA — conagentes",
+      title: "Upsell con IA",
       description: "El agente IA recomienda el complemento justo en cada venta y sube el ticket promedio, con criterio de vendedor y sin presionar.",
     },
     sections: [
@@ -651,7 +651,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Recupere a los clientes que ya tiene",
     lede: "Venderle a quien ya le compró es más fácil y más barato que conseguir a alguien nuevo. El agente reactiva a los dormidos, uno a uno.",
     meta: {
-      title: "Reactivación de clientes con IA — conagentes",
+      title: "Reactivación de clientes con IA",
       description: "El agente IA detecta clientes dormidos y los reactiva con un mensaje que sí encaja. Más ventas de su base actual.",
     },
     sections: [
@@ -675,7 +675,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Cobre y facture sin fricción",
     lede: "El agente manda el link de pago y emite la factura DIAN en el chat. Menos pasos, menos pagos que se caen.",
     meta: {
-      title: "Cobros y facturación con IA — conagentes",
+      title: "Cobros y facturación con IA",
       description: "Cobre en el chat con Wompi o Mercado Pago y facture ante la DIAN automáticamente. Menos fricción, menos ventas que se caen.",
     },
     sections: [
@@ -699,7 +699,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Atención 24/7, sin turnos ni filas",
     lede: "Sus clientes escriben a cualquier hora. El agente responde siempre — de madrugada, en festivos y cuando su equipo está ocupado.",
     meta: {
-      title: "Atención al cliente 24/7 con IA — conagentes",
+      title: "Atención al cliente 24/7 con IA",
       description: "Un agente IA que atiende 24/7 en todos sus canales: cero mensajes sin responder, cero clientes esperando.",
     },
     sections: [
@@ -722,7 +722,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Los números de su negocio, claros y por WhatsApp",
     lede: "Sin tableros complicados: pregunte cómo va y el agente le responde con ventas, productos top y alertas.",
     meta: {
-      title: "BI para dueños con IA — conagentes",
+      title: "BI para dueños con IA",
       description: "Business intelligence conversacional para dueños: pregunte por WhatsApp cómo va su negocio y reciba respuestas claras al instante.",
     },
     sections: [
@@ -747,7 +747,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Un plan a la medida de su negocio",
     lede: "No cobramos por «usuarios» ni por funciones sueltas. Armamos un plan según su operación y lo que quiere lograr — sin sorpresas.",
     meta: {
-      title: "Precios — conagentes",
+      title: "Precios",
       description: "Planes de agentes IA a la medida de su negocio, sin costos ocultos. Agende una demo y le armamos una propuesta clara.",
     },
     sections: [
@@ -781,7 +781,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Aprenda a vender más con IA",
     lede: "Guías, casos y herramientas para que su negocio venda más y atienda mejor por WhatsApp.",
     meta: {
-      title: "Recursos — conagentes",
+      title: "Recursos",
       description: "Blog, guías, webinars y calculadora de ROI para vender más con agentes IA por WhatsApp.",
     },
     sections: [
@@ -808,7 +808,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Guías y ebooks",
     lede: "Todo lo que necesita para vender más y atender mejor con IA por WhatsApp. Publicamos guías prácticas cada semana en el blog — aquí están los temas.",
     meta: {
-      title: "Guías de IA para pymes — conagentes",
+      title: "Guías de IA para pymes",
       description: "Guías prácticas para vender más por WhatsApp con agentes IA: automatización, atención 24/7, cobros, reactivación y más, para pymes en Latinoamérica.",
     },
     sections: [
@@ -841,7 +841,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Webinars",
     lede: "Sesiones en vivo y grabadas sobre cómo vender con agentes IA. Próximamente.",
     meta: {
-      title: "Webinars — conagentes",
+      title: "Webinars",
       description: "Webinars sobre agentes IA para vender por WhatsApp en Colombia.",
     },
     sections: [
@@ -857,7 +857,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Calculadora de ROI",
     lede: "Estime cuánto puede recuperar con un agente IA: mensajes sin responder, ventas perdidas y tiempo de su equipo.",
     meta: {
-      title: "Calculadora de ROI — conagentes",
+      title: "Calculadora de ROI",
       description: "Estime el retorno de un agente IA para su negocio: ventas recuperadas, respuesta inmediata y tiempo ahorrado.",
     },
     sections: [
@@ -881,7 +881,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Centro de ayuda",
     lede: "Documentación, guías de uso y soporte para sacarle todo el provecho a su agente IA.",
     meta: {
-      title: "Centro de ayuda — conagentes",
+      title: "Centro de ayuda",
       description: "Soporte y documentación de conagentes: configure y saque provecho a su agente IA.",
     },
     sections: [
@@ -899,7 +899,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Negocios que ya venden con conagentes",
     lede: "De hoteles a comercios e instituciones educativas: agentes IA que atienden, venden y hacen seguimiento todos los días.",
     meta: {
-      title: "Casos de éxito — conagentes",
+      title: "Casos de éxito",
       description: "Historias de negocios en Colombia que venden más con agentes IA de conagentes.",
     },
     sections: [
@@ -942,7 +942,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Hacemos que la IA venda para las pymes de Colombia",
     lede: "conagentes nació para que cualquier negocio —no solo las grandes empresas— pueda tener un vendedor con IA trabajando por WhatsApp, 24/7.",
     meta: {
-      title: "Empresa — conagentes",
+      title: "Empresa",
       description: "conagentes construye agentes IA que venden por WhatsApp para pymes de Colombia y Latinoamérica.",
     },
     sections: [
@@ -973,7 +973,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
     title: "Hablemos",
     lede: "Cuéntenos de su negocio y le mostramos, con sus productos y sus precios, cómo su agente IA atiende, vende y cobra.",
     meta: {
-      title: "Contacto — conagentes",
+      title: "Contacto",
       description: "Agende una demo o escríbanos. Le mostramos su agente IA vendiendo por WhatsApp con su propio catálogo.",
     },
     sections: [

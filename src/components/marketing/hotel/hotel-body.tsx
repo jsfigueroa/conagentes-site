@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   MessageCircle,
   CalendarCheck,
@@ -21,6 +22,125 @@ import { MagneticButton } from "@/components/marketing/animation/magnetic-button
 import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
 import { HotelStory } from "@/components/marketing/hotel/hotel-story";
 import { OmnichannelSection } from "@/components/marketing/hotel/omnichannel";
+
+/**
+ * Hub → spoke links. Keep in sync with src/content/hotel/* and with NAV_HOTEL
+ * in src/content/nav.ts. Badges use the three-state availability vocabulary
+ * («En piloto» / «En construcción»); anything without a badge is live.
+ */
+const hubGroups: {
+  label: string;
+  links: { label: string; href: string; body: string; badge?: string }[];
+}[] = [
+  {
+    label: "La plataforma",
+    links: [
+      {
+        label: "El agente IA",
+        href: "/hoteles/agente-ia",
+        body: "Cómo decide, qué ejecuta y qué nunca hace.",
+      },
+      {
+        label: "Recepción 24/7",
+        href: "/hoteles/recepcion-24-7",
+        body: "Una bandeja para WhatsApp, Instagram, OTAs, web y teléfono.",
+      },
+      {
+        label: "PMS incluido",
+        href: "/hoteles/pms",
+        body: "Sin costo aparte, o conectamos el que ya usa.",
+      },
+      {
+        label: "Revenue Manager",
+        href: "/hoteles/revenue-manager",
+        body: "Qué tarifa cobrar cada día, y por qué.",
+        badge: "En piloto",
+      },
+      {
+        label: "Agenda de servicios",
+        href: "/hoteles/agenda-servicios",
+        body: "Spa, tours, traslados y restaurante, agendados en el chat.",
+      },
+      {
+        label: "Cobros y anticipos",
+        href: "/hoteles/cobros",
+        body: "Link de pago dentro de la conversación.",
+      },
+    ],
+  },
+  {
+    label: "Canales y confianza",
+    links: [
+      {
+        label: "Mensajes de OTAs",
+        href: "/hoteles/otas",
+        body: "Booking, Airbnb y Expedia, con las reglas de cada plataforma.",
+        badge: "En piloto",
+      },
+      {
+        label: "Teléfono con IA",
+        href: "/hoteles/voz",
+        body: "El agente de voz contesta y hace el puente a WhatsApp.",
+        badge: "En piloto",
+      },
+      {
+        label: "Control y seguridad",
+        href: "/hoteles/control-y-seguridad",
+        body: "Por qué no puede inventar precios ni disponibilidad.",
+      },
+      {
+        label: "Cumplimiento colombiano",
+        href: "/hoteles/factura-dian-sire",
+        body: "Factura DIAN y registro TRA en automático.",
+      },
+      {
+        label: "Integraciones",
+        href: "/hoteles/integraciones",
+        body: "PMS, channel managers, OTAs, pagos y contabilidad.",
+      },
+    ],
+  },
+  {
+    label: "Resultados y decisión",
+    links: [
+      {
+        label: "Reservas directas",
+        href: "/hoteles/reservas-directas",
+        body: "Con calculadora de la comisión que paga hoy.",
+      },
+      {
+        label: "Subir el valor de la estadía",
+        href: "/hoteles/upsell",
+        body: "Cuándo ofrecer, qué convierte y cuánto deja.",
+      },
+      {
+        label: "Recuperar huéspedes",
+        href: "/hoteles/reactivacion",
+        body: "Que vuelvan directo, uno a uno.",
+      },
+      {
+        label: "Gerencia y BI",
+        href: "/hoteles/gerencia",
+        body: "Sus números por WhatsApp, sin abrir un tablero.",
+      },
+      {
+        label: "Resultados y ROI",
+        href: "/hoteles/resultados",
+        body: "Las cuatro cuentas, con los datos de su hotel.",
+      },
+      {
+        label: "Precios",
+        href: "/hoteles/precios",
+        body: "Tarifa fija, o pague solo por lo que el agente cierre.",
+      },
+      {
+        label: "Guía: automatizar un hotel con IA",
+        href: "/hoteles/automatizar-hotel-con-ia",
+        body: "Los seis pasos, en el orden que funciona.",
+      },
+    ],
+  },
+];
 
 const outcomes = [
   {
@@ -506,6 +626,60 @@ export function HotelBody() {
                     {t.body}
                   </p>
                 </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ——— HUB: todo el detalle ———
+          The hub links out to every spoke page. Without this the flagship page
+          is a dead end: the spokes would only be reachable through the header
+          menu, which costs us both visitors and crawl depth. */}
+      <section className="py-24 md:py-32 bg-secondary/40">
+        <div className="mx-auto max-w-6xl px-6">
+          <ScrollReveal className="text-center mb-14">
+            <Eyebrow>Toda la plataforma</Eyebrow>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+              Cada pieza, explicada en detalle.
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Sin humo: qué hace cada parte, cómo funciona y qué está en vivo,
+              en piloto o en construcción.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid gap-10 md:grid-cols-3">
+            {hubGroups.map((g) => (
+              <ScrollReveal key={g.label}>
+                <h3 className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                  {g.label}
+                </h3>
+                <ul className="mt-4 space-y-1">
+                  {g.links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        className="group -mx-3 flex items-start justify-between gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-card"
+                      >
+                        <span>
+                          <span className="block text-[15px] font-semibold text-foreground">
+                            {l.label}
+                            {l.badge && (
+                              <span className="ml-2 rounded-full border border-border bg-card px-1.5 py-0.5 align-middle text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                                {l.badge}
+                              </span>
+                            )}
+                          </span>
+                          <span className="mt-0.5 block text-[13.5px] leading-snug text-muted-foreground">
+                            {l.body}
+                          </span>
+                        </span>
+                        <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </ScrollReveal>
             ))}
           </div>

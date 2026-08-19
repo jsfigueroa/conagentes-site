@@ -312,3 +312,87 @@
   background: var(--hair-soft);
   font-weight: 600;
 }
+
+/* ——— Range slider (calculadoras de las páginas de hoteles) ———
+   Native range inputs have no cross-browser track styling, so the brand track
+   is drawn here. The filled portion is driven by a --pct custom property the
+   component sets from the current value, because ::-webkit-slider-runnable-track
+   cannot read the input's value on its own. 44px tall = mobile hit target. */
+
+.range-brand {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2.75rem;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.range-brand:focus {
+  outline: none;
+}
+
+.range-brand::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--orange) 0,
+    var(--orange) var(--pct, 50%),
+    var(--hair) var(--pct, 50%),
+    var(--hair) 100%
+  );
+}
+
+.range-brand::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  margin-top: -7px;
+  border-radius: 999px;
+  background: var(--orange);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px oklch(0.2 0.01 95 / 0.3);
+  transition: transform 0.12s ease-out;
+}
+
+.range-brand:hover::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+
+.range-brand:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px var(--orange-ring);
+}
+
+.range-brand::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--hair);
+}
+
+.range-brand::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--orange);
+}
+
+.range-brand::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 999px;
+  background: var(--orange);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px oklch(0.2 0.01 95 / 0.3);
+}
+
+.range-brand:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px var(--orange-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .range-brand::-webkit-slider-thumb {
+    transition: none;
+  }
+}

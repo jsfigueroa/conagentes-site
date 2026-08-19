@@ -2,7 +2,13 @@ import type { MarketingPage } from "./pages.types";
 import { GENERAL_PAGES } from "./pages.general";
 import { HOTEL_PAGES } from "./pages.hotel";
 
-export type { MarketingPage, Section } from "./pages.types";
+export type {
+  MarketingPage,
+  Section,
+  ChatCard,
+  ChatMsg,
+  PanelKind,
+} from "./pages.types";
 
 /** Every data-driven marketing page, both experiences. */
 export const PAGES: MarketingPage[] = [...GENERAL_PAGES, ...HOTEL_PAGES];
