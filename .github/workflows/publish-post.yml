@@ -27,6 +27,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Two commits so we can tell a content-only push from one that also
+          # changed code.
+          fetch-depth: 2
+
+      - name: Wait for the deploy when this push also changed code
+        run: |
+          # Real incident, 2026-08-19: a push carried both the new /api/publish
+          # and an article. The workflow POSTed 13s later, Vercel was still
+          # building, and the OLD handler answered — silently dropping the
+          # article's `answer` field (the quotable «En corto» block, which is
+          # the whole point of the post for answer engines). A content-only push
+          # cannot race anything, so only wait when code moved too.
+          changed=$(git diff --name-only HEAD~1 HEAD -- . ':(exclude)_pending_posts/*' 2>/dev/null || true)
+          if [ -n "$changed" ]; then
+            echo "This push also changed code:"
+            echo "$changed" | head -20
+            echo "Waiting 180s so the NEW deploy is the one that publishes."
+            sleep 180
+          else
+            echo "Content-only push — publishing right away."
+          fi
 
       - name: Find and publish new posts
         env:

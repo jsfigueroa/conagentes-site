@@ -260,3 +260,12 @@ Supabase blog_posts (status = published)
 
 Push a `master` despliega el sitio en Vercel (producción). Un artículo nuevo no
 requiere despliegue: entra por API y se revalida.
+
+**Regla aprendida a golpes (2026-08-19): no mezcle código y artículo en el mismo
+push.** El workflow dispara a los pocos segundos; si el push también cambió
+código, Vercel todavía está compilando y el `/api/publish` **viejo** es el que
+atiende. Eso pasó con el primer artículo: se publicó sin su `answer`, es decir
+sin el bloque «En corto» —justo lo que existe para que un asistente nos cite— y
+hubo que corregir la fila a mano. El workflow ahora detecta ese caso y espera 180
+segundos, pero la forma correcta sigue siendo: **un push para código, otro para
+el artículo.**
