@@ -8,7 +8,10 @@ const description =
   "Un agente IA que atiende por WhatsApp, reserva directo, sube el valor de cada estadía y recupera huéspedes — 24/7 en español, inglés y portugués. PMS incluido, factura DIAN y registro de huéspedes TRA (reporte SIRE en camino). Para hoteles en Colombia.";
 
 export const metadata: Metadata = {
-  title: "conagentes para hoteles — El agente IA que llena su hotel",
+  // No brand suffix here: the root layout's metadata template already appends
+  // "| conagentes". The openGraph/twitter titles below are NOT templated, so
+  // those keep the brand for shared links.
+  title: "El agente IA que llena su hotel",
   description,
   keywords: [
     "software para hoteles Colombia",
