@@ -170,7 +170,7 @@ const capabilities = [
   {
     icon: MessageCircle,
     title: "Atiende en todos sus canales",
-    body: "Responde en WhatsApp, Instagram y en los mensajes de Booking, Airbnb y Expedia: muestra disponibilidad y tarifas en vivo y confirma la reserva — en español, inglés y portugués.",
+    body: "Responde en WhatsApp, Instagram y en los mensajes de Booking, Airbnb y Expedia: muestra disponibilidad y tarifas en vivo y confirma la reserva — en los 32 idiomas que habla.",
   },
   {
     icon: CreditCard,
@@ -214,7 +214,7 @@ const faqs = [
   },
   {
     q: "¿En qué idiomas atiende a mis huéspedes?",
-    a: "Español, inglés y portugués — reconoce el idioma del huésped y le responde en el suyo.",
+    a: "En 32 idiomas, sin configurar nada: reconoce en qué idioma le escribió el huésped y le responde en el suyo. Español, inglés, portugués, alemán, francés, italiano, neerlandés, chino, japonés, árabe y una veintena más.",
   },
   {
     q: "¿Y si no hay disponibilidad para las fechas que piden?",

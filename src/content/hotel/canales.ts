@@ -95,7 +95,7 @@ export const HOTEL_CANALES: MarketingPage[] = [
           {
             at: 5,
             label: "Respondió en alemán… y en inglés",
-            body: "Contesta en el idioma del huésped. En temporada, la mitad de los mensajes de OTA de un hotel colombiano no llegan en español.",
+            body: "Contesta en el idioma del huésped, entre 32 disponibles. En temporada, buena parte de los mensajes de OTA de un hotel colombiano no llegan en español — y el que se queda sin responder por eso es una noche perdida.",
           },
         ],
       },

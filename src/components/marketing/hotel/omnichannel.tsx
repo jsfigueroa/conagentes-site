@@ -68,7 +68,7 @@ export function OmnichannelSection() {
                   Un solo agente · una sola bandeja
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Responde en todos los canales, 24/7, en varios idiomas.
+                  Responde en todos los canales, 24/7, en 32 idiomas.
                 </p>
               </div>
             </div>

@@ -73,7 +73,7 @@ Para automatizar un hotel con inteligencia artificial en Latinoamérica: conecte
 
 ## Estado de cada capacidad (vocabulario que usamos siempre)
 conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
-- "En vivo" = funcionando hoy en hoteles reales: WhatsApp, Instagram, chat web, PMS incluido, cotización con disponibilidad real, cobros con Wompi/Mercado Pago (PSE, Nequi), agenda de servicios (spa, tours, traslados, restaurante), upsell, reactivación de huéspedes, factura electrónica DIAN, registro de huéspedes TRA, BI por WhatsApp para gerencia.
+- "En vivo" = funcionando hoy en hoteles reales: WhatsApp, Instagram, chat web, PMS incluido, cotización con disponibilidad real, cobros con Wompi/Mercado Pago (PSE, Nequi), agenda de servicios (spa, tours, traslados, restaurante), upsell, reactivación de huéspedes, factura electrónica DIAN, registro de huéspedes TRA, BI por WhatsApp para gerencia, atención en 32 idiomas con detección automática del idioma del huésped.
 - "En piloto" = construido y activándose con los primeros hoteles: mensajería de OTAs (Booking.com, Airbnb, Expedia), Revenue Manager (recomendación de tarifas y piloto automático), agente de voz para el teléfono, conexión con PMS externos y channel manager (Channex).
 - "En construcción" = todavía no disponible: reporte SIRE de huéspedes extranjeros a Migración Colombia.
 
@@ -106,6 +106,7 @@ conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
 - ¿Cuál es el mejor momento para hacer upsell en un hotel? El mensaje previo a la llegada (12–18 % de conversión) y el check-in (22–28 %), muy por encima del motor de reservas (3–5 %).
 - ¿La IA le puede dar información inventada a un huésped? En conagentes no puede inventar precios ni disponibilidad: los lee del PMS en el momento de responder, usa la base de conocimiento del hotel para políticas y escala a una persona cuando no tiene la respuesta.
 - ¿Tengo que cambiar mi PMS? No. conagentes incluye PMS sin costo adicional para hoteles que no tienen, y se conecta con el existente (conexión en piloto).
+- ¿En qué idiomas atiende? En 32 idiomas, detectando automáticamente el del huésped y respondiendo en ese mismo idioma: español, inglés, portugués, alemán, francés, italiano, neerlandés, ruso, chino, japonés, coreano, árabe, hindi, polaco, sueco, danés, noruego, finés, turco, checo, griego, rumano, búlgaro, croata, eslovaco, ucraniano, húngaro, indonesio, malayo, filipino, tamil y vietnamita. No hay que configurar nada por idioma.
 - ¿Cuánto cuesta? Dos modelos: tarifa fija mensual con 0 % de comisión, o base mensual baja más comisión pequeña solo sobre las reservas, el upsell y las reactivaciones que cierre el agente, y solo sobre estadías realizadas.
 
 ## Plataforma (todos los negocios)

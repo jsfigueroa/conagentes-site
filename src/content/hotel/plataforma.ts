@@ -17,7 +17,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       "El agente IA de conagentes es un empleado digital para hoteles en Colombia y Latinoamérica. Atiende por WhatsApp, Instagram, las bandejas de las OTAs, el chat web y el teléfono; consulta la disponibilidad real del PMS; cotiza y cierra reservas directas; cobra en el chat con Wompi o Mercado Pago; emite la factura electrónica DIAN; y escala a una persona del hotel cuando la consulta lo requiere.",
     heroChips: [
       "Responde en menos de 5 segundos",
-      "Español, inglés y portugués",
+      "Atiende en 32 idiomas",
       "Nunca inventa precios ni disponibilidad",
     ],
     meta: {
@@ -262,7 +262,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
           { label: "Emite la factura electrónica DIAN", cells: ["Manual", false, true] },
           { label: "Hace el registro de huéspedes TRA", cells: ["Manual", false, true] },
           { label: "Le explica a usted por qué hizo lo que hizo", cells: [true, false, true] },
-          { label: "Trabaja en español, inglés y portugués", cells: ["Según el turno", "Traducción literal", true] },
+          { label: "Atiende en 32 idiomas", cells: ["Según el turno", "Traducción literal", true] },
         ],
         footnote:
           "«En piloto» significa que está construido y activándose con los primeros hoteles. Nunca vendemos como disponible algo que todavía no lo está.",
@@ -284,8 +284,8 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
             a: "No. Le quita el trabajo repetitivo —responder lo mismo cien veces, cotizar, hacer seguimiento, transcribir datos— y le pasa a su equipo lo que de verdad necesita un humano: grupos, quejas, casos delicados y huéspedes en casa. Usted define qué hace el agente solo y qué requiere su visto bueno.",
           },
           {
-            q: "¿En qué idiomas atiende?",
-            a: "Responde en el idioma en que le escriben. En Colombia el uso principal es español, inglés y portugués, y funciona con más idiomas cuando el hotel recibe otros mercados.",
+            q: "¿En qué idiomas atiende el agente IA?",
+            a: "En 32 idiomas, y no hay que configurar nada: el agente detecta en qué idioma le escribió el huésped y le responde en ese mismo idioma. Entre ellos español, inglés, portugués, alemán, francés, italiano, neerlandés, ruso, chino, japonés, coreano, árabe, hindi, polaco, sueco, danés, noruego, finés, turco, checo, griego, rumano, búlgaro, croata, eslovaco, ucraniano, húngaro, indonesio, malayo, filipino, tamil y vietnamita. Para un hotel colombiano que recibe grupos de Europa, Norteamérica y Brasil, esto significa que un mensaje en alemán a las 2 a. m. se responde en alemán, sin que nadie del equipo lo hable.",
           },
           {
             q: "¿Cuánto tarda en estar funcionando?",
@@ -347,6 +347,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
         ],
         bullets: [
           "El 100 % de las consultas recibe respuesta, incluso las de las 3 a. m.",
+          "Un mensaje en alemán a las 2 a. m. se responde en alemán: el agente atiende en 32 idiomas y nadie de su equipo tiene que hablarlos.",
           "Su equipo llega en la mañana a conversaciones avanzadas, no a una pila de mensajes sin abrir.",
           "Nadie vuelve a copiar y pegar la misma respuesta sobre el parqueadero.",
         ],

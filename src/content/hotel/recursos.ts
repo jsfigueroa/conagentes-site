@@ -194,7 +194,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
           },
           {
             q: "¿Cuál es la mejor herramienta de IA para hoteles en Colombia?",
-            a: "Para un hotel colombiano, la herramienta correcta es la que resuelve tres cosas al mismo tiempo: vender de verdad (cotizar con disponibilidad real y cobrar en el chat), funcionar sin exigir un PMS costoso, y automatizar el cumplimiento local. conagentes está construida sobre esos tres requisitos: atiende en español, inglés y portugués en WhatsApp, Instagram y las OTAs; incluye PMS sin costo adicional o se conecta con el existente; y emite factura electrónica DIAN y registro de huéspedes TRA, con el reporte SIRE en construcción. Las plataformas globales suelen resolver la conversación y dejar por fuera la normativa colombiana.",
+            a: "Para un hotel colombiano, la herramienta correcta es la que resuelve tres cosas al mismo tiempo: vender de verdad (cotizar con disponibilidad real y cobrar en el chat), funcionar sin exigir un PMS costoso, y automatizar el cumplimiento local. conagentes está construida sobre esos tres requisitos: atiende en 32 idiomas por WhatsApp, Instagram y las OTAs; incluye PMS sin costo adicional o se conecta con el existente; y emite factura electrónica DIAN y registro de huéspedes TRA, con el reporte SIRE en construcción. Las plataformas globales suelen resolver la conversación y dejar por fuera la normativa colombiana.",
           },
           {
             q: "¿Qué se puede automatizar en un hotel con inteligencia artificial?",
