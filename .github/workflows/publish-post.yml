@@ -1,30 +1,44 @@
 name: Publish Blog Post
 
+# Publishes every JSON file in _pending_posts/ to the live blog:
+#   POST /api/publish → insert into Supabase → revalidate + IndexNow
+# and then deletes the files it published, so the folder always shows what is
+# still waiting. A file that fails stays put and is retried on the next push.
+#
+# The publish secret comes from the PUBLISH_SECRET repository secret when it is
+# set, and falls back to the historical literal so publishing never breaks in
+# the middle of a rotation. Once REVALIDATION_SECRET is rotated on Vercel and
+# PUBLISH_SECRET is set here, drop the fallback.
+
 on:
   push:
     paths:
       - '_pending_posts/*.json'
+  workflow_dispatch:
+
+permissions:
+  # Needed by the cleanup step to push the "remove published files" commit.
+  # Without it the publish succeeds but the JSON files pile up — exactly what
+  # happened in June 2026: 12 published posts left behind as pending.
+  contents: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Find and publish new posts
         env:
           PUBLISH_URL: https://www.conagentes.com/api/publish
-          PUBLISH_SECRET: conagentes-revalidate-2026-secret
+          PUBLISH_SECRET: ${{ secrets.PUBLISH_SECRET || 'conagentes-revalidate-2026-secret' }}
         run: |
           published=0
+          duplicates=0
           failed=0
 
+          shopt -s nullglob
           for file in _pending_posts/*.json; do
-            [ "$file" = "_pending_posts/*.json" ] && continue
-            [ "$(basename "$file")" = ".gitkeep" ] && continue
-
             echo "📝 Publishing: $file"
 
             response=$(curl -s -L -w "\n%{http_code}" -X POST "$PUBLISH_URL" \
@@ -33,28 +47,41 @@ jobs:
               -d @"$file")
 
             http_code=$(echo "$response" | tail -1)
-            body=$(echo "$response" | head -n -1)
+            body=$(echo "$response" | sed '$d')
 
             echo "Response: $body"
             echo "HTTP Status: $http_code"
 
             if [ "$http_code" = "200" ]; then
-              echo "✅ Published successfully!"
-              git rm "$file"
+              echo "✅ Published"
+              git rm --quiet "$file"
               published=$((published + 1))
-            elif echo "$body" | grep -q "duplicate"; then
-              echo "⏭️ Already published (duplicate slug) — removing file"
-              git rm "$file"
+            elif [ "$http_code" = "409" ] || echo "$body" | grep -q "duplicate"; then
+              echo "⏭️ Already published (duplicate slug) — dropping the file"
+              git rm --quiet "$file"
+              duplicates=$((duplicates + 1))
             else
-              echo "⚠️ Failed to publish: $file (will retry next run)"
+              echo "⚠️ Failed — leaving the file for the next run"
               failed=$((failed + 1))
             fi
           done
 
-          echo "Summary: $published published, $failed failed"
+          echo "Summary: $published published, $duplicates already published, $failed failed"
+          echo "failed=$failed" >> "$GITHUB_ENV"
 
       - name: Commit cleanup
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --cached --quiet || git commit -m "chore: cleanup published blog post files" && git push || true
+          if git diff --cached --quiet; then
+            echo "Nothing to clean up."
+          else
+            git commit -m "chore: cleanup published blog post files"
+            git push
+          fi
+
+      - name: Fail the run if any post could not be published
+        if: env.failed != '0'
+        run: |
+          echo "::error::${{ env.failed }} post(s) failed to publish — see the log above."
+          exit 1

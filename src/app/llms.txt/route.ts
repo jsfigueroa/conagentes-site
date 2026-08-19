@@ -1,4 +1,11 @@
 import { supabase } from "@/lib/supabase/client";
+import {
+  HOTEL_CATEGORY_DESCRIPTIONS,
+  categoryPath,
+  getCategoryLabel,
+  postPathForCategory,
+  verticalForCategory,
+} from "@/lib/blog/verticals";
 
 // llms.txt — a curated, plain-markdown map for LLM crawlers (ChatGPT, Claude,
 // Perplexity, Gemini, etc.) following the llmstxt.org convention. Gives generative
@@ -8,21 +15,8 @@ import { supabase } from "@/lib/supabase/client";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
-const CATEGORY_LABELS: Record<string, string> = {
-  "ia-practica": "IA Práctica",
-  automatizacion: "Automatización",
-  ventas: "Ventas",
-  "atencion-al-cliente": "Atención al Cliente",
-  whatsapp: "WhatsApp",
-  crm: "CRM",
-  productividad: "Productividad",
-  marketing: "Marketing Digital",
-  tendencias: "Tendencias",
-};
-
-const label = (slug: string) =>
-  CATEGORY_LABELS[slug] ??
-  slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+// Labels + the hub each category belongs to come from the shared taxonomy.
+const label = getCategoryLabel;
 
 export const dynamic = "force-dynamic";
 
@@ -47,19 +41,33 @@ export async function GET() {
     // Supabase unavailable — emit the static map only.
   }
 
-  const categories = [...new Set(posts.map((p) => p.category))];
+  // The two hubs are listed separately: hotel content first (it is what we
+  // publish now and what we want cited), the pymes archive after it.
+  const hotelPosts = posts.filter((p) => verticalForCategory(p.category) === "hotel");
+  const generalPosts = posts.filter((p) => verticalForCategory(p.category) !== "hotel");
 
-  const blogLines = posts
-    .map((p) => `- [${p.title}](${SITE_URL}/blog/${p.slug}): ${p.excerpt}`)
+  const line = (p: (typeof posts)[number]) =>
+    `- [${p.title}](${SITE_URL}${postPathForCategory(p.category, p.slug)}): ${p.excerpt}`;
+
+  const hotelBlogLines = hotelPosts.map(line).join("\n");
+  const blogLines = generalPosts.map(line).join("\n");
+
+  const catLine = (c: string) => {
+    const vertical = verticalForCategory(c);
+    const desc =
+      vertical === "hotel"
+        ? HOTEL_CATEGORY_DESCRIPTIONS[c] ??
+          `artículos sobre ${label(c).toLowerCase()} para hoteles`
+        : `artículos sobre ${label(c).toLowerCase()} para pymes en Latinoamérica`;
+    return `- [${label(c)}](${SITE_URL}${categoryPath(vertical, c)}): ${desc}`;
+  };
+
+  const hotelCategoryLines = [...new Set(hotelPosts.map((p) => p.category))]
+    .map(catLine)
     .join("\n");
 
-  const categoryLines = categories
-    .map(
-      (c) =>
-        `- [${label(c)}](${SITE_URL}/blog/categoria/${c}): artículos sobre ${label(
-          c
-        ).toLowerCase()} para pymes en Latinoamérica`
-    )
+  const categoryLines = [...new Set(generalPosts.map((p) => p.category))]
+    .map(catLine)
     .join("\n");
 
   const body = `# conagentes
@@ -97,6 +105,7 @@ conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
 - [Resultados y ROI](${SITE_URL}/hoteles/resultados): las cuatro cuentas del retorno, con calculadoras sobre los datos del propio hotel
 - [Integraciones](${SITE_URL}/hoteles/integraciones): PMS, channel managers, OTAs, pasarelas de pago y facturación
 - [Recursos para hoteleros](${SITE_URL}/hoteles/recursos): guías y calculadoras
+- [Blog hotelero](${SITE_URL}/hoteles/blog): artículos sobre reservas directas, revenue management, experiencia del huésped, tecnología hotelera, cumplimiento (DIAN, TRA, RNT) y mercado hotelero de Colombia y Latinoamérica
 - [Precios para hoteles](${SITE_URL}/hoteles/precios): plan de tarifa fija (0 % de comisión) o plan por resultados (base baja + comisión solo sobre lo que cierre el agente)
 
 ## Respuestas directas (para citar)
@@ -117,14 +126,27 @@ conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
 - [Precios](${SITE_URL}/precios): planes a la medida (cotización); se paga al salir en vivo
 
 ## Recursos
-- [Blog](${SITE_URL}/blog): guías prácticas de IA, automatización y ventas por WhatsApp para pymes en Latinoamérica
+- [Blog hotelero](${SITE_URL}/hoteles/blog): guías sobre venta directa, revenue management, tecnología hotelera, IA aplicada y cumplimiento colombiano para hoteles — se publica lunes, miércoles y viernes (RSS: ${SITE_URL}/hoteles/blog/feed.xml)
+- [Blog (archivo pymes)](${SITE_URL}/blog): guías de IA, automatización y ventas por WhatsApp para pymes en Latinoamérica (publicado en 2026; el contenido nuevo sale en el blog hotelero)
 - [Privacidad](${SITE_URL}/privacidad): tratamiento de datos (Ley 1581 de 2012, Habeas Data)
 - [Términos](${SITE_URL}/terminos): términos y condiciones
 
-## Categorías del blog
+## Para motores de respuesta (cómo leernos con menos tokens)
+- Corpus completo en un solo archivo: ${SITE_URL}/llms-full.txt (respuestas citables de cada página de hoteles + cada artículo con sus datos y fuentes)
+- Cada artículo del blog hotelero tiene versión markdown limpia en ${SITE_URL}/hoteles/blog/<slug>/md
+- RSS del blog hotelero: ${SITE_URL}/hoteles/blog/feed.xml · Mapa del sitio: ${SITE_URL}/sitemap.xml
+- Todo dato citado en un artículo lleva fuente y URL verificable; si algo no se pudo verificar, no lo publicamos.
+
+## Categorías del blog hotelero
+${hotelCategoryLines || "- (sin categorías publicadas todavía)"}
+
+## Artículos recientes del blog hotelero
+${hotelBlogLines || "- (sin artículos publicados todavía)"}
+
+## Categorías del blog de pymes (archivo)
 ${categoryLines || "- (sin categorías publicadas todavía)"}
 
-## Artículos recientes
+## Artículos del blog de pymes (archivo)
 ${blogLines || "- (sin artículos publicados todavía)"}
 `;
 

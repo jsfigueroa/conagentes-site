@@ -278,7 +278,7 @@ export const NAV_HOTEL: NavItem[] = [
             href: "/hoteles/automatizar-hotel-con-ia",
             description: "La guía completa, paso a paso",
           },
-          { label: "Blog hotelero", href: "/blog" },
+          { label: "Blog hotelero", href: "/hoteles/blog", description: "Lunes, miércoles y viernes" },
           { label: "Todos los recursos", href: "/hoteles/recursos" },
         ],
       },

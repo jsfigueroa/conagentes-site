@@ -3,13 +3,14 @@
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
 export function ShareButtons({
-  slug,
+  path,
   title,
 }: {
-  slug: string;
+  /** Path of the post inside its hub, e.g. /hoteles/blog/mi-articulo */
+  path: string;
   title: string;
 }) {
-  const url = `${SITE_URL}/blog/${slug}`;
+  const url = `${SITE_URL}${path}`;
   const encoded = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
 

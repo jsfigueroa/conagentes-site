@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HotelHero } from "@/components/marketing/hotel/hotel-hero";
 import { HotelBody } from "@/components/marketing/hotel/hotel-body";
+import { MarketingFaqJsonLd } from "@/components/marketing/seo/json-ld";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
@@ -122,6 +123,8 @@ export default function HotelesPage() {
           __html: JSON.stringify(hotelJsonLd).replace(/</g, "\\u003c"),
         }}
       />
+      {/* The site FAQPage lives here: this page shows those questions. */}
+      <MarketingFaqJsonLd />
       <HotelHero />
       <HotelBody />
     </>

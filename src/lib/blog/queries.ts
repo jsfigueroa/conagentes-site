@@ -1,12 +1,26 @@
 import { supabase } from "@/lib/supabase/client";
 import type { BlogPost, BlogPostCard, CategoryCount } from "./types";
+import {
+  type BlogVertical,
+  categoriesFor,
+  verticalForCategory,
+} from "./verticals";
 
 const CARD_FIELDS =
   "slug, title, excerpt, cover_image_url, cover_image_alt, category, published_at, reading_time_minutes, author_name";
 
+// Every listing query is scoped to one hub by its category set (see
+// lib/blog/verticals.ts). Without this, a hotel post would surface in the
+// pymes archive at /blog AND at /hoteles/blog — two URLs for one article,
+// which is exactly the duplicate-content signal we do not want.
+function categoryFilter(vertical: BlogVertical): string[] {
+  return [...categoriesFor(vertical)];
+}
+
 export async function getAllPosts(
   page = 1,
-  limit = 12
+  limit = 12,
+  vertical: BlogVertical = "general"
 ): Promise<{ posts: BlogPostCard[]; total: number }> {
   const from = (page - 1) * limit;
   const to = from + limit - 1;
@@ -15,6 +29,7 @@ export async function getAllPosts(
     .from("blog_posts")
     .select(CARD_FIELDS, { count: "exact" })
     .eq("status", "published")
+    .in("category", categoryFilter(vertical))
     .lte("published_at", new Date().toISOString())
     .order("published_at", { ascending: false })
     .range(from, to);
@@ -60,11 +75,14 @@ export async function getPostsByCategory(
   return { posts: (data ?? []) as BlogPostCard[], total: count ?? 0 };
 }
 
-export async function getCategories(): Promise<CategoryCount[]> {
+export async function getCategories(
+  vertical: BlogVertical = "general"
+): Promise<CategoryCount[]> {
   const { data, error } = await supabase
     .from("blog_posts")
     .select("category")
     .eq("status", "published")
+    .in("category", categoryFilter(vertical))
     .lte("published_at", new Date().toISOString());
 
   if (error) throw error;
@@ -89,6 +107,7 @@ export async function getRelatedPosts(
   // then rank by topical relevance (shared tags weigh most, same category next,
   // recency breaks ties). Stronger topic clustering than category-only — better
   // internal-linking signal for both Google and LLM crawlers. (CON-025, B3.1)
+  // The pool never crosses hubs: a hotel article only recommends hotel articles.
   const tagFilter =
     tags.length > 0 ? `,tags.ov.{${tags.map((t) => `"${t}"`).join(",")}}` : "";
 
@@ -97,6 +116,7 @@ export async function getRelatedPosts(
     .select(`${CARD_FIELDS}, tags`)
     .eq("status", "published")
     .neq("slug", slug)
+    .in("category", categoryFilter(verticalForCategory(category)))
     .lte("published_at", new Date().toISOString())
     .or(`category.eq.${category}${tagFilter}`)
     .order("published_at", { ascending: false })
@@ -124,14 +144,46 @@ export async function getRelatedPosts(
   });
 }
 
-export async function getAllPublishedSlugs(): Promise<string[]> {
+export async function getAllPublishedSlugs(
+  vertical: BlogVertical = "general"
+): Promise<string[]> {
   const { data, error } = await supabase
     .from("blog_posts")
     .select("slug")
     .eq("status", "published")
+    .in("category", categoryFilter(vertical))
     .lte("published_at", new Date().toISOString())
     .order("published_at", { ascending: false });
 
   if (error) throw error;
   return (data ?? []).map((row) => row.slug);
+}
+
+/**
+ * Every published post with just enough to build URLs and freshness metadata.
+ * Used by the sitemap, the feeds and llms.txt, which all need posts from BOTH
+ * hubs in one pass.
+ */
+export async function getAllPostsForIndexing(): Promise<
+  {
+    slug: string;
+    title: string;
+    excerpt: string;
+    category: string;
+    published_at: string | null;
+    updated_at: string;
+    author_name: string;
+  }[]
+> {
+  const { data, error } = await supabase
+    .from("blog_posts")
+    .select(
+      "slug, title, excerpt, category, published_at, updated_at, author_name"
+    )
+    .eq("status", "published")
+    .lte("published_at", new Date().toISOString())
+    .order("published_at", { ascending: false });
+
+  if (error) throw error;
+  return data ?? [];
 }

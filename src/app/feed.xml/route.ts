@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase/client";
+import { postPathForCategory } from "@/lib/blog/verticals";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
@@ -27,12 +28,12 @@ export async function GET() {
       (post) => `
     <item>
       <title>${escapeXml(post.title)}</title>
-      <link>${SITE_URL}/blog/${post.slug}</link>
+      <link>${SITE_URL}${postPathForCategory(post.category, post.slug)}</link>
       <description>${escapeXml(post.excerpt)}</description>
       <pubDate>${new Date(post.published_at).toUTCString()}</pubDate>
       <category>${escapeXml(post.category)}</category>
       <author>${escapeXml(post.author_name)}</author>
-      <guid isPermaLink="true">${SITE_URL}/blog/${post.slug}</guid>
+      <guid isPermaLink="true">${SITE_URL}${postPathForCategory(post.category, post.slug)}</guid>
     </item>`
     )
     .join("");

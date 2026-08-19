@@ -39,8 +39,8 @@ export default async function BlogPage({
   const limit = 12;
 
   const [{ posts, total }, categories] = await Promise.all([
-    getAllPosts(page, limit),
-    getCategories(),
+    getAllPosts(page, limit, "general"),
+    getCategories("general"),
   ]);
 
   const totalPages = Math.ceil(total / limit);
@@ -64,6 +64,20 @@ export default async function BlogPage({
           Ideas prácticas sobre inteligencia artificial, automatización y
           herramientas digitales para hacer crecer tu negocio.
         </p>
+
+        {/* The hotel hub is where we publish now — send readers and crawlers
+            there from the archive's most-visited page. */}
+        <Link
+          href="/hoteles/blog"
+          className="mt-6 inline-flex items-center gap-2 rounded-[var(--r-lg)] border border-border bg-card px-4 py-3 text-sm text-foreground transition-colors hover:bg-muted"
+        >
+          <span aria-hidden="true">🏨</span>
+          <span>
+            <strong className="font-semibold">¿Tiene un hotel?</strong> El
+            contenido nuevo se publica en el blog hotelero
+            <span aria-hidden="true"> →</span>
+          </span>
+        </Link>
 
         {categories.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-6">

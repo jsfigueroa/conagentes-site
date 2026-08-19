@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Clock } from "lucide-react";
 import type { BlogPostCard } from "@/lib/blog/types";
 import { CategoryBadge } from "./category-badge";
+import { postPathForCategory } from "@/lib/blog/verticals";
 
 function formatDate(dateStr: string | null): string {
   if (!dateStr) return "";
@@ -14,10 +15,14 @@ function formatDate(dateStr: string | null): string {
 }
 
 export function PostCard({ post }: { post: BlogPostCard }) {
+  // The hub prefix comes from the category, so one card component serves both
+  // /blog and /hoteles/blog without the caller passing anything.
+  const href = postPathForCategory(post.category, post.slug);
+
   return (
     <article className="group flex flex-col bg-card rounded-[var(--r-lg)] border border-border overflow-hidden hover:shadow-md transition-shadow">
       {post.cover_image_url && (
-        <Link href={`/blog/${post.slug}`} className="relative aspect-[16/9] overflow-hidden">
+        <Link href={href} className="relative aspect-[16/9] overflow-hidden">
           <Image
             src={post.cover_image_url}
             alt={post.cover_image_alt || post.title}
@@ -39,7 +44,7 @@ export function PostCard({ post }: { post: BlogPostCard }) {
           )}
         </div>
 
-        <Link href={`/blog/${post.slug}`} className="group/title">
+        <Link href={href} className="group/title">
           <h2 className="text-lg font-bold text-foreground leading-tight mb-2 group-hover/title:text-neon-deep transition-colors">
             {post.title}
           </h2>

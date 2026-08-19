@@ -2,6 +2,15 @@ import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { submitToIndexNow } from "@/lib/seo/indexnow";
+import {
+  GENERAL_CATEGORIES,
+  HOTEL_CATEGORIES,
+  blogBasePath,
+  categoryPath,
+  isKnownCategory,
+  postPath,
+  verticalForCategory,
+} from "@/lib/blog/verticals";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
@@ -39,6 +48,53 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  // The category decides which hub the post lands in (see lib/blog/verticals.ts),
+  // so an unknown category is rejected instead of silently publishing an article
+  // no listing page links to.
+  if (!isKnownCategory(body.category)) {
+    return NextResponse.json(
+      {
+        error: `Unknown category: ${body.category}`,
+        hint: "Add it to lib/blog/verticals.ts or use one of the allowed values.",
+        allowed: {
+          hotel: HOTEL_CATEGORIES,
+          general: GENERAL_CATEGORIES,
+        },
+      },
+      { status: 400 }
+    );
+  }
+
+  const vertical = verticalForCategory(body.category);
+
+  // If the generator declares a vertical, it must agree with the category —
+  // catches "vertical: hotel" plus a pymes category (or vice versa).
+  if (body.vertical && body.vertical !== vertical) {
+    return NextResponse.json(
+      {
+        error: `Vertical mismatch: category "${body.category}" belongs to "${vertical}", not "${body.vertical}"`,
+      },
+      { status: 400 }
+    );
+  }
+
+  // The «En corto» answer travels as a top-level `answer` for readability in the
+  // generated JSON, and is stored inside structured_data (no schema change).
+  const structuredData: Record<string, unknown> | null =
+    body.structured_data && typeof body.structured_data === "object"
+      ? { ...body.structured_data }
+      : null;
+
+  const answer =
+    typeof body.answer === "string" && body.answer.trim()
+      ? body.answer.trim()
+      : typeof structuredData?.answer === "string"
+        ? (structuredData.answer as string)
+        : null;
+
+  const finalStructuredData =
+    answer || structuredData ? { ...(structuredData ?? {}), ...(answer ? { answer } : {}) } : null;
+
   const post = {
     slug: body.slug,
     title: body.title,
@@ -56,7 +112,7 @@ export async function POST(request: NextRequest) {
     key_takeaways: body.key_takeaways || [],
     statistics: body.statistics || [],
     faq: body.faq || [],
-    structured_data: body.structured_data || null,
+    structured_data: finalStructuredData,
     status: "published",
     published_at: body.published_at || new Date().toISOString(),
     reading_time_minutes: body.reading_time_minutes || null,
@@ -73,28 +129,44 @@ export async function POST(request: NextRequest) {
     .single();
 
   if (error) {
+    // 23505 = unique_violation on slug: the post is already published. Answer
+    // 409 with "duplicate" in the message so the publishing workflow can drop
+    // the pending file instead of retrying it forever.
+    const isDuplicate = error.code === "23505";
     return NextResponse.json(
-      { error: "Supabase insert failed", details: error.message },
-      { status: 500 }
+      {
+        error: isDuplicate
+          ? "duplicate slug — already published"
+          : "Supabase insert failed",
+        details: error.message,
+      },
+      { status: isDuplicate ? 409 : 500 }
     );
   }
 
-  revalidatePath("/blog");
-  revalidatePath(`/blog/${post.slug}`);
+  const hub = blogBasePath(vertical);
+  const path = postPath(vertical, post.slug);
+
+  revalidatePath(hub);
+  revalidatePath(path);
+  revalidatePath(categoryPath(vertical, post.category));
   revalidatePath("/sitemap.xml");
   revalidatePath("/llms.txt");
+  revalidatePath("/feed.xml");
+  if (vertical === "hotel") {
+    revalidatePath("/hoteles/blog/feed.xml");
+    revalidatePath("/hoteles/recursos");
+  }
 
   // Notify IndexNow (Bing/Yandex → ChatGPT Search/Copilot) so the new post is
   // discovered in minutes. Non-blocking and self-guarded — never fails publish.
-  await submitToIndexNow([
-    `${SITE_URL}/blog/${post.slug}`,
-    `${SITE_URL}/blog`,
-  ]);
+  await submitToIndexNow([`${SITE_URL}${path}`, `${SITE_URL}${hub}`]);
 
   return NextResponse.json({
     success: true,
     slug: data.slug,
     title: data.title,
-    url: `${SITE_URL}/blog/${data.slug}`,
+    vertical,
+    url: `${SITE_URL}${path}`,
   });
 }

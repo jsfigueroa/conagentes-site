@@ -11,9 +11,16 @@ export default function robots(): MetadataRoute.Robots {
     "OAI-SearchBot", // ChatGPT Search / SearchGPT
     "ChatGPT-User", // ChatGPT browsing on behalf of a user
     "ClaudeBot", // Anthropic training
-    "Claude-Web", // Claude live browsing
+    "Claude-Web", // Claude live browsing (legacy name)
+    "Claude-User", // Claude fetching on behalf of a user
     "Claude-SearchBot", // Claude search retrieval
     "anthropic-ai",
+    "MistralAI-User", // Le Chat live fetch
+    "Meta-ExternalFetcher", // Meta AI on-demand fetch
+    "Google-CloudVertexBot", // Vertex AI grounding
+    "Diffbot", // feeds several answer engines
+    "Timpibot",
+    "AndiBot",
     "PerplexityBot", // Perplexity index
     "Perplexity-User", // Perplexity live fetch
     "Google-Extended", // Gemini / Vertex grounding

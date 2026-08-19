@@ -15,6 +15,7 @@ const footerLinks = {
     { label: "Inmobiliarias", href: "#industries" },
   ],
   Empresa: [
+    { label: "Blog hotelero", href: "/hoteles/blog" },
     { label: "Blog", href: "/blog" },
     { label: "Contacto", href: "#" },
     { label: "Trabaja con nosotros", href: "#" },

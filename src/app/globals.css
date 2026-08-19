@@ -296,16 +296,27 @@
   margin: 1.5rem 0;
 }
 
+/* Tables scroll inside their own container (PostBody wraps each <table> in
+   .prose-table) so a wide comparison table never makes the page scroll
+   horizontally on a phone. */
+.prose-blog .prose-table {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+
 .prose-blog table {
   width: 100%;
+  min-width: 30rem;
   border-collapse: collapse;
-  margin: 1.5rem 0;
+  margin: 0;
 }
 
 .prose-blog th, .prose-blog td {
   border: 1px solid var(--hair);
   padding: 0.75rem 1rem;
   text-align: left;
+  font-variant-numeric: tabular-nums;
 }
 
 .prose-blog th {

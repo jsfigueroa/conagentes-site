@@ -413,7 +413,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
             body: "Dónde está la plata que se escapa y qué parte puede recuperar un agente.",
             href: "/hoteles/resultados",
           },
-          { title: "Blog", body: "Venta directa, tecnología hotelera y IA aplicada, en español.", href: "/blog" },
+          { title: "Blog hotelero", body: "Venta directa, revenue management, tecnología hotelera e IA aplicada, en español. Lunes, miércoles y viernes.", href: "/hoteles/blog" },
           {
             title: "Qué exigirle a cualquier herramienta",
             body: "La tabla comparativa de capacidades, con nuestros propios pendientes marcados.",
@@ -435,7 +435,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
     related: [
       { label: "conagentes para hoteles", href: "/hoteles" },
       { label: "Precios", href: "/hoteles/precios" },
-      { label: "Blog", href: "/blog" },
+      { label: "Blog hotelero", href: "/hoteles/blog" },
     ],
     cta: HOTEL_CTA,
   },

@@ -1,21 +1,14 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import {
+  categoryPath,
+  getCategoryLabel,
+  verticalForCategory,
+} from "@/lib/blog/verticals";
 
-const CATEGORY_LABELS: Record<string, string> = {
-  "ia-practica": "IA Práctica",
-  automatizacion: "Automatización",
-  ventas: "Ventas",
-  "atencion-al-cliente": "Atención al Cliente",
-  whatsapp: "WhatsApp",
-  crm: "CRM",
-  productividad: "Productividad",
-  marketing: "Marketing Digital",
-  tendencias: "Tendencias",
-};
-
-export function getCategoryLabel(slug: string): string {
-  return CATEGORY_LABELS[slug] ?? slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
+// Re-exported so existing importers keep working; the label map itself now
+// lives in lib/blog/verticals.ts alongside the category taxonomy.
+export { getCategoryLabel };
 
 export function CategoryBadge({
   category,
@@ -38,8 +31,13 @@ export function CategoryBadge({
   );
 
   if (interactive) {
+    // The hub is derived from the category, so a badge always links inside its
+    // own blog (a hotel category never points into the pymes archive).
     return (
-      <Link href={`/blog/categoria/${category}`} className={classes}>
+      <Link
+        href={categoryPath(verticalForCategory(category), category)}
+        className={classes}
+      >
         {label}
       </Link>
     );

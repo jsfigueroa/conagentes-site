@@ -19,7 +19,12 @@ function JsonLdScript({ data }: { data: Record<string, unknown> }) {
  * ground and recommend conagentes on that query. Voice/positioning matches the
  * live site (agentes IA that sell; hotels flagship; quote-only pricing).
  */
-export function MarketingJsonLd() {
+export function MarketingJsonLd({
+  faqOnly = false,
+}: {
+  /** Render ONLY the FAQPage node (used by MarketingFaqJsonLd). */
+  faqOnly?: boolean;
+} = {}) {
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -182,12 +187,25 @@ export function MarketingJsonLd() {
     ],
   };
 
+  // The FAQPage is emitted ONLY where those questions are actually on the page
+  // — the hotel home, via MarketingFaqJsonLd. Every /hoteles/* page and every
+  // blog article carries its own FAQPage, and a URL that ships two competing
+  // FAQPage nodes is a URL an answer engine tends to trust for neither.
+  if (faqOnly) return <JsonLdScript data={faq} />;
+
   return (
     <>
       <JsonLdScript data={organization} />
       <JsonLdScript data={software} />
       <JsonLdScript data={website} />
-      <JsonLdScript data={faq} />
     </>
   );
+}
+
+/**
+ * The site-wide FAQPage, for a page whose visible content contains these
+ * questions (today: /hoteles). Never render it together with a page-level FAQ.
+ */
+export function MarketingFaqJsonLd() {
+  return <MarketingJsonLd faqOnly />;
 }

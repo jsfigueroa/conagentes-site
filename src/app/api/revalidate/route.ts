@@ -11,11 +11,18 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const { slug, paths } = body as { slug?: string; paths?: string[] };
 
+  // Both hubs + the generated indexes; cheap, and callers rarely know which
+  // hub a slug belongs to.
   revalidatePath("/blog");
+  revalidatePath("/hoteles/blog");
   revalidatePath("/sitemap.xml");
+  revalidatePath("/llms.txt");
+  revalidatePath("/feed.xml");
+  revalidatePath("/hoteles/blog/feed.xml");
 
   if (slug) {
     revalidatePath(`/blog/${slug}`);
+    revalidatePath(`/hoteles/blog/${slug}`);
   }
 
   if (paths) {

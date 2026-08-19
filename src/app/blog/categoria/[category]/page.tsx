@@ -5,6 +5,8 @@ import { PostCard } from "@/components/blog/post-card";
 import { CategoryBadge } from "@/components/blog/category-badge";
 import { generateBreadcrumbList } from "@/lib/blog/structured-data";
 import Link from "next/link";
+import { permanentRedirect } from "next/navigation";
+import { categoryPath, verticalForCategory } from "@/lib/blog/verticals";
 
 export const revalidate = 60;
 
@@ -12,7 +14,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
 export async function generateStaticParams() {
   try {
-    const categories = await getCategories();
+    const categories = await getCategories("general");
     return categories.map((c) => ({ category: c.category }));
   } catch {
     return [];
@@ -53,13 +55,19 @@ export default async function CategoryPage({
   searchParams: Promise<{ page?: string }>;
 }) {
   const { category } = await params;
+  // Hotel categories live in the hotel hub — never serve them here as a
+  // second, competing URL.
+  if (verticalForCategory(category) === "hotel") {
+    permanentRedirect(categoryPath("hotel", category));
+  }
+
   const sp = await searchParams;
   const page = Math.max(1, parseInt(sp.page ?? "1", 10));
   const limit = 12;
 
   const [{ posts, total }, categories] = await Promise.all([
     getPostsByCategory(category, page, limit),
-    getCategories(),
+    getCategories("general"),
   ]);
 
   const totalPages = Math.ceil(total / limit);

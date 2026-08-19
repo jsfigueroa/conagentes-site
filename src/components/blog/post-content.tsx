@@ -57,6 +57,22 @@ export function PostHeader({ post }: { post: BlogPost }) {
   );
 }
 
+// «En corto» — the self-contained answer, first thing in the article. Rendered
+// as real DOM text (never behind a click) and mirrored as schema `abstract` +
+// `speakable`, so an answer engine can lift it verbatim. See lib/blog/answer.ts.
+export function PostAnswer({ answer }: { answer: string | null }) {
+  if (!answer) return null;
+
+  return (
+    <section className="post-answer mb-8 rounded-[var(--r-lg)] border border-border bg-card p-6">
+      <h2 className="mb-2 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+        En corto
+      </h2>
+      <p className="text-base leading-relaxed text-foreground">{answer}</p>
+    </section>
+  );
+}
+
 // Cited statistics — sourced numbers are exactly what LLM answer engines quote
 // and what builds E-E-A-T. Renders each stat with a linked source. (CON-025, B2.4)
 export function PostStatistics({ stats }: { stats: BlogPost["statistics"] }) {
@@ -141,10 +157,17 @@ export function KeyTakeaways({ items }: { items: string[] }) {
 }
 
 export function PostBody({ html }: { html: string }) {
+  // Wrap tables so a wide comparison table scrolls inside its own container
+  // instead of pushing the page sideways on a phone. The generated HTML always
+  // uses bare <table> tags (see docs/blog-hotel-playbook.md §9).
+  const withScrollableTables = html
+    .replace(/<table(\s|>)/g, '<div class="prose-table"><table$1')
+    .replace(/<\/table>/g, "</table></div>");
+
   return (
     <div
       className="prose-blog max-w-none"
-      dangerouslySetInnerHTML={{ __html: html }}
+      dangerouslySetInnerHTML={{ __html: withScrollableTables }}
     />
   );
 }

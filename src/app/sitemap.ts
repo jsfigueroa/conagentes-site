@@ -1,6 +1,11 @@
 import type { MetadataRoute } from "next";
 import { supabase } from "@/lib/supabase/client";
 import { allPageUrls } from "@/content/pages";
+import {
+  categoryPath,
+  postPathForCategory,
+  verticalForCategory,
+} from "@/lib/blog/verticals";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
@@ -35,10 +40,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${SITE_URL}/blog`,
+      url: `${SITE_URL}/hoteles/blog`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
     },
     {
       url: `${SITE_URL}/privacidad`,
@@ -61,18 +72,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path.split("/").length > 2 ? 0.6 : 0.8,
   }));
 
+  // Each post is listed under its own hub's path — the same URL its canonical,
+  // its JSON-LD and its cards point at. (lib/blog/verticals.ts)
   const postPages: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
+    url: `${SITE_URL}${postPathForCategory(post.category, post.slug)}`,
     lastModified: new Date(post.updated_at),
     changeFrequency: "weekly" as const,
-    priority: 0.7,
+    priority: verticalForCategory(post.category) === "hotel" ? 0.8 : 0.6,
   }));
 
   const categories = [...new Set(posts.map((p) => p.category))];
   const categoryPages: MetadataRoute.Sitemap = categories.map((cat) => ({
-    url: `${SITE_URL}/blog/categoria/${cat}`,
+    url: `${SITE_URL}${categoryPath(verticalForCategory(cat), cat)}`,
     lastModified: new Date(),
-    changeFrequency: "daily" as const,
+    changeFrequency: "weekly" as const,
     priority: 0.6,
   }));
 
