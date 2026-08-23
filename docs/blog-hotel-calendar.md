@@ -39,7 +39,7 @@ Reglas para escribirlos: `docs/blog-hotel-playbook.md`.
 | 23 | Temporada alta en Colombia: calendario de demanda y qué preparar | `mercado-hotelero` | temporada alta hotelera Colombia | `/hoteles/revenue-manager` | Fechas y festivos verificados |
 | 24 | La cuenta completa: qué recupera en un año un hotel de treinta habitaciones | `reservas-directas` | ROI software hotelero | `/hoteles/resultados` | Marcar como escenario, con supuestos visibles |
 
-- [x] 1 (slug: cuanto-cuesta-una-reserva-por-booking-vs-directa) · [ ] 2 · [ ] 3 · [ ] 4 · [ ] 5 · [ ] 6 · [ ] 7 · [ ] 8 · [ ] 9 · [ ] 10 · [ ] 11 · [ ] 12
+- [x] 1 (slug: cuanto-cuesta-una-reserva-por-booking-vs-directa) · [x] 2 (slug: responder-en-cinco-minutos-sin-contratar) · [ ] 3 · [ ] 4 · [ ] 5 · [ ] 6 · [ ] 7 · [ ] 8 · [ ] 9 · [ ] 10 · [ ] 11 · [ ] 12
 - [ ] 13 · [ ] 14 · [ ] 15 · [ ] 16 · [ ] 17 · [ ] 18 · [ ] 19 · [ ] 20 · [ ] 21 · [ ] 22 · [ ] 23 · [ ] 24
 
 ## De dónde salen los temas siguientes
