@@ -33,9 +33,8 @@ export function FinalCtaSection() {
 
         <ScrollReveal delay={0.15}>
           <p className="mt-6 text-lg text-[oklch(0.55_0.005_95)] max-w-xl mx-auto">
-            Del primer «hola» a la reserva pagada — y al huésped que vuelve —
-            su agente se encarga. Agende una demo y véalo con sus habitaciones
-            y sus tarifas.
+            Del primer mensaje a la próxima recompra, su agente se encarga.
+            Agende una demo y vea cómo funciona en su negocio.
           </p>
         </ScrollReveal>
 

@@ -195,7 +195,7 @@ export function SpotlightsSection() {
         <Spotlight
           reverse
           eyebrow="Cumple sin esfuerzo"
-          badge="Próximamente"
+          badge="Incluido"
           title="Factura electrónica"
           highlight="DIAN, automática"
           body="Cuando el cliente paga, se genera la factura electrónica válida ante la DIAN a nombre de su empresa — emitida y enviada sola. Sin digitar, sin software contable extra, sin multas."

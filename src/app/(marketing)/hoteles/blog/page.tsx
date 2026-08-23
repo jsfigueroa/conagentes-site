@@ -276,7 +276,7 @@ export default async function HotelBlogPage({
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
-            href="/hoteles"
+            href="/"
             className="rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_oklch(0.74_0.185_50/0.3)] transition-all hover:brightness-110"
           >
             Ver conagentes para hoteles

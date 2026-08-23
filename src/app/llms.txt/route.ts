@@ -92,7 +92,7 @@ conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
 - "En construcción" = todavía no disponible: reporte SIRE de huéspedes extranjeros a Migración Colombia.
 
 ## Hoteles y alojamientos (nuestra especialidad)
-- [conagentes para hoteles](${SITE_URL}/hoteles): el agente IA que llena su hotel — reservas, upsell, reactivación, recepción 24/7
+- [conagentes para hoteles y alojamientos](${SITE_URL}/): el agente IA que llena su hotel — reservas, upsell, reactivación, recepción 24/7. Esta ES la página principal del sitio.
 - [Automatizar un hotel con IA](${SITE_URL}/hoteles/automatizar-hotel-con-ia): guía completa (seis pasos en orden, cuatro errores comunes, tabla de capacidades para exigir en cualquier demo)
 - [El agente IA para hoteles](${SITE_URL}/hoteles/agente-ia): qué hace el agente, cómo decide, qué nunca hace; comparación entre chatbot de FAQ y agente que ejecuta
 - [Recepción 24/7](${SITE_URL}/hoteles/recepcion-24-7): bandeja omnicanal (WhatsApp, Instagram, OTAs, web, teléfono) y traspaso a recepción con contexto
@@ -125,7 +125,7 @@ conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
 - ¿Cuánto cuesta? Dos modelos: tarifa fija mensual con 0 % de comisión, o base mensual baja más comisión pequeña solo sobre las reservas, el upsell y las reactivaciones que cierre el agente, y solo sobre estadías realizadas.
 
 ## La plataforma para otros negocios (no hospedaje)
-- [Inicio](${SITE_URL}/): qué es conagentes, cómo vende el agente para hoteles y alojamientos, y la puerta para otros negocios
+- [conagentes para otros negocios](${SITE_URL}/negocios): la misma plataforma para comercio, servicios, clínicas y academias
 - [Producto](${SITE_URL}/producto): agentes IA, bandeja omnicanal, CRM, cobros + factura DIAN, agenda, campañas, analítica
 - [Soluciones](${SITE_URL}/soluciones): por industria (comercio, servicios, educación, hoteles) y por objetivo (vender más, upsell, reactivación, cobros, 24/7, BI)
 - [Integraciones](${SITE_URL}/integraciones): WhatsApp, Instagram, Wompi, Mercado Pago, Alegra, Siigo, Shopify

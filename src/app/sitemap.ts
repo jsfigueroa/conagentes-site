@@ -33,11 +33,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 1.0,
     },
+    // CON-216: /hoteles now 301s to the root, so it must NOT be listed — the
+    // hotel home IS `SITE_URL` above. /negocios carries the general brand.
     {
-      url: `${SITE_URL}/hoteles`,
+      url: `${SITE_URL}/negocios`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      changeFrequency: "monthly",
+      priority: 0.6,
     },
     {
       url: `${SITE_URL}/hoteles/blog`,

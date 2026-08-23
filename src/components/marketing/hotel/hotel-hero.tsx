@@ -83,7 +83,8 @@ export function HotelHero() {
             variants={word}
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-[oklch(0.74_0.185_50/0.3)] bg-[oklch(0.74_0.185_50/0.08)] px-4 py-1.5 text-sm font-medium text-[oklch(0.74_0.185_50)]"
           >
-            <BedDouble className="h-4 w-4" /> Agente IA para hoteles
+            <BedDouble className="h-4 w-4" /> Agente IA para hoteles y
+            alojamientos
           </motion.span>
 
           <h1 className="text-4xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl">

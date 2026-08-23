@@ -1,95 +1,126 @@
 import type { Metadata } from "next";
-import { HeroSection } from "@/components/marketing/sections/hero";
-import { ValueOverviewSection } from "@/components/marketing/sections/value-overview";
-import { FeaturesBentoSection } from "@/components/marketing/sections/features-bento";
-import { IndustriesSection } from "@/components/marketing/sections/industries";
-import { HowItWorksSection } from "@/components/marketing/sections/how-it-works";
-import { SocialProofSection } from "@/components/marketing/sections/social-proof";
-import { PricingSection } from "@/components/marketing/sections/pricing";
-import { FinalCtaSection } from "@/components/marketing/sections/final-cta";
+import { HotelHero } from "@/components/marketing/hotel/hotel-hero";
+import { HotelBody } from "@/components/marketing/hotel/hotel-body";
+import { MarketingFaqJsonLd } from "@/components/marketing/seo/json-ld";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
+const description =
+  "Un agente IA que atiende por WhatsApp, reserva directo, sube el valor de cada estadía y recupera huéspedes — 24/7 y en 32 idiomas. PMS incluido, factura DIAN y registro de huéspedes TRA (reporte SIRE en camino). Para hoteles, aparta-hoteles y alquiler vacacional en Colombia.";
+
 export const metadata: Metadata = {
-  // `absolute` on purpose: the root layout's template appends "| conagentes",
-  // and this title already carries the brand — without it the tag renders
-  // "conagentes — … | conagentes".
-  title: {
-    absolute:
-      "conagentes — El agente IA que llena su hotel o alojamiento",
-  },
-  description:
-    "El agente IA para hoteles y alojamientos en Colombia: atiende por WhatsApp, Instagram y las OTAs, cierra reservas directas, sube el valor de cada estadía y cobra en el chat — 24/7, en 32 idiomas. PMS incluido y factura DIAN.",
+  // No brand suffix here: the root layout's metadata template already appends
+  // "| conagentes". The openGraph/twitter titles below are NOT templated, so
+  // those keep the brand for shared links.
+  title: "El agente IA que llena su hotel",
+  description,
   keywords: [
-    "agente IA para hoteles",
-    "agente IA para alquiler vacacional",
-    "automatizar hotel con inteligencia artificial",
-    "automatizar Airbnb con inteligencia artificial",
     "software para hoteles Colombia",
-    "software para alojamientos turísticos Colombia",
+    "agente IA para hoteles",
     "reservas directas WhatsApp",
     "chatbot para hoteles",
     "PMS para hoteles Colombia",
+    "reducir comisión OTA",
+    "upsell hotelero",
     "recepción virtual WhatsApp",
+    "registro TRA hoteles Colombia",
+    "reporte SIRE Migración Colombia hoteles",
+    "factura electrónica hotel DIAN",
+    "chatbot hotel multilingüe",
+    "atender huéspedes extranjeros en su idioma",
+    "agente IA para alquiler vacacional",
+    "automatizar Airbnb con inteligencia artificial",
+    "software para alojamientos turísticos Colombia",
+    "software para aparta-hoteles",
   ],
   alternates: {
     canonical: "/",
-    languages: {
-      "es-CO": "/",
-      "x-default": "/",
-    },
+    languages: { "es-CO": "/", "x-default": "/" },
   },
   openGraph: {
     type: "website",
     locale: "es_CO",
     url: SITE_URL,
     siteName: "conagentes",
-    title: "conagentes — El agente IA que llena su hotel o alojamiento",
-    description:
-      "Atiende por WhatsApp, Instagram y las OTAs, cierra reservas directas, sube el valor de cada estadía y cobra en el chat — 24/7. Para hoteles y alojamientos en Colombia.",
+    title: "conagentes para hoteles — El agente IA que llena su hotel",
+    description,
     images: [
       {
         url: `${SITE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "conagentes — el agente IA para hoteles y alojamientos",
+        alt: "conagentes para hoteles — agente IA por WhatsApp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "conagentes — El agente IA que llena su hotel o alojamiento",
-    description:
-      "Reservas directas, upsell y cobros por WhatsApp — 24/7. Para hoteles y alojamientos en Colombia.",
+    title: "conagentes para hoteles — El agente IA que llena su hotel",
+    description,
     images: [`${SITE_URL}/opengraph-image`],
   },
 };
 
-/**
- * The root is a ROUTER, not a second product page (CON-216).
- *
- * Hospedaje leads: the hero states the positioning, `IndustriesSection` sends
- * hoteliers into the deep /hoteles hub and gives every other industry one
- * honest door. The full hospedaje narrative lives at /hoteles — we do NOT
- * retell it here (site-architecture.md: describe a mechanism once, canonically).
- *
- * `StorySection` and `SpotlightsSection` are intentionally NOT mounted: both
- * hardcode a wholesale-distributor demo ("Surti Express", vasos desechables)
- * that contradicts a hospedaje hero. They remain available for the generic
- * /producto pages. To bring them back, rewrite their scripts for hospedaje
- * first — don't just re-add them.
- */
-export default function LandingPage() {
+const hotelJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": `${SITE_URL}#service`,
+      name: "Agente IA para hoteles",
+      serviceType: "Automatización de hoteles con inteligencia artificial",
+      description,
+      url: SITE_URL,
+      inLanguage: "es-CO",
+      provider: { "@id": `${SITE_URL}/#organization` },
+      areaServed: [
+        { "@type": "Country", name: "Colombia" },
+        { "@type": "Place", name: "Latinoamérica" },
+      ],
+      audience: { "@type": "BusinessAudience", name: "Hoteles" },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Capacidades del agente IA para hoteles",
+        itemListElement: [
+          "Atención al huésped en 32 idiomas con detección automática del idioma",
+          "Reservas directas por WhatsApp, Instagram y OTAs",
+          "Upsell y ancillaries (upgrades, late check-out, tours)",
+          "Reactivación de huéspedes",
+          "Recepción virtual 24/7",
+          "PMS incluido o conexión con el existente",
+          "Cobros en el chat y factura electrónica DIAN",
+          "Registro de huéspedes TRA (Registro Nacional de Turismo)",
+          "Reporte SIRE de extranjeros a Migración Colombia (próximamente)",
+        ].map((name) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name },
+        })),
+      },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "COP",
+        url: `${SITE_URL}/hoteles/precios`,
+        availability: "https://schema.org/InStock",
+      },
+    },
+    // No BreadcrumbList: this IS the root now, so a breadcrumb would have a
+    // single self-referential item. The /hoteles/* spokes keep their own.
+  ],
+};
+
+export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <ValueOverviewSection />
-      <IndustriesSection />
-      <FeaturesBentoSection />
-      <HowItWorksSection />
-      <SocialProofSection />
-      <PricingSection />
-      <FinalCtaSection />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(hotelJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      {/* The site FAQPage lives here: this page shows those questions. */}
+      <MarketingFaqJsonLd />
+      <HotelHero />
+      <HotelBody />
     </>
   );
 }

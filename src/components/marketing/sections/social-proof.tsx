@@ -7,6 +7,7 @@ import {
   ReceiptText,
   Users,
   ShieldCheck,
+  type LucideIcon,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/marketing/animation/scroll-reveal";
 import {
@@ -16,7 +17,17 @@ import {
 
 // Honest, verifiable capability/compliance trust signals — no invented
 // metrics, testimonials, or client logos (per brand decision).
-const trust = [
+//
+// Explicitly typed so `badge` stays optional even when no item currently sets
+// one — otherwise inference drops the key and the render's `item.badge` breaks.
+type TrustItem = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  badge?: string;
+};
+
+const trust: TrustItem[] = [
   {
     icon: MessageCircle,
     title: "WhatsApp API oficial",
@@ -35,8 +46,8 @@ const trust = [
   {
     icon: ReceiptText,
     title: "Factura electrónica DIAN",
-    description: "Facturación válida ante la DIAN, a nombre de su empresa.",
-    badge: "Próximamente",
+    description:
+      "Facturación válida ante la DIAN, a nombre de su empresa — incluida en el servicio.",
   },
   {
     icon: Users,

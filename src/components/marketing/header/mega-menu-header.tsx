@@ -189,7 +189,9 @@ function MobileDrawer({
 export function MegaMenuHeader() {
   const pathname = usePathname();
   const { open: openDemo } = useDemoForm();
-  const isHotel = pathname.startsWith("/hoteles");
+  // CON-216: hospedaje IS the main site, so the ROOT is the hotel experience.
+  // The general nav now belongs to /negocios and the generic tree beneath it.
+  const isHotel = pathname === "/" || pathname.startsWith("/hoteles");
   const nav = isHotel ? NAV_HOTEL : NAV_GENERAL;
 
   const [scrolled, setScrolled] = useState(false);
@@ -254,7 +256,7 @@ export function MegaMenuHeader() {
         aria-label="Principal"
         className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
       >
-        <Link href={isHotel ? "/hoteles" : "/"} className="flex items-center gap-2" aria-label="conagentes — inicio">
+        <Link href="/" className="flex items-center gap-2" aria-label="conagentes — inicio">
           <Logo size="default" variant="dark" />
         </Link>
 
@@ -317,14 +319,12 @@ export function MegaMenuHeader() {
 
         {/* Desktop CTAs */}
         <div className="hidden items-center gap-3 lg:flex">
-          {isHotel && (
-            <Link
-              href={CROSSLINK.fromHotel.href}
-              className="text-xs font-medium text-[oklch(0.55_0.005_95)] transition-colors hover:text-white"
-            >
-              Para su negocio →
-            </Link>
-          )}
+          <Link
+            href={isHotel ? CROSSLINK.fromHotel.href : CROSSLINK.toHotel.href}
+            className="text-xs font-medium text-[oklch(0.55_0.005_95)] transition-colors hover:text-white"
+          >
+            {isHotel ? "Para su negocio →" : "Para hoteles →"}
+          </Link>
           <a
             href={`${APP_URL}/login`}
             className="px-3 py-2 text-sm font-medium text-[oklch(0.7_0.005_95)] transition-colors hover:text-white"
