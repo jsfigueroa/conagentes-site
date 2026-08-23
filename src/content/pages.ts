@@ -24,7 +24,13 @@ export function allPageParams(): { slug: string[] }[] {
   return PAGES.map((p) => ({ slug: p.slug.split("/") }));
 }
 
-/** Flat list of canonical URLs, for sitemap.ts. */
+/**
+ * Flat list of canonical URLs, for sitemap.ts.
+ *
+ * `noindex` pages are excluded (CON-216): listing a page we tell robots not to
+ * index is a contradictory signal, and the sitemap is a primary crawl path for
+ * AI agents.
+ */
 export function allPageUrls(): string[] {
-  return PAGES.map((p) => "/" + p.slug);
+  return PAGES.filter((p) => !p.noindex).map((p) => "/" + p.slug);
 }

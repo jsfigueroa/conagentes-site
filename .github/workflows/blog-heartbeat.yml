@@ -1,0 +1,81 @@
+name: Blog heartbeat
+
+# WHY THIS EXISTS
+#
+# The article generator is a claude.ai cloud routine
+# (trig_01BRfHPXs67QMJ777m6uMjX6, Mon/Wed/Fri 14:00 UTC = 09:00 Bogotá). A cloud
+# routine that gets paused, throttled or deleted says NOTHING — that silence is
+# exactly what killed the previous blog: it stopped on 2026-06-14 and nobody
+# noticed for two months. It then happened again on Friday 2026-08-21, the
+# routine's very first scheduled run, which produced no post at all.
+#
+# This job is the smoke alarm. It runs a few hours after each scheduled slot and
+# FAILS if no article was published that day. A failed workflow emails the repo
+# owner, so a dead routine becomes a notification instead of a two-month gap.
+#
+# It deliberately checks the PUBLIC feed rather than the database: that is the
+# same surface a reader and an AI crawler see, so it also catches a post that
+# was written and inserted but never made it out to the live feed.
+
+on:
+  schedule:
+    # 20:00 UTC = 15:00 Bogotá, ~6h after the routine's slot. Mon, Wed, Fri.
+    - cron: '0 20 * * 1,3,5'
+  workflow_dispatch:
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check that today's article is live
+        run: |
+          python3 - <<'PY'
+          import sys, urllib.request, re, datetime, email.utils
+
+          FEED = "https://www.conagentes.com/hoteles/blog/feed.xml"
+          ROUTINE = "https://claude.ai/code/routines/trig_01BRfHPXs67QMJ777m6uMjX6"
+          BOGOTA = datetime.timezone(datetime.timedelta(hours=-5))
+
+          # Cache-buster: the feed is server-rendered but sits behind a CDN.
+          today = datetime.datetime.now(BOGOTA).date()
+          url = f"{FEED}?hb={today.isoformat()}"
+
+          try:
+              raw = urllib.request.urlopen(
+                  urllib.request.Request(url, headers={"User-Agent": "conagentes-heartbeat/1"}),
+                  timeout=30,
+              ).read().decode("utf-8", "ignore")
+          except Exception as e:
+              print(f"::error::Could not fetch the blog feed ({e}). "
+                    f"Either the site is down or the feed route is broken.")
+              sys.exit(1)
+
+          dates = []
+          for pub in re.findall(r"<pubDate>(.*?)</pubDate>", raw, flags=re.S):
+              try:
+                  dates.append(email.utils.parsedate_to_datetime(pub.strip()).astimezone(BOGOTA).date())
+              except Exception:
+                  pass
+
+          if not dates:
+              print(f"::error::The feed has no dated items at all — {FEED} is empty or malformed.")
+              sys.exit(1)
+
+          newest = max(dates)
+          age = (today - newest).days
+          print(f"Today (Bogotá): {today}")
+          print(f"Newest article: {newest}  ({age} day(s) old)")
+          print(f"Articles in feed: {len(dates)}")
+
+          if newest == today:
+              print("OK — today's article is live.")
+              sys.exit(0)
+
+          # Missed the slot. Nothing here can fix it; make it loud and point at
+          # the one dashboard that explains why.
+          print(f"::error::No article published today ({today}). The newest is {newest}, "
+                f"{age} day(s) old. The generator routine most likely did not run — "
+                f"check {ROUTINE} (a paused or deleted routine gives no warning). "
+                f"To publish by hand: run the /hotel-post command in the conagentes-site repo.")
+          sys.exit(1)
+          PY

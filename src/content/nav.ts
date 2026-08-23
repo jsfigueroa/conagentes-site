@@ -265,6 +265,11 @@ export const NAV_HOTEL: NavItem[] = [
     ],
   },
   { kind: "link", label: "Integraciones", href: "/hoteles/integraciones" },
+  // Blog promoted to top level: it publishes three times a week, so it is the
+  // freshest thing on the site and the main crawl path AI assistants follow to
+  // find citable material. Buried two levels inside Recursos it was invisible
+  // to both readers and crawlers.
+  { kind: "link", label: "Blog", href: "/hoteles/blog" },
   {
     kind: "mega",
     label: "Recursos",

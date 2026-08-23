@@ -24,6 +24,10 @@ export async function generateMetadata({
     title: page.meta.title,
     description: page.meta.description,
     alternates: { canonical: "/" + page.slug },
+    // CON-216: thin stubs are noindex so an assistant quotes the page that
+    // actually answers instead of a one-section placeholder. `follow` stays on
+    // so the links out of the stub still work as crawl paths.
+    ...(page.noindex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title: page.meta.title,
       description: page.meta.description,

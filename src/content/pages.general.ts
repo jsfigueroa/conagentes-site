@@ -135,6 +135,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       { label: "Canal: WhatsApp", href: "/producto/canales/whatsapp" },
       { label: "Atención 24/7", href: "/soluciones/atencion-24-7" },
     ],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -163,6 +164,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       { label: "Campañas y reactivación", href: "/producto/campanas" },
       { label: "Recuperar clientes", href: "/soluciones/reactivacion" },
     ],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -190,6 +192,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       { label: "Cobros y facturación (solución)", href: "/soluciones/cobros" },
       { label: "Integraciones", href: "/integraciones" },
     ],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -217,6 +220,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       { label: "Servicios y clínicas", href: "/soluciones/servicios" },
       { label: "Atención 24/7", href: "/soluciones/atencion-24-7" },
     ],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -244,6 +248,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       { label: "Recuperar clientes", href: "/soluciones/reactivacion" },
       { label: "CRM y pipeline", href: "/producto/crm-pipeline" },
     ],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -271,6 +276,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       { label: "BI para dueños", href: "/soluciones/bi" },
       { label: "CRM y pipeline", href: "/producto/crm-pipeline" },
     ],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -296,6 +302,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       },
     ],
     related: [{ label: "Cobros + factura DIAN", href: "/producto/cobros-facturacion" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
 
@@ -325,6 +332,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       { label: "Bandeja omnicanal", href: "/producto/bandeja" },
       { label: "Instagram", href: "/producto/canales/instagram" },
     ],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -348,6 +356,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       },
     ],
     related: [{ label: "Bandeja omnicanal", href: "/producto/bandeja" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -372,6 +381,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       },
     ],
     related: [{ label: "Agenda y citas", href: "/producto/agenda" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -395,6 +405,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       },
     ],
     related: [{ label: "Bandeja omnicanal", href: "/producto/bandeja" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
 
@@ -582,6 +593,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       },
     ],
     related: [{ label: "Ver la plataforma", href: "/producto" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
 
@@ -643,6 +655,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       { label: "Vender más", href: "/soluciones/mas-ventas" },
       { label: "Upsell para hoteles", href: "/hoteles/upsell" },
     ],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -667,6 +680,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       },
     ],
     related: [{ label: "Campañas y reactivación", href: "/producto/campanas" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -691,6 +705,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       },
     ],
     related: [{ label: "Integraciones", href: "/integraciones" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -714,6 +729,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       },
     ],
     related: [{ label: "Bandeja omnicanal", href: "/producto/bandeja" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -737,6 +753,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       },
     ],
     related: [{ label: "Analítica y BI", href: "/producto/analitica-bi" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
 
@@ -849,6 +866,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       { type: "prose", heading: "Próximamente", body: ["Estamos programando nuestras primeras sesiones. Déjenos sus datos en una demo y le avisamos de la próxima."] },
     ],
     related: [{ label: "Blog", href: "/blog" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -889,6 +907,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
       { type: "prose", heading: "¿Necesita ayuda?", body: ["Los clientes de conagentes cuentan con soporte y acompañamiento. Además, dentro de la plataforma tiene un agente de soporte que le responde sus dudas al instante."] },
     ],
     related: [{ label: "Contacto", href: "/contacto" }],
+    noindex: true,
     cta: DEFAULT_CTA,
   },
 

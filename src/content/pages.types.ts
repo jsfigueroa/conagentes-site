@@ -234,6 +234,19 @@ export type MarketingPage = {
   sections: Section[];
   related?: { label: string; href: string }[];
   cta?: { title: string; sub?: string; button?: string };
+  /**
+   * Keep this page OUT of the index and OUT of the sitemap (CON-216).
+   *
+   * For one-section stubs that exist so a nav link resolves but are too thin to
+   * be worth citing. The risk here is GEO, not SEO: a 900-character stub ranks
+   * for essentially nothing, but an assistant crawling the site can still quote
+   * it as our authoritative statement on a capability — instead of the deep page
+   * that actually answers. Near-zero upside, real downside.
+   *
+   * Still reachable by humans through the nav. Delete the flag once the page has
+   * real content (an `answer` block and more than one section).
+   */
+  noindex?: boolean;
 };
 
 /** Default closing CTA reused by most pages. */

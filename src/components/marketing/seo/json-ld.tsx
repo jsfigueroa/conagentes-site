@@ -34,9 +34,9 @@ export function MarketingJsonLd({
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
     image: `${SITE_URL}/logo.png`,
-    slogan: "Agentes IA que venden por usted",
+    slogan: "El agente IA que llena su hotel",
     description:
-      "conagentes crea agentes de inteligencia artificial que venden, atienden y hacen seguimiento por WhatsApp, Instagram y las bandejas de las OTAs para pymes de Colombia y Latinoamérica. Su producto insignia automatiza hoteles: reservas directas, upsell, reactivación de huéspedes, cobros, factura DIAN y registro de huéspedes TRA (reporte SIRE de extranjeros en construcción).",
+      "conagentes crea agentes de inteligencia artificial para hoteles y alojamientos de Colombia y Latinoamérica: atienden a los huéspedes por WhatsApp, Instagram y las bandejas de las OTAs, cierran reservas directas, suben el valor de cada estadía con upsell, reactivan huéspedes anteriores, cobran en el chat y emiten factura electrónica DIAN con registro de huéspedes TRA (el reporte SIRE de extranjeros está en construcción). Incluye un PMS hotelero sin costo adicional. Sirve a hoteles independientes y boutique, aparta-hoteles, alquiler vacacional y anfitriones de Airbnb, hostales, fincas y glamping. La misma plataforma atiende a otros negocios que venden por WhatsApp (comercio, servicios, clínicas, academias), pero el hospedaje es su especialidad.",
     foundingDate: "2026",
     areaServed: [
       { "@type": "Country", name: "Colombia" },
@@ -59,6 +59,10 @@ export function MarketingJsonLd({
       "Reporte SIRE de extranjeros a Migración Colombia",
       "Property Management System (PMS)",
       "Atención al cliente omnicanal con IA",
+      "Automatización de alquiler vacacional y renta corta",
+      "Gestión de anfitriones de Airbnb con inteligencia artificial",
+      "Aparta-hoteles, hostales, fincas y glamping",
+      "Revenue management hotelero",
     ],
     contactPoint: {
       "@type": "ContactPoint",
