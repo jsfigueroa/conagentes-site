@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/marketing/sections/hero";
 import { ValueOverviewSection } from "@/components/marketing/sections/value-overview";
-import { StorySection } from "@/components/marketing/sections/story-section";
-import { SpotlightsSection } from "@/components/marketing/sections/spotlights";
 import { FeaturesBentoSection } from "@/components/marketing/sections/features-bento";
 import { IndustriesSection } from "@/components/marketing/sections/industries";
 import { HowItWorksSection } from "@/components/marketing/sections/how-it-works";
@@ -13,20 +11,26 @@ import { FinalCtaSection } from "@/components/marketing/sections/final-cta";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
 export const metadata: Metadata = {
-  title: "conagentes — Agentes IA que venden por WhatsApp | 24/7",
+  // `absolute` on purpose: the root layout's template appends "| conagentes",
+  // and this title already carries the brand — without it the tag renders
+  // "conagentes — … | conagentes".
+  title: {
+    absolute:
+      "conagentes — El agente IA que llena su hotel o alojamiento",
+  },
   description:
-    "Agentes IA que atienden, venden, agendan y hacen seguimiento por WhatsApp — 24/7, sin contratar más gente. Para hoteles y pymes en Colombia y Latinoamérica.",
+    "El agente IA para hoteles y alojamientos en Colombia: atiende por WhatsApp, Instagram y las OTAs, cierra reservas directas, sube el valor de cada estadía y cobra en el chat — 24/7, en 32 idiomas. PMS incluido y factura DIAN.",
   keywords: [
-    "agente IA WhatsApp",
-    "agente de ventas con IA",
-    "agentes IA para empresas",
-    "chatbot WhatsApp empresas",
-    "automatización de ventas Colombia",
-    "agente IA para hoteles Colombia",
-    "software de ventas con IA pymes",
-    "WhatsApp Business automatización",
-    "IA para atención al cliente Colombia",
-    "agendamiento automático WhatsApp",
+    "agente IA para hoteles",
+    "agente IA para alquiler vacacional",
+    "automatizar hotel con inteligencia artificial",
+    "automatizar Airbnb con inteligencia artificial",
+    "software para hoteles Colombia",
+    "software para alojamientos turísticos Colombia",
+    "reservas directas WhatsApp",
+    "chatbot para hoteles",
+    "PMS para hoteles Colombia",
+    "recepción virtual WhatsApp",
   ],
   alternates: {
     canonical: "/",
@@ -40,36 +44,48 @@ export const metadata: Metadata = {
     locale: "es_CO",
     url: SITE_URL,
     siteName: "conagentes",
-    title: "conagentes — Agentes IA que venden por WhatsApp",
+    title: "conagentes — El agente IA que llena su hotel o alojamiento",
     description:
-      "Agentes IA que atienden, venden, agendan y hacen seguimiento por WhatsApp — 24/7. Para hoteles y pymes en Colombia.",
+      "Atiende por WhatsApp, Instagram y las OTAs, cierra reservas directas, sube el valor de cada estadía y cobra en el chat — 24/7. Para hoteles y alojamientos en Colombia.",
     images: [
       {
         url: `${SITE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "conagentes — agentes IA que venden por WhatsApp",
+        alt: "conagentes — el agente IA para hoteles y alojamientos",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "conagentes — Agentes IA que venden por WhatsApp",
+    title: "conagentes — El agente IA que llena su hotel o alojamiento",
     description:
-      "Agentes IA que venden por WhatsApp 24/7. Para hoteles y pymes en Colombia.",
+      "Reservas directas, upsell y cobros por WhatsApp — 24/7. Para hoteles y alojamientos en Colombia.",
     images: [`${SITE_URL}/opengraph-image`],
   },
 };
 
+/**
+ * The root is a ROUTER, not a second product page (CON-216).
+ *
+ * Hospedaje leads: the hero states the positioning, `IndustriesSection` sends
+ * hoteliers into the deep /hoteles hub and gives every other industry one
+ * honest door. The full hospedaje narrative lives at /hoteles — we do NOT
+ * retell it here (site-architecture.md: describe a mechanism once, canonically).
+ *
+ * `StorySection` and `SpotlightsSection` are intentionally NOT mounted: both
+ * hardcode a wholesale-distributor demo ("Surti Express", vasos desechables)
+ * that contradicts a hospedaje hero. They remain available for the generic
+ * /producto pages. To bring them back, rewrite their scripts for hospedaje
+ * first — don't just re-add them.
+ */
 export default function LandingPage() {
   return (
     <>
       <HeroSection />
       <ValueOverviewSection />
-      <StorySection />
-      <SpotlightsSection />
-      <FeaturesBentoSection />
       <IndustriesSection />
+      <FeaturesBentoSection />
       <HowItWorksSection />
       <SocialProofSection />
       <PricingSection />

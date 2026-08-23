@@ -16,16 +16,16 @@ const steps = [
   {
     number: "02",
     icon: Cpu,
-    title: "Cargue su negocio",
+    title: "Cargue su alojamiento",
     description:
-      "Suba sus productos, precios e información. Su agente aprende cómo vende y responde como lo haría usted.",
+      "Suba habitaciones, tarifas, servicios y políticas — o conecte el PMS que ya usa. Su agente aprende cómo vende y responde como lo haría usted.",
   },
   {
     number: "03",
     icon: Rocket,
-    title: "Empiece a vender",
+    title: "Empiece a reservar",
     description:
-      "Su agente atiende 24/7, arma pedidos, ordena todo en su panel y le avisa a quién buscar. Usted solo cierra ventas.",
+      "Su agente atiende 24/7, cotiza, cobra el anticipo, ordena todo en su panel y le avisa a qué huésped buscar. Usted solo confirma.",
   },
 ];
 

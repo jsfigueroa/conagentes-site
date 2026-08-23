@@ -353,12 +353,12 @@ export const GENERAL_PAGES: MarketingPage[] = [
   {
     slug: "producto/canales/voz",
     experience: "general",
-    eyebrow: "Canal",
+    eyebrow: "Canal · En piloto",
     title: "Su agente IA que contesta el teléfono",
-    lede: "Atiende llamadas con voz natural en español, resuelve, agenda y toma pedidos. Ninguna llamada se queda sin responder.",
+    lede: "Atiende llamadas con voz natural en español, resuelve, agenda y toma pedidos. Está en piloto: lo estamos activando con los primeros clientes.",
     meta: {
       title: "Agente IA de voz",
-      description: "Un agente IA que contesta llamadas con voz natural en español colombiano: atiende, agenda y toma pedidos sin dejar llamadas perdidas.",
+      description: "Un agente IA que contesta llamadas con voz natural en español colombiano: atiende, agenda y toma pedidos. En piloto — activándose con los primeros clientes.",
     },
     sections: [
       {
@@ -367,6 +367,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
         items: [
           { title: "Voz natural en es-CO", body: "Conversación fluida, no un menú de opciones." },
           { title: "Resuelve y agenda", body: "Responde dudas, agenda citas y toma pedidos por teléfono." },
+          { title: "En piloto", body: "Construido y activándose con los primeros clientes. Escríbanos si quiere entrar al piloto." },
         ],
       },
     ],

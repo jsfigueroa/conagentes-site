@@ -75,7 +75,7 @@ export function HeroSection() {
             {/* Badge */}
             <motion.div variants={itemVariants}>
               <span className="inline-flex items-center gap-2 rounded-full border border-[oklch(0.74_0.185_50/0.3)] bg-[oklch(0.74_0.185_50/0.08)] px-4 py-1.5 text-sm font-medium text-[oklch(0.74_0.185_50)] mb-8">
-                Agente IA para WhatsApp
+                Agente IA para hoteles y alojamientos
               </span>
             </motion.div>
 
@@ -87,7 +87,7 @@ export function HeroSection() {
               No es un chatbot que responde.
               <br />
               <span className="text-brand-gradient">
-                Es un agente que hace crecer sus ventas.
+                Es el agente que llena su hotel.
               </span>
             </motion.h1>
 
@@ -96,9 +96,11 @@ export function HeroSection() {
               variants={itemVariants}
               className="mt-6 text-lg md:text-xl text-[oklch(0.6_0.005_95)] max-w-xl leading-relaxed"
             >
-              Su nuevo agente IA atiende WhatsApp al instante, recupera
-              clientes que se enfriaron y cierra más ventas — 24/7. Usted
-              aprueba; un humano toma el control cuando hace falta.
+              Atiende a cada huésped al instante por WhatsApp, Instagram y las
+              OTAs, cierra reservas directas, sube el valor de cada estadía y
+              cobra en el chat — 24/7 y en 32 idiomas. Para hoteles, aparta‑hoteles
+              y alquiler vacacional. Usted aprueba; un humano toma el control
+              cuando hace falta.
             </motion.p>
 
             {/* CTAs */}
@@ -115,32 +117,26 @@ export function HeroSection() {
                 </button>
               </MagneticButton>
               <MagneticButton strength={0.2}>
-                <a
-                  href="#how-it-works"
-                  className="inline-flex items-center justify-center rounded-full border border-white/[0.12] px-8 py-4 text-base font-semibold text-white hover:bg-white/[0.05] transition-colors"
+                <Link
+                  href="/hoteles"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/[0.12] px-8 py-4 text-base font-semibold text-white hover:bg-white/[0.05] transition-colors"
                 >
-                  Ver cómo funciona
-                </a>
+                  <Hotel className="h-4 w-4 shrink-0" />
+                  Ver la plataforma para hospedaje
+                </Link>
               </MagneticButton>
             </motion.div>
 
-            {/* Flagship industry: hotels */}
+            {/* The other-sectors door — deliberately quiet. Hospedaje leads the
+                root; every other industry gets one honest link, not equal billing. */}
             <motion.div variants={itemVariants} className="mt-6">
               <Link
-                href="/hoteles"
-                aria-label="conagentes para hoteles — nuestro producto insignia"
-                className="group relative inline-flex rounded-full bg-brand-gradient p-[1.5px] shadow-[0_0_28px_oklch(0.64_0.19_42/0.22)] transition-shadow hover:shadow-[0_0_44px_oklch(0.64_0.19_42/0.4)]"
+                href="#industries"
+                aria-label="conagentes para negocios que no son de hospedaje"
+                className="group inline-flex items-center gap-2 text-sm font-medium text-[oklch(0.55_0.005_95)] underline decoration-white/20 underline-offset-4 transition-colors hover:text-white hover:decoration-white/60"
               >
-                <span className="inline-flex items-center gap-2.5 rounded-full bg-[oklch(0.08_0.01_95)] px-5 py-3 text-sm font-semibold text-white">
-                  <Hotel className="h-4 w-4 shrink-0 text-[oklch(0.74_0.185_50)]" />
-                  <span>
-                    ¿Tiene un hotel? Vea nuestro{" "}
-                    <span className="text-[oklch(0.74_0.185_50)]">
-                      producto insignia
-                    </span>
-                  </span>
-                  <ArrowRight className="h-4 w-4 shrink-0 text-white/60 transition-transform group-hover:translate-x-1" />
-                </span>
+                <span>¿No es hotelero? Vea conagentes para su negocio</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 transition-transform group-hover:translate-x-1" />
               </Link>
             </motion.div>
 
@@ -182,18 +178,18 @@ export function HeroSection() {
             variants={itemVariants}
             className="text-xs font-medium text-[oklch(0.4_0.005_95)] uppercase tracking-widest"
           >
-            Un agente IA para cada tipo de negocio
+            Hecho para todo tipo de hospedaje
           </motion.p>
           <motion.div
             variants={itemVariants}
-            className="flex items-center gap-8 opacity-40"
+            className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 opacity-40"
           >
             {[
-              "Hotelería",
-              "Comercio",
-              "Educación",
-              "Servicios",
-              "Salud",
+              "Hoteles",
+              "Aparta-hoteles",
+              "Alquiler vacacional",
+              "Hostales",
+              "Fincas y glamping",
             ].map((name) => (
               <span
                 key={name}

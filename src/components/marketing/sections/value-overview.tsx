@@ -10,21 +10,21 @@ import {
 const promises = [
   {
     icon: MessageCircle,
-    title: "Vende por usted",
+    title: "Reserva por usted",
     description:
-      "Atiende a cada cliente por WhatsApp al instante, muestra sus productos y cierra la venta — de día y de noche.",
+      "Atiende a cada huésped al instante, cotiza con la disponibilidad real de sus habitaciones y cierra la reserva — de día y de madrugada.",
   },
   {
     icon: LayoutDashboard,
     title: "Organiza solo",
     description:
-      "Cada conversación, pedido y cliente queda guardado y ordenado automáticamente. Usted deja de digitar.",
+      "Cada conversación, reserva y huésped queda guardado y ordenado automáticamente. Usted deja de digitar.",
   },
   {
     icon: Sparkles,
     title: "Se anticipa",
     description:
-      "Aprende cómo compra su gente y le dice a quién buscar para vender más — antes que su competencia.",
+      "Sube el valor de cada estadía con upgrades y servicios, y le dice a qué huésped buscar para que vuelva directo.",
   },
 ];
 
@@ -34,16 +34,16 @@ export function ValueOverviewSection() {
       <div className="mx-auto max-w-7xl px-6">
         <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-sm font-semibold text-neon uppercase tracking-widest mb-4">
-            Su nuevo equipo de ventas
+            Su nueva recepción comercial
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
             No es otro chatbot.
             <br />
-            <span className="text-neon">Es quien hace crecer su negocio.</span>
+            <span className="text-neon">Es quien llena su alojamiento.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Un agente IA que vende, organiza y se anticipa — donde ya le
-            escriben sus clientes.
+            Un agente IA que reserva, organiza y se anticipa — donde ya le
+            escriben sus huéspedes.
           </p>
         </ScrollReveal>
 

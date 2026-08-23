@@ -21,7 +21,7 @@ const features = [
     icon: Camera,
     title: "WhatsApp e Instagram, una sola bandeja",
     description:
-      "Sus clientes le escriben por donde quieran y su agente responde igual de bien en ambos. Su equipo trabaja en un solo lugar, sin saltar entre apps.",
+      "Sus huéspedes le escriben por donde quieran y su agente responde igual de bien en ambos. Su recepción trabaja en un solo lugar, sin saltar entre apps.",
     span: "md:col-span-2 md:row-span-2",
     highlight: true,
   },
@@ -29,7 +29,7 @@ const features = [
     icon: Mic,
     title: "Entiende notas de voz",
     description:
-      "El cliente manda un audio y su agente lo entiende y responde. Como hablan de verdad en Colombia.",
+      "El huésped manda un audio y su agente lo entiende y responde. Como hablan de verdad en Colombia.",
     span: "",
     highlight: false,
   },
@@ -59,9 +59,9 @@ const features = [
   },
   {
     icon: ImageIcon,
-    title: "Catálogo con fotos",
+    title: "Sus habitaciones, con fotos",
     description:
-      "Cargue sus productos con imagen, variantes y precio. El agente los muestra en el chat como lo haría su mejor vendedor.",
+      "Cargue habitaciones, tarifas y servicios con imagen. El agente los muestra en el chat como lo haría su mejor recepcionista.",
     span: "",
     highlight: false,
   },
@@ -76,11 +76,11 @@ export function FeaturesBentoSection() {
             Y mucho más
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-            Todo lo que su negocio necesita, en un solo lugar
+            Todo lo que su alojamiento necesita, en un solo lugar
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Más allá del recorrido, conagentes trae todo lo que espera de una
-            plataforma completa.
+            Más allá de la conversación, conagentes trae todo lo que espera de
+            una plataforma completa.
           </p>
         </ScrollReveal>
 

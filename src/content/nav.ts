@@ -83,7 +83,7 @@ export const NAV_GENERAL: NavItem[] = [
       {
         heading: "Por industria",
         links: [
-          { label: "Hoteles", href: "/hoteles", description: "Producto insignia", badge: "Insignia", external: true },
+          { label: "Hoteles y alojamientos", href: "/hoteles", description: "Nuestra especialidad", badge: "Especialidad", external: true },
           { label: "Comercio y distribución", href: "/soluciones/comercio" },
           { label: "Servicios y clínicas", href: "/soluciones/servicios" },
           { label: "Educación", href: "/soluciones/educacion" },
@@ -310,8 +310,14 @@ export const NAV_HOTEL: NavItem[] = [
   { kind: "link", label: "Precios", href: "/hoteles/precios" },
 ];
 
-/** Cross-link shown in each header so the two experiences connect. */
+/**
+ * Cross-link shown in each header so the two experiences connect.
+ *
+ * Asymmetric on purpose (CON-216): hospedaje leads the root, so `toHotel` is
+ * the loud, product-shaped door and `fromHotel` is the quiet escape hatch for
+ * the occasional non-hotel visitor.
+ */
 export const CROSSLINK = {
-  fromHotel: { label: "¿No es hotelero? Ver conagentes para su negocio", href: "/" },
-  toHotel: { label: "conagentes para hoteles", href: "/hoteles" },
+  fromHotel: { label: "¿No es hotelero? Ver conagentes para su negocio", href: "/#industries" },
+  toHotel: { label: "conagentes para hoteles y alojamientos", href: "/hoteles" },
 };
