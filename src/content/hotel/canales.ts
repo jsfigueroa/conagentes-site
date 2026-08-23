@@ -15,7 +15,7 @@ export const HOTEL_CANALES: MarketingPage[] = [
     title: "Las OTAs no son el enemigo. La dependencia sí",
     lede: "Booking, Airbnb y Expedia le traen huéspedes que usted solo no alcanzaría. El problema empieza cuando son el único canal, cuando sus mensajes se quedan sin responder tres horas, y cuando el 20 % de cada noche se va en comisión. El agente atiende esas bandejas y convierte a esos huéspedes en clientes suyos.",
     answer:
-      "conagentes conecta las bandejas de mensajes de Booking.com, Airbnb y Expedia a la misma bandeja del hotel, donde el agente IA las responde en segundos respetando las políticas de cada plataforma: dentro de un hilo de OTA no comparte links de pago ni datos de contacto ni intenta llevarse al huésped fuera. Además sincroniza tarifas y disponibilidad con las OTAs a través del channel manager Channex. La mensajería de OTAs está en piloto con los primeros hoteles.",
+      "conagentes conecta las bandejas de mensajes de Booking.com, Airbnb y Expedia a la misma bandeja del hotel, donde el agente IA las responde en segundos respetando las políticas de cada plataforma: dentro de un hilo de OTA no comparte links de pago ni datos de contacto ni intenta llevarse al huésped fuera. La mensajería de OTAs está en vivo. Además sincroniza tarifas y disponibilidad con las OTAs a través del channel manager Channex, una conexión que sigue en piloto.",
     heroChips: [
       "Booking · Airbnb · Expedia en una bandeja",
       "Respeta la política de cada plataforma",
@@ -173,7 +173,7 @@ export const HOTEL_CANALES: MarketingPage[] = [
         items: [
           {
             q: "¿Puede la IA responder los mensajes de Booking.com y Airbnb?",
-            a: "Sí. Las bandejas de mensajes de Booking.com, Airbnb y Expedia llegan a la bandeja de conagentes y el agente IA las responde en segundos, en el idioma del huésped, respetando las políticas de cada plataforma. Está en piloto con los primeros hoteles.",
+            a: "Sí. Las bandejas de mensajes de Booking.com, Airbnb y Expedia llegan a la bandeja de conagentes y el agente IA las responde en segundos, en el idioma del huésped, respetando las políticas de cada plataforma. Está en vivo.",
           },
           {
             q: "¿Me pueden bloquear la cuenta de Booking por usar IA?",

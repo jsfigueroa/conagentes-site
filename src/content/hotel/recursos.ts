@@ -98,7 +98,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
         cols: ["Chatbot web", "Agente de mensajería", "conagentes"],
         rows: [
           { label: "Atiende WhatsApp e Instagram", cells: [false, true, true] },
-          { label: "Atiende las bandejas de Booking y Airbnb", cells: [false, "A veces", "En piloto"] },
+          { label: "Atiende las bandejas de Booking y Airbnb", cells: [false, "A veces", true] },
           { label: "Contesta el teléfono", cells: [false, false, "En piloto"] },
           { label: "Lee disponibilidad y tarifas reales", cells: [false, "Con PMS propio", true] },
           { label: "Trae PMS incluido si el hotel no tiene", cells: [false, false, true] },
@@ -206,7 +206,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
           },
           {
             q: "¿La IA puede responder los mensajes de Booking y Airbnb?",
-            a: "Sí, y es importante que lo haga respetando las políticas de cada plataforma: dentro de un hilo de OTA no se pueden compartir links de pago ni datos de contacto ni intentar llevarse al huésped fuera. En conagentes esas acciones están deshabilitadas por diseño dentro de un hilo de OTA. La mensajería de OTAs está en piloto con los primeros hoteles.",
+            a: "Sí, y es importante que lo haga respetando las políticas de cada plataforma: dentro de un hilo de OTA no se pueden compartir links de pago ni datos de contacto ni intentar llevarse al huésped fuera. En conagentes esas acciones están deshabilitadas por diseño dentro de un hilo de OTA. La mensajería de OTAs está en vivo.",
           },
           {
             q: "¿Tengo que cambiar mi PMS?",

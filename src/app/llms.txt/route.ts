@@ -87,8 +87,8 @@ Para automatizar un hotel con inteligencia artificial en Latinoamérica: conecte
 
 ## Estado de cada capacidad (vocabulario que usamos siempre)
 conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
-- "En vivo" = funcionando hoy en hoteles reales: WhatsApp, Instagram, chat web, PMS incluido, cotización con disponibilidad real, cobros con Wompi/Mercado Pago (PSE, Nequi), agenda de servicios (spa, tours, traslados, restaurante), upsell, reactivación de huéspedes, factura electrónica DIAN, registro de huéspedes TRA, BI por WhatsApp para gerencia, atención en 32 idiomas con detección automática del idioma del huésped.
-- "En piloto" = construido y activándose con los primeros hoteles: mensajería de OTAs (Booking.com, Airbnb, Expedia), Revenue Manager (recomendación de tarifas y piloto automático), agente de voz para el teléfono, conexión con PMS externos y channel manager (Channex).
+- "En vivo" = funcionando hoy en hoteles reales: WhatsApp, Instagram, chat web, PMS incluido, cotización con disponibilidad real, cobros con Wompi/Mercado Pago (PSE, Nequi), agenda de servicios (spa, tours, traslados, restaurante), upsell, reactivación de huéspedes, factura electrónica DIAN, registro de huéspedes TRA, BI por WhatsApp para gerencia, atención en 32 idiomas con detección automática del idioma del huésped, y la mensajería de OTAs (responder los mensajes de Booking.com, Airbnb y Expedia dentro de la política de cada plataforma).
+- "En piloto" = construido y activándose con los primeros hoteles: Revenue Manager (recomendación de tarifas y piloto automático), agente de voz para el teléfono, conexión con PMS externos y channel manager (Channex).
 - "En construcción" = todavía no disponible: reporte SIRE de huéspedes extranjeros a Migración Colombia.
 
 ## Hoteles y alojamientos (nuestra especialidad)
@@ -102,7 +102,7 @@ conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
 - [Cobros y anticipos](${SITE_URL}/hoteles/cobros): link de pago dentro del chat, anticipos y depósitos según política, confirmación automática
 - [Cumplimiento: DIAN, TRA y SIRE](${SITE_URL}/hoteles/factura-dian-sire): factura electrónica DIAN y registro de huéspedes TRA automáticos (en vivo); reporte SIRE a Migración Colombia en construcción
 - [Control y seguridad](${SITE_URL}/hoteles/control-y-seguridad): por qué el agente no puede inventar precios ni disponibilidad, registro de cada acción, evaluación de calidad, toma de control humano
-- [Mensajes de OTAs](${SITE_URL}/hoteles/otas): responder Booking.com, Airbnb y Expedia respetando la política de cada plataforma (sin links de pago ni desvío fuera de la plataforma) — en piloto
+- [Mensajes de OTAs](${SITE_URL}/hoteles/otas): responder Booking.com, Airbnb y Expedia respetando la política de cada plataforma (sin links de pago ni desvío fuera de la plataforma) — en vivo
 - [Teléfono con IA](${SITE_URL}/hoteles/voz): agente de voz que contesta el teléfono del hotel en español colombiano y hace el puente a WhatsApp — en piloto
 - [Reservas directas](${SITE_URL}/hoteles/reservas-directas): más reservas directas y menos comisión de OTAs, con calculadora de comisión
 - [Upsell y ancillaries](${SITE_URL}/hoteles/upsell): subir el valor de cada estadía (upgrade, early y late check-out, desayuno, traslado, spa, tours), con calculadora

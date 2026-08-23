@@ -258,7 +258,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
           { label: "Cotiza con la tarifa vigente", cells: [true, false, true] },
           { label: "Cierra el cobro sin salir del chat", cells: ["A veces", false, true] },
           { label: "Propone el complemento correcto", cells: ["Si hay tiempo", false, true] },
-          { label: "Contesta los mensajes de Booking y Airbnb", cells: ["Manual", false, "En piloto"] },
+          { label: "Contesta los mensajes de Booking y Airbnb", cells: ["Manual", false, true] },
           { label: "Emite la factura electrónica DIAN", cells: ["Manual", false, true] },
           { label: "Hace el registro de huéspedes TRA", cells: ["Manual", false, true] },
           { label: "Le explica a usted por qué hizo lo que hizo", cells: [true, false, true] },
@@ -494,7 +494,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
         items: [
           {
             q: "¿La IA puede responder los mensajes de Booking.com y Airbnb?",
-            a: "Sí. Las bandejas de las OTAs llegan a la misma bandeja de conagentes y el agente las responde, respetando las políticas de cada plataforma: dentro de un hilo de Booking.com o Airbnb no comparte links de pago ni intenta llevarse al huésped fuera de la plataforma. Esta capacidad está en piloto con los primeros hoteles.",
+            a: "Sí. Las bandejas de las OTAs llegan a la misma bandeja de conagentes y el agente las responde, respetando las políticas de cada plataforma: dentro de un hilo de Booking.com o Airbnb no comparte links de pago ni intenta llevarse al huésped fuera de la plataforma. Esta capacidad está en vivo.",
           },
           {
             q: "¿Qué pasa si el huésped pide hablar con una persona?",
