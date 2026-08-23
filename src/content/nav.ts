@@ -148,9 +148,14 @@ export const NAV_HOTEL: NavItem[] = [
         heading: "La plataforma",
         links: [
           {
-            label: "El agente IA",
+            label: "El agente de huéspedes",
             href: "/hoteles/agente-ia",
             description: "Atiende, cotiza, cobra y factura",
+          },
+          {
+            label: "El agente de administración",
+            href: "/hoteles/agente-admin",
+            description: "Sus números y sus acciones, en WhatsApp y en el panel",
           },
           {
             label: "Recepción 24/7",

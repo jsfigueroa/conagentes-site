@@ -264,7 +264,6 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
       "LobbyPMS",
       "Cloudbeds",
       "Mews",
-      "Zeus",
       "Wompi",
       "Mercado Pago",
       "Alegra",
@@ -280,7 +279,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
         groups: [
           {
             label: "PMS y channel managers",
-            marks: ["PMS incluido de conagentes", "LobbyPMS", "Cloudbeds", "Mews", "Zeus", "Channex"],
+            marks: ["PMS incluido de conagentes", "LobbyPMS", "Cloudbeds", "Mews", "Channex"],
           },
           {
             label: "OTAs y distribución",

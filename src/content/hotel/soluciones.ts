@@ -530,9 +530,9 @@ export const HOTEL_SOLUCIONES: MarketingPage[] = [
     experience: "hotel",
     eyebrow: "Solución",
     title: "Pregúntele a su hotel cómo va. Por WhatsApp",
-    lede: "Usted no necesita otro tablero con doce gráficas que nadie abre. Necesita saber, en el semáforo o el domingo por la noche, cómo viene el mes, qué se está cayendo y qué hay que hacer hoy. Escríbale al mismo agente que atiende a sus huéspedes y le responde con los números de su hotel.",
+    lede: "Usted no necesita otro tablero con doce gráficas que nadie abre. Necesita saber, en el semáforo o el domingo por la noche, cómo viene el mes, qué se está cayendo y qué hay que hacer hoy. Escríbale al agente de administración —el segundo agente, el que trabaja para usted y no para el huésped— y le responde con los números de su hotel.",
     answer:
-      "En conagentes el gerente o dueño del hotel puede escribirle al agente IA por WhatsApp y recibir los indicadores reales del negocio: ocupación, tarifa promedio (ADR), ingreso, mezcla de canales, reservas directas frente a OTA, ingreso por servicios, desempeño del equipo y estado de las conversaciones. Además recibe alertas cuando algo se sale de lo normal, sin tener que abrir un tablero.",
+      "En conagentes el gerente o dueño del hotel le escribe al agente de administración por WhatsApp —o lo usa dentro del panel— y recibe los indicadores reales del negocio: ocupación, tarifa promedio (ADR), ingreso, mezcla de canales, reservas directas frente a OTA, ingreso por servicios, desempeño del equipo y estado de las conversaciones. Además recibe alertas cuando algo se sale de lo normal, sin tener que abrir un tablero.",
     heroChips: [
       "Sus números por WhatsApp, en lenguaje normal",
       "Alertas cuando algo se sale de lo normal",
@@ -627,6 +627,7 @@ export const HOTEL_SOLUCIONES: MarketingPage[] = [
       },
     ],
     related: [
+      { label: "El agente de administración", href: "/hoteles/agente-admin" },
       { label: "Revenue Manager", href: "/hoteles/revenue-manager" },
       { label: "Resultados y ROI", href: "/hoteles/resultados" },
       { label: "Control y seguridad", href: "/hoteles/control-y-seguridad" },

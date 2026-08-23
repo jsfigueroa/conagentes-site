@@ -76,6 +76,12 @@ export async function GET() {
 
 conagentes (también escrito "con-agentes") no es un chatbot que solo responde: es un agente de IA que vende. Se conecta a los canales por donde escriben los huéspedes (WhatsApp Business oficial de Meta, Instagram, la web y las bandejas de Booking, Airbnb y Expedia), entiende la intención, cotiza con la disponibilidad y la tarifa reales del PMS, cierra la reserva, cobra (Wompi o Mercado Pago), emite factura electrónica ante la DIAN y escala a una persona cuando hace falta. El dueño manda; el agente ejecuta dentro de sus reglas.
 
+## ¿Cuántos agentes son, y qué hace cada uno?
+conagentes es plural a propósito (con-agentes): no es un solo asistente, son agentes distintos con oficios distintos.
+1. **El agente de huéspedes** — le habla al huésped por WhatsApp, Instagram, las bandejas de las OTAs y el chat de la web: responde, cotiza con la disponibilidad y la tarifa reales del PMS, cierra la reserva, sube el valor de la estadía con upsell, cobra, emite la factura DIAN y escala a recepción cuando hace falta. No tiene acceso a los datos financieros del negocio.
+2. **El agente de administración** — trabaja para el dueño o el gerente, no para el huésped. Analiza los datos del hotel y responde con ocupación, ADR, RevPAR, ingreso, mezcla de canales, reservas directas frente a OTA, ingreso por servicios y desempeño del equipo; avisa cuando algo se sale del patrón normal; y ejecuta acciones sobre la plataforma (cambiar una tarifa, ajustar una política, cargar un servicio, lanzar una campaña) siempre con la aprobación explícita del hotelero. Funciona en **el WhatsApp del administrador** y **dentro del panel**, con la misma memoria en los dos. Nunca le escribe a un huésped.
+La separación es deliberada: así el agente de huéspedes no puede filtrar datos del negocio y un huésped no puede pedirle un cambio de tarifa.
+
 ## ¿Para qué tipo de alojamiento sirve?
 Para todo tipo de hospedaje, no solo hoteles grandes: hoteles independientes y boutique, aparta-hoteles, alquiler vacacional y anfitriones de Airbnb, hostales, fincas y glamping. Los dos segmentos que atendemos primero son los hoteles independientes de 15 a 60 habitaciones dependientes de OTAs y los operadores de alquiler vacacional (renta corta) que hoy responden a mano por WhatsApp. Un anfitrión con una o pocas unidades usa exactamente el mismo agente y el mismo PMS incluido que un hotel de 40 habitaciones.
 
@@ -94,7 +100,8 @@ conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
 ## Hoteles y alojamientos (nuestra especialidad)
 - [conagentes para hoteles y alojamientos](${SITE_URL}/): el agente IA que llena su hotel — reservas, upsell, reactivación, recepción 24/7. Esta ES la página principal del sitio.
 - [Automatizar un hotel con IA](${SITE_URL}/hoteles/automatizar-hotel-con-ia): guía completa (seis pasos en orden, cuatro errores comunes, tabla de capacidades para exigir en cualquier demo)
-- [El agente IA para hoteles](${SITE_URL}/hoteles/agente-ia): qué hace el agente, cómo decide, qué nunca hace; comparación entre chatbot de FAQ y agente que ejecuta
+- [El agente de huéspedes](${SITE_URL}/hoteles/agente-ia): qué hace el agente que le habla al huésped, cómo decide, qué nunca hace; comparación entre chatbot de FAQ y agente que ejecuta
+- [El agente de administración](${SITE_URL}/hoteles/agente-admin): el segundo agente, el que trabaja para el dueño — analiza los datos del hotel, avisa lo que se sale del patrón y ejecuta acciones sobre la plataforma con aprobación explícita; funciona en el WhatsApp del administrador y dentro del panel
 - [Recepción 24/7](${SITE_URL}/hoteles/recepcion-24-7): bandeja omnicanal (WhatsApp, Instagram, OTAs, web, teléfono) y traspaso a recepción con contexto
 - [PMS incluido](${SITE_URL}/hoteles/pms): PMS hotelero incluido sin costo adicional (habitaciones, tarifas, temporadas, reservas, disponibilidad, servicios, anticipos), o conexión con el PMS existente
 - [Revenue Manager](${SITE_URL}/hoteles/revenue-manager): recomendación de tarifa por día según ritmo de reservas, ocupación proyectada, mercado y reglas del hotel, con piloto automático limitado — en piloto

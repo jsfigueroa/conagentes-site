@@ -10,7 +10,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
   {
     slug: "hoteles/agente-ia",
     experience: "hotel",
-    eyebrow: "La plataforma",
+    eyebrow: "La plataforma · El agente de huéspedes",
     title: "No es un chatbot. Es el mejor vendedor de su hotel",
     lede: "Un chatbot responde preguntas. Su agente IA consulta la disponibilidad real, cotiza, sube el valor de la estadía, cobra, factura y le entrega la conversación a recepción cuando toca un humano. Trabaja las 24 horas y nunca se le olvida hacer seguimiento.",
     answer:
@@ -307,6 +307,186 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
     cta: HOTEL_CTA,
   },
 
+  /* ──────────────────── el agente de administración ──────────────────── */
+  {
+    slug: "hoteles/agente-admin",
+    experience: "hotel",
+    eyebrow: "La plataforma",
+    title: "El segundo agente no atiende huéspedes. Trabaja para usted",
+    lede: "El agente de huéspedes vende y atiende. El agente de administración hace lo otro: le dice cómo va el hotel, encuentra lo que usted no alcanza a mirar y ejecuta los cambios que usted le apruebe. Vive en su WhatsApp y dentro de la plataforma, y responde igual en los dos.",
+    answer:
+      "conagentes trabaja con dos agentes distintos. El agente de huéspedes atiende, cotiza, reserva y cobra por WhatsApp, Instagram, las OTAs y la web. El agente de administración trabaja para el dueño o el gerente: analiza los datos del hotel y responde con ocupación, ADR, RevPAR, mezcla de canales e ingreso por servicios, y ejecuta acciones sobre la plataforma —cambiar tarifas, actualizar políticas, lanzar campañas— siempre con la aprobación explícita del hotelero. Funciona en el WhatsApp del administrador y dentro del panel.",
+    heroChips: [
+      "En su WhatsApp y en el panel",
+      "Analiza y recomienda, no solo reporta",
+      "Ninguna acción sin su aprobación",
+    ],
+    meta: {
+      title: "Agente de administración: analiza y ejecuta por usted",
+      description:
+        "El agente de administración de conagentes analiza los datos de su hotel y ejecuta acciones sobre la plataforma con su aprobación. En el WhatsApp del administrador y dentro del panel.",
+    },
+    keywords: [
+      "agente IA para administradores de hotel",
+      "BI hotelero por WhatsApp",
+      "copiloto para gerentes de hotel",
+      "analitica hotelera con inteligencia artificial",
+      "agente que ejecuta acciones en el PMS",
+      "asistente de gerencia hotel Colombia",
+    ],
+    entities: [...ENTIDADES_BASE, "ADR", "RevPAR", "business intelligence"],
+    updated: UPDATED,
+    sections: [
+        {
+        type: "matrix",
+        heading: "Dos agentes, dos oficios",
+        sub: "No es el mismo agente con otro sombrero. Tienen datos, permisos y criterio distintos, porque los trabajos son distintos.",
+        cols: ["Agente de huéspedes", "Agente de administración"],
+        rows: [
+          { label: "Con quién habla", cells: ["El huésped", "El dueño o el gerente"] },
+          { label: "Dónde vive", cells: ["WhatsApp, Instagram, OTAs y web", "WhatsApp del administrador y el panel"] },
+          { label: "Cotiza y cierra reservas", cells: [true, false] },
+          { label: "Cobra y emite la factura DIAN", cells: [true, false] },
+          { label: "Sube el valor de la estadía", cells: [true, false] },
+          { label: "Ve ocupación, ADR, RevPAR e ingresos", cells: [false, true] },
+          { label: "Avisa cuando algo se sale del patrón", cells: [false, true] },
+          { label: "Cambia tarifas, políticas y servicios", cells: [false, "Con su aprobación"] },
+          { label: "Ve los datos financieros del hotel", cells: [false, true] },
+        ],
+        footnote:
+          "La separación no es cosmética: es la razón por la que un agente no puede filtrarle a un huésped lo que sabe del negocio, ni un huésped puede pedirle al agente que le cambie una tarifa.",
+      },
+      {
+        type: "features",
+        heading: "Qué hace el agente de administración",
+        sub: "Tres oficios: analizar, avisar y ejecutar.",
+        items: [
+          {
+            title: "Responde con los números, no con un tablero",
+            body: "«¿Cómo vamos este mes?», «¿qué canal está trayendo más?», «¿cuánto dejó el spa?». Contesta en lenguaje normal, comparando siempre contra el mismo periodo del año anterior, y le dice qué movió el número — no solo cuál es.",
+            href: "/hoteles/gerencia",
+          },
+          {
+            title: "Encuentra lo que usted no alcanza a mirar",
+            body: "Revisa el ritmo de reservas, la mezcla de canales, las conversaciones que se enfriaron y los servicios que se dejaron de vender. Cuando algo se sale de su patrón normal, le avisa con la evidencia — no espera a que usted pregunte.",
+          },
+          {
+            title: "Ejecuta lo que usted apruebe",
+            body: "Cambiar una tarifa, ajustar una política, cargar un servicio, lanzar una campaña de reactivación. Le muestra qué va a hacer y qué efecto espera; se ejecuta solo cuando usted confirma.",
+            href: "/hoteles/control-y-seguridad",
+          },
+          {
+            title: "Prepara la conversación difícil",
+            body: "Antes de una reunión de junta o de una negociación con una OTA, le arma el resumen con los números que importan y de dónde salieron.",
+          },
+        ],
+      },
+      {
+        type: "panel",
+        heading: "Los mismos datos, en los dos lados",
+        sub: "En el panel tiene la vista completa; en WhatsApp, la respuesta corta cuando está en el lobby o fuera del hotel. Es el mismo agente.",
+        kind: "bi",
+        points: [
+          {
+            title: "En el WhatsApp del administrador",
+            body: "Usted registra su número como número de administrador y le escribe como a cualquier contacto. Sirve para la pregunta rápida y la alerta: «¿cómo viene el fin de semana?».",
+          },
+          {
+            title: "Dentro del panel",
+            body: "El mismo agente, con la pantalla al lado: puede señalar la reserva, la conversación o la tarifa de la que está hablando, y ejecutar el cambio ahí mismo.",
+          },
+          {
+            title: "Una sola memoria",
+            body: "Lo que preguntó por WhatsApp sigue en contexto cuando abre el panel. No repite la conversación dos veces.",
+          },
+          {
+            title: "Solo para quien usted autorice",
+            body: "Responde únicamente a los números y las cuentas que el hotel registró como administración. A un número desconocido no le cuenta nada del negocio.",
+          },
+        ],
+      },
+      {
+        type: "chat",
+        heading: "Una conversación real de administración",
+        sub: "Preguntar, entender por qué, y actuar — en el mismo hilo.",
+        channel: "whatsapp",
+        who: "Agente de administración",
+        thread: [
+          { from: "staff", text: "¿Cómo viene agosto contra el año pasado?" },
+          {
+            from: "ai",
+            text: "Ocupación 61 % contra 58 % en agosto del año pasado, ADR $312.000 contra $296.000. El ingreso va 9 % arriba. Lo que cambió: 23 reservas directas más que el año pasado, casi todas de WhatsApp de madrugada.",
+          },
+          { from: "staff", text: "¿Y qué se está cayendo?" },
+          {
+            from: "ai",
+            text: "El spa. Van 14 servicios contra 27 el año pasado a esta altura. En 41 conversaciones el huésped preguntó por spa y no se le ofreció el paquete, porque el horario del sábado quedó sin cargar.",
+          },
+          { from: "staff", text: "Cárgalo con el mismo horario del año pasado." },
+          {
+            from: "ai",
+            text: "Le dejo listo: spa sábados 9:00 a 18:00, mismos precios del año pasado. Voy a cargarlo y a ofrecerlo en las conversaciones activas que preguntaron. ¿Confirmo?",
+          },
+          { from: "staff", text: "Confirmo" },
+        ],
+        notes: [
+          {
+            at: 1,
+            label: "Explica, no solo reporta",
+            body: "Da el número y la causa. Un dato sin causa no sirve para decidir.",
+          },
+          {
+            at: 3,
+            label: "Encuentra la plata que se está quedando",
+            body: "Cruza la agenda con las conversaciones: 41 huéspedes preguntaron y nadie ofreció.",
+          },
+          {
+            at: 5,
+            label: "Pide permiso antes de tocar nada",
+            body: "Describe la acción y su efecto. Sin un «confirmo» explícito no ejecuta.",
+          },
+        ],
+      },
+      {
+        type: "faq",
+        heading: "Preguntas frecuentes",
+        items: [
+          {
+            q: "¿Es el mismo agente que atiende a mis huéspedes?",
+            a: "No. Son dos agentes distintos, y a propósito: el de huéspedes conversa con el huésped y no tiene acceso a los datos del negocio; el de administración trabaja con los datos del hotel y no le escribe nunca a un huésped. Así ninguno puede hacer el trabajo del otro por error.",
+          },
+          {
+            q: "¿Funciona por WhatsApp o dentro de la plataforma?",
+            a: "En los dos. Usted registra el número del administrador y le escribe por WhatsApp como a cualquier contacto, y el mismo agente está dentro del panel. En el panel es más capaz, porque tiene la pantalla al lado para señalar la reserva o la tarifa de la que están hablando; por WhatsApp gana la pregunta rápida y la alerta.",
+          },
+          {
+            q: "¿Puede cambiar cosas en mi hotel sin avisarme?",
+            a: "No. Toda acción que modifique algo —una tarifa, una política, un servicio, una campaña— se le presenta antes con lo que va a hacer y el efecto esperado, y solo se ejecuta cuando usted confirma explícitamente. Las consultas de datos no necesitan confirmación porque no cambian nada.",
+          },
+          {
+            q: "¿Cualquiera del equipo puede preguntarle los números del hotel?",
+            a: "Solo quien usted autorice. El agente de administración responde únicamente a los números registrados como administración y a las cuentas con ese permiso en el panel. A cualquier otro número no le cuenta nada del negocio.",
+          },
+          {
+            q: "¿Qué indicadores maneja?",
+            a: "Ocupación, tarifa promedio (ADR), RevPAR, ingreso, mezcla de canales, reservas directas frente a OTA, ingreso por servicios, desempeño del equipo y estado de las conversaciones. Siempre comparados contra el mismo periodo del año anterior, porque en hotelería la estacionalidad mueve más que cualquier cambio operativo.",
+          },
+          {
+            q: "¿Reemplaza a mi contador o a mi revenue manager?",
+            a: "No. Le da los números y las recomendaciones para decidir más rápido, con la evidencia a la vista. La decisión y la responsabilidad siguen siendo suyas — y para la parte de tarifas hay una capacidad dedicada, el Revenue Manager, que está en piloto.",
+          },
+        ],
+      },
+    ],
+    related: [
+      { label: "El agente de huéspedes", href: "/hoteles/agente-ia" },
+      { label: "Sus números por WhatsApp", href: "/hoteles/gerencia" },
+      { label: "Control y seguridad", href: "/hoteles/control-y-seguridad" },
+      { label: "Revenue Manager", href: "/hoteles/revenue-manager" },
+    ],
+    cta: HOTEL_CTA,
+  },
+
   /* ─────────────────────── recepción 24/7 ─────────────────────── */
   {
     slug: "hoteles/recepcion-24-7",
@@ -599,7 +779,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
         groups: [
           {
             label: "PMS y channel managers",
-            marks: ["LobbyPMS", "Cloudbeds", "Mews", "Zeus", "Channex", "Su PMS actual"],
+            marks: ["LobbyPMS", "Cloudbeds", "Mews", "Channex", "Su PMS actual"],
           },
           {
             label: "OTAs y distribución",
