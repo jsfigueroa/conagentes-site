@@ -22,6 +22,7 @@ import { MagneticButton } from "@/components/marketing/animation/magnetic-button
 import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
 import { HotelStory } from "@/components/marketing/hotel/hotel-story";
 import { OmnichannelSection } from "@/components/marketing/hotel/omnichannel";
+import { HOME_FAQ } from "@/content/hotel/home-faq";
 
 /**
  * Hub → spoke links. Keep in sync with src/content/hotel/* and with NAV_HOTEL
@@ -207,32 +208,6 @@ const trust = [
   },
 ];
 
-const faqs = [
-  {
-    q: "¿Tengo que cambiar mi PMS?",
-    a: "No. Nos conectamos con Cloudbeds, LobbyPMS, Mews y más. Y si no tiene PMS, incluimos uno gratis.",
-  },
-  {
-    q: "¿En qué idiomas atiende a mis huéspedes?",
-    a: "En 32 idiomas, sin configurar nada: reconoce en qué idioma le escribió el huésped y le responde en el suyo. Español, inglés, portugués, alemán, francés, italiano, neerlandés, chino, japonés, árabe y una veintena más.",
-  },
-  {
-    q: "¿Y si no hay disponibilidad para las fechas que piden?",
-    a: "Ofrece alternativas: otras fechas, otro tipo de habitación o combinaciones, para no perder la reserva.",
-  },
-  {
-    q: "¿Reemplaza a mi recepción?",
-    a: "No: la potencia. Atiende el volumen 24/7 para que su equipo se concentre en el huésped que tiene enfrente y en lo importante.",
-  },
-  {
-    q: "¿Cómo cobran ustedes?",
-    a: "Dos formas: una tarifa fija sin comisiones, o una tarifa baja más una comisión pequeña que solo se cobra cuando el huésped realmente se hospeda. Hablemos y le mostramos cuál le conviene.",
-  },
-  {
-    q: "¿Cumple con la DIAN, el TRA y el SIRE?",
-    a: "Sí a la factura electrónica DIAN y al registro de huéspedes TRA —la Tarjeta de Registro de Alojamiento, que se reporta al Ministerio de Comercio, Industria y Turismo—, hoy mismo. El reporte SIRE de extranjeros a Migración Colombia está en construcción y llega pronto.",
-  },
-];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -710,7 +685,7 @@ export function HotelBody() {
           </ScrollReveal>
 
           <div className="divide-y divide-border rounded-2xl border border-border bg-card">
-            {faqs.map((f) => (
+            {HOME_FAQ.map((f) => (
               <details key={f.q} className="group px-6">
                 <summary className="flex cursor-pointer items-center justify-between gap-4 py-5 text-left font-semibold text-foreground list-none [&::-webkit-details-marker]:hidden">
                   {f.q}

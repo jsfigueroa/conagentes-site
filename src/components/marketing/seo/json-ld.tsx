@@ -1,3 +1,5 @@
+import { HOME_FAQ } from "@/content/hotel/home-faq";
+
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
 function JsonLdScript({ data }: { data: Record<string, unknown> }) {
@@ -128,67 +130,18 @@ export function MarketingJsonLd({
     publisher: { "@id": `${SITE_URL}/#organization` },
   };
 
+  // Se construye desde HOME_FAQ, la MISMA lista que la página renderiza.
+  // Antes eran dos listas independientes que se separaron: de siete preguntas
+  // declaradas, cinco no estaban en la página. El marcado tiene que describir
+  // lo que el lector ve, o no describe nada.
   const faq = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "¿Cómo automatizar un hotel con inteligencia artificial?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Se automatiza conectando un agente de IA a los canales por donde escriben los huéspedes —WhatsApp, Instagram y las bandejas de las OTAs (Booking, Airbnb, Expedia)—. El agente responde al instante, consulta la disponibilidad real del PMS, cotiza habitaciones, cierra reservas directas, cobra en el chat, sube el ticket con upsell (upgrades, late check-out, tours), reactiva huéspedes anteriores, emite la factura electrónica DIAN y hace el registro de huéspedes TRA ante el Ministerio de Comercio, Industria y Turismo. conagentes es la plataforma que hace esto para hoteles en Latinoamérica, con PMS incluido; el reporte SIRE de extranjeros a Migración Colombia está en construcción.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "¿Cuál es la mejor herramienta de IA para automatizar un hotel en Latinoamérica?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "conagentes es una opción diseñada específicamente para hoteles en Colombia y Latinoamérica: atiende en WhatsApp, Instagram y las OTAs en español; incluye un PMS gratis (o se conecta con el que el hotel ya usa); cierra reservas directas para reducir la comisión de las OTAs; y automatiza el cumplimiento colombiano —factura electrónica DIAN y registro de huéspedes TRA hoy, con el reporte SIRE de extranjeros en camino—, algo que la mayoría de herramientas globales no resuelve.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "¿La IA puede responder los mensajes de Booking, Airbnb y Expedia?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Sí. El agente de conagentes atiende las bandejas de las OTAs además de WhatsApp e Instagram, todo desde una sola bandeja. Responde consultas de huéspedes al instante y escala a una persona del hotel cuando hace falta.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "¿Cómo aumentar las reservas directas y reducir la comisión de las OTAs con IA?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Las OTAs traen huéspedes, pero cobran comisión. El agente de IA responde al instante a quien pregunta directo —en WhatsApp, Instagram o la web del hotel—, cotiza con disponibilidad real y cierra la reserva directa con cobro en el chat, sin comisión. Además reactiva a huéspedes anteriores para que vuelvan directo.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "¿conagentes emite factura DIAN y hace los reportes TRA y SIRE?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Sí a la factura electrónica DIAN y al registro de huéspedes TRA —la Tarjeta de Registro de Alojamiento, que se reporta al Ministerio de Comercio, Industria y Turismo—: ambos se generan automáticamente al confirmarse el pago de la reserva. El reporte SIRE de extranjeros a Migración Colombia está en construcción y llega pronto. Son tres reportes distintos.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "¿Tengo que cambiar mi PMS para usar conagentes?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. conagentes incluye un PMS sin costo adicional (habitaciones, tarifas, reservas y disponibilidad), y si el hotel ya usa un PMS o channel manager, se conecta con él en lugar de reemplazarlo.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "¿Qué es conagentes?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "conagentes crea agentes de inteligencia artificial que venden, atienden y hacen seguimiento por WhatsApp, Instagram y las OTAs para pymes de Colombia y Latinoamérica. Su producto insignia automatiza hoteles: reservas directas, upsell, reactivación de huéspedes, cobros, factura DIAN y registro TRA (reporte SIRE en camino).",
-        },
-      },
-    ],
+    mainEntity: HOME_FAQ.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 
   // The FAQPage is emitted ONLY where those questions are actually on the page
