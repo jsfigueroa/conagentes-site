@@ -3,7 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
@@ -55,7 +61,7 @@ function MegaPanel({ item }: { item: Extract<NavItem, { kind: "mega" }> }) {
                     <span className="flex items-center gap-2 text-sm font-semibold text-foreground">
                       {l.label}
                       {l.badge && (
-                        <span className="rounded-full bg-neon px-1.5 py-0.5 text-[10px] font-bold text-ink">
+                        <span className="rounded-full bg-brand-gradient-strong px-1.5 py-0.5 text-[10px] font-bold text-white">
                           {l.badge}
                         </span>
                       )}
@@ -79,7 +85,7 @@ function MegaPanel({ item }: { item: Extract<NavItem, { kind: "mega" }> }) {
       {item.featured && (
         <Link
           href={item.featured.href}
-          className="mt-5 flex items-center justify-between gap-4 rounded-xl border border-[oklch(0.74_0.185_50/0.3)] bg-neon/[0.06] px-5 py-4 transition-colors hover:bg-neon/[0.1]"
+          className="mt-5 flex items-center justify-between gap-4 rounded-xl border border-[oklch(0.74_0.185_50/0.3)] bg-brand-tint-soft px-5 py-4 transition-colors hover:bg-brand-tint"
         >
           <span>
             <span className="block text-sm font-bold text-foreground">
@@ -240,6 +246,15 @@ export function MegaMenuHeader() {
     closeTimer.current = setTimeout(() => setOpenLabel(null), CLOSE_MS);
   };
 
+  // Reading progress for the hairline under the header. Spring-damped so it
+  // glides instead of tracking the scrollbar frame-for-frame.
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 26,
+    restDelta: 0.001,
+  });
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -251,10 +266,20 @@ export function MegaMenuHeader() {
           : "bg-transparent"
       }`}
     >
+      {/* A hairline of brand gradient that fills as the page scrolls. It is the
+          only always-visible progress cue on a page this long, and it costs one
+          transform. Purely decorative — the reading order is unaffected. */}
+      <motion.span
+        aria-hidden
+        style={{ scaleX: progress }}
+        className="brand-progress absolute inset-x-0 bottom-0 h-px origin-left"
+      />
       <nav
         ref={navRef}
         aria-label="Principal"
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
+        className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-[padding] duration-300 ${
+          scrolled ? "py-2.5" : "py-4"
+        }`}
       >
         <Link href="/" className="flex items-center gap-2" aria-label="conagentes — inicio">
           <Logo size="default" variant="dark" />
@@ -333,7 +358,7 @@ export function MegaMenuHeader() {
           </a>
           <button
             onClick={() => openDemo("navbar")}
-            className="cursor-pointer rounded-full bg-neon px-5 py-2.5 text-sm font-semibold text-ink shadow-[0_0_20px_oklch(0.74_0.185_50/0.3)] transition-all hover:brightness-110"
+            className="btn-brand cursor-pointer rounded-full px-5 py-2.5 text-sm font-semibold"
           >
             Quiero una demo
           </button>

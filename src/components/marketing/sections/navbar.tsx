@@ -67,7 +67,7 @@ export function Navbar() {
           </a>
           <button
             onClick={() => open("navbar")}
-            className="text-sm font-semibold bg-neon text-ink px-5 py-2.5 rounded-full hover:brightness-110 transition-all shadow-[0_0_20px_oklch(0.74_0.185_50/0.3)] cursor-pointer"
+            className="btn-brand cursor-pointer rounded-full px-5 py-2.5 text-sm font-semibold"
           >
             Demo gratis
           </button>
@@ -113,7 +113,7 @@ export function Navbar() {
                     setMobileOpen(false);
                     open("navbar");
                   }}
-                  className="block w-full text-center text-sm font-semibold bg-neon text-ink px-5 py-3 rounded-full cursor-pointer"
+                  className="block w-full text-center text-sm font-semibold bg-brand-gradient-strong text-white px-5 py-3 rounded-full cursor-pointer"
                 >
                   Demo gratis
                 </button>

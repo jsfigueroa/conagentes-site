@@ -20,6 +20,7 @@ import {
   AvailabilityMock,
   LogoMarquee,
 } from "@/components/marketing/hotel/integrations-wall";
+import { OtaBroadcast } from "@/components/marketing/hotel/ota-broadcast";
 import { DashboardFrame } from "@/components/marketing/story/frames";
 
 type PanelKind = "none" | "availability" | "upsell" | "payment";
@@ -31,7 +32,7 @@ type Beat = {
   title: string;
   highlight: string;
   body: string;
-  surface: "phone" | "backoffice";
+  surface: "phone" | "channels" | "backoffice";
   panel?: PanelKind; // phone beats
   content?: BackofficeKind; // backoffice beats
 };
@@ -74,8 +75,16 @@ const BEATS: Beat[] = [
     panel: "payment",
   },
   {
+    id: "canales",
+    kicker: "05 · Cierra el inventario",
+    title: "Y la habitación deja de",
+    highlight: "venderse en todos lados.",
+    body: "En el mismo segundo, la reserva baja el cupo en Booking, Airbnb, Expedia, Despegar y los 61 canales que conecta Channex. Nadie más puede reservar esa habitación. Cero overbooking.",
+    surface: "channels",
+  },
+  {
     id: "factura",
-    kicker: "05 · Factura DIAN",
+    kicker: "06 · Factura DIAN",
     title: "La factura se emite",
     highlight: "sola.",
     body: "Apenas se paga, su plataforma genera la factura electrónica y la reporta a la DIAN — sin que su equipo digite nada. Todo queda en su panel.",
@@ -84,7 +93,7 @@ const BEATS: Beat[] = [
   },
   {
     id: "sire",
-    kicker: "06 · Registro TRA",
+    kicker: "07 · Registro TRA",
     title: "Registra al huésped",
     highlight: "ante el MinCIT.",
     body: "Su plataforma arma y envía la Tarjeta de Registro de Alojamiento (TRA) al Ministerio de Comercio, Industria y Turismo — automático, sin planillas a mano. El reporte SIRE de extranjeros a Migración Colombia llega pronto.",
@@ -160,7 +169,7 @@ function FacturaBackoffice() {
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-[11px] text-white/50">Reserva #A-2291 · Hotel Bahía</p>
+          <p className="text-[11px] text-white/50">Reserva #A-2291 · Camila Restrepo</p>
           <p className="text-lg font-extrabold tabular-nums text-white">$900.000</p>
         </div>
         <span className="rounded-md bg-[oklch(0.62_0.15_150/0.18)] px-2 py-1 text-[10px] font-bold text-[oklch(0.74_0.16_150)]">
@@ -168,13 +177,16 @@ function FacturaBackoffice() {
         </span>
       </div>
       <div className="space-y-1.5 rounded-lg border border-white/[0.08] bg-white/[0.02] p-3 text-[12px]">
+        {/* 19 % IVA, worked backwards from the COP 900.000 the guest paid —
+            Colombian rates are quoted IVA-inclusive, and a hotelier WILL check
+            this arithmetic. 756.303 + 143.697 = 900.000 exactly. */}
         <div className="flex justify-between text-white/70">
           <span>Alojamiento + servicios</span>
-          <span className="tabular-nums">$818.182</span>
+          <span className="tabular-nums">$756.303</span>
         </div>
         <div className="flex justify-between text-white/70">
           <span>IVA (19%)</span>
-          <span className="tabular-nums">$81.818</span>
+          <span className="tabular-nums">$143.697</span>
         </div>
         <div className="flex justify-between border-t border-white/[0.08] pt-1.5 font-bold text-white">
           <span>Total</span>
@@ -188,11 +200,14 @@ function FacturaBackoffice() {
   );
 }
 
+// Same guest as the WhatsApp thread and the invoice above. The story follows
+// ONE reservation from «hola» to the MinCIT report — swapping in a different
+// name here quietly tells the reader these are four unrelated screenshots.
 const SIRE_ROWS: [string, string][] = [
-  ["Huésped", "John P."],
-  ["Documento", "X1234567"],
-  ["Nacionalidad", "Estados Unidos"],
-  ["Estadía", "12–14 jul"],
+  ["Huésped", "Camila Restrepo"],
+  ["Documento", "CC 1.0••.•••.••1"],
+  ["Nacionalidad", "Colombia"],
+  ["Estadía", "vie 12 – dom 14"],
 ];
 
 function SireBackoffice() {
@@ -299,8 +314,10 @@ function PinnedStory() {
               key={b.id}
               className={`rounded-full transition-all duration-300 ${
                 i === beat
-                  ? "h-8 w-1.5 bg-[oklch(0.74_0.185_50)]"
-                  : "h-1.5 w-1.5 bg-white/20"
+                  ? "h-8 w-1.5 brand-rail"
+                  : i < beat
+                    ? "h-1.5 w-1.5 bg-[oklch(0.77_0.165_56/0.55)]"
+                    : "h-1.5 w-1.5 bg-white/20"
               }`}
             />
           ))}
@@ -351,6 +368,19 @@ function PinnedStory() {
                     </AnimatePresence>
                   </motion.div>
                 </motion.div>
+              ) : current.surface === "channels" ? (
+                <motion.div
+                  key="channels"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="w-full"
+                >
+                  {/* `active` is unconditional here: the beat only mounts when
+                      the reader has scrolled onto it, so mounting IS the cue. */}
+                  <OtaBroadcast active />
+                </motion.div>
               ) : (
                 <motion.div
                   key="backoffice"
@@ -394,6 +424,10 @@ function MobileBeat({ beat }: { beat: Beat }) {
         <div className="mt-5 flex justify-center">
           <BackofficeVisual content={beat.content ?? "factura"} />
         </div>
+      ) : beat.surface === "channels" ? (
+        <div className="mt-6">
+          <OtaBroadcast active={inView} />
+        </div>
       ) : beat.panel && beat.panel !== "none" ? (
         <div className="mt-5 flex justify-center">
           <Panel kind={beat.panel} />
@@ -425,10 +459,10 @@ export function HotelStory() {
         <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[oklch(0.74_0.185_50)]">
           En vivo
         </p>
-        <h2 className="text-3xl font-bold tracking-tight text-white md:text-5xl">
+        <h2 className="h-section text-white">
           Vea a su agente trabajar, paso a paso.
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-[oklch(0.55_0.005_95)]">
+        <p className="mx-auto lead mt-4 max-w-xl text-[oklch(0.55_0.005_95)]">
           De un «hola» a medianoche a una reserva pagada, facturada y reportada.
           El huésped ve WhatsApp; usted lo ve todo resuelto en su plataforma.
         </p>

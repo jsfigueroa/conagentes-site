@@ -250,45 +250,54 @@ export function HotelBody() {
       {/* ——— PINNED STORY (pushed to top — show it working first) ——— */}
       <HotelStory />
 
-      {/* ——— OUTCOMES ——— */}
-      <section className="py-24 md:py-32 bg-background">
-        <div className="mx-auto max-w-7xl px-6">
-          <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
+      {/* ——— OUTCOMES ———
+          Deliberately NOT three identical centred cards. The dark pinned story
+          ends immediately above, so this section changes posture: light, left
+          aligned, an editorial two-column split with the claim held on the left
+          and the three levers as a divided list on the right. Varying the
+          rhythm section to section is the single cheapest thing that stops a
+          page reading as generated. */}
+      <section className="bg-background py-24 md:py-32">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
+          <ScrollReveal className="lg:sticky lg:top-32 lg:self-start">
             <Eyebrow>Lo que hace por su hotel</Eyebrow>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+            <h2 className="h-section text-foreground">
               Un agente que trabaja, no un software que usted opera.
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="lead mt-5 max-w-md text-muted-foreground">
               Tres palancas de ingreso que hoy dependen de que a alguien le
               sobre tiempo. Aquí pasan solas.
             </p>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <ol className="divide-y divide-border border-y border-border">
             {outcomes.map((o, i) => (
-              <ScrollReveal key={o.title} delay={i * 0.1}>
-                <div className="h-full rounded-2xl border border-border bg-card p-8 flex flex-col">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-neon/10 mb-5">
-                    <o.icon className="h-6 w-6 text-[oklch(0.64_0.19_42)]" />
+              <ScrollReveal
+                as="li"
+                key={o.title}
+                delay={i * 0.08}
+                className="group grid grid-cols-[auto_minmax(0,1fr)] gap-x-5 gap-y-3 py-8 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:py-10"
+              >
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-tint transition-transform duration-300 group-hover:-translate-y-0.5">
+                    <o.icon className="h-5 w-5 text-[oklch(0.64_0.19_42)]" />
                   </span>
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    {o.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed flex-1">
-                    {o.body}
-                  </p>
-                  <div className="mt-6 pt-5 border-t border-border">
-                    <span className="text-2xl font-extrabold text-foreground tabular-nums">
+                  <div className="min-w-0">
+                    <h3 className="h-sub text-foreground">{o.title}</h3>
+                    <p className="mt-2 max-w-prose leading-relaxed text-muted-foreground">
+                      {o.body}
+                    </p>
+                  </div>
+                  <div className="col-start-2 sm:col-start-3 sm:max-w-[13rem] sm:text-right">
+                    <span className="text-brand-gradient text-3xl font-extrabold tabular-nums">
                       {o.stat}
                     </span>
-                    <p className="text-sm text-muted-foreground mt-1">
+                    <p className="mt-1 text-[13px] leading-snug text-muted-foreground">
                       {o.statLabel}
                     </p>
                   </div>
-                </div>
               </ScrollReveal>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
@@ -297,7 +306,7 @@ export function HotelBody() {
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 md:grid-cols-2 md:gap-16">
           <ScrollReveal>
             <Eyebrow>El problema real</Eyebrow>
-            <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
+            <h2 className="h-section">
               El problema no son las OTAs. Es que su equipo no da abasto.
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-[oklch(0.72_0.005_95)]">
@@ -361,10 +370,10 @@ export function HotelBody() {
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal className="mx-auto mb-14 max-w-3xl text-center">
             <Eyebrow>El motor de ingresos</Eyebrow>
-            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+            <h2 className="h-section text-foreground">
               Su agente no espera a que le compren. Persigue la venta.
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="lead mt-4 text-muted-foreground">
               Contestar rápido es apenas el comienzo. Lo que de verdad sube su
               facturación es{" "}
               <span className="font-semibold text-foreground">
@@ -384,7 +393,7 @@ export function HotelBody() {
             <ScrollReveal>
               <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-8">
                 <span className="absolute inset-x-0 top-0 h-1 bg-brand-gradient" />
-                <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-neon/10">
+                <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-tint">
                   <RefreshCw className="h-6 w-6 text-[oklch(0.64_0.19_42)]" />
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-widest text-[oklch(0.64_0.19_42)]">
@@ -422,7 +431,7 @@ export function HotelBody() {
             <ScrollReveal delay={0.1}>
               <div className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-8">
                 <span className="absolute inset-x-0 top-0 h-1 bg-brand-gradient" />
-                <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-neon/10">
+                <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-tint">
                   <TrendingUp className="h-6 w-6 text-[oklch(0.64_0.19_42)]" />
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-widest text-[oklch(0.64_0.19_42)]">
@@ -472,10 +481,10 @@ export function HotelBody() {
         <div className="mx-auto max-w-7xl px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
             <Eyebrow>Cómo trabaja su agente</Eyebrow>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+            <h2 className="h-section text-foreground">
               Atiende, vende y cobra — donde le escriban.
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="lead mt-4 text-muted-foreground">
               Sin una app nueva para el huésped ni una línea de código para
               usted.
             </p>
@@ -485,7 +494,7 @@ export function HotelBody() {
             {capabilities.map((c, i) => (
               <ScrollReveal key={c.title} delay={i * 0.08}>
                 <div className="h-full rounded-2xl border border-border bg-card p-8 flex gap-5">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-neon/10">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-tint">
                     <c.icon className="h-6 w-6 text-[oklch(0.64_0.19_42)]" />
                   </span>
                   <div>
@@ -507,9 +516,9 @@ export function HotelBody() {
       <section className="py-20 md:py-24 bg-background">
         <div className="mx-auto max-w-5xl px-6">
           <ScrollReveal>
-            <div className="rounded-3xl border border-[oklch(0.74_0.185_50/0.25)] bg-neon/[0.06] p-8 md:p-12">
+            <div className="rounded-3xl border border-[oklch(0.77_0.165_56/0.22)] bg-brand-tint-soft p-8 md:p-12">
               <Eyebrow>Colombia</Eyebrow>
-              <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-foreground max-w-2xl">
+              <h2 className="h-sub max-w-2xl text-foreground">
                 Cumple con la ley, sin que usted piense en eso.
               </h2>
               <div className="mt-8 grid md:grid-cols-2 gap-6">
@@ -553,10 +562,10 @@ export function HotelBody() {
         <div className="mx-auto max-w-5xl px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-14">
             <Eyebrow>Cómo se paga</Eyebrow>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+            <h2 className="h-section text-foreground">
               Dos formas de trabajar con nosotros.
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="lead mt-4 text-muted-foreground">
               Usted elige. En una de las dos, solo ganamos más cuando vendemos
               por usted.
             </p>
@@ -573,8 +582,8 @@ export function HotelBody() {
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <div className="h-full rounded-2xl border-2 border-[oklch(0.74_0.185_50/0.5)] bg-neon/[0.05] p-8 relative">
-                <span className="absolute -top-3 left-8 rounded-full bg-neon px-3 py-1 text-xs font-bold text-ink">
+              <div className="relative h-full rounded-2xl border border-[oklch(0.77_0.165_56/0.35)] bg-brand-tint-soft p-8">
+                <span className="absolute -top-3 left-8 rounded-full bg-brand-gradient-strong px-3 py-1 text-xs font-bold text-white">
                   Alineado con su hotel
                 </span>
                 <h3 className="text-xl font-bold text-foreground">
@@ -593,7 +602,7 @@ export function HotelBody() {
             <MagneticButton strength={0.2}>
               <button
                 onClick={() => open("hotel-pricing")}
-                className="inline-flex items-center justify-center rounded-full bg-neon px-8 py-4 text-base font-semibold text-ink shadow-[0_0_24px_oklch(0.74_0.185_50/0.3)] hover:shadow-[0_0_36px_oklch(0.74_0.185_50/0.5)] transition-shadow cursor-pointer"
+                className="btn-brand inline-flex cursor-pointer items-center justify-center rounded-full px-8 py-4 text-base font-semibold"
               >
                 Hablemos de su hotel
               </button>
@@ -607,10 +616,10 @@ export function HotelBody() {
         <div className="mx-auto max-w-7xl px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
             <Eyebrow>Control y confianza</Eyebrow>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+            <h2 className="h-section text-foreground">
               Usted manda. Él ejecuta.
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="lead mt-4 text-muted-foreground">
               Puede confiar en él porque puede verlo todo: qué hizo, por qué y
               con qué datos.
             </p>
@@ -620,7 +629,7 @@ export function HotelBody() {
             {trust.map((t, i) => (
               <ScrollReveal key={t.title} delay={i * 0.1}>
                 <div className="h-full rounded-2xl border border-border bg-card p-8">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-neon/10 mb-5">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-tint mb-5">
                     <t.icon className="h-6 w-6 text-[oklch(0.64_0.19_42)]" />
                   </span>
                   <h3 className="text-lg font-bold text-foreground mb-2">
@@ -644,10 +653,10 @@ export function HotelBody() {
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal className="text-center mb-14">
             <Eyebrow>Toda la plataforma</Eyebrow>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+            <h2 className="h-section text-foreground">
               Cada pieza, explicada en detalle.
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="lead mx-auto mt-4 max-w-2xl text-muted-foreground">
               Sin humo: qué hace cada parte, cómo funciona y qué está en vivo,
               en piloto o en construcción.
             </p>
@@ -695,7 +704,7 @@ export function HotelBody() {
         <div className="mx-auto max-w-3xl px-6">
           <ScrollReveal className="text-center mb-14">
             <Eyebrow>Preguntas frecuentes</Eyebrow>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+            <h2 className="h-section text-foreground">
               Lo que todo hotelero pregunta.
             </h2>
           </ScrollReveal>
@@ -723,8 +732,11 @@ export function HotelBody() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full bg-[oklch(0.74_0.185_50/0.10)] blur-[130px]" />
         <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+            <h2 className="h-section text-white">
               Su próxima reserva directa está{" "}
+              {/* Same trap as the hero H1: JSX trims the newline before <br />,
+                  so without this explicit space the heading's textContent read
+                  «...directa estáesperando en WhatsApp.» */}
               <br />
               <span className="text-brand-gradient">
                 esperando en WhatsApp.
@@ -738,7 +750,7 @@ export function HotelBody() {
               <MagneticButton strength={0.2}>
                 <button
                   onClick={() => open("hotel-final")}
-                  className="inline-flex items-center justify-center rounded-full bg-neon px-8 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.74_0.185_50/0.35)] hover:shadow-[0_0_40px_oklch(0.74_0.185_50/0.55)] transition-shadow cursor-pointer"
+                  className="btn-brand inline-flex cursor-pointer items-center justify-center rounded-full px-8 py-4 text-base font-semibold"
                 >
                   Pruebe su agente IA
                 </button>

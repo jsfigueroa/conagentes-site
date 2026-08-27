@@ -102,8 +102,8 @@ export function FeaturesBentoSection() {
                   <div
                     className={`flex items-center justify-center w-12 h-12 rounded-xl mb-5 ${
                       feature.highlight
-                        ? "bg-neon text-ink"
-                        : "bg-neon/10 text-neon"
+                        ? "bg-brand-gradient-strong text-white"
+                        : "bg-brand-tint text-[oklch(0.64_0.19_42)]"
                     }`}
                   >
                     <feature.icon className="w-6 h-6" />

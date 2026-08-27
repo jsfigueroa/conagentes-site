@@ -18,9 +18,9 @@ function Mark({ k, className }: { k: MarkKey; className?: string }) {
 function LogoChip({ item, subtle }: { item: Logo; subtle?: boolean }) {
   if (item.accent) {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-lg border border-[oklch(0.74_0.185_50/0.4)] bg-neon/[0.08] px-3 py-2 text-[13px] font-bold text-[oklch(0.64_0.19_42)]">
+      <span className="inline-flex items-center gap-1.5 rounded-lg border border-[oklch(0.74_0.185_50/0.4)] bg-brand-tint-soft px-3 py-2 text-[13px] font-bold text-[oklch(0.64_0.19_42)]">
         {item.name}
-        <span className="rounded-full bg-neon px-1.5 py-0.5 text-[10px] font-bold text-ink">
+        <span className="rounded-full bg-brand-gradient-strong px-1.5 py-0.5 text-[10px] font-bold text-white">
           gratis
         </span>
       </span>
@@ -103,7 +103,7 @@ function InboxMock() {
               </p>
               <p className="truncate text-xs text-muted-foreground">{r.detail}</p>
             </div>
-            <span className="rounded-md bg-neon/10 px-2 py-1 text-[10px] font-bold text-[oklch(0.64_0.19_42)]">
+            <span className="rounded-md bg-brand-tint px-2 py-1 text-[10px] font-bold text-[oklch(0.64_0.19_42)]">
               Directa
             </span>
           </div>
@@ -187,7 +187,7 @@ export function PaymentMock() {
                 $ 420.000
               </p>
             </div>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-neon px-3 py-1.5 text-xs font-bold text-ink">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-gradient-strong px-3 py-1.5 text-xs font-bold text-white">
               <CreditCard className="h-3.5 w-3.5" /> Pagar
             </span>
           </div>
@@ -220,7 +220,7 @@ export function InvoiceMock() {
     <div className="rounded-2xl border border-border bg-card p-5 shadow-lg">
       <div className="mb-4 flex items-center justify-between">
         <p className="text-sm font-bold text-foreground">Factura electrónica</p>
-        <span className="rounded-md bg-neon/10 px-2 py-1 text-[10px] font-bold text-[oklch(0.64_0.19_42)]">
+        <span className="rounded-md bg-brand-tint px-2 py-1 text-[10px] font-bold text-[oklch(0.64_0.19_42)]">
           DIAN
         </span>
       </div>
@@ -314,10 +314,10 @@ export function IntegrationsWall() {
           <p className="text-sm font-semibold text-[oklch(0.64_0.19_42)] uppercase tracking-widest mb-4">
             Integraciones
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+          <h2 className="h-section text-foreground">
             Todo su hotel, conectado.
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="lead mt-4 text-muted-foreground">
             Su PMS, sus canales, sus pagos y la DIAN — trabajando juntos, sin que
             usted mueva un dedo.
           </p>
@@ -349,7 +349,7 @@ export function IntegrationsWall() {
                   <p className="text-xs font-semibold uppercase tracking-widest text-[oklch(0.64_0.19_42)] mb-3">
                     {f.tag}
                   </p>
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+                  <h3 className="h-sub text-foreground">
                     {f.headline}
                   </h3>
                   <p className="mt-3 text-muted-foreground leading-relaxed">

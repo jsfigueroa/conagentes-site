@@ -30,10 +30,10 @@ export function OmnichannelSection() {
           <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[oklch(0.64_0.19_42)]">
             Omnicanal
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+          <h2 className="h-section text-foreground">
             No solo en WhatsApp. En todos sus canales.
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="lead mt-4 text-muted-foreground">
             Sus huéspedes preguntan por WhatsApp, por Instagram y por los
             mensajes de Booking, Airbnb y Expedia. Su agente responde en todos
             — al instante y en una sola bandeja. Y en las OTAs, contestar rápido
@@ -59,9 +59,9 @@ export function OmnichannelSection() {
 
             <div className="h-8 w-px bg-gradient-to-b from-[oklch(0.74_0.185_50/0.5)] to-transparent" />
 
-            <div className="inline-flex items-center gap-3 rounded-2xl border-2 border-[oklch(0.74_0.185_50/0.4)] bg-neon/[0.06] px-6 py-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neon">
-                <MessageSquare className="h-5 w-5 text-ink" />
+            <div className="inline-flex items-center gap-3 rounded-2xl border-2 border-[oklch(0.74_0.185_50/0.4)] bg-brand-tint-soft px-6 py-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient-strong">
+                <MessageSquare className="h-5 w-5 text-white" />
               </span>
               <div className="text-left">
                 <p className="font-bold text-foreground">

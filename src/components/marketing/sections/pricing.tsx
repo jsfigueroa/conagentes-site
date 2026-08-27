@@ -52,8 +52,8 @@ export function PricingSection() {
           {pillars.map((p) => (
             <StaggerItem key={p.title}>
               <div className="h-full rounded-2xl border border-border bg-card p-8">
-                <span className="flex size-9 items-center justify-center rounded-full bg-neon">
-                  <Check className="w-5 h-5 text-ink" />
+                <span className="flex size-9 items-center justify-center rounded-full bg-brand-gradient-strong">
+                  <Check className="w-5 h-5 text-white" />
                 </span>
                 <h3 className="mt-5 text-lg font-bold text-foreground">
                   {p.title}
@@ -69,7 +69,7 @@ export function PricingSection() {
         <div className="mt-12 flex flex-col items-center gap-4">
           <button
             onClick={() => open("pricing")}
-            className="cursor-pointer rounded-full bg-neon px-7 py-3.5 text-sm font-semibold text-ink shadow-[0_0_20px_oklch(0.74_0.185_50/0.3)] transition-all hover:brightness-110"
+            className="btn-brand cursor-pointer rounded-full px-7 py-3.5 text-sm font-semibold"
           >
             Quiero una demo
           </button>

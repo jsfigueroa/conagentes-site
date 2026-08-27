@@ -43,7 +43,7 @@ export function FinalCtaSection() {
             <MagneticButton strength={0.2}>
               <button
                 onClick={() => open("final-cta")}
-                className="inline-flex items-center justify-center rounded-full bg-neon px-10 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.74_0.185_50/0.4)] hover:shadow-[0_0_50px_oklch(0.74_0.185_50/0.6)] transition-shadow cursor-pointer"
+                className="btn-brand inline-flex cursor-pointer items-center justify-center rounded-full px-10 py-4 text-base font-semibold"
               >
                 Pruebe su agente IA
               </button>

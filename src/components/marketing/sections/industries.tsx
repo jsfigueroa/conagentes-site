@@ -70,7 +70,7 @@ export function IndustriesSection() {
               <ul className="mt-6 flex-1 space-y-3">
                 {generalCaps.map((c) => (
                   <li key={c.label} className="flex items-center gap-3">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-neon/10">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-tint">
                       <c.icon className="h-4 w-4 text-[oklch(0.64_0.19_42)]" />
                     </span>
                     <span className="text-[15px] text-foreground">{c.label}</span>
@@ -91,16 +91,16 @@ export function IndustriesSection() {
           <ScrollReveal delay={0.1}>
             <Link
               href="/"
-              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-[oklch(0.74_0.185_50/0.45)] bg-neon/[0.05] p-8 transition-shadow hover:shadow-[0_0_40px_oklch(0.74_0.185_50/0.18)]"
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[oklch(0.77_0.165_56/0.35)] bg-brand-tint-soft p-8 transition-shadow hover:shadow-[0_18px_50px_-20px_oklch(0.55_0.235_350/0.35)]"
             >
               {/* flagship accent bar */}
               <span className="absolute inset-x-0 top-0 h-1 bg-brand-gradient" />
 
               <div className="mb-5 flex items-center justify-between">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-neon/15">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-tint">
                   <BedDouble className="h-6 w-6 text-[oklch(0.64_0.19_42)]" />
                 </span>
-                <span className="rounded-full bg-neon px-3 py-1 text-xs font-bold text-ink">
+                <span className="rounded-full bg-brand-gradient-strong px-3 py-1 text-xs font-bold text-white">
                   Producto insignia
                 </span>
               </div>
@@ -129,7 +129,7 @@ export function IndustriesSection() {
                 ))}
               </div>
 
-              <span className="mt-8 inline-flex items-center gap-2 self-start rounded-full bg-neon px-6 py-3 text-sm font-semibold text-ink shadow-[0_0_24px_oklch(0.74_0.185_50/0.25)]">
+              <span className="btn-brand mt-8 inline-flex items-center gap-2 self-start rounded-full px-6 py-3 text-sm font-semibold">
                 Ver el producto para hoteles
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>

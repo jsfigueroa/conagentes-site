@@ -36,6 +36,10 @@ function Spotlight({
       >
         <p className="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-widest text-neon">
           {eyebrow}{" "}
+          {/* The flex gap separates these visually but not in textContent —
+              without the space it read «Cumple sin esfuerzoIncluido». A
+              whitespace-only text node is ignored for flex layout, so this
+              changes nothing on screen. */}
           {badge && (
             <span className="rounded-full border border-white/[0.12] bg-white/[0.04] px-2.5 py-0.5 text-[10px] font-medium normal-case tracking-wide text-[oklch(0.62_0.005_95)]">
               {badge}

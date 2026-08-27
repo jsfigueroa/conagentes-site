@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { BedDouble, ShieldCheck } from "lucide-react";
 import { MagneticButton } from "@/components/marketing/animation/magnetic-button";
 import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
+import { ChannelOrbit } from "@/components/marketing/hotel/channel-orbit";
 import { GrainOverlay } from "@/components/marketing/hotel/grain-overlay";
 import {
   HotelPhoneThread,
@@ -36,7 +37,11 @@ function HeroPhone() {
       transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
       className="relative"
     >
+      {/* Two offset blooms instead of one orange disc — the naranja/rosa pair
+          is what makes the halo read as the brand rather than as a glow. */}
       <div className="absolute -inset-10 rounded-full bg-[oklch(0.74_0.185_50/0.10)] blur-[70px]" />
+      <div className="absolute -bottom-16 -left-10 h-56 w-56 rounded-full bg-[oklch(0.62_0.23_349/0.14)] blur-[80px]" />
+      <ChannelOrbit />
       <motion.div
         className="relative"
         animate={reduce ? {} : { y: [0, -10, 0] }}
@@ -81,7 +86,7 @@ export function HotelHero() {
         <motion.div initial="hidden" animate="show" variants={container}>
           <motion.span
             variants={word}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-[oklch(0.74_0.185_50/0.3)] bg-[oklch(0.74_0.185_50/0.08)] px-4 py-1.5 text-sm font-medium text-[oklch(0.74_0.185_50)]"
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-[oklch(0.77_0.165_56/0.28)] bg-brand-tint-soft px-4 py-1.5 text-sm font-medium text-[oklch(0.82_0.13_50)]"
           >
             <BedDouble className="h-4 w-4" /> Agente IA para hoteles y
             alojamientos
@@ -95,6 +100,11 @@ export function HotelHero() {
                 </motion.span>
               )).flatMap((el, i) => (i ? [" ", el] : [el]))}
             </span>{" "}
+            {/* That space is load-bearing. Two sibling block spans with nothing
+                between them concatenate in textContent — the H1 read as
+                «Más ingreso.Menos trabajo.» to screen readers and to crawlers
+                that walk text nodes, even though it looks right on screen. It
+                renders as nothing (whitespace between two blocks collapses). */}
             <motion.span variants={word} className="text-brand-gradient block">
               Menos trabajo.
             </motion.span>
@@ -113,7 +123,7 @@ export function HotelHero() {
             <MagneticButton strength={0.2}>
               <button
                 onClick={() => open("hotel-hero")}
-                className="inline-flex items-center justify-center rounded-full bg-neon px-8 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.74_0.185_50/0.35)] transition-shadow hover:shadow-[0_0_40px_oklch(0.74_0.185_50/0.55)] cursor-pointer"
+                className="btn-brand inline-flex cursor-pointer items-center justify-center rounded-full px-8 py-4 text-base font-semibold"
               >
                 Pruebe su agente IA
               </button>

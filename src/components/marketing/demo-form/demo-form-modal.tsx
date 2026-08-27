@@ -210,7 +210,7 @@ export function DemoFormModal() {
                   <button
                     type="submit"
                     disabled={status === "submitting"}
-                    className="w-full rounded-full bg-[oklch(0.74_0.185_50)] px-8 py-3.5 text-sm font-semibold text-[oklch(0.2_0.01_95)] shadow-[0_0_24px_oklch(0.74_0.185_50/0.3)] hover:shadow-[0_0_36px_oklch(0.74_0.185_50/0.5)] hover:brightness-105 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="btn-brand w-full rounded-full px-8 py-3.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {status === "submitting" ? (
                       <span className="inline-flex items-center gap-2">

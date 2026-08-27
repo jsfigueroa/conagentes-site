@@ -38,6 +38,7 @@ export function ValueOverviewSection() {
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
             Tres cosas que hoy no alcanza a hacer.{" "}
+            {/* Explicit space — see the hero H1. */}
             <br />
             <span className="text-neon">Su agente las hace todos los días.</span>
           </h2>
@@ -54,7 +55,7 @@ export function ValueOverviewSection() {
           {promises.map((p) => (
             <StaggerItem key={p.title}>
               <div className="h-full rounded-2xl border border-border bg-card p-8 hover:border-neon/20 transition-colors">
-                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-neon/10 text-neon mb-6">
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-brand-tint text-[oklch(0.64_0.19_42)] mb-6">
                   <p.icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">

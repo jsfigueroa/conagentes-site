@@ -55,7 +55,7 @@ function StepCard({
         <div className="absolute left-6 top-16 bottom-0 w-px bg-gradient-to-b from-neon/30 to-transparent hidden md:block" />
       )}
 
-      <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-neon text-ink font-bold text-sm shrink-0">
+      <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-brand-gradient-strong text-white font-bold text-sm shrink-0">
         {step.number}
       </div>
       <div className="pb-16">

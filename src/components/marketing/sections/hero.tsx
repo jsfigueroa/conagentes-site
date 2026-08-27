@@ -85,6 +85,8 @@ export function HeroSection() {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-white"
             >
               No es un chatbot que responde.{" "}
+              {/* Explicit space: JSX trims the newline before <br />, so without it
+                  the H1 textContent read «...que responde.Es un agente...». */}
               <br />
               <span className="text-brand-gradient">
                 Es un agente que hace crecer sus ventas.
@@ -109,7 +111,7 @@ export function HeroSection() {
               <MagneticButton strength={0.2}>
                 <button
                   onClick={() => open("hero")}
-                  className="inline-flex items-center justify-center rounded-full bg-neon px-8 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.74_0.185_50/0.3)] hover:shadow-[0_0_40px_oklch(0.74_0.185_50/0.5)] transition-shadow cursor-pointer"
+                  className="btn-brand inline-flex cursor-pointer items-center justify-center rounded-full px-8 py-4 text-base font-semibold"
                 >
                   Pruebe su agente IA
                 </button>
