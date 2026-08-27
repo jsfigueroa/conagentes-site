@@ -86,8 +86,8 @@ const BEATS: Beat[] = [
     id: "sire",
     kicker: "06 · Registro TRA",
     title: "Registra al huésped",
-    highlight: "ante el RNT.",
-    body: "Su plataforma arma y envía el registro de huéspedes (TRA) al Registro Nacional de Turismo — automático, sin planillas a mano. El reporte SIRE de extranjeros a Migración Colombia llega pronto.",
+    highlight: "ante el MinCIT.",
+    body: "Su plataforma arma y envía la Tarjeta de Registro de Alojamiento (TRA) al Ministerio de Comercio, Industria y Turismo — automático, sin planillas a mano. El reporte SIRE de extranjeros a Migración Colombia llega pronto.",
     surface: "backoffice",
     content: "sire",
   },
@@ -213,7 +213,7 @@ function SireBackoffice() {
         ))}
       </div>
       <p className="flex items-center gap-1.5 text-[11px] font-semibold text-[oklch(0.74_0.16_150)]">
-        <Check className="h-3.5 w-3.5" /> Registrado en el Registro Nacional de Turismo · TRA
+        <Check className="h-3.5 w-3.5" /> Reportado al MinCIT · TRA
       </p>
     </div>
   );
@@ -224,7 +224,7 @@ function BackofficeVisual({ content }: { content: BackofficeKind }) {
     <DashboardFrame
       title={
         content === "sire"
-          ? "Registro TRA · RNT"
+          ? "Registro TRA · MinCIT"
           : "Facturación · conagentes"
       }
     >

@@ -1402,7 +1402,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
     title: "Factura DIAN y registro TRA, sin que nadie los haga",
     lede: "Ningún hotelero abrió un hotel para llenar planillas. La factura electrónica y el registro de huéspedes son obligatorios, tediosos y caros de equivocar — y son exactamente el tipo de trabajo que un sistema debería hacer solo. En conagentes lo hace.",
     answer:
-      "conagentes automatiza el cumplimiento hotelero colombiano: emite la factura electrónica ante la DIAN al confirmarse el pago de una reserva y genera el registro de huéspedes TRA (Tarjeta de Registro de Alojamiento) ante el Registro Nacional de Turismo. Ambos están en vivo. El reporte SIRE de huéspedes extranjeros ante Migración Colombia está en construcción. Es un diferencial frente a las plataformas hoteleras globales, que no resuelven la normativa colombiana.",
+      "conagentes automatiza el cumplimiento hotelero colombiano: emite la factura electrónica ante la DIAN al confirmarse el pago de una reserva y genera el registro de huéspedes TRA (Tarjeta de Registro de Alojamiento) ante el Ministerio de Comercio, Industria y Turismo. Ambos están en vivo. El reporte SIRE de huéspedes extranjeros ante Migración Colombia está en construcción. Es un diferencial frente a las plataformas hoteleras globales, que no resuelven la normativa colombiana.",
     heroChips: [
       "Factura DIAN: en vivo",
       "Registro TRA: en vivo",
@@ -1411,7 +1411,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
     meta: {
       title: "Factura electrónica DIAN, registro TRA y SIRE para hoteles",
       description:
-        "Cumplimiento hotelero colombiano automático: factura electrónica DIAN al confirmarse el pago y registro de huéspedes TRA ante el Registro Nacional de Turismo. Reporte SIRE a Migración Colombia en construcción.",
+        "Cumplimiento hotelero colombiano automático: factura electrónica DIAN al confirmarse el pago y registro de huéspedes TRA ante el Ministerio de Comercio, Industria y Turismo. Reporte SIRE a Migración Colombia en construcción.",
     },
     keywords: [
       "factura electrónica hotel DIAN",
@@ -1427,6 +1427,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       "SIRE",
       "Tarjeta de Registro de Alojamiento",
       "Alegra",
+      "Ministerio de Comercio, Industria y Turismo",
       "RNT",
     ],
     updated: UPDATED,
@@ -1443,7 +1444,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
           },
           {
             title: "Registro de huéspedes TRA — en vivo",
-            body: "La Tarjeta de Registro de Alojamiento ante el Registro Nacional de Turismo se genera con los datos que el agente ya recogió durante la conversación. Sin volver a preguntar, sin transcribir de un formulario de papel.",
+            body: "La Tarjeta de Registro de Alojamiento ante el Ministerio de Comercio, Industria y Turismo se genera con los datos que el agente ya recogió durante la conversación. Sin volver a preguntar, sin transcribir de un formulario de papel.",
           },
           {
             title: "Reporte SIRE — en construcción",
@@ -1451,7 +1452,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
           },
           {
             title: "Por qué esto casi nadie lo tiene",
-            body: "Las plataformas de IA hotelera globales resuelven conversación, no normativa local. Construir para la DIAN y el RNT solo tiene sentido si su mercado principal es Colombia. El nuestro lo es.",
+            body: "Las plataformas de IA hotelera globales resuelven conversación, no normativa local. Construir para la DIAN y el MinCIT solo tiene sentido si su mercado principal es Colombia. El nuestro lo es.",
           },
         ],
         caption:
@@ -1536,7 +1537,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
           },
           {
             q: "¿Qué es el registro TRA y conagentes lo hace?",
-            a: "El TRA es la Tarjeta de Registro de Alojamiento: el registro de huéspedes que los prestadores de servicios turísticos deben reportar ante el Registro Nacional de Turismo. conagentes lo genera con los datos que el agente ya recogió en la conversación, sin transcripción manual. Está en vivo.",
+            a: "El TRA es la Tarjeta de Registro de Alojamiento: el registro de huéspedes que los prestadores de alojamiento turístico deben reportar al Ministerio de Comercio, Industria y Turismo (Ley 2068 de 2020). Ojo con una confusión frecuente: el Registro Nacional de Turismo (RNT) es otra cosa —es el registro del hotel, no el de sus huéspedes— y estar inscrito y activo en el RNT es requisito para poder reportar el TRA. conagentes lo genera con los datos que el agente ya recogió en la conversación, sin transcripción manual. Está en vivo.",
           },
           {
             q: "¿Y el reporte SIRE de extranjeros ante Migración Colombia?",

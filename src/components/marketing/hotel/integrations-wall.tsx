@@ -300,7 +300,7 @@ const frames: {
   {
     tag: "Facturación · Cumplimiento",
     headline: "Factura y registra, automático.",
-    body: "Emite la factura electrónica DIAN y registra a los huéspedes en el TRA (Registro Nacional de Turismo). El reporte SIRE de extranjeros a Migración Colombia llega pronto. Ningún otro agente de IA en Colombia resuelve el cumplimiento así.",
+    body: "Emite la factura electrónica DIAN y reporta el registro de huéspedes (TRA) al Ministerio de Comercio, Industria y Turismo. El reporte SIRE de extranjeros a Migración Colombia llega pronto. Es la parte que los sistemas globales no resuelven en Colombia.",
     logos: [{ name: "DIAN" }, { name: "Alegra" }, { name: "TRA" }],
     mock: <InvoiceMock />,
   },

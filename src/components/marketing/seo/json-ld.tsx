@@ -55,7 +55,7 @@ export function MarketingJsonLd({
       "Reactivación de huéspedes",
       "Recepción virtual 24/7",
       "Facturación electrónica DIAN",
-      "Registro de huéspedes TRA (Registro Nacional de Turismo)",
+      "Registro de huéspedes TRA ante el Ministerio de Comercio, Industria y Turismo",
       "Reporte SIRE de extranjeros a Migración Colombia",
       "Property Management System (PMS)",
       "Atención al cliente omnicanal con IA",
@@ -95,7 +95,7 @@ export function MarketingJsonLd({
       "PMS de hotel incluido, o conexión con el PMS existente",
       "Cobros en el chat (Wompi, Mercado Pago)",
       "Factura electrónica DIAN automática",
-      "Registro de huéspedes TRA (Registro Nacional de Turismo)",
+      "Registro de huéspedes TRA ante el Ministerio de Comercio, Industria y Turismo",
       "Reporte SIRE de extranjeros a Migración Colombia (próximamente)",
       "Bandeja omnicanal compartida con el equipo humano",
       "CRM y pipeline que se llenan solos",
@@ -137,7 +137,7 @@ export function MarketingJsonLd({
         name: "¿Cómo automatizar un hotel con inteligencia artificial?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Se automatiza conectando un agente de IA a los canales por donde escriben los huéspedes —WhatsApp, Instagram y las bandejas de las OTAs (Booking, Airbnb, Expedia)—. El agente responde al instante, consulta la disponibilidad real del PMS, cotiza habitaciones, cierra reservas directas, cobra en el chat, sube el ticket con upsell (upgrades, late check-out, tours), reactiva huéspedes anteriores, emite la factura electrónica DIAN y hace el registro de huéspedes TRA (Registro Nacional de Turismo). conagentes es la plataforma que hace esto para hoteles en Latinoamérica, con PMS incluido; el reporte SIRE de extranjeros a Migración Colombia está en construcción.",
+          text: "Se automatiza conectando un agente de IA a los canales por donde escriben los huéspedes —WhatsApp, Instagram y las bandejas de las OTAs (Booking, Airbnb, Expedia)—. El agente responde al instante, consulta la disponibilidad real del PMS, cotiza habitaciones, cierra reservas directas, cobra en el chat, sube el ticket con upsell (upgrades, late check-out, tours), reactiva huéspedes anteriores, emite la factura electrónica DIAN y hace el registro de huéspedes TRA ante el Ministerio de Comercio, Industria y Turismo. conagentes es la plataforma que hace esto para hoteles en Latinoamérica, con PMS incluido; el reporte SIRE de extranjeros a Migración Colombia está en construcción.",
         },
       },
       {
@@ -169,7 +169,7 @@ export function MarketingJsonLd({
         name: "¿conagentes emite factura DIAN y hace los reportes TRA y SIRE?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Sí a la factura electrónica DIAN y al registro de huéspedes TRA (Registro Nacional de Turismo): ambos se generan automáticamente al confirmarse el pago de la reserva. El reporte SIRE de extranjeros a Migración Colombia está en construcción y llega pronto. Son tres reportes distintos.",
+          text: "Sí a la factura electrónica DIAN y al registro de huéspedes TRA —la Tarjeta de Registro de Alojamiento, que se reporta al Ministerio de Comercio, Industria y Turismo—: ambos se generan automáticamente al confirmarse el pago de la reserva. El reporte SIRE de extranjeros a Migración Colombia está en construcción y llega pronto. Son tres reportes distintos.",
         },
       },
       {

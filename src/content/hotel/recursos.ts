@@ -56,7 +56,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
         body: [
           "Automatizar un hotel con IA no es poner un chatbot en la página web. Es darle a un agente de inteligencia artificial acceso controlado a los sistemas del hotel —disponibilidad, tarifas, servicios, pagos, facturación— y ponerlo a atender en los canales donde el huésped ya escribe, con reglas claras sobre lo que puede y no puede hacer.",
           "La diferencia práctica es esta: un chatbot informa, un agente ejecuta. Un chatbot dice «tenemos habitaciones desde $280.000»; un agente consulta el PMS, responde que queda una doble superior a $395.000 para esas fechas, la aparta, manda el link de pago, confirma y emite la factura. Lo primero entretiene al huésped. Lo segundo vende.",
-          "Y en Colombia hay una capa más que casi ninguna herramienta global resuelve: el cumplimiento. Un hotel colombiano tiene que emitir factura electrónica ante la DIAN y reportar el registro de huéspedes TRA ante el Registro Nacional de Turismo. Si su automatización no llega hasta ahí, deja la mitad del trabajo administrativo intacto.",
+          "Y en Colombia hay una capa más que casi ninguna herramienta global resuelve: el cumplimiento. Un hotel colombiano tiene que emitir factura electrónica ante la DIAN y reportar el registro de huéspedes TRA al Ministerio de Comercio, Industria y Turismo. Si su automatización no llega hasta ahí, deja la mitad del trabajo administrativo intacto.",
         ],
       },
       {

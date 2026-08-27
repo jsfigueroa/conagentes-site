@@ -357,7 +357,7 @@ const REPORTES = [
   },
   {
     nombre: "Registro de huéspedes TRA",
-    detalle: "Tarjeta de Registro de Alojamiento ante el Registro Nacional de Turismo",
+    detalle: "Tarjeta de Registro de Alojamiento ante el Ministerio de Comercio, Industria y Turismo",
     estado: "En vivo",
     icon: FileCheck2,
   },

@@ -89,7 +89,7 @@ const hotelJsonLd = {
           "Recepción virtual 24/7",
           "PMS incluido o conexión con el existente",
           "Cobros en el chat y factura electrónica DIAN",
-          "Registro de huéspedes TRA (Registro Nacional de Turismo)",
+          "Registro de huéspedes TRA ante el Ministerio de Comercio, Industria y Turismo",
           "Reporte SIRE de extranjeros a Migración Colombia (próximamente)",
         ].map((name) => ({
           "@type": "Offer",

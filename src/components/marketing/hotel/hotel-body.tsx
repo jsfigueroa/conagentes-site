@@ -230,7 +230,7 @@ const faqs = [
   },
   {
     q: "¿Cumple con la DIAN, el TRA y el SIRE?",
-    a: "Sí a la factura electrónica DIAN y al registro de huéspedes TRA (Registro Nacional de Turismo), hoy mismo. El reporte SIRE de extranjeros a Migración Colombia está en construcción y llega pronto.",
+    a: "Sí a la factura electrónica DIAN y al registro de huéspedes TRA —la Tarjeta de Registro de Alojamiento, que se reporta al Ministerio de Comercio, Industria y Turismo—, hoy mismo. El reporte SIRE de extranjeros a Migración Colombia está en construcción y llega pronto.",
   },
 ];
 
@@ -532,8 +532,9 @@ export function HotelBody() {
                       Registro TRA
                     </h3>
                     <p className="text-muted-foreground mt-1">
-                      Registra a los huéspedes ante el Registro Nacional de
-                      Turismo. Reporte SIRE de extranjeros, muy pronto.
+                      Reporta el registro de huéspedes al Ministerio de
+                      Comercio, Industria y Turismo. Reporte SIRE de
+                      extranjeros, muy pronto.
                     </p>
                   </div>
                 </div>

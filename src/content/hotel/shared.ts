@@ -29,6 +29,7 @@ export const ENTIDADES_BASE = [
   "Colombia",
   "WhatsApp Business API",
   "DIAN",
+  "Ministerio de Comercio, Industria y Turismo",
   "Registro Nacional de Turismo",
   "Booking.com",
   "Airbnb",
