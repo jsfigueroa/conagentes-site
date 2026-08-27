@@ -677,13 +677,13 @@ export function HotelBody() {
                       >
                         <span>
                           <span className="block text-[15px] font-semibold text-foreground">
-                            {l.label}
+                            {l.label}{" "}
                             {l.badge && (
                               <span className="ml-2 rounded-full border border-border bg-card px-1.5 py-0.5 align-middle text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
                                 {l.badge}
                               </span>
                             )}
-                          </span>
+                          </span>{" "}
                           <span className="mt-0.5 block text-[13.5px] leading-snug text-muted-foreground">
                             {l.body}
                           </span>
