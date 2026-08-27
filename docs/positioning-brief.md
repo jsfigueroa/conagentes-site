@@ -151,7 +151,7 @@ Observed identically across Salesforce, HubSpot, Zendesk, Intercom, Twilio, Sier
 
 Duve's named logo wall ("Your technology works better together") is the model. Group by category; **label live vs coming-soon honestly** (don't over-claim):
 - **PMS que conectamos:** Cloudbeds · LobbyPMS · Loggro/Ayenda · Mews *(real adapters in `src/lib/pms/adapters/`)*
-- **Canales / channel manager:** Channex → Booking, Airbnb, Expedia *(reach)*
+- **Canales / channel manager:** Booking, Airbnb, Expedia *(reach)* — el proveedor NO se nombra en el sitio
 - **Pagos:** Wompi *(live)* · Mercado Pago *(CON-154, built)* — PSE/Nequi via Wompi
 - **Facturación / DIAN:** Alegra *(live)* · Siigo *(built)*
 - **Canales de mensajería:** WhatsApp · Instagram

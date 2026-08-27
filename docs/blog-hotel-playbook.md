@@ -111,7 +111,7 @@ usa exactamente el mismo vocabulario de tres estados que las páginas de
   WhatsApp para gerencia, atención multiidioma con detección automática.
 - **«En piloto»** — construido, activándose con los primeros hoteles:
   mensajería de OTAs (Booking, Airbnb, Expedia), Revenue Manager, agente de voz
-  telefónico, conexión con PMS externos y channel manager (Channex).
+  telefónico, conexión con PMS externos y channel managers.
 - **«En construcción»** — todavía no: reporte SIRE a Migración Colombia.
 
 Errores que **no** se cometen:

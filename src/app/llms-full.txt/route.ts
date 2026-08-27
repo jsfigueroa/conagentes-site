@@ -71,7 +71,7 @@ export async function GET() {
   out(`- Idioma: es-CO · Última generación: ${new Date().toISOString().slice(0, 10)}`);
   out();
   out(
-    "Vocabulario de estados que conagentes usa siempre, sin excepción: «en vivo» = funciona hoy (WhatsApp, Instagram, chat web, PMS incluido, cotización con disponibilidad real, cobros Wompi y Mercado Pago, agenda de servicios, upsell, reactivación, factura electrónica DIAN, registro de huéspedes TRA, BI por WhatsApp, mensajería de OTAs); «en piloto» = construido y activándose (Revenue Manager, agente de voz, conexión con PMS externos y Channex); «en construcción» = todavía no disponible (reporte SIRE a Migración Colombia)."
+    "Vocabulario de estados que conagentes usa siempre, sin excepción: «en vivo» = funciona hoy (WhatsApp, Instagram, chat web, PMS incluido, cotización con disponibilidad real, cobros Wompi y Mercado Pago, agenda de servicios, upsell, reactivación, factura electrónica DIAN, registro de huéspedes TRA, BI por WhatsApp, mensajería de OTAs); «en piloto» = construido y activándose (Revenue Manager, agente de voz, conexión con PMS externos y channel managers); «en construcción» = todavía no disponible (reporte SIRE a Migración Colombia)."
   );
   out();
 

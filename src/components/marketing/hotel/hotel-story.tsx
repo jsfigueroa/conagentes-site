@@ -79,7 +79,7 @@ const BEATS: Beat[] = [
     kicker: "05 · Cierra el inventario",
     title: "Y la habitación deja de",
     highlight: "venderse en todos lados.",
-    body: "En el mismo segundo, la reserva baja el cupo en Booking, Airbnb, Expedia, Despegar y los 61 canales que conecta Channex. Nadie más puede reservar esa habitación. Cero overbooking.",
+    body: "En el mismo segundo, la reserva baja el cupo en Booking, Airbnb, Expedia, Despegar y otros 57 canales. Nadie más puede reservar esa habitación. Cero overbooking.",
     surface: "channels",
   },
   {

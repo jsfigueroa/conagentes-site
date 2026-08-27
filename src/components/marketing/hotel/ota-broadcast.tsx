@@ -14,17 +14,23 @@ import { BRAND_MARKS } from "@/components/marketing/hotel/brand-marks";
  * quiet. It is also the anti-overbooking argument, which is the fear that
  * actually keeps them off automation.
  *
- * FACTUAL BASIS — Channex publishes 61 OTA and booking-channel connections
- * (channex.io, integrations directory). Booking.com, Airbnb, Expedia and
- * Despegar all have published Channex mapping guides, so naming those four and
+ * FACTUAL BASIS — 61 OTA and booking-channel connections, verified against our
+ * channel-manager integration's published directory, with Booking.com, Airbnb,
+ * Expedia and Despegar each individually confirmed. So naming those four and
  * calling the rest «+57 canales» is exact, not marketing rounding.
+ *
+ * NEVER NAME THE CHANNEL-MANAGER VENDOR ON THE SITE (founder's call). Naming
+ * the supplier tells competitors how the plumbing works and invites the client
+ * to wonder why they don't go to it directly. The coverage is ours to claim;
+ * the vendor is not part of the story. This applies to visible copy, `entities`
+ * arrays, keywords, llms.txt and blog posts alike.
  *
  * GEO — every channel name, the count and the inventory delta are real DOM text
  * inside an <ol>/<figcaption>; the animation only moves opacity, transform and
  * pathLength on nodes that are already in the HTML.
  */
 
-const CHANNEX_TOTAL = 61;
+const CONNECTED_CHANNELS = 61;
 
 type Node = { name: string; mark?: keyof typeof BRAND_MARKS; rest?: boolean };
 
@@ -33,7 +39,7 @@ const NODES: Node[] = [
   { name: "Airbnb", mark: "airbnb" },
   { name: "Expedia", mark: "expedia" },
   { name: "Despegar" },
-  { name: `+${CHANNEX_TOTAL - 4} canales más`, rest: true },
+  { name: `+${CONNECTED_CHANNELS - 4} canales más`, rest: true },
 ];
 
 /** Stage geometry, in the SVG's own coordinate space. */
@@ -263,8 +269,8 @@ export function OtaBroadcast({ active }: { active?: boolean }) {
         <span className="font-semibold text-white">
           Doble Superior: 3 → 2 disponibles.
         </span>{" "}
-        La habitación deja de venderse en los {CHANNEX_TOTAL} canales que conecta
-        Channex, en segundos. Sin overbooking, sin cerrar cupos a mano.
+        La habitación deja de venderse en los {CONNECTED_CHANNELS} canales
+        conectados, en segundos. Sin overbooking, sin cerrar cupos a mano.
       </figcaption>
     </figure>
   );

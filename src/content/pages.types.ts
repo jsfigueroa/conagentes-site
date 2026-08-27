@@ -23,8 +23,17 @@
  *  3. Numbers are always accompanied by their unit and their source framing in
  *     plain text, so the claim survives being extracted alone.
  *  4. Every page names its entities (DIAN, TRA, SIRE, Booking.com, WhatsApp
- *     Business API, Wompi, Channex, Cotelco…) in prose, and lists them in
+ *     Business API, Wompi, Cotelco…) in prose, and lists them in
  *     `entities` so they land in JSON-LD `mentions`.
+ *  5. SUPPLIERS ARE NOT ENTITIES. Never name the channel-manager vendor, or any
+ *     other piece of infrastructure we resell, anywhere the public can read it:
+ *     visible copy, `answer`, `keywords`, `entities`, `logos` marks, footnotes,
+ *     llms.txt or a blog post. Founder's call, and the reasoning generalises:
+ *     naming the supplier hands competitors our build sheet and invites the
+ *     client to ask why they don't just go to it directly. Claim the capability
+ *     ("se sincroniza con más de sesenta canales"), never the plumbing. The
+ *     integrations we want named are the ones the CLIENT already pays for and
+ *     recognises — their PMS, their OTAs, their payment gateway.
  */
 
 /* ————— shared visual primitives ————— */

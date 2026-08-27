@@ -39,7 +39,6 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
       "Instagram",
       "Wompi",
       "Mercado Pago",
-      "Channex",
       "Migración Colombia",
       "Cotelco",
       "SIRE",
@@ -210,7 +209,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
           },
           {
             q: "¿Tengo que cambiar mi PMS?",
-            a: "No. conagentes incluye un PMS sin costo adicional para hoteles que no tienen o que quieren cambiar, y se conecta con el PMS o channel manager existente para los que ya trabajan con uno. La conexión con PMS externos y con el channel manager Channex está en piloto.",
+            a: "No. conagentes incluye un PMS sin costo adicional para hoteles que no tienen o que quieren cambiar, y se conecta con el PMS o channel manager existente para los que ya trabajan con uno. La conexión con PMS externos y con channel managers está en piloto.",
           },
           {
             q: "¿Reemplaza a mi recepción?",
@@ -244,7 +243,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
     title: "No cambie sus herramientas. Las conectamos",
     lede: "La mayoría de los proyectos de tecnología hotelera se caen por lo mismo: exigen que el hotel cambie todo al mismo tiempo. Nosotros trabajamos sobre lo que usted ya tiene — su PMS, su channel manager, sus OTAs, su pasarela de pago, su contador.",
     answer:
-      "conagentes se integra con el PMS o channel manager que el hotel ya usa, con las OTAs (Booking.com, Airbnb, Expedia y las regionales conectadas al channel manager Channex), con las pasarelas de pago colombianas (Wompi y Mercado Pago, con PSE y Nequi) y con la facturación electrónica ante la DIAN. Si el hotel no tiene PMS, incluye uno sin costo adicional.",
+      "conagentes se integra con el PMS o channel manager que el hotel ya usa, con las OTAs (Booking.com, Airbnb, Expedia y las regionales conectadas al channel manager), con las pasarelas de pago colombianas (Wompi y Mercado Pago, con PSE y Nequi) y con la facturación electrónica ante la DIAN. Si el hotel no tiene PMS, incluye uno sin costo adicional.",
     heroChips: [
       "Su PMS o el nuestro, usted decide",
       "OTAs sincronizadas vía channel manager",
@@ -260,11 +259,9 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
       "conectar channel manager con WhatsApp",
       "integración Booking Airbnb hotel software",
       "API PMS hotelero",
-      "Channex Colombia",
     ],
     entities: [
       ...ENTIDADES_BASE,
-      "Channex",
       "LobbyPMS",
       "Cloudbeds",
       "Mews",
@@ -283,7 +280,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
         groups: [
           {
             label: "PMS y channel managers",
-            marks: ["PMS incluido de conagentes", "LobbyPMS", "Cloudbeds", "Mews", "Channex"],
+            marks: ["PMS incluido de conagentes", "LobbyPMS", "Cloudbeds", "Mews"],
           },
           {
             label: "OTAs y distribución",
@@ -303,7 +300,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
           },
         ],
         footnote:
-          "Las marcas pertenecen a sus respectivos dueños y se mencionan para indicar compatibilidad. El PMS incluido, los canales de conversación, los pagos y la facturación DIAN están en vivo; la conexión con PMS externos y la sincronización con OTAs vía Channex están en piloto con los primeros hoteles.",
+          "Las marcas pertenecen a sus respectivos dueños y se mencionan para indicar compatibilidad. El PMS incluido, los canales de conversación, los pagos y la facturación DIAN están en vivo; la conexión con PMS externos y la sincronización con OTAs están en piloto con los primeros hoteles.",
       },
       {
         type: "features",
@@ -339,7 +336,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
         items: [
           {
             q: "¿Con qué PMS se integra conagentes?",
-            a: "Trabaja con su propio PMS incluido y se conecta con PMS y channel managers de mercado —incluidos LobbyPMS, Cloudbeds, Mews y Channex— por API o por puente de channel manager. Si su sistema no está en la lista, lo evaluamos antes de comprometer nada. Las conexiones con PMS externos están en piloto.",
+            a: "Trabaja con su propio PMS incluido y se conecta con PMS y channel managers de mercado —incluidos LobbyPMS, Cloudbeds y Mews— por API o por puente de channel manager. Si su sistema no está en la lista, lo evaluamos antes de comprometer nada. Las conexiones con PMS externos están en piloto.",
           },
           {
             q: "¿Cuánto cuesta la integración?",

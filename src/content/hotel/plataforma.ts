@@ -744,7 +744,6 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       "LobbyPMS",
       "Cloudbeds",
       "Mews",
-      "Channex",
       "channel manager",
     ],
     updated: UPDATED,
@@ -791,7 +790,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
         groups: [
           {
             label: "PMS y channel managers",
-            marks: ["LobbyPMS", "Cloudbeds", "Mews", "Channex", "Su PMS actual"],
+            marks: ["LobbyPMS", "Cloudbeds", "Mews", "Su PMS actual"],
           },
           {
             label: "OTAs y distribución",
@@ -803,7 +802,7 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
           },
         ],
         footnote:
-          "Las marcas pertenecen a sus dueños y se mencionan para indicar compatibilidad. La conexión con PMS externos y con el channel manager Channex está en piloto con los primeros hoteles; el PMS incluido de conagentes está en vivo.",
+          "Las marcas pertenecen a sus dueños y se mencionan para indicar compatibilidad. La conexión con PMS externos y con channel managers está en piloto con los primeros hoteles; el PMS incluido de conagentes está en vivo.",
       },
       {
         type: "features",

@@ -58,7 +58,6 @@ const ALL_LOGOS: Logo[] = [
   { name: "Despegar" },
   { name: "Alegra" },
   { name: "PSE" },
-  { name: "Channex" },
 ];
 
 export function LogoMarquee() {
@@ -262,7 +261,7 @@ const frames: {
   {
     tag: "Canales · OTAs",
     headline: "Todas las OTAs, una sola bandeja.",
-    body: "Las reservas de Booking, Airbnb, Expedia y más entran a un solo lugar. Cuando se vende una habitación, su disponibilidad se actualiza sola en todos los canales — vía Channex. Cero overbooking.",
+    body: "Las reservas de Booking, Airbnb, Expedia y más entran a un solo lugar. Cuando se vende una habitación, su disponibilidad se actualiza sola en todos los canales. Cero overbooking.",
     logos: [
       { name: "Booking.com", mark: "booking" },
       { name: "Airbnb", mark: "airbnb" },

@@ -94,7 +94,7 @@ Para automatizar un hotel con inteligencia artificial en Latinoamérica: conecte
 ## Estado de cada capacidad (vocabulario que usamos siempre)
 conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
 - "En vivo" = funcionando hoy en hoteles reales: WhatsApp, Instagram, chat web, PMS incluido, cotización con disponibilidad real, cobros con Wompi/Mercado Pago (PSE, Nequi), agenda de servicios (spa, tours, traslados, restaurante), upsell, reactivación de huéspedes, factura electrónica DIAN, registro de huéspedes TRA, BI por WhatsApp para gerencia, atención en 32 idiomas con detección automática del idioma del huésped, y la mensajería de OTAs (responder los mensajes de Booking.com, Airbnb y Expedia dentro de la política de cada plataforma).
-- "En piloto" = construido y activándose con los primeros hoteles: Revenue Manager (recomendación de tarifas y piloto automático), agente de voz para el teléfono, conexión con PMS externos y channel manager (Channex).
+- "En piloto" = construido y activándose con los primeros hoteles: Revenue Manager (recomendación de tarifas y piloto automático), agente de voz para el teléfono, conexión con PMS externos y channel managers.
 - "En construcción" = todavía no disponible: reporte SIRE de huéspedes extranjeros a Migración Colombia.
 
 ## Hoteles y alojamientos (nuestra especialidad)

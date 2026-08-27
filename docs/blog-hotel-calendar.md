@@ -34,7 +34,7 @@ Reglas para escribirlos: `docs/blog-hotel-playbook.md`.
 | 18 | IVA para huéspedes extranjeros: cuándo es 0 % y qué papeles exige | `cumplimiento-hotelero` | exención IVA hoteles extranjeros | `/hoteles/factura-dian-sire` | Art. 481 lit. d + estado de la reforma; verificar vigencia |
 | 19 | Un hotel de veinte habitaciones: qué automatizar primero | `operacion-hotelera` | automatizar hotel pequeño | `/hoteles/automatizar-hotel-con-ia` | Orden del pilar, sin contradecirlo |
 | 20 | Cómo saber si su tarifa está barata sin espiar hotel por hotel | `revenue-management` | cómo fijar tarifas hotel | `/hoteles/revenue-manager` | Revenue Manager = en piloto |
-| 21 | Channel manager: para qué sirve y cuándo no lo necesita | `tecnologia-hotelera` | qué es un channel manager | `/hoteles/integraciones` | Channex = en piloto |
+| 21 | Channel manager: para qué sirve y cuándo no lo necesita | `tecnologia-hotelera` | qué es un channel manager | `/hoteles/integraciones` | sincronización con OTAs = en piloto · NO nombrar al proveedor |
 | 22 | Grupos y eventos: cotizar rápido para no perder el negocio | `operacion-hotelera` | cotizar grupos hotel | `/hoteles/agenda-servicios` | Sin prometer cotizador de grupos automático |
 | 23 | Temporada alta en Colombia: calendario de demanda y qué preparar | `mercado-hotelero` | temporada alta hotelera Colombia | `/hoteles/revenue-manager` | Fechas y festivos verificados |
 | 24 | La cuenta completa: qué recupera en un año un hotel de treinta habitaciones | `reservas-directas` | ROI software hotelero | `/hoteles/resultados` | Marcar como escenario, con supuestos visibles |

@@ -86,7 +86,7 @@ Top level: **Plataforma ▾ · Soluciones ▾ · Integraciones · Recursos ▾ �
 - **Soluciones ▾**
   - *Por objetivo:* Reservas directas · Upsell y ancillaries · Reactivación de huéspedes · Recepción 24/7 · Cumplimiento (DIAN/SIRE)
   - *Por rol:* Recepción / reservas · Revenue · Gerencia (GM)
-- **Integraciones** (link → PMS + channel-manager directory: Cloudbeds, LobbyPMS, Loggro·Ayenda, Mews, Channex…)
+- **Integraciones** (link → PMS + channel-manager directory: Cloudbeds, LobbyPMS, Loggro·Ayenda, Mews…)
 - **Recursos ▾** — Blog hotelero · Guías · Casos de éxito · Resultados/ROI · Centro de ayuda
 - **Precios** (link → the two-plan model, quote-only — see positioning-brief §5)
 - Header also: logo → general site + "¿No es hotelero? →" cross-link.
