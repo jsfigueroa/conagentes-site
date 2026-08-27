@@ -186,7 +186,7 @@ export function SpotlightsSection() {
           highlight="se vuelve más inteligente"
           body="Cuando hay algo que no sabe, no inventa: le pregunta a su equipo por WhatsApp, le responde al cliente con esa información y la guarda para siempre. Cada semana atiende mejor, sin que usted lo entrene."
           bullets={[
-            "Nunca responde “no sé” dos veces",
+            "Nunca responde «no sé» dos veces",
             "Aprende de las respuestas de su equipo",
             "Usted deja de responder lo mismo una y otra vez",
           ]}

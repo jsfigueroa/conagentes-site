@@ -775,7 +775,7 @@ export const GENERAL_PAGES: MarketingPage[] = [
         items: [
           { title: "A la medida", body: "El plan depende de su volumen, sus canales y sus objetivos." },
           { title: "Sin sorpresas", body: "Precio claro desde el inicio. Sabe qué paga y por qué." },
-          { title: "Paga cuando sale en vivo", body: "Configura, entrena y prueba su agente antes de activar el cobro." },
+          { title: "Paga al salir en vivo", body: "Configure, entrene y pruebe su agente con sus datos. El cobro empieza cuando usted decide activarlo." },
         ],
       },
       {

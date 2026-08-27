@@ -1,5 +1,5 @@
 import type { MarketingPage } from "../pages.types";
-import { DATOS, ENTIDADES_BASE, HOTEL_CTA, UPDATED } from "./shared";
+import { DATOS, ENTIDADES_BASE, UPDATED } from "./shared";
 
 /**
  * CANALES — the surfaces the agent works on that need their own explanation
@@ -200,7 +200,11 @@ export const HOTEL_CANALES: MarketingPage[] = [
       { label: "Recepción 24/7", href: "/hoteles/recepcion-24-7" },
       { label: "Resultados y ROI", href: "/hoteles/resultados" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Quiere que los mensajes de sus OTAs se respondan solos?",
+      sub: "Veinte minutos y le mostramos cómo quedaría su bandeja con Booking, Airbnb y Expedia adentro — y qué hace el agente para que ese huésped vuelva directo.",
+      button: "Quiero ver mi bandeja",
+    },
   },
 
   /* ────────────────────────── voz ────────────────────────── */

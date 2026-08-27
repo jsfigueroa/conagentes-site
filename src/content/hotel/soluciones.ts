@@ -1,5 +1,5 @@
 import type { MarketingPage } from "../pages.types";
-import { DATOS, ENTIDADES_BASE, HOTEL_CTA, UPDATED } from "./shared";
+import { DATOS, ENTIDADES_BASE, UPDATED } from "./shared";
 
 /**
  * SOLUCIONES — outcomes, by objective. These pages sell the result and link to
@@ -154,7 +154,11 @@ export const HOTEL_SOLUCIONES: MarketingPage[] = [
       { label: "Recepción 24/7", href: "/hoteles/recepcion-24-7" },
       { label: "Resultados y ROI", href: "/hoteles/resultados" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Cuánto le está costando responder tarde?",
+      sub: "Veinte minutos con sus números de OTA y sale sabiendo cuánta comisión puede dejar de pagar este semestre.",
+      button: "Quiero mi cuenta de comisión",
+    },
   },
 
   /* ─────────────────────── upsell ─────────────────────── */
@@ -348,7 +352,11 @@ export const HOTEL_SOLUCIONES: MarketingPage[] = [
       { label: "Reactivación de huéspedes", href: "/hoteles/reactivacion" },
       { label: "Revenue Manager", href: "/hoteles/revenue-manager" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Cuánto más vale cada estadía de su hotel?",
+      sub: "Veinte minutos con su tarifa y sus servicios y le mostramos qué deja el upsell cuando alguien lo ofrece siempre, en el momento correcto.",
+      button: "Quiero mi cuenta de upsell",
+    },
   },
 
   /* ────────────────────── reactivación ────────────────────── */
@@ -521,7 +529,11 @@ export const HOTEL_SOLUCIONES: MarketingPage[] = [
       { label: "Reservas directas", href: "/hoteles/reservas-directas" },
       { label: "Gerencia y BI", href: "/hoteles/gerencia" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Cuántos huéspedes anteriores tiene guardados?",
+      sub: "Veinte minutos y le mostramos qué se puede hacer con esa base: a quién escribirle, cuándo y con qué mensaje.",
+      button: "Quiero activar mi base",
+    },
   },
 
   /* ────────────────────── gerencia / BI ────────────────────── */
@@ -632,7 +644,11 @@ export const HOTEL_SOLUCIONES: MarketingPage[] = [
       { label: "Resultados y ROI", href: "/hoteles/resultados" },
       { label: "Control y seguridad", href: "/hoteles/control-y-seguridad" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "Pregúntele a su hotel cómo va",
+      sub: "Veinte minutos y le mostramos qué le respondería su hotel por WhatsApp un domingo a las nueve de la noche.",
+      button: "Quiero probarlo por WhatsApp",
+    },
   },
 
   /* ────────────────────── resultados / ROI ────────────────────── */

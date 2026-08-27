@@ -1,5 +1,5 @@
 import type { MarketingPage } from "../pages.types";
-import { DATOS, ENTIDADES_BASE, HOTEL_CTA, UPDATED } from "./shared";
+import { DATOS, ENTIDADES_BASE, UPDATED } from "./shared";
 
 /**
  * PLATAFORMA — how the machine works. Each page here is the CANONICAL
@@ -304,7 +304,11 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       { label: "PMS incluido", href: "/hoteles/pms" },
       { label: "Precios", href: "/hoteles/precios" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "Véalo atender a un huésped suyo",
+      sub: "Le mostramos al agente cotizando y cerrando con las habitaciones y las tarifas reales de su hotel, no con un ejemplo genérico.",
+      button: "Quiero verlo con mis datos",
+    },
   },
 
   /* ──────────────────── el agente de administración ──────────────────── */
@@ -484,7 +488,11 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       { label: "Control y seguridad", href: "/hoteles/control-y-seguridad" },
       { label: "Revenue Manager", href: "/hoteles/revenue-manager" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "Véalo analizar y ejecutar",
+      sub: "Veinte minutos: el segundo agente respondiendo con los números de un hotel como el suyo y ejecutando un cambio de tarifa con su aprobación.",
+      button: "Quiero ver el segundo agente",
+    },
   },
 
   /* ─────────────────────── recepción 24/7 ─────────────────────── */
@@ -697,7 +705,11 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       { label: "Recepción telefónica con IA", href: "/hoteles/voz" },
       { label: "Control y seguridad", href: "/hoteles/control-y-seguridad" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Qué pasa hoy con el mensaje de las 11 p. m.?",
+      sub: "Veinte minutos y le mostramos su recepción trabajando de noche: una sola bandeja, todos los canales, nada sin responder.",
+      button: "Quiero ver mi recepción 24/7",
+    },
   },
 
   /* ───────────────────────────── PMS ───────────────────────────── */
@@ -840,7 +852,11 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       { label: "Revenue Manager", href: "/hoteles/revenue-manager" },
       { label: "Precios", href: "/hoteles/precios" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Empezamos con el PMS incluido o conectamos el suyo?",
+      sub: "Veinte minutos y le decimos exactamente cómo quedaría su hotel por cualquiera de los dos caminos. Sin cambiar nada todavía.",
+      button: "Quiero saber cómo conectarlo",
+    },
   },
 
   /* ───────────────────── revenue manager ───────────────────── */
@@ -1222,7 +1238,11 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       { label: "Cobros en el chat", href: "/hoteles/cobros" },
       { label: "El agente IA", href: "/hoteles/agente-ia" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Cuánto deja el spa que hoy nadie ofrece?",
+      sub: "Veinte minutos con sus servicios y le mostramos cómo el agente los propone, los agenda y los cobra dentro de la conversación.",
+      button: "Quiero ver mi agenda de servicios",
+    },
   },
 
   /* ────────────────────────── cobros ────────────────────────── */
@@ -1367,7 +1387,11 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       { label: "Reservas directas", href: "/hoteles/reservas-directas" },
       { label: "PMS incluido", href: "/hoteles/pms" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Cuántas reservas se le enfrían esperando la transferencia?",
+      sub: "Veinte minutos y le mostramos el cobro dentro del chat: el anticipo que pida su política, la confirmación automática y la factura.",
+      button: "Quiero cobrar en el chat",
+    },
   },
 
   /* ───────────────── cumplimiento colombiano ───────────────── */
@@ -1534,7 +1558,11 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       { label: "PMS incluido", href: "/hoteles/pms" },
       { label: "Control y seguridad", href: "/hoteles/control-y-seguridad" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Cuántas horas al mes se le van en la DIAN y el TRA?",
+      sub: "Veinte minutos y le mostramos las dos cosas emitiéndose solas, con los datos de su hotel y sin que nadie digite nada.",
+      button: "Quiero ver el cumplimiento automático",
+    },
   },
 
   /* ──────────────── control, confianza y seguridad ──────────────── */
@@ -1662,6 +1690,10 @@ export const HOTEL_PLATAFORMA: MarketingPage[] = [
       { label: "Recepción 24/7", href: "/hoteles/recepcion-24-7" },
       { label: "Gerencia y BI", href: "/hoteles/gerencia" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "Póngale las preguntas difíciles",
+      sub: "Tráiganos el caso que más le preocupa y le mostramos qué hace el agente cuando no sabe la respuesta, cuando le piden un descuento y cuando el huésped se molesta.",
+      button: "Quiero ponerlo a prueba",
+    },
   },
 ];

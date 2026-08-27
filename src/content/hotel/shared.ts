@@ -6,13 +6,7 @@
  */
 
 /** Date of the last substantive content review → schema `dateModified`. */
-export const UPDATED = "2026-08-19";
-
-export const HOTEL_CTA = {
-  title: "Vea a su agente llenar el hotel",
-  sub: "Veinte minutos. Con sus habitaciones, sus tarifas y sus políticas reales — no una demo genérica.",
-  button: "Pruebe su agente IA",
-};
+export const UPDATED = "2026-08-27";
 
 /**
  * AVAILABILITY VOCABULARY — use these three words and nothing else, on every

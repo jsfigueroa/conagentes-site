@@ -100,7 +100,7 @@ export function HotelHero() {
               ))}
             </span>
             <motion.span variants={word} className="text-brand-gradient block">
-              que llena su hotel.
+              que le hace ganar más por habitación.
             </motion.span>
           </h1>
 
@@ -108,9 +108,10 @@ export function HotelHero() {
             variants={word}
             className="mt-6 max-w-lg text-lg leading-relaxed text-[oklch(0.65_0.005_95)]"
           >
-            Atiende a cada huésped donde escriba —WhatsApp, Instagram y las OTAs—, reserva directo, sube el valor de
-            cada estadía y recupera a los que se enfriaron — 24/7. Usted aprueba;
-            un humano toma el control cuando hace falta.
+            Llenar el hotel no basta: su agente hace que cada noche se venda
+            directo, a su tarifa y con algo más encima. Atiende por WhatsApp,
+            Instagram y las OTAs, 24/7 y en 32 idiomas — sin una persona más en
+            recepción. Usted aprueba; su equipo toma el control cuando quiera.
           </motion.p>
 
           <motion.div variants={word} className="mt-9 flex flex-col gap-4 sm:flex-row">

@@ -19,11 +19,11 @@ export const metadata: Metadata = {
   ),
   title: {
     default:
-      "conagentes — El agente IA que llena su hotel o alojamiento | WhatsApp 24/7",
+      "conagentes — El agente IA para hoteles que le hace ganar más por habitación",
     template: "%s | conagentes",
   },
   description:
-    "Agentes de IA para hoteles y alojamientos de Colombia y Latinoamérica: atienden por WhatsApp, Instagram y las bandejas de las OTAs, cierran reservas directas, suben el valor de cada estadía y cobran en el chat. PMS incluido y factura DIAN — 24/7.",
+    "Agentes de IA para hoteles y alojamientos de Colombia y Latinoamérica: cierran reservas directas sin comisión, suben el valor de cada estadía, recuperan huéspedes y cobran en el chat — por WhatsApp, Instagram y las bandejas de las OTAs. PMS incluido y factura DIAN, 24/7.",
   keywords: [
     "agente IA para hoteles",
     "automatizar hotel con inteligencia artificial",

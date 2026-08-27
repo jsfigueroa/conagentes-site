@@ -146,7 +146,7 @@ const outcomes = [
   {
     icon: CalendarCheck,
     title: "Más reservas directas",
-    body: "Responde y reserva al instante, a cualquier hora — sin crecer el equipo. Cada consulta que se contesta a tiempo es una reserva que no se pierde.",
+    body: "Responde y reserva al instante, a cualquier hora, sin crecer el equipo. Cada consulta contestada a tiempo es una noche que vende usted — y una comisión que no le paga a una OTA.",
     stat: "Hasta 40%",
     statLabel: "de las consultas llegan fuera del horario de recepción.",
   },
@@ -259,7 +259,8 @@ export function HotelBody() {
               Un agente que trabaja, no un software que usted opera.
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Tres cosas que le mueven la aguja al hotel — y que pasan solas.
+              Tres palancas de ingreso que hoy dependen de que a alguien le
+              sobre tiempo. Aquí pasan solas.
             </p>
           </ScrollReveal>
 
@@ -373,7 +374,8 @@ export function HotelBody() {
               <span className="font-semibold text-foreground">
                 subir el ticket de cada estadía
               </span>{" "}
-              — y eso solo pasa cuando alguien hace seguimiento, siempre.
+              — sin bajar la tarifa para lograrlo. Y eso solo pasa cuando
+              alguien hace seguimiento, siempre.
             </p>
           </ScrollReveal>
 
@@ -474,7 +476,8 @@ export function HotelBody() {
               Atiende, vende y cobra — donde le escriban.
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Donde ya le escriben sus huéspedes, sin apps nuevas ni códigos.
+              Sin una app nueva para el huésped ni una línea de código para
+              usted.
             </p>
           </ScrollReveal>
 
@@ -537,7 +540,7 @@ export function HotelBody() {
               </div>
               <p className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[oklch(0.64_0.19_42)]">
                 <Sparkles className="h-4 w-4" />
-                Ningún otro agente de IA en Colombia lo hace.
+                Es la parte que los sistemas globales no resuelven en Colombia.
               </p>
             </div>
           </ScrollReveal>
@@ -602,13 +605,13 @@ export function HotelBody() {
       <section className="py-24 md:py-28 bg-secondary">
         <div className="mx-auto max-w-7xl px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-            <Eyebrow>Usted manda</Eyebrow>
+            <Eyebrow>Control y confianza</Eyebrow>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
               Usted manda. Él ejecuta.
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Un agente IA en el que puede confiar porque puede
-              supervisarlo.
+              Puede confiar en él porque puede verlo todo: qué hizo, por qué y
+              con qué datos.
             </p>
           </ScrollReveal>
 

@@ -24,7 +24,7 @@ const promises = [
     icon: Sparkles,
     title: "Se anticipa",
     description:
-      "Aprende cómo compra su gente y le dice a quién buscar para vender más — antes que su competencia.",
+      "Aprende cómo compra cada cliente, calcula cuándo va a volver a pedir y le dice a quién buscar esta semana.",
   },
 ];
 
@@ -37,12 +37,12 @@ export function ValueOverviewSection() {
             Su nuevo equipo de ventas
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-            No es otro chatbot.
+            Tres cosas que hoy no alcanza a hacer.
             <br />
-            <span className="text-neon">Es quien hace crecer su negocio.</span>
+            <span className="text-neon">Su agente las hace todos los días.</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Un agente IA que vende, organiza y se anticipa — donde ya le
+            Vende, ordena y se anticipa — en el mismo WhatsApp donde ya le
             escriben sus clientes.
           </p>
         </ScrollReveal>

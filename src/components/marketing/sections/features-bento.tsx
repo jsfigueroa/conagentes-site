@@ -51,9 +51,9 @@ const features = [
   },
   {
     icon: RefreshCw,
-    title: "Conecte su contabilidad",
+    title: "Se sincroniza con su contabilidad",
     description:
-      "Sus clientes, productos y ventas se sincronizan con su sistema contable. Sus libros siempre al día, sin doble digitación.",
+      "Sus clientes, productos y ventas pasan solos a su sistema contable. Los libros al día, sin doble digitación.",
     span: "",
     highlight: false,
   },
@@ -73,14 +73,14 @@ export function FeaturesBentoSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-sm font-semibold text-neon uppercase tracking-widest mb-4">
-            Y mucho más
+            Detalles que importan
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
             Todo lo que su negocio necesita, en un solo lugar
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Más allá del recorrido, conagentes trae todo lo que espera de una
-            plataforma completa.
+            Lo que no cabe en el recorrido de arriba, pero se nota todos los
+            días en la operación.
           </p>
         </ScrollReveal>
 

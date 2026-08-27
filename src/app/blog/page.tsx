@@ -19,7 +19,7 @@ export async function generateMetadata({
   return {
     title: page > 1 ? `Blog (página ${page})` : "Blog",
     description:
-      "Artículos prácticos sobre IA, automatización y CRM para PYMEs en Latinoamérica. Aprende a usar la tecnología para crecer tu negocio.",
+      "Artículos prácticos sobre IA, automatización y CRM para pymes en Latinoamérica. Aprenda a usar la tecnología para hacer crecer su negocio.",
     alternates: {
       // Self-canonical per page; page 1 is the clean /blog URL.
       canonical: page > 1 ? `/blog?page=${page}` : "/blog",
@@ -62,7 +62,7 @@ export default async function BlogPage({
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl">
           Ideas prácticas sobre inteligencia artificial, automatización y
-          herramientas digitales para hacer crecer tu negocio.
+          herramientas digitales para hacer crecer su negocio.
         </p>
 
         {/* The hotel hub is where we publish now — send readers and crawlers

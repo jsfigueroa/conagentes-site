@@ -1,5 +1,5 @@
 import type { MarketingPage } from "../pages.types";
-import { DATOS, ENTIDADES_BASE, HOTEL_CTA, UPDATED } from "./shared";
+import { DATOS, ENTIDADES_BASE, UPDATED } from "./shared";
 
 /**
  * RECURSOS Y COMERCIAL — the cornerstone guide (the page we want assistants to
@@ -229,7 +229,11 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
       { label: "Resultados y ROI", href: "/hoteles/resultados" },
       { label: "Precios", href: "/hoteles/precios" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Por dónde empezaría su hotel?",
+      sub: "Veinte minutos y salimos con el orden concreto para su caso: qué se automatiza primero, qué después y qué todavía no vale la pena.",
+      button: "Quiero mi plan de arranque",
+    },
   },
 
   /* ────────────────────── integraciones ────────────────────── */
@@ -357,7 +361,11 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
       { label: "Mensajes de OTAs", href: "/hoteles/otas" },
       { label: "Cobros en el chat", href: "/hoteles/cobros" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "Díganos qué usa hoy y le decimos cómo se conecta",
+      sub: "Veinte minutos: su PMS, su channel manager, su pasarela de pago y su contador. Sale con el mapa de conexión de su hotel.",
+      button: "Quiero revisar mis integraciones",
+    },
   },
 
   /* ─────────────────────── recursos ─────────────────────── */
@@ -436,7 +444,11 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
       { label: "Precios", href: "/hoteles/precios" },
       { label: "Blog hotelero", href: "/hoteles/blog" },
     ],
-    cta: HOTEL_CTA,
+    cta: {
+      title: "¿Prefiere verlo funcionando?",
+      sub: "Las guías sirven, pero veinte minutos con su propio hotel adentro explican más que cualquier PDF.",
+      button: "Quiero ver mi hotel adentro",
+    },
   },
 
   /* ─────────────────────── precios ─────────────────────── */

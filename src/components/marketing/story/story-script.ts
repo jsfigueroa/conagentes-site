@@ -96,7 +96,7 @@ export const CHAT_SCRIPT: StoryChatMessage[] = [
   {
     id: "c5",
     sender: "ai",
-    text: "Listo, te armo el pedido completo con precios 👇",
+    text: "Listo, le armo el pedido completo con precios 👇",
   },
 ];
 

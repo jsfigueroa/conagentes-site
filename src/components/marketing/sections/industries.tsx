@@ -82,7 +82,7 @@ export function IndustriesSection() {
                 onClick={() => open("industries-general")}
                 className="mt-8 inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
               >
-                Solicitar una demo
+                Quiero una demo
               </button>
             </div>
           </ScrollReveal>
@@ -112,9 +112,9 @@ export function IndustriesSection() {
                 conagentes para hoteles.
               </h3>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                El agente IA que llena su hotel: reserva directo, sube el
-                valor de cada estadía y recupera huéspedes. Un producto completo,
-                hecho para hotelería.
+                El agente IA que le hace ganar más por habitación: cierra la
+                reserva directa, sube el valor de cada estadía y recupera
+                huéspedes. Un producto completo, hecho para hotelería.
               </p>
 
               <div className="mt-6 flex flex-1 flex-wrap content-start gap-2">

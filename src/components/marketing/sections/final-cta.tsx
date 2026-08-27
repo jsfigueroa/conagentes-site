@@ -25,16 +25,16 @@ export function FinalCtaSection() {
       <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight">
-            Su competencia ya empezó.
+            Cada mensaje sin responder
             <br />
-            <span className="text-neon">¿Y usted?</span>
+            <span className="text-neon">es una venta que se enfría.</span>
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={0.15}>
           <p className="mt-6 text-lg text-[oklch(0.55_0.005_95)] max-w-xl mx-auto">
-            Del primer mensaje a la próxima recompra, su agente se encarga.
-            Agende una demo y vea cómo funciona en su negocio.
+            Del primer «hola» a la próxima recompra, su agente se encarga.
+            Pídanos una demo y véalo trabajar con sus productos y sus precios.
           </p>
         </ScrollReveal>
 
@@ -45,7 +45,7 @@ export function FinalCtaSection() {
                 onClick={() => open("final-cta")}
                 className="inline-flex items-center justify-center rounded-full bg-neon px-10 py-4 text-base font-semibold text-ink shadow-[0_0_30px_oklch(0.74_0.185_50/0.4)] hover:shadow-[0_0_50px_oklch(0.74_0.185_50/0.6)] transition-shadow cursor-pointer"
               >
-                Solicitar demo gratis
+                Pruebe su agente IA
               </button>
             </MagneticButton>
           </div>

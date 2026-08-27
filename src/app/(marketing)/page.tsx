@@ -6,13 +6,13 @@ import { MarketingFaqJsonLd } from "@/components/marketing/seo/json-ld";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
 const description =
-  "Un agente IA que atiende por WhatsApp, reserva directo, sube el valor de cada estadía y recupera huéspedes — 24/7 y en 32 idiomas. PMS incluido, factura DIAN y registro de huéspedes TRA (reporte SIRE en camino). Para hoteles, aparta-hoteles y alquiler vacacional en Colombia.";
+  "Un agente IA que cierra la reserva directa sin comisión, sube el valor de cada estadía y recupera huéspedes — por WhatsApp, Instagram y las OTAs, 24/7 y en 32 idiomas. PMS incluido, factura DIAN y registro de huéspedes TRA (reporte SIRE en camino). Para hoteles, aparta-hoteles y alquiler vacacional en Colombia.";
 
 export const metadata: Metadata = {
   // No brand suffix here: the root layout's metadata template already appends
   // "| conagentes". The openGraph/twitter titles below are NOT templated, so
   // those keep the brand for shared links.
-  title: "El agente IA que llena su hotel",
+  title: "El agente IA que le hace ganar más por habitación",
   description,
   keywords: [
     "software para hoteles Colombia",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     locale: "es_CO",
     url: SITE_URL,
     siteName: "conagentes",
-    title: "conagentes para hoteles — El agente IA que llena su hotel",
+    title: "conagentes para hoteles — El agente IA que le hace ganar más por habitación",
     description,
     images: [
       {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "conagentes para hoteles — El agente IA que llena su hotel",
+    title: "conagentes para hoteles — El agente IA que le hace ganar más por habitación",
     description,
     images: [`${SITE_URL}/opengraph-image`],
   },

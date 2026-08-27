@@ -11,21 +11,21 @@ const steps = [
     icon: Smartphone,
     title: "Conecte su WhatsApp",
     description:
-      "Vincule su número de WhatsApp Business en minutos, con un par de clics. Sin código ni desarrolladores.",
+      "Vincule su número de WhatsApp Business con un par de clics. Su número y su marca, sobre la API oficial de Meta.",
   },
   {
     number: "02",
     icon: Cpu,
     title: "Cargue su negocio",
     description:
-      "Suba sus productos, precios e información. Su agente aprende cómo vende y responde como lo haría usted.",
+      "Suba sus productos, sus precios y sus políticas. Su agente responde con esa información — y solo con esa.",
   },
   {
     number: "03",
     icon: Rocket,
-    title: "Empiece a vender",
+    title: "Pruébelo y enciéndalo",
     description:
-      "Su agente atiende 24/7, arma pedidos, ordena todo en su panel y le avisa a quién buscar. Usted solo cierra ventas.",
+      "Ensáyelo con conversaciones reales y sálgale en vivo cuando esté conforme. Desde ahí atiende 24/7, arma pedidos y le avisa a quién buscar.",
   },
 ];
 
@@ -79,14 +79,14 @@ export function HowItWorksSection() {
       <div className="mx-auto max-w-7xl px-6">
         <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-sm font-semibold text-neon uppercase tracking-widest mb-4">
-            Simple de implementar
+            Puesta en marcha
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-            Listo en 3 pasos
+            Tres pasos para ponerlo a vender
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Sin desarrolladores. Sin integraciones complejas. Ponga a trabajar
-            su agente IA en minutos.
+            Sin desarrolladores y sin proyectos de meses: lo montamos con
+            usted, lo prueba con sus datos y usted decide cuándo sale en vivo.
           </p>
         </ScrollReveal>
 

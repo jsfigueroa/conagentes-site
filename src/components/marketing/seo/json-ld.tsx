@@ -34,7 +34,7 @@ export function MarketingJsonLd({
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
     image: `${SITE_URL}/logo.png`,
-    slogan: "El agente IA que llena su hotel",
+    slogan: "El agente IA que le hace ganar más por habitación",
     description:
       "conagentes crea agentes de inteligencia artificial para hoteles y alojamientos de Colombia y Latinoamérica: atienden a los huéspedes por WhatsApp, Instagram y las bandejas de las OTAs, cierran reservas directas, suben el valor de cada estadía con upsell, reactivan huéspedes anteriores, cobran en el chat y emiten factura electrónica DIAN con registro de huéspedes TRA (el reporte SIRE de extranjeros está en construcción). Incluye un PMS hotelero sin costo adicional. Sirve a hoteles independientes y boutique, aparta-hoteles, alquiler vacacional y anfitriones de Airbnb, hostales, fincas y glamping. La misma plataforma atiende a otros negocios que venden por WhatsApp (comercio, servicios, clínicas, academias), pero el hospedaje es su especialidad.",
     foundingDate: "2026",

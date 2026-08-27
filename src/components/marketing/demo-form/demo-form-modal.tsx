@@ -120,11 +120,10 @@ export function DemoFormModal() {
                   />
                 </motion.div>
                 <h3 className="mt-4 text-xl font-bold text-[oklch(0.2_0.01_95)]">
-                  ¡Solicitud enviada!
+                  ¡Listo, ya la recibimos!
                 </h3>
                 <p className="mt-2 text-[oklch(0.55_0.008_95)]">
-                  Nos comunicaremos contigo en menos de 24 horas para agendar tu
-                  demo personalizada.
+                  Le escribimos en menos de 24 horas para coordinar su demo.
                 </p>
                 <button
                   onClick={close}
@@ -136,11 +135,11 @@ export function DemoFormModal() {
             ) : (
               <>
                 <h3 className="text-2xl font-bold text-[oklch(0.2_0.01_95)]">
-                  Agenda tu demo gratis
+                  Agende su demo
                 </h3>
                 <p className="mt-2 text-sm text-[oklch(0.55_0.008_95)]">
-                  Descubre cómo la IA puede transformar tu negocio. Sin
-                  compromiso.
+                  Se la mostramos con sus datos reales: sus precios, su
+                  información y sus políticas. Sin costo y sin compromiso.
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -157,7 +156,7 @@ export function DemoFormModal() {
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Tu nombre completo"
+                      placeholder="Nombre y apellido"
                       className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.74_0.185_50)] focus:ring-2 focus:ring-[oklch(0.74_0.185_50/0.2)] transition-all"
                     />
                   </div>
@@ -175,7 +174,7 @@ export function DemoFormModal() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="tu@empresa.com"
+                      placeholder="nombre@suempresa.com"
                       className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.74_0.185_50)] focus:ring-2 focus:ring-[oklch(0.74_0.185_50/0.2)] transition-all"
                     />
                   </div>
@@ -216,7 +215,7 @@ export function DemoFormModal() {
                     {status === "submitting" ? (
                       <span className="inline-flex items-center gap-2">
                         <Loader2 size={16} className="animate-spin" />
-                        Enviando...
+                        Enviando…
                       </span>
                     ) : (
                       "Solicitar demo"

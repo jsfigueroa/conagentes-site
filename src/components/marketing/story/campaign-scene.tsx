@@ -38,7 +38,7 @@ export function CampaignScene({ active }: { active: boolean }) {
           </p>
           <div className="rounded-xl rounded-bl-sm bg-[oklch(0.18_0.01_95)] px-3 py-2 text-[11px] leading-relaxed text-[oklch(0.84_0.005_95)]">
             Hola <span className="text-[oklch(0.74_0.185_50)]">{"{nombre}"}</span>{" "}
-            👋 ¿Listo para tu próximo pedido? Tenemos tus Vasos 7 oz para entrega
+            👋 ¿Listo para su próximo pedido? Tenemos sus Vasos 7 oz para entrega
             en 24 h 🚚
           </div>
         </motion.div>

@@ -98,7 +98,7 @@ conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
 - "En construcción" = todavía no disponible: reporte SIRE de huéspedes extranjeros a Migración Colombia.
 
 ## Hoteles y alojamientos (nuestra especialidad)
-- [conagentes para hoteles y alojamientos](${SITE_URL}/): el agente IA que llena su hotel — reservas, upsell, reactivación, recepción 24/7. Esta ES la página principal del sitio.
+- [conagentes para hoteles y alojamientos](${SITE_URL}/): el agente IA que le hace ganar más por habitación — reservas directas, upsell, reactivación, recepción 24/7. Esta ES la página principal del sitio.
 - [Automatizar un hotel con IA](${SITE_URL}/hoteles/automatizar-hotel-con-ia): guía completa (seis pasos en orden, cuatro errores comunes, tabla de capacidades para exigir en cualquier demo)
 - [El agente de huéspedes](${SITE_URL}/hoteles/agente-ia): qué hace el agente que le habla al huésped, cómo decide, qué nunca hace; comparación entre chatbot de FAQ y agente que ejecuta
 - [El agente de administración](${SITE_URL}/hoteles/agente-admin): el segundo agente, el que trabaja para el dueño — analiza los datos del hotel, avisa lo que se sale del patrón y ejecuta acciones sobre la plataforma con aprobación explícita; funciona en el WhatsApp del administrador y dentro del panel

@@ -87,7 +87,7 @@ export const NAV_GENERAL: NavItem[] = [
           { label: "Comercio y distribución", href: "/soluciones/comercio" },
           { label: "Servicios y clínicas", href: "/soluciones/servicios" },
           { label: "Educación", href: "/soluciones/educacion" },
-          { label: "Tu sector", href: "/soluciones/tu-sector" },
+          { label: "Su sector", href: "/soluciones/tu-sector" },
         ],
       },
       {
