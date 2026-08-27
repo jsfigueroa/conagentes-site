@@ -166,10 +166,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Producto",
     title: "Una sola bandeja para WhatsApp, Instagram y web",
     lede: "Todas sus conversaciones en un solo lugar, compartidas con su equipo. El agente atiende; su gente entra cuando quiere, sin perder el hilo.",
+    answer:
+      "La bandeja de conagentes reúne WhatsApp, Instagram y el chat web del sitio en un solo lugar compartido con el equipo. El agente IA responde solo, y cualquier persona puede tomar la conversación con un clic y devolvérsela después. Cada chat llega con el historial del cliente, sus etiquetas y su responsable, así que nadie repite preguntas.",
+    heroChips: [
+      "Tres canales, una bandeja",
+      "Traspaso IA ↔ humano en un clic",
+      "Con historial y etiquetas",
+    ],
     meta: {
       title: "Bandeja omnicanal",
       description: "WhatsApp, Instagram y webchat en una bandeja compartida. El agente IA atiende y su equipo toma el control cuando hace falta.",
     },
+    keywords: [
+      "bandeja unificada WhatsApp Instagram",
+      "inbox compartido para equipos de ventas",
+      "software de atención al cliente omnicanal Colombia",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -181,13 +195,20 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Etiquetas y equipos", body: "Organice por prioridad, área o responsable. Asignación automática opcional." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Puedo responder yo una conversación que está atendiendo la IA?", a: "Sí. La toma con un clic y el agente deja de responder en ese chat; cuando termina, se la devuelve igual de fácil." },
+          { q: "¿Se distingue quién respondió, la IA o una persona?", a: "Sí. Cada mensaje queda marcado con su autor, así que el historial siempre dice quién dijo qué." },
+          { q: "¿Puedo repartir las conversaciones entre mi equipo?", a: "Sí: etiquetas, equipos y asignación por responsable, con reparto automático opcional." },
+        ],
+      },
     ],
     related: [
       { label: "Agentes IA", href: "/producto/agentes-ia" },
       { label: "Canal: WhatsApp", href: "/producto/canales/whatsapp" },
       { label: "Atención 24/7", href: "/soluciones/atencion-24-7" },
     ],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -196,10 +217,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Producto",
     title: "Un CRM que se llena solo",
     lede: "Cada conversación se convierte en un contacto y una oportunidad en su pipeline. Cero digitación, cero clientes que se pierden en el olvido.",
+    answer:
+      "El CRM de conagentes se llena solo: cada conversación por WhatsApp, Instagram o web crea y actualiza el contacto, y lo mueve por el pipeline según lo que pasa en el chat. El equipo ve en qué etapa está cada oportunidad sin digitar nada, y el agente retoma por su cuenta a quien dejó de responder.",
+    heroChips: [
+      "Se llena sin digitar",
+      "Pipeline visual por etapas",
+      "El agente retoma solo",
+    ],
     meta: {
       title: "CRM y pipeline",
       description: "El agente convierte cada chat en un contacto y una oportunidad de venta. Pipeline visual, sin digitar nada.",
     },
+    keywords: [
+      "CRM que se llena solo desde WhatsApp",
+      "pipeline de ventas por WhatsApp",
+      "CRM para pymes Colombia con IA",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -211,12 +246,19 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Lead calificado, a su correo", body: "Cuando alguien muestra intención real de comprar, usted se entera al instante." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Tengo que pasar los datos a mano?", a: "No. El contacto se crea y se actualiza desde la conversación; el equipo no digita nada." },
+          { q: "¿Puedo usar el CRM que ya tengo?", a: "Depende de cuál sea. El de conagentes viene incluido; si ya usa otro, lo revisamos en la demo." },
+          { q: "¿Cómo sé cuándo alguien está listo para comprar?", a: "El agente evalúa la intención real en la conversación y avisa cuando hay señales concretas de compra, no cuando alguien solo pregunta el precio." },
+        ],
+      },
     ],
     related: [
       { label: "Campañas y reactivación", href: "/producto/campanas" },
       { label: "Recuperar clientes", href: "/soluciones/reactivacion" },
     ],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -225,10 +267,32 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Producto",
     title: "Cobra en el chat y factura ante la DIAN — solo",
     lede: "El agente arma el pedido, manda el link de pago y emite la factura electrónica automáticamente. Sin salir de la conversación.",
+    answer:
+      "En conagentes el cobro y la factura ocurren dentro de la conversación: el agente arma el pedido, envía un link de pago de Wompi o Mercado Pago —con tarjeta, PSE o Nequi—, detecta el pago, confirma la venta y emite la factura electrónica ante la DIAN. Consumidor final por defecto, o a nombre del cliente si lo pide.",
+    heroChips: [
+      "Link de pago en el chat",
+      "Factura DIAN automática",
+      "Wompi o Mercado Pago",
+    ],
     meta: {
       title: "Cobros y factura electrónica DIAN",
       description: "Link de pago en el chat (Wompi / Mercado Pago) y factura electrónica automática ante la DIAN. Cobro y cumplimiento, en un solo flujo.",
     },
+    keywords: [
+      "cobrar por WhatsApp con link de pago Colombia",
+      "factura electrónica DIAN automática WhatsApp",
+      "integrar Wompi con WhatsApp",
+      "PSE y Nequi en WhatsApp",
+    ],
+    entities: [
+      ...ENTIDADES_GENERAL,
+      "Wompi",
+      "Mercado Pago",
+      "PSE",
+      "Nequi",
+      "Alegra",
+    ],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "steps",
@@ -239,12 +303,19 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Factura ante la DIAN", body: "Emite la factura electrónica automáticamente y la entrega en PDF. Consumidor final por defecto; a nombre del cliente si lo pide." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿La plata llega a mi cuenta o a la de ustedes?", a: "A la suya. La pasarela es del negocio; conagentes no es intermediario del dinero." },
+          { q: "¿La factura sirve ante la DIAN?", a: "Sí, es factura electrónica válida y se entrega en PDF. Por defecto sale a consumidor final; si el cliente da su NIT o cédula, sale a su nombre." },
+          { q: "¿Qué pasa si el cliente no paga?", a: "El pedido queda pendiente y el agente hace seguimiento. La venta solo se confirma cuando la pasarela reporta el pago." },
+        ],
+      },
     ],
     related: [
       { label: "Cobros y facturación (solución)", href: "/soluciones/cobros" },
       { label: "Integraciones", href: "/integraciones" },
     ],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -253,10 +324,25 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Producto",
     title: "Agenda, confirma y recuerda citas sola",
     lede: "Para servicios y clínicas: el agente ofrece los horarios disponibles, agenda, confirma y recuerda — y llena su calendario sin llamadas.",
+    answer:
+      "El agente IA de conagentes agenda citas dentro del chat: ofrece los horarios realmente libres, confirma, envía recordatorios antes de la cita y reprograma si el cliente no puede. Atiende a cualquier hora, así que la agenda se llena sin llamadas y las ausencias bajan sin que nadie tenga que perseguir confirmaciones por teléfono.",
+    heroChips: [
+      "Horarios reales, no genéricos",
+      "Recordatorios automáticos",
+      "Reprograma sin llamadas",
+    ],
     meta: {
       title: "Agenda y citas",
       description: "El agente IA agenda, confirma y recuerda citas por WhatsApp. Menos ausencias, agenda llena, sin llamadas.",
     },
+    keywords: [
+      "agendar citas por WhatsApp",
+      "software de agendamiento para clínicas Colombia",
+      "reducir ausencias en citas",
+      "confirmación de citas automática",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -267,12 +353,19 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Reprograma solo", body: "Si el cliente no puede, el agente reubica la cita sin fricción." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿De dónde saca los horarios disponibles?", a: "De la agenda real del negocio. No propone un horario que ya esté ocupado." },
+          { q: "¿Manda recordatorios?", a: "Sí, antes de la cita, por el mismo chat donde se agendó." },
+          { q: "¿Y si el cliente quiere cambiar la cita?", a: "El agente le ofrece los horarios libres que quedan y la reubica, sin que nadie del equipo intervenga." },
+        ],
+      },
     ],
     related: [
       { label: "Servicios y clínicas", href: "/soluciones/servicios" },
       { label: "Atención 24/7", href: "/soluciones/atencion-24-7" },
     ],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -281,10 +374,25 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Producto",
     title: "Campañas y reactivación por WhatsApp",
     lede: "Reactive clientes dormidos y lance campañas con permiso, sin quemar su número. El agente hace el seguimiento uno a uno.",
+    answer:
+      "conagentes permite lanzar campañas por WhatsApp con plantillas aprobadas por Meta y reactivar clientes uno a uno: el agente detecta quién lleva tiempo sin comprar, le escribe con un motivo concreto y atiende la conversación que se abre. No es un envío masivo a ciegas, sino una conversación real dentro de las reglas de WhatsApp.",
+    heroChips: [
+      "Plantillas aprobadas por Meta",
+      "Segmentado por comportamiento",
+      "El agente atiende la respuesta",
+    ],
     meta: {
       title: "Campañas y reactivación",
       description: "Reactivación de clientes y campañas por WhatsApp con buenas prácticas anti-bloqueo. Seguimiento uno a uno, no envíos masivos ciegos.",
     },
+    keywords: [
+      "campañas de WhatsApp para empresas Colombia",
+      "reactivar clientes por WhatsApp",
+      "envío masivo WhatsApp sin que bloqueen el número",
+      "plantillas WhatsApp Business API",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -295,12 +403,19 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Conversación, no spam", body: "Cada mensaje abre una conversación real que el agente atiende y cierra." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Me pueden bloquear el número?", a: "Ese es el riesgo real de los envíos masivos. Por eso se usan plantillas aprobadas por Meta, con límites y buenas prácticas de la API oficial." },
+          { q: "¿A quién le escribe?", a: "A segmentos definidos por comportamiento de compra —por ejemplo, quienes están por volver a pedir—, no a toda la base." },
+          { q: "¿Quién responde cuando el cliente contesta?", a: "El agente, al instante, y escala a una persona si hace falta." },
+        ],
+      },
     ],
     related: [
       { label: "Recuperar clientes", href: "/soluciones/reactivacion" },
       { label: "CRM y pipeline", href: "/producto/crm-pipeline" },
     ],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -309,10 +424,25 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Producto",
     title: "Pregúntele a su negocio por WhatsApp",
     lede: "«¿Cómo vamos hoy?» y el agente le responde con ventas, productos top, funnel y alertas. Business intelligence sin abrir un tablero.",
+    answer:
+      "En conagentes el dueño o el administrador le escribe al agente por WhatsApp —«¿cómo vamos hoy?»— y recibe los números del negocio en español: ventas, productos más vendidos, estado del embudo y alertas cuando algo se sale de lo normal. El tablero completo sigue en el panel, para quien prefiera verlo con detalle.",
+    heroChips: [
+      "Pregunte en español",
+      "Alertas cuando algo se sale",
+      "Tablero, si lo prefiere",
+    ],
     meta: {
       title: "Analítica y BI",
       description: "Business intelligence conversacional: pregunte por WhatsApp cómo va su negocio y reciba ventas, top productos y funnel al instante.",
     },
+    keywords: [
+      "business intelligence por WhatsApp",
+      "ver ventas del negocio por WhatsApp",
+      "BI para dueños de pyme sin tablero",
+      "reportes de ventas automáticos WhatsApp",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -323,12 +453,19 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Tablero cuando lo quiera", body: "Y si prefiere verlo, tiene el panel completo en el dashboard." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Necesito saber de tableros o de datos?", a: "No. Se pregunta en español como se le hablaría a un empleado, y el agente responde con las cifras." },
+          { q: "¿Cualquiera puede preguntar por los números?", a: "No. Solo los teléfonos que el negocio registre como administradores." },
+          { q: "¿De dónde salen las cifras?", a: "De las operaciones reales del negocio dentro de la plataforma: conversaciones, pedidos, pagos y facturas." },
+        ],
+      },
     ],
     related: [
       { label: "BI para dueños", href: "/soluciones/bi" },
       { label: "CRM y pipeline", href: "/producto/crm-pipeline" },
     ],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -337,10 +474,28 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Producto",
     title: "Seguridad y cumplimiento, sin letra menuda",
     lede: "Sus datos aislados por negocio, tratamiento de datos conforme a la Ley 1581 (Habeas Data) y factura electrónica al día con la DIAN.",
+    answer:
+      "conagentes aísla la información de cada negocio, trata los datos personales conforme a la Ley 1581 de 2012 (Habeas Data) y emite factura electrónica válida ante la DIAN. Sobre el agente, el negocio define reglas y límites, ve el registro de cada acción que tomó y puede tomar el control o apagarlo en cualquier momento.",
+    heroChips: [
+      "Datos aislados por negocio",
+      "Ley 1581 (Habeas Data)",
+      "Cada acción del agente, registrada",
+    ],
     meta: {
       title: "Seguridad y cumplimiento",
       description: "Aislamiento de datos por negocio, cumplimiento de Habeas Data (Ley 1581) y factura electrónica DIAN. Seguridad desde el diseño.",
     },
+    keywords: [
+      "seguridad de datos chatbot IA Colombia",
+      "Ley 1581 habeas data software",
+      "protección de datos personales WhatsApp empresas",
+      "control y trazabilidad de agentes IA",
+    ],
+    entities: [
+      ...ENTIDADES_GENERAL,
+      "Ley 1581 de 2012",
+    ],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -352,9 +507,16 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Usted controla al agente", body: "Reglas, límites y trazabilidad de cada acción que toma la IA." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Mis datos se mezclan con los de otros clientes de conagentes?", a: "No. La información de cada negocio queda aislada y separada." },
+          { q: "¿Qué pasa con los datos personales de mis clientes?", a: "Se tratan conforme a la Ley 1581 de 2012 de protección de datos personales." },
+          { q: "¿Puedo apagar el agente?", a: "Sí, en cualquier momento, y también tomar el control de una conversación puntual sin apagarlo del todo." },
+        ],
+      },
     ],
     related: [{ label: "Cobros + factura DIAN", href: "/producto/cobros-facturacion" }],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
 
@@ -365,10 +527,28 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Canal",
     title: "Su agente IA en WhatsApp",
     lede: "Donde de verdad le escriben sus clientes en Colombia. El agente atiende, vende y cobra en el canal número uno del país.",
+    answer:
+      "WhatsApp es el canal donde se cierra la venta en Colombia, y conagentes opera sobre la API oficial de WhatsApp Business: el agente responde en segundos a cualquier hora, muestra el catálogo, arma el pedido, envía el link de pago y emite la factura. Usa plantillas aprobadas por Meta para no poner en riesgo el número.",
+    heroChips: [
+      "API oficial de WhatsApp Business",
+      "Responde en segundos, 24/7",
+      "Vende, cobra y factura ahí mismo",
+    ],
     meta: {
       title: "Agente IA para WhatsApp",
       description: "Venda por WhatsApp con un agente IA que atiende al instante, recomienda, cobra y factura. El canal donde están sus clientes.",
     },
+    keywords: [
+      "agente IA para WhatsApp Business",
+      "WhatsApp Business API Colombia",
+      "vender por WhatsApp con inteligencia artificial",
+      "automatizar WhatsApp de mi empresa",
+    ],
+    entities: [
+      ...ENTIDADES_GENERAL,
+      "Meta",
+    ],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -379,12 +559,19 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Su número, cuidado", body: "Buenas prácticas y plantillas aprobadas para evitar bloqueos." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Es la API oficial o un WhatsApp no autorizado?", a: "La API oficial de WhatsApp Business, con Meta. Eso es lo que protege el número del negocio." },
+          { q: "¿Puedo seguir usando mi número actual?", a: "En general sí. Lo revisamos en la demo, porque depende de cómo esté registrado hoy." },
+          { q: "¿El cliente nota que habla con una IA?", a: "El agente no finge ser humano, y en cuanto hace falta una persona la conversación pasa a su equipo." },
+        ],
+      },
     ],
     related: [
       { label: "Bandeja omnicanal", href: "/producto/bandeja" },
       { label: "Instagram", href: "/producto/canales/instagram" },
     ],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -393,10 +580,25 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Canal",
     title: "Su agente IA en Instagram",
     lede: "Responde DMs y comentarios, convierte seguidores en clientes y no deja ni un mensaje sin contestar.",
+    answer:
+      "conagentes atiende los mensajes directos de Instagram con el mismo agente IA y en la misma bandeja que WhatsApp: responde al instante con el catálogo y los precios reales del negocio, y convierte al seguidor en cliente sin que nadie tenga que cambiar de aplicación. La conversación puede seguir por WhatsApp sin perder el contexto.",
+    heroChips: [
+      "DMs atendidos al instante",
+      "Misma bandeja que WhatsApp",
+      "Continúa en WhatsApp sin perder el hilo",
+    ],
     meta: {
       title: "Agente IA para Instagram",
       description: "El agente responde DMs de Instagram, atiende y vende. Convierta seguidores en ventas sin dejar mensajes sin responder.",
     },
+    keywords: [
+      "responder DMs de Instagram automáticamente",
+      "agente IA para Instagram Colombia",
+      "vender por Instagram con IA",
+      "convertir seguidores en clientes",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -406,9 +608,16 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Una sola bandeja", body: "Instagram y WhatsApp juntos, sin cambiar de app." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Responde también los comentarios?", a: "El foco son los mensajes directos, que es donde se cierra la venta." },
+          { q: "¿Es la misma bandeja de WhatsApp?", a: "Sí, la misma, con el mismo historial del cliente." },
+          { q: "¿Puedo pasar la conversación a WhatsApp?", a: "Sí, y llega con todo el contexto para que el cliente no repita lo que ya contó." },
+        ],
+      },
     ],
     related: [{ label: "Bandeja omnicanal", href: "/producto/bandeja" }],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -417,10 +626,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Canal · En piloto",
     title: "Su agente IA que contesta el teléfono",
     lede: "Atiende llamadas con voz natural en español, resuelve, agenda y toma pedidos. Está en piloto: lo estamos activando con los primeros clientes.",
+    answer:
+      "El agente de voz de conagentes contesta el teléfono con voz natural en español colombiano, entiende lo que pide quien llama, resuelve dudas, agenda y toma pedidos. Como en una llamada no se pueden enviar enlaces, cuando hace falta cobrar continúa la conversación por WhatsApp. Está en piloto: activándose con los primeros clientes.",
+    heroChips: [
+      "Voz natural en es-CO",
+      "Hace el puente a WhatsApp",
+      "En piloto",
+    ],
     meta: {
       title: "Agente IA de voz",
       description: "Un agente IA que contesta llamadas con voz natural en español colombiano: atiende, agenda y toma pedidos. En piloto — activándose con los primeros clientes.",
     },
+    keywords: [
+      "agente de voz con IA en español",
+      "contestador inteligente para empresas Colombia",
+      "IA que contesta el teléfono del negocio",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -431,9 +654,16 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "En piloto", body: "Construido y activándose con los primeros clientes. Escríbanos si quiere entrar al piloto." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Suena a robot o a menú de opciones?", a: "Ninguno de los dos: es conversación en voz natural, sin marcar números." },
+          { q: "¿Puede cobrar por teléfono?", a: "No envía enlaces en la llamada. Cuando hay que cobrar, sigue por WhatsApp con el link de pago." },
+          { q: "¿Está disponible hoy?", a: "Está en piloto —construido y activándose con los primeros clientes—. Se puede pedir entrar al piloto." },
+        ],
+      },
     ],
     related: [{ label: "Agenda y citas", href: "/producto/agenda" }],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -442,10 +672,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Canal",
     title: "Su agente IA en su página web",
     lede: "Convierte visitas en conversaciones: atiende en su sitio y continúa por WhatsApp sin perder el hilo.",
+    answer:
+      "El chat web de conagentes atiende a quien está navegando el sitio: responde dudas con el catálogo y los precios reales, guía la compra y, cuando el visitante prefiere, continúa la conversación por WhatsApp con todo el contexto. Así una visita anónima se convierte en un contacto con nombre y teléfono para el equipo.",
+    heroChips: [
+      "Atiende en su propio sitio",
+      "Continúa por WhatsApp",
+      "Convierte visitas en contactos",
+    ],
     meta: {
       title: "Webchat con agente IA",
       description: "Un agente IA en su web que atiende visitas y las convierte en ventas, con continuidad hacia WhatsApp.",
     },
+    keywords: [
+      "chat con IA para página web",
+      "widget de chat con inteligencia artificial",
+      "convertir visitas de la web en clientes WhatsApp",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -455,9 +699,16 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Continuidad total", body: "La conversación sigue por WhatsApp, con todo el contexto." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Hay que instalar algo complicado?", a: "No: es un fragmento que se pega en el sitio." },
+          { q: "¿Es el mismo agente de WhatsApp?", a: "El mismo, con la misma información del negocio y la misma bandeja." },
+          { q: "¿Qué gano frente a un formulario de contacto?", a: "Que el visitante recibe respuesta en el momento, en vez de esperar a que alguien lea el formulario." },
+        ],
+      },
     ],
     related: [{ label: "Bandeja omnicanal", href: "/producto/bandeja" }],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
 
@@ -789,10 +1040,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Objetivo",
     title: "Suba el ticket de cada venta",
     lede: "Con criterio de vendedor, el agente propone el complemento o la mejor opción en el momento justo. Más valor por cliente, sin presionar.",
+    answer:
+      "El agente IA de conagentes propone el complemento o la mejor opción justo cuando el cliente ya decidió comprar, que es el momento de mayor conversión. Recomienda según lo que la persona está llevando —no un catálogo genérico— y el negocio puede medir cuánto suma el upsell sobre el total vendido en el periodo.",
+    heroChips: [
+      "En el momento de mayor conversión",
+      "Recomienda por contexto",
+      "Medible sobre el total vendido",
+    ],
     meta: {
       title: "Upsell con IA",
       description: "El agente IA recomienda el complemento justo en cada venta y sube el ticket promedio, con criterio de vendedor y sin presionar.",
     },
+    keywords: [
+      "cómo hacer upsell por WhatsApp",
+      "aumentar el ticket promedio con IA",
+      "venta cruzada automática ecommerce Colombia",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -803,12 +1068,19 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Mide el impacto", body: "Vea cuánto suma el upsell a sus ventas." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿No queda presionando al cliente?", a: "Propone una sola vez y en el momento en que encaja. Si el cliente dice que no, sigue con la compra." },
+          { q: "¿Cómo decide qué ofrecer?", a: "Según lo que el cliente ya está comprando y lo que hay disponible en el catálogo del negocio." },
+          { q: "¿Puedo medir si sirve?", a: "Sí: cuánto del total vendido vino de complementos propuestos por el agente." },
+        ],
+      },
     ],
     related: [
       { label: "Vender más", href: "/soluciones/mas-ventas" },
       { label: "Upsell para hoteles", href: "/hoteles/upsell" },
     ],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -817,10 +1089,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Objetivo",
     title: "Recupere a los clientes que ya tiene",
     lede: "Venderle a quien ya le compró es más fácil y más barato que conseguir a alguien nuevo. El agente reactiva a los dormidos, uno a uno.",
+    answer:
+      "conagentes reactiva a los clientes que dejaron de comprar: identifica quién lleva más tiempo del habitual sin volver, le escribe por WhatsApp con un motivo concreto y atiende la conversación hasta cerrar. Es uno a uno y con permiso, no un envío masivo — venderle a quien ya compró cuesta una fracción de conseguir a alguien nuevo.",
+    heroChips: [
+      "Detecta al que dejó de comprar",
+      "Mensaje con motivo, no genérico",
+      "Uno a uno, con permiso",
+    ],
     meta: {
       title: "Reactivación de clientes con IA",
       description: "El agente IA detecta clientes dormidos y los reactiva con un mensaje que sí encaja. Más ventas de su base actual.",
     },
+    keywords: [
+      "reactivar clientes inactivos por WhatsApp",
+      "recuperar clientes perdidos pyme",
+      "campañas de recompra automáticas",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -831,9 +1117,16 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Convierte la conversación", body: "Abre el chat y lo lleva de nuevo a la compra." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Cómo sabe quién está dormido?", a: "Por el patrón de compra de cada cliente: cuánto suele tardar en volver y cuánto lleva sin hacerlo." },
+          { q: "¿No es spam?", a: "Va uno a uno, con un motivo concreto y dentro de las reglas de WhatsApp, no a toda la base con el mismo texto." },
+          { q: "¿Y si el cliente responde?", a: "El agente atiende la conversación y la lleva hasta la compra, como cualquier otra." },
+        ],
+      },
     ],
     related: [{ label: "Campañas y reactivación", href: "/producto/campanas" }],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -842,10 +1135,29 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Objetivo",
     title: "Cobre y facture sin fricción",
     lede: "El agente manda el link de pago y emite la factura DIAN en el chat. Menos pasos, menos pagos que se caen.",
+    answer:
+      "En conagentes el cliente paga sin salir del chat: el agente envía un link de Wompi o Mercado Pago, detecta el pago, confirma la venta y emite la factura electrónica DIAN. Cada paso que se elimina entre el «sí, lo quiero» y el pago es una venta menos que se cae por fricción o por demora.",
+    heroChips: [
+      "Paga sin salir del chat",
+      "Confirmación automática",
+      "Factura DIAN incluida",
+    ],
     meta: {
       title: "Cobros y facturación con IA",
       description: "Cobre en el chat con Wompi o Mercado Pago y facture ante la DIAN automáticamente. Menos fricción, menos ventas que se caen.",
     },
+    keywords: [
+      "cobrar por WhatsApp Colombia",
+      "link de pago en WhatsApp",
+      "reducir carritos abandonados WhatsApp",
+      "facturar electrónicamente desde el chat",
+    ],
+    entities: [
+      ...ENTIDADES_GENERAL,
+      "Wompi",
+      "Mercado Pago",
+    ],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -856,9 +1168,16 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Confirma el pago", body: "El agente detecta el pago y cierra la venta." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Qué medios de pago acepta?", a: "Los de la pasarela del negocio: tarjeta, PSE y Nequi, según lo que tenga habilitado." },
+          { q: "¿El agente sabe si ya pagaron?", a: "Sí. La pasarela le reporta el pago y él confirma la venta al instante." },
+          { q: "¿Emite la factura solo?", a: "Sí, la factura electrónica DIAN se emite al confirmarse el pago." },
+        ],
+      },
     ],
     related: [{ label: "Integraciones", href: "/integraciones" }],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -867,10 +1186,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Objetivo",
     title: "Atención 24/7, sin turnos ni filas",
     lede: "Sus clientes escriben a cualquier hora. El agente responde siempre — de madrugada, en festivos y cuando su equipo está ocupado.",
+    answer:
+      "El agente IA de conagentes responde a cualquier hora —de madrugada, en festivos y cuando el equipo está ocupado— con la información real del negocio. Cuando una conversación necesita a una persona, la escala con todo el contexto para que el cliente no repita lo que ya contó. Ningún mensaje se queda sin respuesta.",
+    heroChips: [
+      "Madrugadas y festivos incluidos",
+      "Escala con contexto completo",
+      "Cero mensajes sin responder",
+    ],
     meta: {
       title: "Atención al cliente 24/7 con IA",
       description: "Un agente IA que atiende 24/7 en todos sus canales: cero mensajes sin responder, cero clientes esperando.",
     },
+    keywords: [
+      "atención al cliente 24/7 con IA",
+      "responder WhatsApp fuera del horario laboral",
+      "soporte automático sin ampliar el equipo",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -880,9 +1213,16 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Escala a un humano", body: "Cuando toca, le pasa la conversación a su equipo con contexto.", href: "/producto/bandeja" },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Responde de verdad a las 3 de la mañana?", a: "Sí. El agente no tiene horario, y esa franja es donde más consultas se pierden hoy." },
+          { q: "¿Qué hace si no sabe la respuesta?", a: "No improvisa: escala a una persona del equipo y le avisa al cliente que se le va a responder." },
+          { q: "¿Reemplaza a mi equipo?", a: "No: absorbe el volumen repetitivo para que su gente atienda lo que de verdad necesita una persona." },
+        ],
+      },
     ],
     related: [{ label: "Bandeja omnicanal", href: "/producto/bandeja" }],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
   {
@@ -891,10 +1231,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Objetivo",
     title: "Los números de su negocio, claros y por WhatsApp",
     lede: "Sin tableros complicados: pregunte cómo va y el agente le responde con ventas, productos top y alertas.",
+    answer:
+      "En conagentes no hace falta abrir un tablero para saber cómo va el negocio: el dueño le pregunta al agente por WhatsApp, en español, y recibe ventas, productos más vendidos y alertas de lo que necesita atención. El panel completo sigue disponible para quien quiera ver el detalle con sus gráficas.",
+    heroChips: [
+      "Sin abrir un tablero",
+      "Pregunte en español",
+      "Alertas de lo que importa",
+    ],
     meta: {
       title: "BI para dueños con IA",
       description: "Business intelligence conversacional para dueños: pregunte por WhatsApp cómo va su negocio y reciba respuestas claras al instante.",
     },
+    keywords: [
+      "ver las ventas del negocio por WhatsApp",
+      "reportes para dueños de pyme",
+      "analítica de negocio con inteligencia artificial Colombia",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -904,9 +1258,16 @@ export const GENERAL_PAGES: MarketingPage[] = [
           { title: "Alertas útiles", body: "Le avisa de lo que necesita su atención." },
         ],
       },
+      {
+        type: "faq",
+        items: [
+          { q: "¿Tengo que aprender a usar un tablero?", a: "No. Se pregunta por WhatsApp como se le preguntaría a un empleado." },
+          { q: "¿Qué tipo de preguntas entiende?", a: "Cómo van las ventas, qué se vende más, cómo va el embudo y qué cambió frente al periodo anterior." },
+          { q: "¿Me avisa si algo va mal?", a: "Sí, manda alertas cuando algo se sale de lo normal, sin que usted tenga que ir a mirar." },
+        ],
+      },
     ],
     related: [{ label: "Analítica y BI", href: "/producto/analitica-bi" }],
-    noindex: true,
     cta: DEFAULT_CTA,
   },
 
