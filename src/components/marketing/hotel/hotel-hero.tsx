@@ -10,7 +10,7 @@ import {
   useThreadAutoplay,
 } from "@/components/marketing/hotel/hotel-phone";
 
-const LINE1 = ["El", "agente", "IA"];
+const LINE1 = ["Más", "ingreso."];
 
 const container = {
   hidden: {},
@@ -90,17 +90,13 @@ export function HotelHero() {
           <h1 className="text-4xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl">
             <span className="block">
               {LINE1.map((w, i) => (
-                <motion.span
-                  key={i}
-                  variants={word}
-                  className="mr-[0.22em] inline-block"
-                >
+                <motion.span key={i} variants={word} className="inline-block">
                   {w}
                 </motion.span>
-              ))}
+              )).flatMap((el, i) => (i ? [" ", el] : [el]))}
             </span>
             <motion.span variants={word} className="text-brand-gradient block">
-              que le hace ganar más por habitación.
+              Menos trabajo.
             </motion.span>
           </h1>
 
@@ -108,10 +104,9 @@ export function HotelHero() {
             variants={word}
             className="mt-6 max-w-lg text-lg leading-relaxed text-[oklch(0.65_0.005_95)]"
           >
-            Llenar el hotel no basta: su agente hace que cada noche se venda
-            directo, a su tarifa y con algo más encima. Atiende por WhatsApp,
-            Instagram y las OTAs, 24/7 y en 32 idiomas — sin una persona más en
-            recepción. Usted aprueba; su equipo toma el control cuando quiera.
+            El agente IA que vende cada noche a su tarifa, cierra la reserva
+            directa y sube el valor de la estadía — por WhatsApp, Instagram y
+            las OTAs, 24/7 y en 32 idiomas.
           </motion.p>
 
           <motion.div variants={word} className="mt-9 flex flex-col gap-4 sm:flex-row">
