@@ -1,6 +1,23 @@
 import type { MarketingPage } from "./pages.types";
 import { DEFAULT_CTA } from "./pages.types";
 
+/** Fecha de la última revisión sustantiva de contenido → schema `dateModified`. */
+const GENERAL_UPDATED = "2026-08-27";
+
+/**
+ * Entidades que toda página general debe anclar (schema.org `mentions`).
+ * Es lo que permite que un asistente reconozca de qué producto y de qué país
+ * habla la página sin tener que inferirlo de la prosa.
+ */
+const ENTIDADES_GENERAL = [
+  "conagentes",
+  "Colombia",
+  "WhatsApp Business API",
+  "Instagram",
+  "DIAN",
+];
+
+
 /**
  * GENERAL experience (multi-industry brand). Voice: usted + "agente IA".
  * Hubs (producto, soluciones, recursos) + flagship spokes carry fuller
@@ -14,10 +31,30 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "La plataforma",
     title: "Un agente IA que vende, atiende y hace seguimiento — solo",
     lede: "No es un chatbot que responde preguntas. Es un vendedor con IA que trabaja en todos sus canales, cierra ventas, cobra, factura y le rinde cuentas a usted.",
+    answer:
+      "conagentes es una plataforma colombiana de agentes de inteligencia artificial que venden por WhatsApp, Instagram y chat web: el agente atiende al instante, muestra el catálogo, arma el pedido, cobra con Wompi o Mercado Pago y emite la factura electrónica DIAN. Todo queda en una bandeja compartida con el equipo, con CRM, agenda, campañas y analítica incluidos.",
+    heroChips: [
+      "Atiende, vende, cobra y factura",
+      "Una bandeja para todo el equipo",
+      "Sin cambiar sus herramientas",
+    ],
     meta: {
       title: "Producto — La plataforma de agentes IA de conagentes",
       description: "Agentes IA que venden por WhatsApp, Instagram y web: bandeja omnicanal, CRM que se llena solo, cobros con factura DIAN, agenda, campañas y analítica.",
     },
+    keywords: [
+      "plataforma de agentes IA Colombia",
+      "software para vender por WhatsApp",
+      "chatbot que cobra y factura",
+      "CRM con WhatsApp integrado",
+      "automatizar ventas por WhatsApp pyme",
+    ],
+    entities: [
+      ...ENTIDADES_GENERAL,
+      "Wompi",
+      "Mercado Pago",
+    ],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "steps",
@@ -77,10 +114,25 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Producto",
     title: "El agente IA: su mejor vendedor, trabajando sin parar",
     lede: "Vende, recomienda, resuelve dudas y hace seguimiento como su vendedor estrella — solo que atiende a todos los clientes a la vez, a toda hora.",
+    answer:
+      "El agente IA de conagentes hace el trabajo de un vendedor: entiende qué necesita el cliente, consulta el catálogo y los precios reales del negocio, recomienda, arma el pedido, cobra en el chat y hace seguimiento a quien no compró. No inventa precios ni inventario —los consulta— y deja registrada cada decisión que toma.",
+    heroChips: [
+      "Consulta precios, no los inventa",
+      "Hace seguimiento solo",
+      "Usted aprueba y supervisa",
+    ],
     meta: {
       title: "Agentes IA que venden",
       description: "Un vendedor con IA que atiende, recomienda, sube el ticket y hace seguimiento por WhatsApp, Instagram y web. Usted manda, él ejecuta.",
     },
+    keywords: [
+      "qué es un agente IA de ventas",
+      "diferencia entre chatbot y agente IA",
+      "agente IA que vende por WhatsApp",
+      "IA que hace seguimiento a clientes",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "steps",
@@ -416,10 +468,33 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Integraciones",
     title: "Se conecta con lo que ya usa",
     lede: "Pasarelas de pago, facturación electrónica, e-commerce y más. El agente trabaja sobre sus herramientas, no le impone otras nuevas.",
+    answer:
+      "conagentes se conecta con las herramientas que el negocio ya usa en Colombia: pasarelas de pago (Wompi y Mercado Pago, con PSE y Nequi), facturación electrónica DIAN a través de Alegra, tiendas de e-commerce como Shopify, y WhatsApp Business API e Instagram como canales de conversación. Trabaja sobre el stack existente en vez de reemplazarlo.",
+    heroChips: [
+      "Pagos, factura DIAN y e-commerce",
+      "WhatsApp Business API oficial",
+      "Sin migrar lo que ya funciona",
+    ],
     meta: {
       title: "Integraciones",
       description: "Wompi, Mercado Pago, Alegra, Siigo, Shopify y más. El agente IA se conecta con las herramientas que ya usa su negocio.",
     },
+    keywords: [
+      "integrar WhatsApp con pasarela de pagos Colombia",
+      "conectar facturación electrónica DIAN con WhatsApp",
+      "integración Shopify WhatsApp Colombia",
+      "Wompi y Mercado Pago en WhatsApp",
+    ],
+    entities: [
+      ...ENTIDADES_GENERAL,
+      "Wompi",
+      "Mercado Pago",
+      "Alegra",
+      "Shopify",
+      "PSE",
+      "Nequi",
+    ],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -451,10 +526,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Soluciones",
     title: "Un agente IA, a la medida de su negocio",
     lede: "Mismo motor, distinta forma de vender. Encuentre su industria o el objetivo que quiere alcanzar.",
+    answer:
+      "conagentes usa el mismo motor de agentes IA para distintos negocios colombianos: comercio y distribución, servicios y clínicas, instituciones educativas, y hospedaje —su especialidad, con producto propio—. Lo que cambia de uno a otro son las herramientas del agente y el vocabulario; la bandeja omnicanal, los cobros, la factura DIAN y el seguimiento son comunes a todos.",
+    heroChips: [
+      "Un motor, varias industrias",
+      "Hospedaje es la especialidad",
+      "Por industria o por objetivo",
+    ],
     meta: {
       title: "Soluciones",
       description: "Agentes IA por industria (comercio, servicios, educación, hoteles) y por objetivo (vender más, upsell, reactivación, cobros, 24/7, BI).",
     },
+    keywords: [
+      "agente IA por industria Colombia",
+      "IA para comercio servicios y educación",
+      "soluciones de inteligencia artificial para pymes Colombia",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -491,10 +580,29 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Industria",
     title: "Un agente IA para comercio y distribución",
     lede: "Muestra el catálogo, arma el pedido, cobra y factura por WhatsApp. Sus clientes compran sin esperar y sin llamar.",
+    answer:
+      "Para un comercio o distribuidor colombiano, el agente IA de conagentes atiende WhatsApp e Instagram, muestra el catálogo con fotos, variantes y precios, consolida en una sola cotización un pedido repartido en varios mensajes, cobra con Wompi o Mercado Pago y emite la factura electrónica DIAN. El cliente compra sin llamar y sin esperar a que abra el local.",
+    heroChips: [
+      "Catálogo con fotos y variantes",
+      "Pedido consolidado, no un chat suelto",
+      "Cobro y factura DIAN en el chat",
+    ],
     meta: {
       title: "Agente IA para comercio y distribución",
       description: "Venda por WhatsApp: catálogo, pedidos consolidados, cobro y factura DIAN automáticos. Ideal para comercio y distribución en Colombia.",
     },
+    keywords: [
+      "agente IA para comercio Colombia",
+      "vender al por mayor por WhatsApp",
+      "catálogo de productos por WhatsApp con precios",
+      "tomar pedidos por WhatsApp automáticamente",
+    ],
+    entities: [
+      ...ENTIDADES_GENERAL,
+      "Wompi",
+      "Mercado Pago",
+    ],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "prose",
@@ -523,10 +631,25 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Industria",
     title: "Un agente IA para servicios y clínicas",
     lede: "Agenda, confirma y recuerda citas sola. Llena su calendario y reduce las ausencias, sin que su recepción viva pegada al teléfono.",
+    answer:
+      "Para servicios y clínicas en Colombia, el agente IA de conagentes ofrece los horarios realmente disponibles, agenda la cita, confirma, envía recordatorios y reprograma cuando el paciente no puede. Atiende por WhatsApp a cualquier hora, así que la recepción deja de vivir pegada al teléfono y bajan las ausencias sin ampliar el equipo.",
+    heroChips: [
+      "Agenda 24/7 con disponibilidad real",
+      "Recordatorios y reprogramación",
+      "Menos ausencias, mismo equipo",
+    ],
     meta: {
       title: "Agente IA para servicios y clínicas",
       description: "Agende citas por WhatsApp con un agente IA: agenda 24/7, recordatorios y reprogramación automática. Menos ausencias, agenda llena.",
     },
+    keywords: [
+      "agendar citas por WhatsApp automáticamente",
+      "software de citas para clínicas Colombia",
+      "reducir inasistencias a citas médicas",
+      "recordatorios de cita por WhatsApp",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "prose",
@@ -552,10 +675,25 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Industria",
     title: "Un agente IA para educación",
     lede: "Atrae, orienta y acompaña a cada aspirante hasta la matrícula. Resuelve dudas de programas, requisitos y fechas, y no deja a nadie esperando.",
+    answer:
+      "Para instituciones educativas colombianas, el agente IA de conagentes atiende a cada aspirante por WhatsApp: resuelve dudas de programas, requisitos, costos y fechas, orienta como lo haría un asesor, acompaña el proceso hasta la matrícula y avisa al equipo cuando alguien está listo para cerrar. Ningún interesado se queda esperando respuesta.",
+    heroChips: [
+      "Orienta como un asesor",
+      "Acompaña hasta la matrícula",
+      "Avisa al equipo cuando toca",
+    ],
     meta: {
       title: "Agente IA para educación",
       description: "Oriente y matricule aspirantes por WhatsApp: programas, requisitos, fechas y documentos, con seguimiento hasta la matrícula.",
     },
+    keywords: [
+      "agente IA para instituciones educativas Colombia",
+      "chatbot de admisiones universidad",
+      "automatizar admisiones por WhatsApp",
+      "IA para captar estudiantes",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "prose",
@@ -604,10 +742,25 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Objetivo",
     title: "Vender más, sin contratar más",
     lede: "El problema no es que le falten clientes: es que no alcanza a atenderlos a todos, rápido y bien. El agente sí.",
+    answer:
+      "La mayoría de las ventas que pierde un negocio no se pierden por precio: se pierden por demora y por falta de seguimiento. El agente IA de conagentes responde en segundos a cualquier hora, no deja enfriar a quien preguntó y no compró, y propone el complemento adecuado en el momento justo — sin contratar más personal.",
+    heroChips: [
+      "Responde en segundos, 24/7",
+      "No deja enfriar a nadie",
+      "Sin ampliar la nómina",
+    ],
     meta: {
       title: "Vender más con un agente IA",
       description: "Atienda a todos sus clientes al instante y no deje enfriar ninguna oportunidad. Más ventas sin ampliar el equipo.",
     },
+    keywords: [
+      "cómo vender más por WhatsApp",
+      "aumentar ventas sin contratar más personal",
+      "seguimiento automático de clientes WhatsApp",
+      "IA para cerrar más ventas Colombia",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "stats",
@@ -764,10 +917,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Precios",
     title: "Un plan a la medida de su negocio",
     lede: "No cobramos por «usuarios» ni por funciones sueltas. Armamos un plan según su operación y lo que quiere lograr — sin sorpresas.",
+    answer:
+      "conagentes no cobra por usuario ni por funciones sueltas: arma un plan según el volumen, los canales y los objetivos de cada negocio, y lo cotiza en una conversación de veinte minutos. El cobro se activa cuando el agente sale en vivo, no mientras se configura y se prueba. Para hoteles existe además un plan por resultados.",
+    heroChips: [
+      "Sin cobro por usuario",
+      "Paga cuando sale en vivo",
+      "Cotización en 20 minutos",
+    ],
     meta: {
       title: "Precios",
       description: "Planes de agentes IA a la medida de su negocio, sin costos ocultos. Agende una demo y le armamos una propuesta clara.",
     },
+    keywords: [
+      "precio agente IA WhatsApp Colombia",
+      "cuánto cuesta un chatbot con IA para empresas",
+      "software de ventas con IA precio Colombia",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -798,10 +965,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Recursos",
     title: "Aprenda a vender más con IA",
     lede: "Guías, casos y herramientas para que su negocio venda más y atienda mejor por WhatsApp.",
+    answer:
+      "conagentes publica guías, calculadoras y un blog sobre cómo vender y atender con agentes de inteligencia artificial por WhatsApp en Colombia: automatizar la atención, cobrar y facturar en el chat, reactivar clientes dormidos y medir el retorno. El contenido nuevo se publica en el blog hotelero, que es donde está la especialidad de la empresa.",
+    heroChips: [
+      "Guías sin pedir correo",
+      "Calculadoras con sus números",
+      "Blog nuevo cada semana",
+    ],
     meta: {
       title: "Recursos",
       description: "Blog, guías, webinars y calculadora de ROI para vender más con agentes IA por WhatsApp.",
     },
+    keywords: [
+      "recursos de IA para pymes Colombia",
+      "guías para vender por WhatsApp",
+      "aprender a usar IA en un negocio pequeño",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -825,10 +1006,25 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Recursos",
     title: "Guías y ebooks",
     lede: "Todo lo que necesita para vender más y atender mejor con IA por WhatsApp. Publicamos guías prácticas cada semana en el blog — aquí están los temas.",
+    answer:
+      "Las guías de conagentes cubren cómo vender por WhatsApp con un agente IA en Colombia: atender 24/7 sin ampliar el equipo, mostrar el catálogo y armar pedidos en el chat, cobrar y emitir factura electrónica DIAN, y reactivar clientes que dejaron de comprar. Se publican en el blog y se leen sin dejar el correo.",
+    heroChips: [
+      "Prácticas, no teóricas",
+      "Sin formulario para leerlas",
+      "Publicadas en el blog",
+    ],
     meta: {
       title: "Guías de IA para pymes",
       description: "Guías prácticas para vender más por WhatsApp con agentes IA: automatización, atención 24/7, cobros, reactivación y más, para pymes en Latinoamérica.",
     },
+    keywords: [
+      "guía vender por WhatsApp con IA",
+      "cómo automatizar la atención al cliente",
+      "guía de facturación electrónica en WhatsApp",
+      "cómo reactivar clientes inactivos",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
@@ -875,10 +1071,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Recursos",
     title: "Calculadora de ROI",
     lede: "Estime cuánto puede recuperar con un agente IA: mensajes sin responder, ventas perdidas y tiempo de su equipo.",
+    answer:
+      "La calculadora de ROI de conagentes estima cuánto puede recuperar un negocio colombiano con un agente IA a partir de tres cosas: los mensajes que hoy quedan sin responder, las ventas que se enfrían por falta de seguimiento y las horas que el equipo dedica a contestar siempre lo mismo. Se calcula con los números del propio negocio.",
+    heroChips: [
+      "Con sus números, no promedios",
+      "Tres fuentes de pérdida",
+      "Resultado en la misma llamada",
+    ],
     meta: {
       title: "Calculadora de ROI",
       description: "Estime el retorno de un agente IA para su negocio: ventas recuperadas, respuesta inmediata y tiempo ahorrado.",
     },
+    keywords: [
+      "calculadora ROI chatbot IA",
+      "cuánto ahorra un agente IA de atención al cliente",
+      "retorno de inversión automatización WhatsApp",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       { type: "prose", heading: "Cálculo personalizado", body: ["Cada negocio es distinto. En una demo corta tomamos sus números reales y le mostramos, con su propia operación, cuánto podría recuperar."] },
       {
@@ -918,10 +1128,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Casos de éxito",
     title: "Negocios que ya venden con conagentes",
     lede: "De hoteles a comercios e instituciones educativas: agentes IA que atienden, venden y hacen seguimiento todos los días.",
+    answer:
+      "conagentes trabaja con hoteles, comercios e instituciones educativas en Colombia. En vez de publicar testimonios, mide cuatro cosas con cada cliente: tiempo de respuesta, ventas recuperadas por seguimiento, ticket promedio y clientes que vuelven. Los casos con nombre propio se publican cuando el cliente lo autoriza y hay suficiente historia para que la cifra signifique algo.",
+    heroChips: [
+      "Cuatro métricas por cliente",
+      "Sin testimonios inventados",
+      "Casos con nombre, con permiso",
+    ],
     meta: {
       title: "Casos de éxito",
       description: "Historias de negocios en Colombia que venden más con agentes IA de conagentes.",
     },
+    keywords: [
+      "casos de éxito agente IA Colombia",
+      "resultados reales de un chatbot con IA",
+      "empresas que usan IA para vender en Colombia",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "prose",
@@ -961,10 +1185,27 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Empresa",
     title: "Hacemos que la IA venda para las pymes de Colombia",
     lede: "conagentes nació para que cualquier negocio —no solo las grandes empresas— pueda tener un vendedor con IA trabajando por WhatsApp, 24/7.",
+    answer:
+      "conagentes es una empresa colombiana que construye agentes de inteligencia artificial para que una pyme pueda tener un vendedor trabajando por WhatsApp las 24 horas, algo que hasta ahora solo estaba al alcance de las grandes. Su especialidad es el hospedaje, y construye sobre normativa colombiana: factura electrónica DIAN y registro de huéspedes TRA.",
+    heroChips: [
+      "Empresa colombiana",
+      "Especialidad: hospedaje",
+      "Construido sobre normativa local",
+    ],
     meta: {
       title: "Empresa",
       description: "conagentes construye agentes IA que venden por WhatsApp para pymes de Colombia y Latinoamérica.",
     },
+    keywords: [
+      "quién está detrás de conagentes",
+      "empresa colombiana de agentes IA",
+      "startup de inteligencia artificial Colombia pymes",
+    ],
+    entities: [
+      ...ENTIDADES_GENERAL,
+      "Ministerio de Comercio, Industria y Turismo",
+    ],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "prose",
@@ -992,10 +1233,24 @@ export const GENERAL_PAGES: MarketingPage[] = [
     eyebrow: "Contacto",
     title: "Hablemos",
     lede: "Cuéntenos de su negocio y le mostramos, con sus productos y sus precios, cómo su agente IA atiende, vende y cobra.",
+    answer:
+      "Para hablar con conagentes se agenda una demo de veinte minutos en la que el agente IA se muestra funcionando con los productos, los precios y las políticas reales del negocio, no con un ejemplo genérico. También se puede escribir directamente. La empresa opera en Colombia, atiende en español y responde en menos de 24 horas.",
+    heroChips: [
+      "Demo de 20 minutos",
+      "Con sus datos reales",
+      "Respuesta en menos de 24 horas",
+    ],
     meta: {
       title: "Contacto",
       description: "Agende una demo o escríbanos. Le mostramos su agente IA vendiendo por WhatsApp con su propio catálogo.",
     },
+    keywords: [
+      "contactar conagentes",
+      "agendar demo agente IA WhatsApp",
+      "pedir demostración chatbot IA Colombia",
+    ],
+    entities: [...ENTIDADES_GENERAL],
+    updated: GENERAL_UPDATED,
     sections: [
       {
         type: "features",
