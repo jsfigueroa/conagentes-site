@@ -45,7 +45,7 @@ export const DATOS = {
   comision:
     "En 2026 la comisión de las OTAs se mueve entre el 15 % y el 25 % —Booking.com ronda el 15 %, Expedia entre 18 % y 22 %— mientras que una reserva directa le cuesta al hotel entre 2 % y 5 % con todo incluido.",
   respuesta:
-    "Un estudio de Harvard Business Review encontró que responder una consulta comercial en el primer minuto multiplica por siete la probabilidad de cerrarla frente a responder una hora después. El hotel promedio tarda entre 12 y 24 horas en contestar un correo.",
+    "Un estudio de Harvard Business Review sobre 2.241 empresas encontró que contactar una consulta comercial dentro de la primera hora hace casi siete veces más probable calificar ese prospecto que responder más tarde — y más de sesenta veces frente a esperar 24 horas o más. Entre las empresas que sí respondieron, el promedio fue de 42 horas.",
   upsell:
     "La conversión del upsell hotelero se ubica entre 3 % y 5 % en el motor de reservas, entre 12 % y 18 % en el mensaje previo a la llegada y entre 22 % y 28 % en el check-in.",
   whatsapp:

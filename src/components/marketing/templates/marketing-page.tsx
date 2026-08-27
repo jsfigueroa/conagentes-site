@@ -181,7 +181,7 @@ function StepsSection({ s }: { s: Extract<Section, { type: "steps" }> }) {
       <ol className={`grid gap-4 sm:grid-cols-2 ${cols}`}>
         {s.items.map((item, i) => (
           <li key={i} id={`paso-${i + 1}`} className="rounded-2xl border border-border bg-card p-6">
-            <span className="flex size-9 items-center justify-center rounded-full bg-brand-gradient text-sm font-bold tabular-nums text-white">
+            <span className="flex size-9 items-center justify-center rounded-full bg-brand-gradient-strong text-sm font-bold tabular-nums text-white">
               {i + 1}
             </span>
             <h3 className="mt-4 text-base font-semibold text-foreground">{item.title}</h3>
@@ -462,7 +462,7 @@ export function MarketingPageView({ page }: { page: MarketingPage }) {
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <DemoButton
               source={`page:${page.slug}`}
-              className="cursor-pointer rounded-full bg-brand-gradient px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_oklch(0.74_0.185_50/0.3)] transition-all hover:brightness-110"
+              className="btn-brand cursor-pointer rounded-full px-6 py-3 text-sm font-semibold"
             >
               {cta?.button ?? "Quiero una demo"}
             </DemoButton>
@@ -549,7 +549,7 @@ export function MarketingPageView({ page }: { page: MarketingPage }) {
             <div className="mt-8">
               <DemoButton
                 source={`page-cta:${page.slug}`}
-                className="cursor-pointer rounded-full bg-brand-gradient px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_oklch(0.74_0.185_50/0.3)] transition-all hover:brightness-110"
+                className="btn-brand cursor-pointer rounded-full px-7 py-3.5 text-sm font-semibold"
               >
                 {cta.button ?? "Quiero una demo"}
               </DemoButton>

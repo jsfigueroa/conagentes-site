@@ -65,10 +65,29 @@
   --orange-soft:    oklch(0.93 0.05 55);    /* #ffe0c9 · tint surfaces, WA outbound bubble */
   --orange-ring:    oklch(0.74 0.185 50 / 0.35);
 
-  /* Brand gradient — BRAND layer ONLY (mark, wordmark, hero, marketing) · WHITE text on it */
+  /* Brand gradient — BRAND layer (mark, wordmark, hero, marketing surfaces).
+     Two variants, and the difference matters:
+       · --brand-gradient        light naranja→rosa. Decorative fills, hairlines,
+                                 big display type (text-brand-gradient). Ink on it.
+       · --brand-gradient-strong darkened. The ONLY one that carries WHITE text —
+                                 buttons, badges, pills.
+
+     CONTRAST — measured, not eyeballed. White on the naranja end:
+       oklch(0.62 0.20 44) → 3.92:1  ✗ (the product app's current value; fails
+                                        AA for 14–16px button labels, which need
+                                        4.5:1 — only "large text" gets 3:1)
+       oklch(0.58 0.20 44) → 4.64:1  ✓
+     The rosa end is 5.46:1 either way, so the naranja end is what binds. The
+     0.04 of lightness is invisible side by side and buys AA on every CTA on the
+     site. The product app should take the same value so the two stay identical. */
   --grad-a:         oklch(0.77 0.165 56);   /* naranja */
   --grad-b:         oklch(0.62 0.23 349);   /* rosa */
   --brand-gradient: linear-gradient(108deg, var(--grad-a), var(--grad-b));
+  --brand-gradient-strong: linear-gradient(108deg, oklch(0.58 0.20 44), oklch(0.55 0.235 350));
+  /* Soft wash for tinted surfaces (icon tiles, accent cards) — replaces the
+     flat `bg-neon/10` that made whole sections read as mono-orange. */
+  --brand-tint:     linear-gradient(135deg, oklch(0.77 0.165 56 / 0.14), oklch(0.62 0.23 349 / 0.13));
+  --brand-tint-soft: linear-gradient(135deg, oklch(0.77 0.165 56 / 0.07), oklch(0.62 0.23 349 / 0.07));
 
   /* Deprecated aliases — legacy neon names now resolve to Atardecer orange (keeps bg-neon/text-neon working) */
   --neon:           var(--orange);
@@ -204,11 +223,108 @@
   .bg-brand-gradient {
     background-image: var(--brand-gradient);
   }
+  /* The white-text-safe variant. Use on any control that carries a label. */
+  .bg-brand-gradient-strong {
+    background-image: var(--brand-gradient-strong);
+  }
+  .bg-brand-tint {
+    background-image: var(--brand-tint);
+  }
+  .bg-brand-tint-soft {
+    background-image: var(--brand-tint-soft);
+  }
   .text-brand-gradient {
     background-image: var(--brand-gradient);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  /* A 1px border painted with the brand gradient. Two stacked backgrounds:
+     the surface colour clipped to the padding box, the gradient clipped to the
+     border box — the only way to get a gradient border without a pseudo-element.
+     `--surface` lets a caller match whatever sits behind the card. */
+  .border-brand-gradient {
+    border: 1px solid transparent;
+    background-image: linear-gradient(var(--surface, var(--card)), var(--surface, var(--card))),
+      var(--brand-gradient);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  /* ——— Type scale ———
+     Fluid (clamp) rather than breakpoint-stepped, so a heading never lands on
+     an awkward size between the two breakpoints it was tuned for, and
+     `text-wrap: balance` so two-line headings break evenly instead of leaving
+     one orphan word. Both are the difference between "typeset" and "styled". */
+  .h-display {
+    font-size: clamp(2.5rem, 5.6vw, 4.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+  .h-section {
+    font-size: clamp(1.875rem, 3.6vw, 3.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+  .h-sub {
+    font-size: clamp(1.375rem, 2.2vw, 1.875rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+  .lead {
+    font-size: clamp(1.0625rem, 1.15vw, 1.1875rem);
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  /* The primary action, everywhere. One class so the hero, the pricing block,
+     the header and the final CTA cannot drift apart — they had three different
+     hand-written orange shadows before. */
+  .btn-brand {
+    background-image: var(--brand-gradient-strong);
+    color: #fff;
+    box-shadow: 0 12px 34px -12px oklch(0.55 0.235 350 / 0.6);
+    transition:
+      box-shadow var(--dur-base) var(--ease-out),
+      transform var(--dur-base) var(--ease-out);
+  }
+  .btn-brand:hover {
+    box-shadow: 0 18px 46px -12px oklch(0.55 0.235 350 / 0.8);
+  }
+  .btn-brand:active {
+    transform: translateY(1px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn-brand {
+      transition: none;
+    }
+    .btn-brand:active {
+      transform: none;
+    }
+  }
+
+  /* Reading-progress hairline under the sticky header. */
+  .brand-progress {
+    background-image: linear-gradient(
+      90deg,
+      var(--grad-a),
+      var(--grad-b) 70%,
+      var(--grad-b)
+    );
+  }
+
+  /* Vertical brand gradient. The 108deg default reads as a single flat colour
+     on anything narrow (a 6px rail, a 1px divider), so thin vertical elements
+     get their own axis instead. */
+  .brand-rail {
+    background-image: linear-gradient(180deg, var(--grad-a), var(--grad-b));
   }
 }
 

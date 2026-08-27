@@ -154,8 +154,8 @@ const outcomes = [
     icon: TrendingUp,
     title: "Sube el valor de cada estadía",
     body: "Ofrece upgrades, late checkout, spa y tours en el momento justo. Más ingreso por huésped, sin que usted mueva un dedo.",
-    stat: "8–12%",
-    statLabel: "de conversión en upsell es el estándar de la industria.",
+    stat: "12–18%",
+    statLabel: "convierte el upsell en el mensaje previo a la llegada.",
   },
   {
     icon: RefreshCw,
@@ -457,8 +457,8 @@ export function HotelBody() {
                     </div>
                   </div>
                   <p className="mt-3 text-[12px] text-muted-foreground">
-                    <span className="font-bold text-foreground">8–12%</span> de
-                    conversión en upsell es el estándar de la industria.
+                    <span className="font-bold text-foreground">12–18%</span> es
+                    la conversión del upsell en el mensaje previo a la llegada.
                   </p>
                 </div>
               </div>
