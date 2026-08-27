@@ -724,7 +724,7 @@ export function HotelBody() {
         <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
-              Su próxima reserva directa está
+              Su próxima reserva directa está{" "}
               <br />
               <span className="text-brand-gradient">
                 esperando en WhatsApp.

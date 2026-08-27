@@ -37,7 +37,7 @@ export function ValueOverviewSection() {
             Su nuevo equipo de ventas
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-            Tres cosas que hoy no alcanza a hacer.
+            Tres cosas que hoy no alcanza a hacer.{" "}
             <br />
             <span className="text-neon">Su agente las hace todos los días.</span>
           </h2>

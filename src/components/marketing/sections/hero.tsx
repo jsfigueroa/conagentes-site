@@ -84,7 +84,7 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-white"
             >
-              No es un chatbot que responde.
+              No es un chatbot que responde.{" "}
               <br />
               <span className="text-brand-gradient">
                 Es un agente que hace crecer sus ventas.

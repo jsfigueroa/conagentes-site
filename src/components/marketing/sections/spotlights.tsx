@@ -35,7 +35,7 @@ function Spotlight({
         className={reverse ? "lg:order-2" : ""}
       >
         <p className="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-widest text-neon">
-          {eyebrow}
+          {eyebrow}{" "}
           {badge && (
             <span className="rounded-full border border-white/[0.12] bg-white/[0.04] px-2.5 py-0.5 text-[10px] font-medium normal-case tracking-wide text-[oklch(0.62_0.005_95)]">
               {badge}

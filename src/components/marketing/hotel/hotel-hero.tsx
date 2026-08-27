@@ -94,7 +94,7 @@ export function HotelHero() {
                   {w}
                 </motion.span>
               )).flatMap((el, i) => (i ? [" ", el] : [el]))}
-            </span>
+            </span>{" "}
             <motion.span variants={word} className="text-brand-gradient block">
               Menos trabajo.
             </motion.span>
