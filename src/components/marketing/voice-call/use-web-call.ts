@@ -45,9 +45,30 @@ export function useWebCall(appUrl: string) {
   const [muted, setMuted] = useState(false);
   const [agentSpeaking, setAgentSpeaking] = useState(false);
   const [seconds, setSeconds] = useState(0);
+  /** 0..1 input level, so the visitor can SEE that we are hearing them. */
+  const [micLevel, setMicLevel] = useState(0);
+  /** True once the call has run a while with a mic that never made a sound. */
+  const [micSeemsDead, setMicSeemsDead] = useState(false);
 
   const roomRef = useRef<RoomLike | null>(null);
-  const audioElRef = useRef<HTMLAudioElement | null>(null);
+  /**
+   * ONE <audio> element PER remote track, never one shared element.
+   *
+   * The agent publishes TWO audio tracks: its speech, and a background ambience
+   * bed. `track.attach(el)` points that element's srcObject at the given track,
+   * so attaching the second track to the same element silently REPLACES the
+   * first. That is exactly what happened on the first live call (CON-260):
+   * the server logs showed five turns of ElevenLabs audio produced and
+   * published, and the caller heard only the office ambience, because the
+   * ambience track was subscribed last and took the element.
+   *
+   * Calling `attach()` with no argument lets livekit-client mint a dedicated
+   * element per track, which is what its docs prescribe and what lets both
+   * tracks play at once.
+   */
+  const audioElsRef = useRef<Map<string, HTMLAudioElement>>(new Map());
+  const micStreamRef = useRef<MediaStream | null>(null);
+  const meterRef = useRef<{ ctx: AudioContext; raf: number } | null>(null);
 
   // Call timer. Also how the visitor sees that a silent call is still alive.
   useEffect(() => {
@@ -56,6 +77,63 @@ export function useWebCall(appUrl: string) {
     return () => window.clearInterval(id);
   }, [phase]);
 
+  /**
+   * Watch the visitor's own input level.
+   *
+   * A voice widget that cannot show you whether it is hearing you turns a
+   * dead microphone into a mystery — the caller talks, nothing happens, and
+   * neither side knows why. This makes the failure visible: the meter moves, or
+   * it does not, and after a while the panel says so in words.
+   */
+  const startLevelMeter = useCallback((stream: MediaStream) => {
+    try {
+      const ctx = new AudioContext();
+      // Created after an `await`, so the click's activation may no longer apply
+      // and the context starts suspended — in which case the analyser reads a
+      // flat line forever. Left unresumed this does not merely break the meter:
+      // it would tell a visitor with a perfectly good microphone that we cannot
+      // hear them, which is worse than showing nothing.
+      void ctx.resume().catch(() => {});
+      const source = ctx.createMediaStreamSource(stream);
+      const analyser = ctx.createAnalyser();
+      analyser.fftSize = 512;
+      source.connect(analyser);
+      const buf = new Uint8Array(analyser.frequencyBinCount);
+      let peakSeen = 0;
+      let runningSince: number | null = null;
+
+      const tick = () => {
+        // Only judge the input once the context is actually running; otherwise
+        // "silent" means "we are not listening yet", not "your mic is dead".
+        if (ctx.state === "running") {
+          if (runningSince === null) runningSince = Date.now();
+          analyser.getByteTimeDomainData(buf);
+          let peak = 0;
+          for (const v of buf) peak = Math.max(peak, Math.abs(v - 128) / 128);
+          peakSeen = Math.max(peakSeen, peak);
+          setMicLevel(peak);
+          // Speech peaks well above this within a couple of seconds; a muted or
+          // wrong input sits at essentially zero forever.
+          if (Date.now() - runningSince > 8000) setMicSeemsDead(peakSeen < 0.02);
+        }
+        const raf = requestAnimationFrame(tick);
+        if (meterRef.current) meterRef.current.raf = raf;
+      };
+      meterRef.current = { ctx, raf: requestAnimationFrame(tick) };
+    } catch {
+      // A missing AudioContext costs us the meter, never the call.
+    }
+  }, []);
+
+  const stopLevelMeter = useCallback(() => {
+    if (!meterRef.current) return;
+    cancelAnimationFrame(meterRef.current.raf);
+    void meterRef.current.ctx.close().catch(() => {});
+    meterRef.current = null;
+    setMicLevel(0);
+    setMicSeemsDead(false);
+  }, []);
+
   const cleanup = useCallback(() => {
     try {
       roomRef.current?.disconnect();
@@ -63,12 +141,15 @@ export function useWebCall(appUrl: string) {
       // Disconnecting a room that already dropped is not an error worth showing.
     }
     roomRef.current = null;
-    if (audioElRef.current) {
-      audioElRef.current.srcObject = null;
-      audioElRef.current.remove();
-      audioElRef.current = null;
+    for (const el of audioElsRef.current.values()) {
+      el.srcObject = null;
+      el.remove();
     }
-  }, []);
+    audioElsRef.current.clear();
+    stopLevelMeter();
+    micStreamRef.current?.getTracks().forEach((t) => t.stop());
+    micStreamRef.current = null;
+  }, [stopLevelMeter]);
 
   useEffect(() => cleanup, [cleanup]);
 
@@ -86,14 +167,24 @@ export function useWebCall(appUrl: string) {
 
     // Ask for the microphone FIRST. If the visitor declines, we have not spent
     // a cent and no agent is left sitting in an empty room.
+    //
+    // The stream we get here is KEPT and handed to LiveKit below. The first
+    // version acquired a stream, stopped its tracks, and let LiveKit acquire a
+    // second one — two grabs of the same device, where the second can silently
+    // land on a different default input. On the first real call the agent's
+    // speech-to-text received a continuous stream but never completed a single
+    // utterance, which is what a live-but-empty input track looks like from the
+    // server. One acquisition removes that whole class of failure.
+    let micStream: MediaStream;
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      stream.getTracks().forEach((t) => t.stop());
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch {
       setError(MIC_DENIED);
       setPhase("error");
       return;
     }
+    micStreamRef.current = micStream;
+    startLevelMeter(micStream);
 
     setPhase("connecting");
 
@@ -119,17 +210,27 @@ export function useWebCall(appUrl: string) {
       const room = new Room({ adaptiveStream: false, dynacast: false });
       roomRef.current = room as unknown as RoomLike;
 
-      // The agent's voice. Appended to the document because some mobile browsers
-      // will not play a detached element.
-      const audioEl = document.createElement("audio");
-      audioEl.autoplay = true;
-      audioEl.style.display = "none";
-      document.body.appendChild(audioEl);
-      audioElRef.current = audioEl;
+      room.on(RoomEvent.TrackSubscribed, (track, publication) => {
+        if (track.kind !== Track.Kind.Audio) return;
+        // No argument: livekit-client creates an element dedicated to THIS
+        // track, so the speech and the ambience bed can play simultaneously.
+        const el = track.attach() as HTMLAudioElement;
+        el.autoplay = true;
+        el.style.display = "none";
+        // Appended to the document because some mobile browsers refuse to play
+        // a detached media element.
+        document.body.appendChild(el);
+        audioElsRef.current.set(publication.trackSid, el);
+      });
 
-      room.on(RoomEvent.TrackSubscribed, (track) => {
-        if (track.kind === Track.Kind.Audio && audioElRef.current) {
-          track.attach(audioElRef.current);
+      room.on(RoomEvent.TrackUnsubscribed, (track, publication) => {
+        if (track.kind !== Track.Kind.Audio) return;
+        track.detach();
+        const el = audioElsRef.current.get(publication.trackSid);
+        if (el) {
+          el.srcObject = null;
+          el.remove();
+          audioElsRef.current.delete(publication.trackSid);
         }
       });
 
@@ -148,7 +249,14 @@ export function useWebCall(appUrl: string) {
       });
 
       await room.connect(ws_url, token);
-      await room.localParticipant.setMicrophoneEnabled(true);
+      // Publish the EXACT track the visitor granted, rather than asking the SDK
+      // to acquire the device a second time.
+      const micTrack = micStream.getAudioTracks()[0];
+      if (micTrack) {
+        await room.localParticipant.publishTrack(micTrack, { source: Track.Source.Microphone });
+      } else {
+        await room.localParticipant.setMicrophoneEnabled(true);
+      }
       setPhase("live");
     } catch (err) {
       console.error("[web-call] connect failed:", err);
@@ -158,16 +266,17 @@ export function useWebCall(appUrl: string) {
     }
   }, [appUrl, cleanup]);
 
-  const toggleMute = useCallback(async () => {
-    const room = roomRef.current;
-    if (!room) return;
+  const toggleMute = useCallback(() => {
+    // Toggle the granted track itself. Now that we publish that exact track
+    // rather than letting the SDK acquire its own, `setMicrophoneEnabled` is no
+    // longer the thing that governs it — and a mute button that does not
+    // actually mute is worse than no mute button.
+    const track = micStreamRef.current?.getAudioTracks()[0];
+    if (!track) return;
     const next = !muted;
-    try {
-      await room.localParticipant.setMicrophoneEnabled(!next);
-      setMuted(next);
-    } catch {
-      // Leave the button where it was rather than lying about the mic state.
-    }
+    track.enabled = !next;
+    setMuted(next);
+    if (next) setMicLevel(0);
   }, [muted]);
 
   const reset = useCallback(() => {
@@ -178,5 +287,17 @@ export function useWebCall(appUrl: string) {
     setAgentSpeaking(false);
   }, [cleanup]);
 
-  return { phase, error, muted, agentSpeaking, seconds, start, hangUp, toggleMute, reset };
+  return {
+    phase,
+    error,
+    muted,
+    agentSpeaking,
+    seconds,
+    micLevel,
+    micSeemsDead,
+    start,
+    hangUp,
+    toggleMute,
+    reset,
+  };
 }
