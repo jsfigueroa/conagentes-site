@@ -20,6 +20,7 @@ import {
 import { ScrollReveal } from "@/components/marketing/animation/scroll-reveal";
 import { MagneticButton } from "@/components/marketing/animation/magnetic-button";
 import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
+import { TalkToAgentButton } from "@/components/marketing/voice-call/talk-to-agent-button";
 import { HotelStory } from "@/components/marketing/hotel/hotel-story";
 import { OmnichannelSection } from "@/components/marketing/hotel/omnichannel";
 import { HOME_FAQ } from "@/content/hotel/home-faq";
@@ -722,14 +723,21 @@ export function HotelBody() {
               habitaciones y tarifas de su propio hotel.
             </p>
             <div className="mt-9">
-              <MagneticButton strength={0.2}>
-                <button
-                  onClick={() => open("hotel-final")}
-                  className="btn-brand inline-flex cursor-pointer items-center justify-center rounded-full px-8 py-4 text-base font-semibold"
-                >
-                  Pruebe su agente IA
-                </button>
-              </MagneticButton>
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <MagneticButton strength={0.2}>
+                  <button
+                    onClick={() => open("hotel-final")}
+                    className="btn-brand inline-flex cursor-pointer items-center justify-center rounded-full px-8 py-4 text-base font-semibold"
+                  >
+                    Pruebe su agente IA
+                  </button>
+                </MagneticButton>
+                {/* CON-260: for the reader who got this far and still wants to
+                    hear it before filling in anything. */}
+                <MagneticButton strength={0.2}>
+                  <TalkToAgentButton source="hotel-final" variant="on-dark" />
+                </MagneticButton>
+              </div>
               <p className="mt-4 text-sm text-[oklch(0.5_0.005_95)]">
                 Sin cambiar su PMS · Sin compromiso
               </p>
