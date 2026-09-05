@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { BedDouble, ShieldCheck } from "lucide-react";
 import { MagneticButton } from "@/components/marketing/animation/magnetic-button";
 import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
+import { TalkToAgentButton } from "@/components/marketing/voice-call/talk-to-agent-button";
 import { ChannelOrbit } from "@/components/marketing/hotel/channel-orbit";
 import { GrainOverlay } from "@/components/marketing/hotel/grain-overlay";
 import {
@@ -127,6 +128,11 @@ export function HotelHero() {
               >
                 Pruebe su agente IA
               </button>
+            </MagneticButton>
+            {/* CON-260: the fastest possible proof. Reading about the agent is
+                the slow path; hearing it answer is the demo. */}
+            <MagneticButton strength={0.2}>
+              <TalkToAgentButton source="hotel-hero" variant="on-dark" />
             </MagneticButton>
             <MagneticButton strength={0.2}>
               <a
