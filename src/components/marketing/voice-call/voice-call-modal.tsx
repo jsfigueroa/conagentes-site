@@ -28,8 +28,19 @@ function formatDuration(totalSeconds: number): string {
  */
 export function VoiceCallModal() {
   const { isOpen, close } = useVoiceCall();
-  const { phase, error, muted, agentSpeaking, seconds, start, hangUp, toggleMute, reset } =
-    useWebCall(APP_URL);
+  const {
+    phase,
+    error,
+    muted,
+    agentSpeaking,
+    seconds,
+    micLevel,
+    micSeemsDead,
+    start,
+    hangUp,
+    toggleMute,
+    reset,
+  } = useWebCall(APP_URL);
   const primaryRef = useRef<HTMLButtonElement | null>(null);
 
   const isLive = phase === "live";
@@ -164,6 +175,35 @@ export function VoiceCallModal() {
                   </span>
                 )}
               </p>
+
+              {/* The visitor's own input level. A voice widget that cannot show
+                  whether it is hearing you turns a dead mic into a mystery. */}
+              {isLive && (
+                <div className="mt-3 w-full">
+                  <div className="flex items-center gap-2">
+                    <Mic className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+                    <div
+                      className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted"
+                      role="meter"
+                      aria-label="Nivel de su micrófono"
+                      aria-valuenow={Math.round(micLevel * 100)}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                    >
+                      <div
+                        className="h-full rounded-full bg-[var(--orange)] transition-[width] duration-75"
+                        style={{ width: `${Math.min(100, Math.round(micLevel * 180))}%` }}
+                      />
+                    </div>
+                  </div>
+                  {micSeemsDead && !muted && (
+                    <p role="alert" className="mt-2 text-left text-xs text-[oklch(0.45_0.18_25)]">
+                      No estamos recibiendo su voz. Revise que el navegador esté usando el micrófono
+                      correcto y que no esté silenciado en su computador.
+                    </p>
+                  )}
+                </div>
+              )}
 
               {error && (
                 <p
