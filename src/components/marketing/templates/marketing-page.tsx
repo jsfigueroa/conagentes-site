@@ -9,6 +9,7 @@ import {
   ComparePanels,
   FlowDiagram,
   JourneyTabs,
+  LeakCalculator,
   LogoWall,
   MetricBars,
   ProductPanel,
@@ -350,6 +351,13 @@ function SectionBody({ s }: { s: Section }) {
         <>
           <SectionHeading heading={s.heading} sub={s.sub} />
           <RoiCalculator s={s} />
+        </>
+      );
+    case "leak":
+      return (
+        <>
+          <SectionHeading heading={s.heading} sub={s.sub} />
+          <LeakCalculator s={s} />
         </>
       );
     case "journey":

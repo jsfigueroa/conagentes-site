@@ -296,6 +296,11 @@ export const NAV_HOTEL: NavItem[] = [
         heading: "Calcule",
         links: [
           {
+            label: "¿Cuánto pierde por no contestar?",
+            href: "/hoteles/calculadora-reservas-perdidas",
+            description: "Las cuatro fugas, con sus números",
+          },
+          {
             label: "¿Cuánta comisión paga?",
             href: "/hoteles/reservas-directas",
             description: "Calculadora de comisión de OTA",

@@ -1,5 +1,14 @@
 import type { MarketingPage } from "../pages.types";
+import { LEAK_DEFAULTS, LEAK_EXAMPLE, cop, millones } from "@/lib/leak-model";
 import { DATOS, ENTIDADES_BASE, UPDATED } from "./shared";
+
+/**
+ * The reservas-perdidas page quotes the calculator's DEFAULT scenario in prose
+ * (GEO contract §2: a reader who never moves a slider still finds a concrete
+ * number). Importing the model instead of hardcoding means the sentence and
+ * the panel cannot drift apart — change a default and the prose follows.
+ */
+const EJ = LEAK_EXAMPLE;
 
 /**
  * RECURSOS Y COMERCIAL — the cornerstone guide (the page we want assistants to
@@ -235,6 +244,156 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
     },
   },
 
+  /* ─────────── calculadora de reservas perdidas (CON-271) ─────────── */
+  {
+    slug: "hoteles/calculadora-reservas-perdidas",
+    experience: "hotel",
+    eyebrow: "Calculadora",
+    title: "¿Cuánto le cuesta a su hotel no contestar a tiempo?",
+    lede: "Mueva sus números —habitaciones, tarifa, ocupación, consultas al mes— y vea la cuenta: lo que se fuga cada año por las consultas que nadie contesta, las que se contestan tarde, los huéspedes que se quedan callados y la tarifa que nunca se movió.",
+    answer:
+      `La calculadora de reservas perdidas de conagentes estima, con los números del propio hotel, cuánto ingreso se fuga al año por cuatro causas: consultas de huéspedes que nadie contesta, consultas contestadas tarde, huéspedes que se quedan callados y nadie persigue, y la tarifa que nunca se mueve según la demanda. Para un hotel colombiano de ${LEAK_DEFAULTS.habitaciones} habitaciones con tarifa promedio de ${cop(LEAK_DEFAULTS.adr)} y ${LEAK_DEFAULTS.ocupacion} % de ocupación, la cuenta da ${millones(EJ.total)} al año.`,
+    heroChips: [
+      "Con sus números, no con promedios",
+      "Todos los supuestos a la vista y editables",
+      "Sin registro para ver el resultado",
+    ],
+    meta: {
+      title: "Calculadora: cuánto pierde su hotel por no contestar a tiempo",
+      description:
+        "Estime con sus propios números cuánto ingreso pierde su hotel al año por consultas sin responder, respuestas tardías, cero seguimiento y tarifa sin optimizar. Sin registro.",
+    },
+    keywords: [
+      "cuánto pierde un hotel por no contestar WhatsApp",
+      "calculadora de reservas perdidas hotel",
+      "cuánto cuesta responder tarde una consulta de hotel",
+      "reservas que se pierden por no hacer seguimiento",
+      "calculadora de ingresos perdidos hotelería Colombia",
+      "cuánto deja de facturar un hotel por mala atención",
+    ],
+    entities: [
+      ...ENTIDADES_BASE,
+      "Instagram",
+      "Cotelco",
+      "Harvard Business Review",
+      "ADR",
+      "RevPAR",
+      "revenue management",
+    ],
+    updated: "2026-09-08",
+    sections: [
+      {
+        type: "leak",
+        heading: "Ponga los números de su hotel",
+        sub: "Empieza con un hotel colombiano de tamaño medio. Cambie lo que no se parezca al suyo: la cuenta se recalcula sola.",
+        footnote:
+          "Es una estimación construida con supuestos que usted controla, no una promesa de resultados. La ocupación por defecto (56 %) es la que Cotelco proyectó para mitad de 2026 en Colombia. El efecto de la demora se apoya en el estudio de Harvard Business Review sobre 2.241 empresas; el rango de la optimización de tarifa, en referencias públicas de la industria de revenue management. Cuando un número es estimación nuestra, lo decimos en el propio deslizador.",
+      },
+      {
+        type: "stats",
+        items: [
+          { value: millones(EJ.total), label: "al año se le fugan al hotel del ejemplo" },
+          {
+            value: `${Math.round(EJ.reservasPerdidas)}`,
+            label: "reservas que no entraron, con las habitaciones ya construidas",
+          },
+          {
+            value: `${EJ.porcentajeIngreso.toFixed(1).replace(".", ",")} %`,
+            label: "de lo que ese hotel factura por alojamiento",
+          },
+          { value: millones(EJ.mensual), label: "es lo que cuesta cada mes de espera" },
+        ],
+      },
+      {
+        type: "prose",
+        heading: "La cuenta del ejemplo, en palabras",
+        body: [
+          `El escenario con el que abre la calculadora es un hotel de ${LEAK_DEFAULTS.habitaciones} habitaciones, tarifa promedio de ${cop(LEAK_DEFAULTS.adr)} por noche, ${LEAK_DEFAULTS.ocupacion} % de ocupación, dos noches por reserva y ${LEAK_DEFAULTS.consultas} consultas de huéspedes al mes entre WhatsApp, Instagram, el teléfono y el chat de la web. Ese hotel factura ${cop(EJ.ingresoAlojamiento)} al año por alojamiento.`,
+          `Con ${LEAK_DEFAULTS.sinResponder} % de las consultas sin respuesta, ${LEAK_DEFAULTS.tarde} % contestadas más de una hora después y ${LEAK_DEFAULTS.silencio} % de los interesados que se quedan callados sin que nadie los vuelva a escribir, la fuga suma ${cop(EJ.total)} al año: ${cop(EJ.fugaNunca)} por lo que nadie contestó, ${cop(EJ.fugaTarde)} por contestar tarde, ${cop(EJ.fugaSeguimiento)} por no hacer seguimiento y ${cop(EJ.fugaTarifa)} por no mover la tarifa según la demanda.`,
+          `Son ${Math.round(EJ.reservasPerdidas)} reservas y ${Math.round(EJ.nochesVacias)} noches al año, el ${EJ.porcentajeIngreso.toFixed(1).replace(".", ",")} % de lo que ese hotel factura por alojamiento, y ${cop(EJ.fugaFueraHorario)} de la fuga por no contestar ocurre de noche o en fin de semana, cuando no hay nadie en recepción. Ninguna de esas noches exige una habitación más ni un peso más de pauta: son huéspedes que ya habían escrito.`,
+        ],
+      },
+      {
+        type: "features",
+        heading: "Las cuatro fugas, una por una",
+        items: [
+          {
+            title: "1. La consulta que nadie contestó",
+            body: "Entró a las 11 de la noche, un domingo, o quedó sepultada entre chats. El huésped no espera: le escribe al siguiente hotel. Un agente que atiende las 24 horas contesta esa misma consulta en segundos.",
+            href: "/hoteles/recepcion-24-7",
+          },
+          {
+            title: "2. La consulta que se contestó tarde",
+            body: "Contestar al otro día no es lo mismo que contestar en un minuto: cuando llega la respuesta, ya le cotizaron otros tres hoteles. Es la fuga más invisible, porque en el chat parece atendida.",
+            href: "/hoteles/agente-ia",
+          },
+          {
+            title: "3. El huésped que se quedó callado",
+            body: "Preguntó, le cotizaron, dijo «lo pienso» y ahí quedó. Nadie volvió a escribirle. El seguimiento es trabajo que nadie tiene tiempo de hacer a mano, y es donde está la parte más grande de la cuenta.",
+            href: "/hoteles/reactivacion",
+          },
+          {
+            title: "4. La tarifa que nunca se movió",
+            body: "El viernes de un puente vale lo mismo que un martes de marzo. No es una reserva perdida: es dinero que se dejó en la mesa en reservas que sí entraron, y se recupera sin vender una noche más.",
+            href: "/hoteles/revenue-manager",
+          },
+        ],
+      },
+      {
+        type: "prose",
+        heading: "Cómo está hecha la cuenta (y por qué no infla)",
+        body: [
+          "Una calculadora que se puede desarmar en dos preguntas no sirve para decidir nada. Estas son las reglas con las que está construida, para que pueda revisarlas antes de creerle:",
+          "Los supuestos son suyos. La tasa de cierre, cuánto pesa la demora, cuántos callados vuelven si alguien insiste y cuánto sube el ingreso al mover la tarifa están en el panel de supuestos, abiertos y editables. Vienen en el extremo prudente del rango: 18 % de cierre, la mitad del cierre perdido por contestar tarde, 15 % de recuperación por seguimiento y 5 % de optimización de tarifa.",
+          "Nada se cuenta dos veces. Sus consultas del mes se reparten en tres grupos que no se cruzan —las que nadie contestó, las que se contestaron tarde y las que se atendieron a tiempo—. El seguimiento solo se calcula sobre las consultas que sí se atendieron y no terminaron en reserva. Y lo que llega fuera de horario no se suma aparte: es una porción de la fuga por no contestar, mostrada para que vea cuánta pasa cuando no hay nadie.",
+          "La tarifa se calcula sobre lo que ya factura, no sobre lo que podría facturar, y por eso es independiente de todo lo demás. Tampoco le sumamos tarifa optimizada a las reservas recuperadas, aunque en la práctica también aplicaría: preferimos que la cuenta quede corta.",
+        ],
+      },
+      {
+        type: "faq",
+        heading: "Preguntas sobre la calculadora",
+        items: [
+          {
+            q: "¿De dónde salen los números que vienen por defecto?",
+            a: "La ocupación (56 %) es la proyección de Cotelco para mitad de 2026 en Colombia. El efecto de contestar tarde se apoya en el estudio de Harvard Business Review sobre 2.241 empresas, que encontró que contactar una consulta comercial dentro de la primera hora hace casi siete veces más probable calificarla. El rango de la optimización de tarifa viene de referencias públicas de la industria de revenue management, que lo ubican entre 4 % y 8 %. El resto —cuántas consultas quedan sin responder en su hotel, cuántas se contestan tarde, cuántos huéspedes se quedan callados— son estimaciones conservadoras que usted debe reemplazar por lo que pasa en su recepción.",
+          },
+          {
+            q: "No sé cuántas consultas recibo al mes. ¿Cómo lo averiguo?",
+            a: "Cuente personas distintas, no mensajes: abra WhatsApp y cuente cuántos chats nuevos aparecieron el mes pasado, sume los mensajes directos de Instagram y las llamadas que preguntaron por disponibilidad. Si le da pereza contarlo todo, cuente una semana y multiplique por cuatro. Es mejor un número aproximado suyo que un promedio de la industria.",
+          },
+          {
+            q: "¿Esto es lo que voy a ganar si contrato un agente de IA?",
+            a: "No. Es lo que hoy se está fugando, que es una cosa distinta. Ningún agente recupera el 100 % de una fuga: hay huéspedes que preguntaban por preguntar y otros que ya reservaron en otra parte. La cuenta sirve para ver el tamaño del problema y decidir cuál de las cuatro fugas cerrar primero; lo que se recupera se mide después, con su propio historial.",
+          },
+          {
+            q: "¿Por qué la fuga por falta de seguimiento suele ser la más grande?",
+            a: "Porque el grupo del que sale es el más grande. De cada cien consultas bien atendidas, la mayoría no reserva de inmediato, y casi ninguna de esas recibe un segundo mensaje. No es negligencia: escribirle de nuevo, en el momento correcto, a cada huésped que dijo «lo pienso» es un trabajo que a mano no se hace. Es exactamente el trabajo que un agente sí hace todos los días.",
+          },
+          {
+            q: "¿Tengo que dejar mis datos para ver el resultado?",
+            a: "No. La calculadora funciona completa sin registrarse y sin descargar nada. Si quiere el desglose por escrito, hay un botón para que se lo enviemos con sus propios números; ahí sí pedimos nombre, correo y WhatsApp, y le escribimos para conversar cuál de las cuatro fugas conviene cerrar primero.",
+          },
+          {
+            q: "¿Sirve para un hotel pequeño, de diez o quince habitaciones?",
+            a: "Sí, y suele sorprender más: en un hotel pequeño cada reserva perdida pesa mucho más sobre el resultado del mes. Baje el número de habitaciones y el de consultas a lo que corresponda; la cuenta se recalcula sola y sigue siendo la misma aritmética.",
+          },
+        ],
+      },
+    ],
+    related: [
+      { label: "Recepción que no cierra nunca", href: "/hoteles/recepcion-24-7" },
+      { label: "Reactivar huéspedes anteriores", href: "/hoteles/reactivacion" },
+      { label: "Revenue manager", href: "/hoteles/revenue-manager" },
+      { label: "Más reservas directas", href: "/hoteles/reservas-directas" },
+      { label: "Precios", href: "/hoteles/precios" },
+    ],
+    cta: {
+      title: "¿Cerramos la fuga más grande primero?",
+      sub: "Veinte minutos con sus números adentro y salimos con el orden concreto: qué se cierra esta semana y qué después.",
+      button: "Quiero ver mi hotel adentro",
+    },
+  },
+
   /* ────────────────────── integraciones ────────────────────── */
   {
     slug: "hoteles/integraciones",
@@ -396,6 +555,11 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
             title: "Guía: automatizar un hotel con IA",
             body: "Los seis pasos en orden, los cuatro errores que hunden el proyecto y la tabla de exigencias para llevar a cualquier demo.",
             href: "/hoteles/automatizar-hotel-con-ia",
+          },
+          {
+            title: "Calculadora: ¿cuánto pierde por no contestar?",
+            body: `Consultas sin responder, contestadas tarde, huéspedes que nadie persigue y la tarifa que nunca se movió. Con sus números: ${millones(EJ.total)} al año en el hotel del ejemplo.`,
+            href: "/hoteles/calculadora-reservas-perdidas",
           },
           {
             title: "Calculadora: ¿cuánta comisión paga?",

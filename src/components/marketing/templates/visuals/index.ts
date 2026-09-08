@@ -3,6 +3,7 @@ export { ComparePanels } from "./compare-panels";
 export { MetricBars } from "./metric-bars";
 export { FlowDiagram } from "./flow-diagram";
 export { RoiCalculator } from "./roi-calculator";
+export { LeakCalculator } from "./leak-calculator";
 export { JourneyTabs } from "./journey-tabs";
 export { ProductPanel } from "./product-panel";
 export { CapabilityMatrix } from "./capability-matrix";

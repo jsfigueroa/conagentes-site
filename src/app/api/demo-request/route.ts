@@ -11,7 +11,7 @@ function getResend(): Resend {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, whatsapp, source } = body;
+    const { name, email, whatsapp, source, context } = body;
 
     if (!name || !email || !whatsapp) {
       return NextResponse.json(
@@ -41,6 +41,12 @@ export async function POST(req: NextRequest) {
     const cleanEmail = email.trim().toLowerCase();
     const cleanWhatsapp = String(whatsapp).trim();
     const cleanSource = source || "landing";
+    // Free-form detail the submitting surface wants a human to see — today the
+    // reservas-perdidas calculator's own figures (CON-271). It rides only in
+    // the notification email: no column, no HQ contract change, and it is
+    // escaped + capped before it touches the HTML.
+    const cleanContext =
+      typeof context === "string" && context.trim() ? context.trim().slice(0, 2000) : null;
 
     const supabase = createAdminClient();
 
@@ -88,6 +94,7 @@ export async function POST(req: NextRequest) {
             email: email.trim().toLowerCase(),
             whatsapp: whatsapp?.trim() || null,
             source: source || "landing",
+            context: cleanContext,
           }),
         });
       } catch (emailError) {
@@ -148,8 +155,9 @@ function buildDemoEmailHtml(params: {
   email: string;
   whatsapp: string | null;
   source: string;
+  context?: string | null;
 }): string {
-  const { name, email, whatsapp, source } = params;
+  const { name, email, whatsapp, source, context } = params;
 
   return `
 <!DOCTYPE html>
@@ -175,6 +183,14 @@ function buildDemoEmailHtml(params: {
           <tr><td style="color:#6b7280;font-size:13px;padding:6px 0;">Fuente</td><td style="color:#111;font-size:14px;">${escapeHtml(source)}</td></tr>
         </table>
       </div>
+      ${
+        context
+          ? `<div style="background:#fffaf5;border:1px solid #f3d9c2;border-radius:8px;padding:16px;margin:0 0 24px;">
+          <p style="color:#9a5b1f;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px;">Sus propios números</p>
+          <p style="color:#1f2937;font-size:13px;line-height:1.7;margin:0;white-space:pre-line;">${escapeHtml(context)}</p>
+        </div>`
+          : ""
+      }
       ${whatsapp ? `<a href="https://wa.me/${escapeHtml(whatsapp.replace(/[^0-9]/g, ''))}" style="display:inline-block;background:#25D366;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;margin-right:12px;">Escribir por WhatsApp</a>` : ""}
       <a href="mailto:${escapeHtml(email)}" style="display:inline-block;background:#1a1a1a;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">
         Responder por email

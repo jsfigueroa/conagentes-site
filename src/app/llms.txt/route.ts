@@ -117,6 +117,7 @@ conagentes usa exactamente tres estados y ninguno más, para no inducir a error:
 - [Gerencia y BI por WhatsApp](${SITE_URL}/hoteles/gerencia): el dueño pregunta por WhatsApp y recibe ocupación, ADR, RevPAR, mezcla de canales e ingreso por servicios
 - [Resultados y ROI](${SITE_URL}/hoteles/resultados): las cuatro cuentas del retorno, con calculadoras sobre los datos del propio hotel
 - [Integraciones](${SITE_URL}/hoteles/integraciones): PMS, channel managers, OTAs, pasarelas de pago y facturación
+- [Calculadora de reservas perdidas](${SITE_URL}/hoteles/calculadora-reservas-perdidas): cuánto ingreso pierde un hotel al año por consultas de huéspedes sin responder, contestadas tarde, sin seguimiento y por tarifa sin optimizar — con los números del propio hotel y todos los supuestos a la vista y editables
 - [Recursos para hoteleros](${SITE_URL}/hoteles/recursos): guías y calculadoras
 - [Blog hotelero](${SITE_URL}/hoteles/blog): artículos sobre reservas directas, revenue management, experiencia del huésped, tecnología hotelera, cumplimiento (DIAN, TRA, RNT) y mercado hotelero de Colombia y Latinoamérica
 - [Precios para hoteles](${SITE_URL}/hoteles/precios): plan de tarifa fija (0 % de comisión) o plan por resultados (base baja + comisión solo sobre lo que cierre el agente)

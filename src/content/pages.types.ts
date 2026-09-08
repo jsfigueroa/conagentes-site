@@ -159,6 +159,19 @@ export type Section =
       variant: "ota" | "upsell";
       footnote?: string;
     }
+  /**
+   * The revenue-leak calculator (CON-271): what an unanswered, late or
+   * un-followed-up inquiry costs, plus the rate that never moved. Its own type
+   * rather than a third `calc` variant because it carries three slider groups,
+   * an editable assumptions panel and a send-me-the-breakdown form — widening
+   * `calc` would put the two live calculators at risk to serve this one.
+   */
+  | {
+      type: "leak";
+      heading?: string;
+      sub?: string;
+      footnote?: string;
+    }
   /** Tabbed guest-journey stages. All stages stay in the DOM. */
   | {
       type: "journey";
