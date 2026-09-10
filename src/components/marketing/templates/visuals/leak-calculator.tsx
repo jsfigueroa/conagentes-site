@@ -1,8 +1,17 @@
 "use client";
 
-import { useMemo, useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent, type ReactNode } from "react";
 import type { Section } from "@/content/pages";
-import { computeLeak, LEAK_DEFAULTS, type LeakInputs, type LeakKey } from "@/lib/leak-model";
+import {
+  computeGenericLeak,
+  computeHotelLeak,
+  GENERIC_DEFAULTS,
+  HOTEL_DEFAULTS,
+  type GenericLeakInputs,
+  type GenericLeakKey,
+  type HotelLeakInputs,
+  type HotelLeakKey,
+} from "@/lib/leak-model";
 
 type LeakSection = Extract<Section, { type: "leak" }>;
 
@@ -14,19 +23,24 @@ const COP = new Intl.NumberFormat("es-CO", {
 const NUM = new Intl.NumberFormat("es-CO", { maximumFractionDigits: 0 });
 
 /**
- * CALCULADORA DE RESERVAS PERDIDAS (CON-271)
+ * CALCULADORA DE FUGA (CON-271)
  *
- * The revenue a hotel loses because nobody answered, answered late, never
- * followed up, or never moved the rate. Built for two readers at once: a
- * hotelero who found the page on his own, and one of our reps working the
- * price objection on a call — which is why it shows a LEAK and never a price.
+ * The revenue lost because nobody answered, answered late, never followed up —
+ * plus, per variant, the rate that never moved (hotel) or the hours the team
+ * spends answering the same questions (generic SMB).
+ *
+ * Built for two readers at once: an owner who found the page on his own, and
+ * one of our reps working the price objection on a call — which is why it
+ * shows a LEAK and never a price.
  *
  * The arithmetic (and the three rules it obeys) lives in `@/lib/leak-model`,
- * shared with the page's prose so the two can never disagree.
+ * shared with each page's prose so the two can never disagree.
  */
 
-type Field = {
-  key: LeakKey;
+/* ————— piezas compartidas ————— */
+
+type Field<K extends string> = {
+  key: K;
   label: string;
   min: number;
   max: number;
@@ -36,131 +50,14 @@ type Field = {
   help?: string;
 };
 
-/** «Su hotel»: the four numbers any owner knows by heart. */
-const HOTEL: Field[] = [
-  { key: "habitaciones", label: "Habitaciones", min: 8, max: 300, step: 1 },
-  {
-    key: "adr",
-    label: "Tarifa promedio por noche",
-    min: 80_000,
-    max: 1_500_000,
-    step: 10_000,
-    money: true,
-    help: "Su ADR: lo que en promedio paga un huésped por noche.",
-  },
-  {
-    key: "ocupacion",
-    label: "Ocupación anual",
-    min: 25,
-    max: 95,
-    step: 1,
-    suffix: " %",
-    help: "Cotelco proyectó 55,9 % para el país a mitad de 2026.",
-  },
-  {
-    key: "noches",
-    label: "Noches por reserva",
-    min: 1,
-    max: 10,
-    step: 1,
-    help: "Su estadía promedio. Es lo que convierte una reserva perdida en pesos.",
-  },
-];
+type Group<K extends string> = { label: string; note?: string; fields: Field<K>[] };
 
-/** «Su atención hoy»: the five numbers that decide the leak. */
-const ATENCION: Field[] = [
-  {
-    key: "consultas",
-    label: "Consultas de huéspedes al mes",
-    min: 20,
-    max: 2000,
-    step: 10,
-    help: "Personas distintas que preguntan por WhatsApp, Instagram, el teléfono o el chat de la web. No mensajes: personas.",
-  },
-  {
-    key: "sinResponder",
-    label: "Consultas que hoy quedan sin respuesta",
-    min: 0,
-    max: 70,
-    step: 1,
-    suffix: " %",
-    help: "Las que nadie contestó nunca: entraron de noche, en fin de semana, o se perdieron entre los chats.",
-  },
-  {
-    key: "tarde",
-    label: "Consultas que se contestan tarde",
-    min: 0,
-    max: 90,
-    step: 1,
-    suffix: " %",
-    help: "Más de una hora después. Al huésped ya le cotizaron otros tres hoteles.",
-  },
-  {
-    key: "silencio",
-    label: "Huéspedes que se quedan callados y nadie persigue",
-    min: 0,
-    max: 95,
-    step: 1,
-    suffix: " %",
-    help: "De los que sí atendió y no reservaron: cuántos quedaron ahí, sin un segundo mensaje.",
-  },
-  {
-    key: "fueraHorario",
-    label: "Consultas que llegan fuera de horario",
-    min: 0,
-    max: 80,
-    step: 1,
-    suffix: " %",
-    help: "Noches, madrugadas y fines de semana. No suma aparte: muestra qué parte de la fuga pasa cuando no hay nadie.",
-  },
-];
-
-/** The expert knobs. Visible, editable, and stated as assumptions. */
-const SUPUESTOS: Field[] = [
-  {
-    key: "cierre",
-    label: "De cada 100 consultas bien atendidas, cuántas reservan",
-    min: 3,
-    max: 60,
-    step: 1,
-    suffix: " %",
-    help: "Su tasa de cierre cuando la atención sí funciona.",
-  },
-  {
-    key: "penalDemora",
-    label: "Cuánto del cierre se pierde por contestar tarde",
-    min: 0,
-    max: 90,
-    step: 5,
-    suffix: " %",
-    help: "Harvard Business Review: contestar dentro de la primera hora hace casi siete veces más probable calificar la consulta. El 50 % por defecto es deliberadamente prudente frente a eso.",
-  },
-  {
-    key: "recuperacion",
-    label: "Cuántos de los callados vuelven si alguien insiste",
-    min: 0,
-    max: 60,
-    step: 1,
-    suffix: " %",
-    help: "Estimación propia y conservadora: un segundo mensaje oportuno no recupera a todos, pero sí a una parte.",
-  },
-  {
-    key: "optimizacion",
-    label: "Ingreso extra por mover la tarifa según la demanda",
-    min: 0,
-    max: 15,
-    step: 1,
-    suffix: " %",
-    help: "Las referencias públicas de la industria ubican el efecto de un sistema de revenue management entre 4 % y 8 % del ingreso por habitación. El 5 % por defecto es el extremo bajo.",
-  },
-];
-
-function Slider({
+function Slider<K extends string>({
   f,
   value,
   onChange,
 }: {
-  f: Field;
+  f: Field<K>;
   value: number;
   onChange: (v: number) => void;
 }) {
@@ -213,9 +110,9 @@ type SendStatus = "idle" | "submitting" | "success" | "error";
  * «Envíeme el desglose». Ungated on purpose — the number is already on screen;
  * this exists for the owner who wants it in writing, and it carries HIS OWN
  * figures into the notification, so whoever calls him back already knows which
- * of the four leaks he was looking at.
+ * leak he was looking at.
  */
-function SendBreakdown({ context }: { context: string }) {
+function SendBreakdown({ context, source }: { context: string; source: string }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -231,13 +128,7 @@ function SendBreakdown({ context }: { context: string }) {
       const res = await fetch("/api/demo-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          whatsapp,
-          source: "calculadora-reservas-perdidas",
-          context,
-        }),
+        body: JSON.stringify({ name, email, whatsapp, source, context }),
       });
       if (!res.ok) {
         const data = (await res.json().catch(() => ({}))) as { error?: string };
@@ -259,7 +150,7 @@ function SendBreakdown({ context }: { context: string }) {
         <p className="text-[14px] font-semibold text-white">Listo, va en camino.</p>
         <p className="mt-1 text-[13px] leading-relaxed text-[oklch(0.78_0.005_95)]">
           Le enviamos el desglose con sus números y le escribimos por WhatsApp para conversar cuál
-          de las cuatro fugas conviene cerrar primero.
+          de las fugas conviene cerrar primero.
         </p>
       </div>
     );
@@ -327,27 +218,24 @@ function SendBreakdown({ context }: { context: string }) {
   );
 }
 
-export function LeakCalculator({ s }: { s: LeakSection }) {
-  const [v, setV] = useState<LeakInputs>(LEAK_DEFAULTS);
-  const r = useMemo(() => computeLeak(v), [v]);
-
-  const set = (key: LeakKey) => (n: number) => setV((prev) => ({ ...prev, [key]: n }));
-
-  const rows = [
-    { k: "Consultas que nadie contestó", val: r.fugaNunca },
-    { k: "Consultas contestadas cuando ya cotizó otro hotel", val: r.fugaTarde },
-    { k: "Huéspedes que se quedaron callados y nadie persiguió", val: r.fugaSeguimiento },
-    { k: "Tarifa que nunca se movió según la demanda", val: r.fugaTarifa },
-  ];
-
-  /** What the owner's own email — and whoever calls him back — needs to see. */
-  const context = [
-    `${NUM.format(v.habitaciones)} habitaciones · ADR ${COP.format(v.adr)} · ocupación ${v.ocupacion} % · ${v.noches} noches por reserva · ${NUM.format(v.consultas)} consultas al mes.`,
-    `Fuga anual estimada: ${COP.format(r.total)} — el ${r.porcentajeIngreso.toFixed(1).replace(".", ",")} % del ingreso por alojamiento.`,
-    `Sin contestar ${COP.format(r.fugaNunca)} · tarde ${COP.format(r.fugaTarde)} · sin seguimiento ${COP.format(r.fugaSeguimiento)} · tarifa sin optimizar ${COP.format(r.fugaTarifa)}.`,
-    `Equivale a ${NUM.format(Math.round(r.reservasPerdidas))} reservas y ${NUM.format(Math.round(r.nochesVacias))} noches al año.`,
-  ].join("\n");
-
+/** The card: inputs on the left, the account on the right. */
+function CalcShell<K extends string>({
+  groups,
+  values,
+  onChange,
+  total,
+  result,
+  footnote,
+  inputsLabel,
+}: {
+  groups: Group<K>[];
+  values: Record<K, number>;
+  onChange: (key: K) => (v: number) => void;
+  total: number;
+  result: ReactNode;
+  footnote?: string;
+  inputsLabel: string;
+}) {
   return (
     <figure className="mx-auto max-w-6xl">
       {/* No `overflow-hidden` here, deliberately: it would become the sticky
@@ -355,126 +243,516 @@ export function LeakCalculator({ s }: { s: LeakSection }) {
           its own corners instead — bottom pair when stacked, right pair once
           it becomes the second column. */}
       <div className="grid gap-6 rounded-3xl border border-border bg-card lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-0">
-        {/* Inputs */}
-        <form
-          className="p-6 sm:p-8"
-          onSubmit={(e) => e.preventDefault()}
-          aria-label="Calculadora de reservas perdidas"
-        >
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-            Su hotel
-          </p>
-          <div className="mt-4 space-y-5">
-            {HOTEL.map((f) => (
-              <Slider key={f.key} f={f} value={v[f.key]} onChange={set(f.key)} />
-            ))}
-          </div>
-
-          <p className="mt-8 border-t border-border pt-7 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-            Su atención hoy
-          </p>
-          <div className="mt-4 space-y-5">
-            {ATENCION.map((f) => (
-              <Slider key={f.key} f={f} value={v[f.key]} onChange={set(f.key)} />
-            ))}
-          </div>
-
-          <details className="mt-8 border-t border-border pt-7">
-            <summary className="cursor-pointer list-none text-[11px] font-semibold uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
-              Los supuestos — ábralos y cámbielos
-            </summary>
-            <p className="mt-3 text-[12.5px] leading-relaxed text-muted-foreground">
-              Acá no hay nada escondido. Estos cuatro números son los que convierten sus consultas
-              en pesos, y son suyos para mover: si los baja, la cuenta baja.
-            </p>
-            <div className="mt-5 space-y-5">
-              {SUPUESTOS.map((f) => (
-                <Slider key={f.key} f={f} value={v[f.key]} onChange={set(f.key)} />
-              ))}
+        <form className="p-6 sm:p-8" onSubmit={(e) => e.preventDefault()} aria-label={inputsLabel}>
+          {groups.map((g, i) => (
+            <div key={g.label} className={i === 0 ? "" : "mt-8 border-t border-border pt-7"}>
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                {g.label}
+              </p>
+              {g.note && (
+                <p className="mt-2.5 text-[12.5px] leading-relaxed text-muted-foreground">
+                  {g.note}
+                </p>
+              )}
+              <div className="mt-4 space-y-5">
+                {g.fields.map((f) => (
+                  <Slider key={f.key} f={f} value={values[f.key]} onChange={onChange(f.key)} />
+                ))}
+              </div>
             </div>
-          </details>
+          ))}
 
-          {/* On a phone the result panel is nine sliders below, so the number
-              would be invisible exactly while he is moving the thing that
-              changes it. This pins it to the bottom of the screen for as long
-              as the sliders are on it. On lg the panel itself sticks instead. */}
-          {/* Right-aligned on purpose: the site's floating call button lives in
+          {/* On a phone the result panel is a dozen sliders below, so the
+              number would be invisible exactly while he is moving the thing
+              that changes it. This pins it to the bottom of the screen for as
+              long as the sliders are on it. On lg the panel itself sticks.
+              Right-aligned on purpose: the site's floating call button lives in
               the bottom-left corner and would sit on top of the label. */}
           <div className="sticky bottom-0 -mx-6 mt-7 flex items-baseline justify-end gap-3 border-t border-border bg-card/95 px-6 py-3 backdrop-blur sm:-mx-8 sm:px-8 lg:hidden">
             <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
               La fuga al año
             </span>
             <span className="text-[17px] font-extrabold tabular-nums text-foreground">
-              {COP.format(r.total)}
+              {COP.format(total)}
             </span>
           </div>
         </form>
 
-        {/* Result — the column fills, its content follows the sliders. Nine
-            inputs make the left side much taller than the panel, and a number
-            that scrolls out of view while you are moving the slider that
-            changes it is the one thing this screen cannot afford. */}
         <div className="rounded-b-3xl bg-[oklch(0.1_0.01_95)] p-6 sm:p-8 lg:rounded-bl-none lg:rounded-r-3xl">
-          <div className="lg:sticky lg:top-24">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-[oklch(0.62_0.005_95)]">
-              La cuenta
-            </p>
-            <p className="mt-4 text-[34px] font-extrabold leading-none tabular-nums text-[oklch(0.74_0.185_50)] sm:text-[40px]">
-              {COP.format(r.total)}
-            </p>
-            <p className="mt-2 text-[14px] leading-relaxed text-[oklch(0.78_0.005_95)]">
+          <div className="lg:sticky lg:top-24">{result}</div>
+        </div>
+      </div>
+      {footnote && (
+        <figcaption className="mx-auto mt-5 max-w-3xl text-center text-[12px] leading-relaxed text-muted-foreground">
+          {footnote}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+/** The right-hand column's shared skeleton: hero figure, lines, note, payoff. */
+function ResultPanel({
+  total,
+  mensual,
+  heroNote,
+  rows,
+  partition,
+  payoff,
+  context,
+  source,
+}: {
+  total: number;
+  mensual: number;
+  heroNote: ReactNode;
+  rows: { k: string; val: number }[];
+  partition: ReactNode;
+  payoff: { figure: string; body: ReactNode; note: string };
+  context: string;
+  source: string;
+}) {
+  return (
+    <>
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-[oklch(0.62_0.005_95)]">
+        La cuenta
+      </p>
+      <p className="mt-4 text-[34px] font-extrabold leading-none tabular-nums text-[oklch(0.74_0.185_50)] sm:text-[40px]">
+        {COP.format(total)}
+      </p>
+      <p className="mt-2 text-[14px] leading-relaxed text-[oklch(0.78_0.005_95)]">{heroNote}</p>
+      <p className="mt-3 text-[13px] leading-relaxed text-[oklch(0.66_0.005_95)]">
+        Son <strong className="font-semibold text-white">{COP.format(mensual)}</strong> por cada mes
+        que esto siga igual.
+      </p>
+
+      <dl className="mt-7 space-y-2.5 border-t border-white/10 pt-6">
+        {rows.map((row) => (
+          <div key={row.k} className="flex items-baseline justify-between gap-4">
+            <dt className="text-[13px] leading-snug text-[oklch(0.66_0.005_95)]">{row.k}</dt>
+            <dd className="shrink-0 text-[13.5px] font-semibold tabular-nums text-white">
+              {COP.format(row.val)}
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <p className="mt-6 text-[12.5px] leading-relaxed text-[oklch(0.62_0.005_95)]">{partition}</p>
+
+      <div className="mt-7 rounded-2xl border border-[oklch(0.74_0.185_50/0.3)] bg-[oklch(0.74_0.185_50/0.08)] p-5">
+        <p className="text-[26px] font-extrabold leading-none tabular-nums text-white">
+          {payoff.figure}
+        </p>
+        <p className="mt-2 text-[13.5px] leading-relaxed text-[oklch(0.82_0.005_95)]">
+          {payoff.body}
+        </p>
+        <p className="mt-3 text-[11.5px] leading-relaxed text-[oklch(0.62_0.005_95)]">
+          {payoff.note}
+        </p>
+      </div>
+
+      <SendBreakdown context={context} source={source} />
+    </>
+  );
+}
+
+/* ————— variante hotel ————— */
+
+const HOTEL_GROUPS: Group<HotelLeakKey>[] = [
+  {
+    label: "Su hotel",
+    fields: [
+      { key: "habitaciones", label: "Habitaciones", min: 8, max: 300, step: 1 },
+      {
+        key: "adr",
+        label: "Tarifa promedio por noche",
+        min: 80_000,
+        max: 1_500_000,
+        step: 10_000,
+        money: true,
+        help: "Su ADR: lo que en promedio paga un huésped por noche.",
+      },
+      {
+        key: "ocupacion",
+        label: "Ocupación anual",
+        min: 25,
+        max: 95,
+        step: 1,
+        suffix: " %",
+        help: "Cotelco proyectó 55,9 % para el país a mitad de 2026.",
+      },
+      {
+        key: "noches",
+        label: "Noches por reserva",
+        min: 1,
+        max: 10,
+        step: 1,
+        help: "Su estadía promedio. Es lo que convierte una reserva perdida en pesos.",
+      },
+    ],
+  },
+  {
+    label: "Su atención hoy",
+    fields: [
+      {
+        key: "consultas",
+        label: "Consultas de huéspedes al mes",
+        min: 20,
+        max: 2000,
+        step: 10,
+        help: "Personas distintas que preguntan por WhatsApp, Instagram, el teléfono o el chat de la web. No mensajes: personas.",
+      },
+      {
+        key: "sinResponder",
+        label: "Consultas que hoy quedan sin respuesta",
+        min: 0,
+        max: 70,
+        step: 1,
+        suffix: " %",
+        help: "Las que nadie contestó nunca: entraron de noche, en fin de semana, o se perdieron entre los chats.",
+      },
+      {
+        key: "tarde",
+        label: "Consultas que se contestan tarde",
+        min: 0,
+        max: 90,
+        step: 1,
+        suffix: " %",
+        help: "Más de una hora después. Al huésped ya le cotizaron otros tres hoteles.",
+      },
+      {
+        key: "silencio",
+        label: "Huéspedes que se quedan callados y nadie persigue",
+        min: 0,
+        max: 95,
+        step: 1,
+        suffix: " %",
+        help: "De los que sí atendió y no reservaron: cuántos quedaron ahí, sin un segundo mensaje.",
+      },
+      {
+        key: "fueraHorario",
+        label: "Consultas que llegan fuera de horario",
+        min: 0,
+        max: 80,
+        step: 1,
+        suffix: " %",
+        help: "Noches, madrugadas y fines de semana. No suma aparte: muestra qué parte de la fuga pasa cuando no hay nadie.",
+      },
+    ],
+  },
+  {
+    label: "Los supuestos — cámbielos",
+    note: "Acá no hay nada escondido. Estos cuatro números son los que convierten sus consultas en pesos, y son suyos para mover: si los baja, la cuenta baja.",
+    fields: [
+      {
+        key: "cierre",
+        label: "De cada 100 consultas bien atendidas, cuántas reservan",
+        min: 3,
+        max: 60,
+        step: 1,
+        suffix: " %",
+        help: "Su tasa de cierre cuando la atención sí funciona.",
+      },
+      {
+        key: "penalDemora",
+        label: "Cuánto del cierre se pierde por contestar tarde",
+        min: 0,
+        max: 90,
+        step: 5,
+        suffix: " %",
+        help: "Harvard Business Review: contestar dentro de la primera hora hace casi siete veces más probable calificar la consulta. El 50 % por defecto es deliberadamente prudente frente a eso.",
+      },
+      {
+        key: "recuperacion",
+        label: "Cuántos de los callados vuelven si alguien insiste",
+        min: 0,
+        max: 60,
+        step: 1,
+        suffix: " %",
+        help: "Estimación propia y conservadora: un segundo mensaje oportuno no recupera a todos, pero sí a una parte.",
+      },
+      {
+        key: "optimizacion",
+        label: "Ingreso extra por mover la tarifa según la demanda",
+        min: 0,
+        max: 15,
+        step: 1,
+        suffix: " %",
+        help: "Las referencias públicas de la industria ubican el efecto de un sistema de revenue management entre 4 % y 8 % del ingreso por habitación. El 5 % por defecto es el extremo bajo.",
+      },
+    ],
+  },
+];
+
+function HotelLeak({ footnote }: { footnote?: string }) {
+  const [v, setV] = useState<HotelLeakInputs>(HOTEL_DEFAULTS);
+  const r = useMemo(() => computeHotelLeak(v), [v]);
+  const onChange = (key: HotelLeakKey) => (n: number) =>
+    setV((prev) => ({ ...prev, [key]: n }));
+
+  const context = [
+    `${NUM.format(v.habitaciones)} habitaciones · ADR ${COP.format(v.adr)} · ocupación ${v.ocupacion} % · ${v.noches} noches por reserva · ${NUM.format(v.consultas)} consultas al mes.`,
+    `Fuga anual estimada: ${COP.format(r.total)} — el ${r.porcentajeIngreso.toFixed(1).replace(".", ",")} % del ingreso por alojamiento.`,
+    `Sin contestar ${COP.format(r.fugaNunca)} · tarde ${COP.format(r.fugaTarde)} · sin seguimiento ${COP.format(r.fugaSeguimiento)} · tarifa sin optimizar ${COP.format(r.fugaTarifa)}.`,
+    `Equivale a ${NUM.format(Math.round(r.ventasPerdidas))} reservas y ${NUM.format(Math.round(r.nochesVacias))} noches al año.`,
+  ].join("\n");
+
+  return (
+    <CalcShell
+      groups={HOTEL_GROUPS}
+      values={v}
+      onChange={onChange}
+      total={r.total}
+      footnote={footnote}
+      inputsLabel="Calculadora de reservas perdidas"
+      result={
+        <ResultPanel
+          total={r.total}
+          mensual={r.mensual}
+          heroNote={
+            <>
               es el ingreso que su hotel deja sobre la mesa cada año: el{" "}
-              {r.porcentajeIngreso.toFixed(1).replace(".", ",")} % de lo que factura por alojamiento.
-            </p>
-            <p className="mt-3 text-[13px] leading-relaxed text-[oklch(0.66_0.005_95)]">
-              Son <strong className="font-semibold text-white">{COP.format(r.mensual)}</strong> por
-              cada mes que esto siga igual.
-            </p>
-
-            <dl className="mt-7 space-y-2.5 border-t border-white/10 pt-6">
-              {rows.map((row) => (
-                <div key={row.k} className="flex items-baseline justify-between gap-4">
-                  <dt className="text-[13px] leading-snug text-[oklch(0.66_0.005_95)]">{row.k}</dt>
-                  <dd className="shrink-0 text-[13.5px] font-semibold tabular-nums text-white">
-                    {COP.format(row.val)}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-
-            <p className="mt-6 text-[12.5px] leading-relaxed text-[oklch(0.62_0.005_95)]">
+              {r.porcentajeIngreso.toFixed(1).replace(".", ",")} % de lo que factura por
+              alojamiento.
+            </>
+          }
+          rows={[
+            { k: "Consultas que nadie contestó", val: r.fugaNunca },
+            { k: "Consultas contestadas cuando ya cotizó otro hotel", val: r.fugaTarde },
+            { k: "Huéspedes que se quedaron callados y nadie persiguió", val: r.fugaSeguimiento },
+            { k: "Tarifa que nunca se movió según la demanda", val: r.fugaTarifa },
+          ]}
+          partition={
+            <>
               De cada 100 consultas que le entran, {r.partition.nunca} no reciben respuesta,{" "}
               {r.partition.tarde} llegan tarde y {r.partition.aTiempo} se atienden a tiempo. Y{" "}
               <span className="font-semibold tabular-nums text-[oklch(0.82_0.005_95)]">
                 {COP.format(r.fugaFueraHorario)}
               </span>{" "}
-              de la fuga por no contestar ocurre de noche o en fin de semana, cuando no hay nadie en
-              recepción.
-            </p>
-
-            <div className="mt-7 rounded-2xl border border-[oklch(0.74_0.185_50/0.3)] bg-[oklch(0.74_0.185_50/0.08)] p-5">
-              <p className="text-[26px] font-extrabold leading-none tabular-nums text-white">
-                {NUM.format(Math.round(r.reservasPerdidas))} reservas
-              </p>
-              <p className="mt-2 text-[13.5px] leading-relaxed text-[oklch(0.82_0.005_95)]">
+              de la fuga por no contestar ocurre de noche o en fin de semana, cuando no hay nadie
+              en recepción.
+            </>
+          }
+          payoff={{
+            figure: `${NUM.format(Math.round(r.ventasPerdidas))} reservas`,
+            body: (
+              <>
                 es lo que esa fuga significa al año: {NUM.format(Math.round(r.nochesVacias))} noches
                 que su hotel tenía disponibles y nadie ocupó.
-              </p>
-              <p className="mt-3 text-[11.5px] leading-relaxed text-[oklch(0.62_0.005_95)]">
-                Sin construir una habitación más y sin gastar un peso más en pauta: son huéspedes que
-                ya le habían escrito.
-              </p>
-            </div>
+              </>
+            ),
+            note: "Sin construir una habitación más y sin gastar un peso más en pauta: son huéspedes que ya le habían escrito.",
+          }}
+          context={context}
+          source="calculadora-reservas-perdidas"
+        />
+      }
+    />
+  );
+}
 
-            <SendBreakdown context={context} />
-          </div>
-        </div>
-      </div>
-      {s.footnote && (
-        <figcaption className="mx-auto mt-5 max-w-3xl text-center text-[12px] leading-relaxed text-muted-foreground">
-          {s.footnote}
-        </figcaption>
-      )}
-    </figure>
+/* ————— variante genérica (pyme) ————— */
+
+const GENERIC_GROUPS: Group<GenericLeakKey>[] = [
+  {
+    label: "Su negocio",
+    fields: [
+      {
+        key: "consultas",
+        label: "Clientes que le escriben al mes",
+        min: 10,
+        max: 3000,
+        step: 10,
+        help: "Personas distintas que preguntan por WhatsApp, Instagram, el teléfono o el chat de la web. No mensajes: personas.",
+      },
+      {
+        key: "ticket",
+        label: "Valor promedio de una venta",
+        min: 20_000,
+        max: 5_000_000,
+        step: 10_000,
+        money: true,
+        help: "Su ticket promedio: lo que en promedio deja un cliente que sí compra.",
+      },
+    ],
+  },
+  {
+    label: "Su atención hoy",
+    fields: [
+      {
+        key: "sinResponder",
+        label: "Mensajes que hoy quedan sin respuesta",
+        min: 0,
+        max: 70,
+        step: 1,
+        suffix: " %",
+        help: "Los que nadie contestó nunca: entraron de noche, un domingo, o se perdieron entre los chats.",
+      },
+      {
+        key: "tarde",
+        label: "Mensajes que se contestan tarde",
+        min: 0,
+        max: 90,
+        step: 1,
+        suffix: " %",
+        help: "Más de una hora después. Al cliente ya le respondió otro.",
+      },
+      {
+        key: "silencio",
+        label: "Clientes que se quedan callados y nadie persigue",
+        min: 0,
+        max: 95,
+        step: 1,
+        suffix: " %",
+        help: "De los que sí atendió y no compraron: cuántos quedaron ahí, sin un segundo mensaje.",
+      },
+      {
+        key: "fueraHorario",
+        label: "Mensajes que llegan fuera de horario",
+        min: 0,
+        max: 80,
+        step: 1,
+        suffix: " %",
+        help: "Noches, madrugadas, domingos y festivos. No suma aparte: muestra qué parte de la fuga pasa cuando no hay nadie.",
+      },
+    ],
+  },
+  {
+    label: "El tiempo de su equipo",
+    fields: [
+      {
+        key: "horasDia",
+        label: "Horas al día contestando siempre lo mismo",
+        min: 0,
+        max: 16,
+        step: 1,
+        help: "Precio, horarios, si hay disponible, cómo llegar, si hacen envíos. Sume el tiempo de todo el equipo.",
+      },
+      {
+        key: "costoHora",
+        label: "Lo que le cuesta una de esas horas",
+        min: 5_000,
+        max: 80_000,
+        step: 1_000,
+        money: true,
+        help: "Salario más prestaciones, dividido en las horas trabajadas.",
+      },
+    ],
+  },
+  {
+    label: "Los supuestos — cámbielos",
+    note: "Acá no hay nada escondido. Estos cuatro números son los que convierten sus mensajes en pesos, y son suyos para mover: si los baja, la cuenta baja.",
+    fields: [
+      {
+        key: "cierre",
+        label: "De cada 100 clientes bien atendidos, cuántos compran",
+        min: 3,
+        max: 60,
+        step: 1,
+        suffix: " %",
+        help: "Su tasa de cierre cuando la atención sí funciona.",
+      },
+      {
+        key: "penalDemora",
+        label: "Cuánto del cierre se pierde por contestar tarde",
+        min: 0,
+        max: 90,
+        step: 5,
+        suffix: " %",
+        help: "Harvard Business Review: contestar dentro de la primera hora hace casi siete veces más probable calificar la consulta. El 50 % por defecto es deliberadamente prudente frente a eso.",
+      },
+      {
+        key: "recuperacion",
+        label: "Cuántos de los callados vuelven si alguien insiste",
+        min: 0,
+        max: 60,
+        step: 1,
+        suffix: " %",
+        help: "Estimación propia y conservadora: un segundo mensaje oportuno no recupera a todos, pero sí a una parte.",
+      },
+      {
+        key: "automatizable",
+        label: "Cuántas de esas horas puede absorber un agente",
+        min: 0,
+        max: 100,
+        step: 5,
+        suffix: " %",
+        help: "Las preguntas repetidas se automatizan casi todas; lo que exige criterio, no. Por defecto asumimos que 3 de cada 10 horas siguen siendo humanas.",
+      },
+    ],
+  },
+];
+
+function GenericLeak({ footnote }: { footnote?: string }) {
+  const [v, setV] = useState<GenericLeakInputs>(GENERIC_DEFAULTS);
+  const r = useMemo(() => computeGenericLeak(v), [v]);
+  const onChange = (key: GenericLeakKey) => (n: number) =>
+    setV((prev) => ({ ...prev, [key]: n }));
+
+  const context = [
+    `${NUM.format(v.consultas)} clientes escriben al mes · ticket promedio ${COP.format(v.ticket)} · ${v.horasDia} h al día en preguntas repetidas.`,
+    `Fuga anual estimada: ${COP.format(r.total)}. De cada 100 clientes que podrían comprarle, hoy le compran ${r.deCada100}.`,
+    `Sin contestar ${COP.format(r.fugaNunca)} · tarde ${COP.format(r.fugaTarde)} · sin seguimiento ${COP.format(r.fugaSeguimiento)} · horas del equipo ${COP.format(r.fugaHoras)}.`,
+    `Equivale a ${NUM.format(Math.round(r.ventasPerdidas))} ventas y ${NUM.format(Math.round(r.horasAno))} horas al año.`,
+  ].join("\n");
+
+  return (
+    <CalcShell
+      groups={GENERIC_GROUPS}
+      values={v}
+      onChange={onChange}
+      total={r.total}
+      footnote={footnote}
+      inputsLabel="Calculadora de ROI"
+      result={
+        <ResultPanel
+          total={r.total}
+          mensual={r.mensual}
+          heroNote={
+            <>
+              es lo que su negocio deja sobre la mesa cada año: ventas que no entraron y horas que
+              no debería estar pagando.
+            </>
+          }
+          rows={[
+            { k: "Mensajes que nadie contestó", val: r.fugaNunca },
+            { k: "Mensajes contestados cuando ya le respondió otro", val: r.fugaTarde },
+            { k: "Clientes que se quedaron callados y nadie persiguió", val: r.fugaSeguimiento },
+            { k: "Horas del equipo en preguntas repetidas", val: r.fugaHoras },
+          ]}
+          partition={
+            <>
+              De cada 100 mensajes que le entran, {r.partition.nunca} no reciben respuesta,{" "}
+              {r.partition.tarde} llegan tarde y {r.partition.aTiempo} se atienden a tiempo. Y{" "}
+              <span className="font-semibold tabular-nums text-[oklch(0.82_0.005_95)]">
+                {COP.format(r.fugaFueraHorario)}
+              </span>{" "}
+              de la fuga por no contestar ocurre de noche, un domingo o un festivo, cuando no hay
+              nadie.
+            </>
+          }
+          payoff={{
+            figure: `${NUM.format(Math.round(r.ventasPerdidas))} ventas`,
+            body: (
+              <>
+                es lo que esa fuga significa al año. Dicho al revés: de cada 100 clientes que
+                podrían comprarle, hoy le compran{" "}
+                <strong className="font-semibold text-white">{r.deCada100}</strong>.
+              </>
+            ),
+            note: "Sin un peso más de pauta y sin un cliente nuevo: son personas que ya le habían escrito.",
+          }}
+          context={context}
+          source="calculadora-roi"
+        />
+      }
+    />
+  );
+}
+
+export function LeakCalculator({ s }: { s: LeakSection }) {
+  return s.variant === "generic" ? (
+    <GenericLeak footnote={s.footnote} />
+  ) : (
+    <HotelLeak footnote={s.footnote} />
   );
 }

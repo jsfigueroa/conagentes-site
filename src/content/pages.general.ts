@@ -1,5 +1,14 @@
 import type { MarketingPage } from "./pages.types";
 import { DEFAULT_CTA } from "./pages.types";
+import { GENERIC_DEFAULTS, GENERIC_EXAMPLE, cop, millones, num } from "@/lib/leak-model";
+
+/**
+ * The ROI calculator page quotes its DEFAULT scenario in prose (GEO contract:
+ * a reader who never moves a slider still finds a concrete number). Importing
+ * the model instead of hardcoding means the sentence and the panel cannot
+ * drift apart — change a default and the prose follows.
+ */
+const GENERIC_EJ = GENERIC_EXAMPLE;
 
 /** Fecha de la última revisión sustantiva de contenido → schema `dateModified`. */
 const GENERAL_UPDATED = "2026-08-27";
@@ -1429,40 +1438,141 @@ export const GENERAL_PAGES: MarketingPage[] = [
   {
     slug: "recursos/calculadora-roi",
     experience: "general",
-    eyebrow: "Recursos",
-    title: "Calculadora de ROI",
-    lede: "Estime cuánto puede recuperar con un agente IA: mensajes sin responder, ventas perdidas y tiempo de su equipo.",
-    answer:
-      "La calculadora de ROI de conagentes estima cuánto puede recuperar un negocio colombiano con un agente IA a partir de tres cosas: los mensajes que hoy quedan sin responder, las ventas que se enfrían por falta de seguimiento y las horas que el equipo dedica a contestar siempre lo mismo. Se calcula con los números del propio negocio.",
+    eyebrow: "Calculadora",
+    title: "¿Cuánto le cuesta a su negocio no contestar a tiempo?",
+    lede: "Mueva sus números —cuántos clientes le escriben, cuánto vale una venta, cuánto tiempo se le va contestando lo mismo— y vea la cuenta: lo que se fuga cada año por los mensajes que nadie contesta, los que se contestan tarde, los clientes que se quedan callados y las horas que un agente puede absorber.",
+    answer: `La calculadora de ROI de conagentes estima, con los números del propio negocio, cuánto se fuga al año por cuatro causas: mensajes de clientes que nadie contesta, mensajes contestados tarde, clientes que se quedan callados y nadie persigue, y las horas que el equipo dedica a contestar siempre lo mismo. Para un negocio colombiano al que le escriben ${GENERIC_DEFAULTS.consultas} clientes al mes con un ticket promedio de ${cop(GENERIC_DEFAULTS.ticket)}, la cuenta da ${millones(GENERIC_EJ.total)} al año.`,
     heroChips: [
-      "Con sus números, no promedios",
-      "Tres fuentes de pérdida",
-      "Resultado en la misma llamada",
+      "Con sus números, no con promedios",
+      "Todos los supuestos a la vista y editables",
+      "Sin registro para ver el resultado",
     ],
     meta: {
-      title: "Calculadora de ROI",
-      description: "Estime el retorno de un agente IA para su negocio: ventas recuperadas, respuesta inmediata y tiempo ahorrado.",
+      title: "Calculadora de ROI: cuánto pierde su negocio por no contestar",
+      description:
+        "Estime con sus propios números cuánto pierde su negocio al año por mensajes sin responder, respuestas tardías, cero seguimiento y horas del equipo en preguntas repetidas. Sin registro.",
     },
     keywords: [
       "calculadora ROI chatbot IA",
+      "cuánto pierde mi negocio por no contestar WhatsApp",
       "cuánto ahorra un agente IA de atención al cliente",
       "retorno de inversión automatización WhatsApp",
+      "cuántas ventas se pierden por no hacer seguimiento",
     ],
-    entities: [...ENTIDADES_GENERAL],
-    updated: GENERAL_UPDATED,
+    entities: [...ENTIDADES_GENERAL, "Harvard Business Review"],
+    updated: "2026-09-10",
     sections: [
-      { type: "prose", heading: "Cálculo personalizado", body: ["Cada negocio es distinto. En una demo corta tomamos sus números reales y le mostramos, con su propia operación, cuánto podría recuperar."] },
+      {
+        type: "leak",
+        variant: "generic",
+        heading: "Ponga los números de su negocio",
+        sub: "Empieza con un negocio colombiano de tamaño medio que vende por WhatsApp. Cambie lo que no se parezca al suyo: la cuenta se recalcula sola.",
+        footnote:
+          "Es una estimación construida con supuestos que usted controla, no una promesa de resultados. El efecto de la demora se apoya en el estudio de Harvard Business Review sobre 2.241 empresas. Cuando un número es estimación nuestra, lo decimos en el propio deslizador.",
+      },
       {
         type: "stats",
         items: [
-          { value: "?", label: "mensajes sin responder al mes" },
-          { value: "?", label: "ventas que se enfrían por demora" },
-          { value: "?", label: "horas de su equipo en tareas repetitivas" },
+          { value: millones(GENERIC_EJ.total), label: "al año se le fugan al negocio del ejemplo" },
+          {
+            value: num(GENERIC_EJ.ventasPerdidas),
+            label: "ventas que no entraron, de clientes que ya le habían escrito",
+          },
+          {
+            value: `${GENERIC_EJ.deCada100} de 100`,
+            label: "clientes que podrían comprarle y hoy le compran",
+          },
+          { value: millones(GENERIC_EJ.mensual), label: "es lo que cuesta cada mes de espera" },
+        ],
+      },
+      {
+        type: "prose",
+        heading: "La cuenta del ejemplo, en palabras",
+        body: [
+          `El escenario con el que abre la calculadora es un negocio al que le escriben ${GENERIC_DEFAULTS.consultas} clientes al mes entre WhatsApp, Instagram, el teléfono y el chat de la web, con un ticket promedio de ${cop(GENERIC_DEFAULTS.ticket)} y tres horas al día del equipo contestando siempre las mismas preguntas.`,
+          `Con ${GENERIC_DEFAULTS.sinResponder} % de los mensajes sin respuesta, ${GENERIC_DEFAULTS.tarde} % contestados más de una hora después y ${GENERIC_DEFAULTS.silencio} % de los interesados que se quedan callados sin que nadie los vuelva a escribir, la fuga suma ${cop(GENERIC_EJ.total)} al año: ${cop(GENERIC_EJ.fugaNunca)} por lo que nadie contestó, ${cop(GENERIC_EJ.fugaTarde)} por contestar tarde, ${cop(GENERIC_EJ.fugaSeguimiento)} por no hacer seguimiento y ${cop(GENERIC_EJ.fugaHoras)} en horas del equipo que un agente puede absorber.`,
+          `Son ${num(GENERIC_EJ.ventasPerdidas)} ventas y ${num(GENERIC_EJ.horasAno)} horas al año. Dicho al revés: de cada 100 clientes que podrían comprarle, hoy le compran ${GENERIC_EJ.deCada100}. Y ${cop(GENERIC_EJ.fugaFueraHorario)} de la fuga por no contestar ocurre de noche, un domingo o un festivo, cuando no hay nadie. Ninguna de esas ventas exige un peso más de pauta: son personas que ya le habían escrito.`,
+        ],
+      },
+      {
+        type: "features",
+        heading: "Las cuatro fugas, una por una",
+        items: [
+          {
+            title: "1. El mensaje que nadie contestó",
+            body: "Entró a las 11 de la noche, un domingo, o quedó sepultado entre chats. El cliente no espera: le escribe al siguiente. Un agente que atiende las 24 horas contesta ese mismo mensaje en segundos.",
+            href: "/soluciones/atencion-24-7",
+          },
+          {
+            title: "2. El mensaje que se contestó tarde",
+            body: "Contestar al otro día no es lo mismo que contestar en un minuto: cuando llega la respuesta, ya le respondieron otros tres. Es la fuga más invisible, porque en el chat parece atendida.",
+            href: "/producto/agentes-ia",
+          },
+          {
+            title: "3. El cliente que se quedó callado",
+            body: "Preguntó, le cotizaron, dijo «lo pienso» y ahí quedó. Nadie volvió a escribirle. El seguimiento es trabajo que nadie tiene tiempo de hacer a mano, y es donde está la parte más grande de la cuenta.",
+            href: "/soluciones/reactivacion",
+          },
+          {
+            title: "4. Las horas en preguntas repetidas",
+            body: "Precio, horarios, si hay disponible, si hacen envíos. No es una venta perdida: es nómina pagada para copiar y pegar la misma respuesta. Se recupera como tiempo, no como ingreso.",
+            href: "/soluciones/mas-ventas",
+          },
+        ],
+      },
+      {
+        type: "prose",
+        heading: "Cómo está hecha la cuenta (y por qué no infla)",
+        body: [
+          "Una calculadora que se puede desarmar en dos preguntas no sirve para decidir nada. Estas son las reglas con las que está construida, para que pueda revisarlas antes de creerle:",
+          "Los supuestos son suyos. La tasa de cierre, cuánto pesa la demora, cuántos callados vuelven si alguien insiste y cuántas de esas horas puede absorber un agente están en su propio grupo de deslizadores, a la vista. Vienen en el extremo prudente del rango: 20 % de cierre, la mitad del cierre perdido por contestar tarde, 10 % de recuperación por seguimiento y 70 % de las horas automatizables.",
+          "Nada se cuenta dos veces. Los mensajes del mes se reparten en tres grupos que no se cruzan —los que nadie contestó, los que se contestaron tarde y los que se atendieron a tiempo—. El seguimiento solo se calcula sobre los clientes que sí se atendieron y no compraron. Lo que llega fuera de horario no se suma aparte: es una porción de la fuga por no contestar, mostrada para que vea cuánta pasa cuando no hay nadie. Y las horas del equipo son un costo, no un ingreso perdido: van en su propia línea, con ese nombre.",
+          "Los números por defecto de este negocio son más prudentes que los de la calculadora hotelera, a propósito. Acá toda venta entra por un mensaje, así que los mismos porcentajes dirían que el negocio pierde más de lo que vende. Es aritméticamente cierto con esos datos, y es justo la clase de cifra que uno descarta de una. Preferimos empezar donde no se pueda descartar.",
+        ],
+      },
+      {
+        type: "faq",
+        heading: "Preguntas sobre la calculadora",
+        items: [
+          {
+            q: "¿De dónde salen los números que vienen por defecto?",
+            a: "El efecto de contestar tarde se apoya en el estudio de Harvard Business Review sobre 2.241 empresas, que encontró que contactar una consulta comercial dentro de la primera hora hace casi siete veces más probable calificarla —y más de sesenta veces frente a esperar 24 horas—. El resto (cuántos mensajes quedan sin responder en su negocio, cuántos se contestan tarde, cuántos clientes se quedan callados, cuántas horas se van en preguntas repetidas) son estimaciones conservadoras que usted debe reemplazar por lo que pasa en su operación.",
+          },
+          {
+            q: "No sé cuántos clientes me escriben al mes. ¿Cómo lo averiguo?",
+            a: "Cuente personas distintas, no mensajes: abra WhatsApp y cuente cuántos chats nuevos aparecieron el mes pasado, sume los mensajes directos de Instagram y las llamadas que preguntaron por precio o disponibilidad. Si le da pereza contarlo todo, cuente una semana y multiplique por cuatro. Es mejor un número aproximado suyo que un promedio de la industria.",
+          },
+          {
+            q: "¿Esto es lo que voy a ganar si contrato un agente de IA?",
+            a: "No. Es lo que hoy se está fugando, que es una cosa distinta. Ningún agente recupera el 100 % de una fuga: hay clientes que preguntaban por preguntar y otros que ya compraron en otra parte. La cuenta sirve para ver el tamaño del problema y decidir cuál de las cuatro fugas cerrar primero; lo que se recupera se mide después, con su propio historial.",
+          },
+          {
+            q: "¿Por qué la fuga por falta de seguimiento suele ser la más grande?",
+            a: "Porque el grupo del que sale es el más grande. De cada cien clientes bien atendidos, la mayoría no compra de inmediato, y casi ninguno de esos recibe un segundo mensaje. No es negligencia: escribirle de nuevo, en el momento correcto, a cada persona que dijo «lo pienso» es un trabajo que a mano no se hace. Es exactamente el trabajo que un agente sí hace todos los días.",
+          },
+          {
+            q: "¿Por qué las horas del equipo aparecen junto a las ventas perdidas?",
+            a: "Porque las dos salen del mismo bolsillo, pero no son lo mismo y no las mezclamos: las ventas perdidas son ingreso que no entró y las horas son nómina que ya pagó. Van en líneas separadas y con nombre propio. Si le interesa solo el ingreso, ponga en cero el deslizador de horas automatizables y esa línea queda en cero.",
+          },
+          {
+            q: "Tengo un hotel. ¿Uso esta o la de hoteles?",
+            a: "La de hoteles: pregunta por habitaciones, tarifa promedio, ocupación y noches por reserva, y añade el ingreso que se deja de ganar por no mover la tarifa según la demanda. Está en conagentes.com/hoteles/calculadora-reservas-perdidas.",
+          },
         ],
       },
     ],
-    related: [{ label: "Vender más", href: "/soluciones/mas-ventas" }],
-    cta: { title: "Calculemos su ROI juntos", sub: "Con sus números reales, le mostramos el retorno esperado.", button: "Quiero una demo" },
+    related: [
+      { label: "Atención 24/7", href: "/soluciones/atencion-24-7" },
+      { label: "Reactivar clientes", href: "/soluciones/reactivacion" },
+      { label: "Vender más", href: "/soluciones/mas-ventas" },
+      { label: "Calculadora para hoteles", href: "/hoteles/calculadora-reservas-perdidas" },
+      { label: "Precios", href: "/precios" },
+    ],
+    cta: {
+      title: "¿Cerramos la fuga más grande primero?",
+      sub: "Veinte minutos con sus números adentro y salimos con el orden concreto: qué se cierra esta semana y qué después.",
+      button: "Quiero una demo",
+    },
   },
   {
     slug: "recursos/ayuda",

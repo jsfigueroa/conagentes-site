@@ -118,6 +118,14 @@ function Slider({
         step={f.step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
+        onWheel={(e) => {
+          // In Chromium a FOCUSED range input consumes the page's wheel and
+          // moves itself. So the visitor drags a slider, scrolls down to read
+          // the result, and the number he just set has quietly changed. Drop
+          // the focus instead of preventing the default: the page keeps
+          // scrolling, and his number stays where he put it. (CON-271)
+          if (document.activeElement === e.currentTarget) e.currentTarget.blur();
+        }}
         className="range-brand mt-1"
         style={{ "--pct": `${pct}%` } as React.CSSProperties}
       />

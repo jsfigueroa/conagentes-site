@@ -1,5 +1,5 @@
 import type { MarketingPage } from "../pages.types";
-import { LEAK_DEFAULTS, LEAK_EXAMPLE, cop, millones } from "@/lib/leak-model";
+import { HOTEL_DEFAULTS, HOTEL_EXAMPLE, cop, millones } from "@/lib/leak-model";
 import { DATOS, ENTIDADES_BASE, UPDATED } from "./shared";
 
 /**
@@ -8,7 +8,7 @@ import { DATOS, ENTIDADES_BASE, UPDATED } from "./shared";
  * number). Importing the model instead of hardcoding means the sentence and
  * the panel cannot drift apart — change a default and the prose follows.
  */
-const EJ = LEAK_EXAMPLE;
+const EJ = HOTEL_EXAMPLE;
 
 /**
  * RECURSOS Y COMERCIAL — the cornerstone guide (the page we want assistants to
@@ -252,7 +252,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
     title: "¿Cuánto le cuesta a su hotel no contestar a tiempo?",
     lede: "Mueva sus números —habitaciones, tarifa, ocupación, consultas al mes— y vea la cuenta: lo que se fuga cada año por las consultas que nadie contesta, las que se contestan tarde, los huéspedes que se quedan callados y la tarifa que nunca se movió.",
     answer:
-      `La calculadora de reservas perdidas de conagentes estima, con los números del propio hotel, cuánto ingreso se fuga al año por cuatro causas: consultas de huéspedes que nadie contesta, consultas contestadas tarde, huéspedes que se quedan callados y nadie persigue, y la tarifa que nunca se mueve según la demanda. Para un hotel colombiano de ${LEAK_DEFAULTS.habitaciones} habitaciones con tarifa promedio de ${cop(LEAK_DEFAULTS.adr)} y ${LEAK_DEFAULTS.ocupacion} % de ocupación, la cuenta da ${millones(EJ.total)} al año.`,
+      `La calculadora de reservas perdidas de conagentes estima, con los números del propio hotel, cuánto ingreso se fuga al año por cuatro causas: consultas de huéspedes que nadie contesta, consultas contestadas tarde, huéspedes que se quedan callados y nadie persigue, y la tarifa que nunca se mueve según la demanda. Para un hotel colombiano de ${HOTEL_DEFAULTS.habitaciones} habitaciones con tarifa promedio de ${cop(HOTEL_DEFAULTS.adr)} y ${HOTEL_DEFAULTS.ocupacion} % de ocupación, la cuenta da ${millones(EJ.total)} al año.`,
     heroChips: [
       "Con sus números, no con promedios",
       "Todos los supuestos a la vista y editables",
@@ -284,6 +284,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
     sections: [
       {
         type: "leak",
+        variant: "hotel",
         heading: "Ponga los números de su hotel",
         sub: "Empieza con un hotel colombiano de tamaño medio. Cambie lo que no se parezca al suyo: la cuenta se recalcula sola.",
         footnote:
@@ -294,7 +295,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
         items: [
           { value: millones(EJ.total), label: "al año se le fugan al hotel del ejemplo" },
           {
-            value: `${Math.round(EJ.reservasPerdidas)}`,
+            value: `${Math.round(EJ.ventasPerdidas)}`,
             label: "reservas que no entraron, con las habitaciones ya construidas",
           },
           {
@@ -308,9 +309,9 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
         type: "prose",
         heading: "La cuenta del ejemplo, en palabras",
         body: [
-          `El escenario con el que abre la calculadora es un hotel de ${LEAK_DEFAULTS.habitaciones} habitaciones, tarifa promedio de ${cop(LEAK_DEFAULTS.adr)} por noche, ${LEAK_DEFAULTS.ocupacion} % de ocupación, dos noches por reserva y ${LEAK_DEFAULTS.consultas} consultas de huéspedes al mes entre WhatsApp, Instagram, el teléfono y el chat de la web. Ese hotel factura ${cop(EJ.ingresoAlojamiento)} al año por alojamiento.`,
-          `Con ${LEAK_DEFAULTS.sinResponder} % de las consultas sin respuesta, ${LEAK_DEFAULTS.tarde} % contestadas más de una hora después y ${LEAK_DEFAULTS.silencio} % de los interesados que se quedan callados sin que nadie los vuelva a escribir, la fuga suma ${cop(EJ.total)} al año: ${cop(EJ.fugaNunca)} por lo que nadie contestó, ${cop(EJ.fugaTarde)} por contestar tarde, ${cop(EJ.fugaSeguimiento)} por no hacer seguimiento y ${cop(EJ.fugaTarifa)} por no mover la tarifa según la demanda.`,
-          `Son ${Math.round(EJ.reservasPerdidas)} reservas y ${Math.round(EJ.nochesVacias)} noches al año, el ${EJ.porcentajeIngreso.toFixed(1).replace(".", ",")} % de lo que ese hotel factura por alojamiento, y ${cop(EJ.fugaFueraHorario)} de la fuga por no contestar ocurre de noche o en fin de semana, cuando no hay nadie en recepción. Ninguna de esas noches exige una habitación más ni un peso más de pauta: son huéspedes que ya habían escrito.`,
+          `El escenario con el que abre la calculadora es un hotel de ${HOTEL_DEFAULTS.habitaciones} habitaciones, tarifa promedio de ${cop(HOTEL_DEFAULTS.adr)} por noche, ${HOTEL_DEFAULTS.ocupacion} % de ocupación, dos noches por reserva y ${HOTEL_DEFAULTS.consultas} consultas de huéspedes al mes entre WhatsApp, Instagram, el teléfono y el chat de la web. Ese hotel factura ${cop(EJ.ingresoAlojamiento)} al año por alojamiento.`,
+          `Con ${HOTEL_DEFAULTS.sinResponder} % de las consultas sin respuesta, ${HOTEL_DEFAULTS.tarde} % contestadas más de una hora después y ${HOTEL_DEFAULTS.silencio} % de los interesados que se quedan callados sin que nadie los vuelva a escribir, la fuga suma ${cop(EJ.total)} al año: ${cop(EJ.fugaNunca)} por lo que nadie contestó, ${cop(EJ.fugaTarde)} por contestar tarde, ${cop(EJ.fugaSeguimiento)} por no hacer seguimiento y ${cop(EJ.fugaTarifa)} por no mover la tarifa según la demanda.`,
+          `Son ${Math.round(EJ.ventasPerdidas)} reservas y ${Math.round(EJ.nochesVacias)} noches al año, el ${EJ.porcentajeIngreso.toFixed(1).replace(".", ",")} % de lo que ese hotel factura por alojamiento, y ${cop(EJ.fugaFueraHorario)} de la fuga por no contestar ocurre de noche o en fin de semana, cuando no hay nadie en recepción. Ninguna de esas noches exige una habitación más ni un peso más de pauta: son huéspedes que ya habían escrito.`,
         ],
       },
       {
@@ -344,7 +345,7 @@ export const HOTEL_RECURSOS: MarketingPage[] = [
         heading: "Cómo está hecha la cuenta (y por qué no infla)",
         body: [
           "Una calculadora que se puede desarmar en dos preguntas no sirve para decidir nada. Estas son las reglas con las que está construida, para que pueda revisarlas antes de creerle:",
-          "Los supuestos son suyos. La tasa de cierre, cuánto pesa la demora, cuántos callados vuelven si alguien insiste y cuánto sube el ingreso al mover la tarifa están en el panel de supuestos, abiertos y editables. Vienen en el extremo prudente del rango: 18 % de cierre, la mitad del cierre perdido por contestar tarde, 15 % de recuperación por seguimiento y 5 % de optimización de tarifa.",
+          "Los supuestos son suyos. La tasa de cierre, cuánto pesa la demora, cuántos callados vuelven si alguien insiste y cuánto sube el ingreso al mover la tarifa están a la vista, en su propio grupo de deslizadores. Vienen en el extremo prudente del rango: 18 % de cierre, la mitad del cierre perdido por contestar tarde, 15 % de recuperación por seguimiento y 5 % de optimización de tarifa.",
           "Nada se cuenta dos veces. Sus consultas del mes se reparten en tres grupos que no se cruzan —las que nadie contestó, las que se contestaron tarde y las que se atendieron a tiempo—. El seguimiento solo se calcula sobre las consultas que sí se atendieron y no terminaron en reserva. Y lo que llega fuera de horario no se suma aparte: es una porción de la fuga por no contestar, mostrada para que vea cuánta pasa cuando no hay nadie.",
           "La tarifa se calcula sobre lo que ya factura, no sobre lo que podría facturar, y por eso es independiente de todo lo demás. Tampoco le sumamos tarifa optimizada a las reservas recuperadas, aunque en la práctica también aplicaría: preferimos que la cuenta quede corta.",
         ],
