@@ -41,7 +41,11 @@ export function ConsentBanner() {
     <div
       role="region"
       aria-label="Preferencias de privacidad"
-      className="fixed inset-x-0 bottom-0 z-[60] px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 motion-safe:duration-300"
+      // The floating call button sits in the bottom-left corner on phones and
+      // was landing on top of «Solo lo esencial» — an obstructed hit target on
+      // the one control that has to be genuinely reachable for the refusal to
+      // mean anything. The extra bottom space on small screens clears it.
+      className="fixed inset-x-0 bottom-0 z-[60] px-4 pb-[max(5.5rem,calc(env(safe-area-inset-bottom)+5.5rem))] pt-3 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 motion-safe:duration-300 sm:pb-[max(1rem,env(safe-area-inset-bottom))]"
     >
       <div className="mx-auto flex max-w-3xl flex-col gap-4 rounded-2xl border border-border bg-card/95 p-5 shadow-lg backdrop-blur sm:flex-row sm:items-center sm:gap-6">
         <p className="min-w-0 flex-1 text-sm leading-relaxed text-muted-foreground">

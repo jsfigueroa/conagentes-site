@@ -307,6 +307,36 @@ export function track(name: EventName, props: EventProps = {}): void {
 }
 
 /**
+ * Events whose meaning is "once per page view" — a scroll milestone, a section
+ * reached, a CTA seen.
+ *
+ * The dedupe lives HERE, at module scope, rather than in the effect that
+ * raises them. An effect-local `Set` dedupes only within its own instance, and
+ * React mounts effects twice under StrictMode, remounts them on a fast refresh,
+ * and can mount the same component in two places — so the guard that looks
+ * correct in the component silently emits doubles. Observed while verifying
+ * this: one scroll past 25% produced two `scroll_depth` events.
+ *
+ * Distinct-visitor funnels are immune to that, but event counts and the bill
+ * are not, and a metric that is right only because the chart happens to
+ * de-duplicate it is a metric waiting to be read wrong.
+ */
+const firedOnce = new Set<string>();
+let firedOnPath: string | null = null;
+
+export function trackOnce(key: string, name: EventName, props: EventProps = {}): void {
+  if (typeof window === "undefined") return;
+  const path = location.pathname;
+  if (firedOnPath !== path) {
+    firedOnce.clear();
+    firedOnPath = path;
+  }
+  if (firedOnce.has(key)) return;
+  firedOnce.add(key);
+  track(name, props);
+}
+
+/**
  * A single cookieless, identifier-less page count, sent once per page BEFORE
  * any consent decision.
  *

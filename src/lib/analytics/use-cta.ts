@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
-import { track } from "./client";
+import { track, trackOnce } from "./client";
 
 /**
  * Impression + click tracking for one call to action (CON-292).
@@ -18,7 +18,6 @@ import { track } from "./client";
  */
 export function useCta(cta: string, meta: Record<string, string | number | boolean> = {}) {
   const ref = useRef<HTMLElement | null>(null);
-  const seen = useRef(false);
   // Kept in a ref so a parent re-render with a new object literal does not
   // re-run the observer effect and re-arm an impression we already counted.
   const metaRef = useRef(meta);
@@ -31,9 +30,14 @@ export function useCta(cta: string, meta: Record<string, string | number | boole
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (!entry.isIntersecting || seen.current) continue;
-          seen.current = true;
-          track("cta_view", { cta, ...metaRef.current });
+          if (!entry.isIntersecting) continue;
+          // Deduped per page, not per hook instance. The same CTA is commonly
+          // rendered twice for responsive layouts, and two elements counting
+          // one sighting would halve every click-through rate on the page.
+          trackOnce(`cta:${cta}:${metaRef.current.source ?? ""}`, "cta_view", {
+            cta,
+            ...metaRef.current,
+          });
           observer.disconnect();
         }
       },

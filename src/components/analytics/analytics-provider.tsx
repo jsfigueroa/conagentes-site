@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { startAnalytics, track, getConsent, __analyticsInternals } from "@/lib/analytics/client";
+import { startAnalytics, track, trackOnce, getConsent, __analyticsInternals } from "@/lib/analytics/client";
 import { SCROLL_DEPTHS } from "@/lib/analytics/events";
 
 /**
@@ -21,7 +21,6 @@ import { SCROLL_DEPTHS } from "@/lib/analytics/events";
  */
 export function AnalyticsProvider() {
   const pathname = usePathname();
-  const lastPath = useRef<string | null>(null);
   const anonPinged = useRef<Set<string>>(new Set());
 
   useEffect(() => {
@@ -30,11 +29,12 @@ export function AnalyticsProvider() {
 
   // --- page view + the pre-consent count ------------------------------------
   useEffect(() => {
-    if (!pathname || lastPath.current === pathname) return;
-    lastPath.current = pathname;
+    if (!pathname) return;
 
     if (getConsent() === "granted") {
-      track("page_view", { referrer_host: safeReferrerHost() });
+      // `trackOnce`, not a ref guard: StrictMode mounts this effect twice in
+      // development and would otherwise double-count every page view.
+      trackOnce("page_view", "page_view", { referrer_host: safeReferrerHost() });
     } else if (getConsent() === "pending" && !anonPinged.current.has(pathname)) {
       // One identifier-less count per page while the banner is up, so the
       // traffic denominator is true even for visitors who never choose.
@@ -46,7 +46,6 @@ export function AnalyticsProvider() {
   // --- scroll depth ---------------------------------------------------------
   useEffect(() => {
     if (!pathname) return;
-    const hit = new Set<number>();
 
     const onScroll = () => {
       const doc = document.documentElement;
@@ -56,10 +55,7 @@ export function AnalyticsProvider() {
       if (scrollable < 200) return;
       const pct = ((window.scrollY || doc.scrollTop) / scrollable) * 100;
       for (const d of SCROLL_DEPTHS) {
-        if (pct >= d && !hit.has(d)) {
-          hit.add(d);
-          track("scroll_depth", { depth: d });
-        }
+        if (pct >= d) trackOnce(`scroll_depth:${d}`, "scroll_depth", { depth: d });
       }
     };
 
@@ -104,16 +100,14 @@ export function AnalyticsProvider() {
   // with `data-track-section="name"` is counted once per page view.
   useEffect(() => {
     if (!pathname || typeof IntersectionObserver === "undefined") return;
-    const seen = new Set<string>();
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
           const name = (entry.target as HTMLElement).dataset.trackSection;
-          if (!name || seen.has(name)) continue;
-          seen.add(name);
-          track("section_view", { section: name });
+          if (!name) continue;
+          trackOnce(`section:${name}`, "section_view", { section: name });
           observer.unobserve(entry.target);
         }
       },
@@ -125,9 +119,7 @@ export function AnalyticsProvider() {
     // Sections mount with the page's animations, so a single pass at mount
     // misses most of them.
     const attach = () => {
-      document.querySelectorAll<HTMLElement>("[data-track-section]").forEach((el) => {
-        if (!seen.has(el.dataset.trackSection ?? "")) observer.observe(el);
-      });
+      document.querySelectorAll<HTMLElement>("[data-track-section]").forEach((el) => observer.observe(el));
     };
     attach();
     const retry = setTimeout(attach, 1200);
