@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useState } from "react";
+import { track } from "@/lib/analytics/client";
 
 /**
  * Opens the voice-call panel from anywhere on the marketing site (CON-260),
@@ -28,8 +29,12 @@ export function VoiceCallProvider({ children }: { children: React.ReactNode }) {
   const [source, setSource] = useState("hoteles");
 
   const open = useCallback((src?: string) => {
-    setSource(src || "hoteles");
+    const resolved = src || "hoteles";
+    setSource(resolved);
     setIsOpen(true);
+    // Opening the panel is a separate step from starting the call: the gap
+    // between them is people reading the panel and thinking better of it.
+    track("voice_open", { source: resolved });
   }, []);
 
   const close = useCallback(() => setIsOpen(false), []);

@@ -27,6 +27,16 @@ export const EVENT_NAMES = [
   "section_view",
   /** props: { seconds } — engaged time, paused when the tab is hidden. */
   "engaged_time",
+  /**
+   * Core Web Vitals from the field. props: { metric, value, rating }
+   *
+   * Captured first-party instead of buying Vercel Speed Insights, for one
+   * reason a separate tool cannot offer: these land in the same table as the
+   * conversions, so "do slow sessions book fewer demos" becomes a query
+   * instead of a hunch. It is also a ranking input, which matters when the
+   * whole acquisition strategy is organic and GEO.
+   */
+  "web_vital",
 
   // ---- Calls to action ---------------------------------------------------
   /**

@@ -212,7 +212,9 @@ export async function POST(req: NextRequest) {
           screen,
         };
       })
-      .filter(Boolean);
+      // `filter(Boolean)` does not narrow away the nulls for TypeScript, and
+      // the rows are inserted as a batch, so the predicate has to be explicit.
+      .filter((row): row is NonNullable<typeof row> => row !== null);
 
     if (rows.length === 0) return ok();
 

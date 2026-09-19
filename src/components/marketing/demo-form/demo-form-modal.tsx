@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, type FormEvent } from "react";
+import { useState, useEffect, useRef, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, CheckCircle, Loader2 } from "lucide-react";
 import { useDemoForm } from "./demo-form-context";
+import { track, getAttributionPayload } from "@/lib/analytics/client";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -14,6 +15,19 @@ export function DemoFormModal() {
   const [whatsapp, setWhatsapp] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  /**
+   * Which fields the visitor has begun (CON-292). Only the FIRST keystroke per
+   * field is recorded: where people start, and where they stop, is what tells
+   * us which question the form is asking badly. Field *values* never leave the
+   * browser through this path — only the field's name.
+   */
+  const started = useRef<Set<string>>(new Set());
+
+  const fieldStarted = (field: string) => {
+    if (started.current.has(field)) return;
+    started.current.add(field);
+    track("form_field_start", { field, source });
+  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -22,6 +36,7 @@ export function DemoFormModal() {
     setName("");
     setEmail("");
     setWhatsapp("");
+    started.current.clear();
   }, [isOpen]);
 
   useEffect(() => {
@@ -48,12 +63,15 @@ export function DemoFormModal() {
     e.preventDefault();
     setStatus("submitting");
     setErrorMsg("");
+    track("form_submit", { source });
 
     try {
       const res = await fetch("/api/demo-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, whatsapp, source }),
+        // Same reasoning as the voice dispatch: the snapshot has to travel on
+        // the conversion itself, because the lead outlives the session.
+        body: JSON.stringify({ name, email, whatsapp, source, attribution: getAttributionPayload() }),
       });
 
       if (!res.ok) {
@@ -62,11 +80,15 @@ export function DemoFormModal() {
       }
 
       setStatus("success");
+      track("form_success", { source });
     } catch (err) {
-      setErrorMsg(
-        err instanceof Error ? err.message : "Error enviando solicitud"
-      );
+      const message = err instanceof Error ? err.message : "Error enviando solicitud";
+      setErrorMsg(message);
       setStatus("error");
+      // The server's own validation message, which is how a form that rejects
+      // every Colombian mobile number shows up in a report instead of in a
+      // complaint six weeks later.
+      track("form_error", { source, message });
     }
   }
 
@@ -155,7 +177,10 @@ export function DemoFormModal() {
                       type="text"
                       required
                       value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => {
+                        fieldStarted("nombre");
+                        setName(e.target.value);
+                      }}
                       placeholder="Nombre y apellido"
                       className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.74_0.185_50)] focus:ring-2 focus:ring-[oklch(0.74_0.185_50/0.2)] transition-all"
                     />
@@ -173,7 +198,10 @@ export function DemoFormModal() {
                       type="email"
                       required
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => {
+                        fieldStarted("email");
+                        setEmail(e.target.value);
+                      }}
                       placeholder="nombre@suempresa.com"
                       className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.74_0.185_50)] focus:ring-2 focus:ring-[oklch(0.74_0.185_50/0.2)] transition-all"
                     />
@@ -192,7 +220,10 @@ export function DemoFormModal() {
                       inputMode="tel"
                       required
                       value={whatsapp}
-                      onChange={(e) => setWhatsapp(e.target.value)}
+                      onChange={(e) => {
+                        fieldStarted("whatsapp");
+                        setWhatsapp(e.target.value);
+                      }}
                       placeholder="+57 300 123 4567"
                       className="w-full rounded-xl border border-[oklch(0.92_0.004_95)] bg-white px-4 py-3 text-base sm:text-sm text-[oklch(0.2_0.01_95)] placeholder:text-[oklch(0.7_0.005_95)] outline-none focus:border-[oklch(0.74_0.185_50)] focus:ring-2 focus:ring-[oklch(0.74_0.185_50/0.2)] transition-all"
                     />
