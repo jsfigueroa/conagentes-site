@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { track, getAttributionPayload } from "@/lib/analytics/client";
 import type { Section } from "@/content/pages";
 import {
   computeGenericLeak,
@@ -124,20 +125,31 @@ function SendBreakdown({ context, source }: { context: string; source: string })
     e.preventDefault();
     setStatus("submitting");
     setError("");
+    track("form_submit", { source });
     try {
       const res = await fetch("/api/demo-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, whatsapp, source, context }),
+        body: JSON.stringify({
+          name,
+          email,
+          whatsapp,
+          source,
+          context,
+          attribution: getAttributionPayload(),
+        }),
       });
       if (!res.ok) {
         const data = (await res.json().catch(() => ({}))) as { error?: string };
         throw new Error(data.error || "No pudimos enviar el desglose");
       }
       setStatus("success");
+      track("form_success", { source });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "No pudimos enviar el desglose");
+      const message = err instanceof Error ? err.message : "No pudimos enviar el desglose";
+      setError(message);
       setStatus("error");
+      track("form_error", { source, message });
     }
   }
 
@@ -227,6 +239,7 @@ function CalcShell<K extends string>({
   result,
   footnote,
   inputsLabel,
+  kind,
 }: {
   groups: Group<K>[];
   values: Record<K, number>;
@@ -235,7 +248,62 @@ function CalcShell<K extends string>({
   result: ReactNode;
   footnote?: string;
   inputsLabel: string;
+  /** `hotel` or `pyme` — the two calculators share this shell. */
+  kind: string;
 }) {
+  /**
+   * Measuring the calculator (CON-292).
+   *
+   * Someone who drags these sliders is telling us their property size, their
+   * rate and what they believe they are losing — the highest-intent thing that
+   * happens on the site short of a call, and until now it reported nothing at
+   * all. The FIGURE matters as much as the interaction: a hotelier who lands on
+   * a 40-million-peso leak is a different prospect from one who lands on four,
+   * and the number is also the sharpest input we have into pricing.
+   *
+   * Fired on settle rather than per drag: a slider emits a change per pixel,
+   * and one event per pixel is a bill, not a measurement.
+   */
+  const started = useRef(false);
+  const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastReported = useRef<number | null>(null);
+  // Read inside the timeout, which fires after the re-render that produced the
+  // new total — so the ref, not the captured prop.
+  const latest = useRef({ total, values });
+  latest.current = { total, values };
+
+  useEffect(() => () => {
+    if (settleTimer.current) clearTimeout(settleTimer.current);
+  }, []);
+
+  const trackedOnChange = useCallback(
+    (key: K) => {
+      const inner = onChange(key);
+      return (v: number) => {
+        if (!started.current) {
+          started.current = true;
+          track("calc_start", { kind });
+        }
+        if (settleTimer.current) clearTimeout(settleTimer.current);
+        settleTimer.current = setTimeout(() => {
+          const rounded = Math.round(latest.current.total);
+          // Nudging a slider back and forth must not log the same figure twice.
+          if (lastReported.current === rounded) return;
+          lastReported.current = rounded;
+          track("calc_complete", {
+            kind,
+            total: rounded,
+            ...Object.fromEntries(
+              Object.entries(latest.current.values).map(([k, val]) => [k, Number(val)])
+            ),
+          });
+        }, 1500);
+        inner(v);
+      };
+    },
+    [onChange, kind]
+  );
+
   return (
     <figure className="mx-auto max-w-6xl">
       {/* No `overflow-hidden` here, deliberately: it would become the sticky
@@ -256,7 +324,7 @@ function CalcShell<K extends string>({
               )}
               <div className="mt-4 space-y-5">
                 {g.fields.map((f) => (
-                  <Slider key={f.key} f={f} value={values[f.key]} onChange={onChange(f.key)} />
+                  <Slider key={f.key} f={f} value={values[f.key]} onChange={trackedOnChange(f.key)} />
                 ))}
               </div>
             </div>
@@ -504,6 +572,7 @@ function HotelLeak({ footnote }: { footnote?: string }) {
       total={r.total}
       footnote={footnote}
       inputsLabel="Calculadora de reservas perdidas"
+      kind="hotel"
       result={
         <ResultPanel
           total={r.total}
@@ -703,6 +772,7 @@ function GenericLeak({ footnote }: { footnote?: string }) {
       total={r.total}
       footnote={footnote}
       inputsLabel="Calculadora de ROI"
+      kind="pyme"
       result={
         <ResultPanel
           total={r.total}

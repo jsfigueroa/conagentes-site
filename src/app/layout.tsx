@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { Suspense } from "react";
+import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
+import { ConsentBanner } from "@/components/analytics/consent-banner";
+import { WebVitals } from "@/components/analytics/web-vitals";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -76,7 +80,19 @@ export default function RootLayout({
       lang="es-CO"
       className={`${plusJakarta.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        {/* Mounted at the ROOT, not inside `(marketing)`: the blog is the GEO
+            asset and lives outside that route group, so measuring only the
+            marketing group would blind us to the pages the whole organic
+            strategy is built on. `Suspense` keeps the provider's `usePathname`
+            from opting static pages into dynamic rendering. */}
+        <Suspense fallback={null}>
+          <AnalyticsProvider />
+        </Suspense>
+        <WebVitals />
+        <ConsentBanner />
+      </body>
     </html>
   );
 }

@@ -11,7 +11,7 @@ function getResend(): Resend {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, whatsapp, source, context } = body;
+    const { name, email, whatsapp, source, context, attribution } = body;
 
     if (!name || !email || !whatsapp) {
       return NextResponse.json(
@@ -48,6 +48,14 @@ export async function POST(req: NextRequest) {
     const cleanContext =
       typeof context === "string" && context.trim() ? context.trim().slice(0, 2000) : null;
 
+    // CON-292 — where this person came from. Null whenever the visitor refused
+    // measurement or never answered the banner, so every read of these columns
+    // has to tolerate a missing snapshot; a demo request is worth having
+    // either way and the form must never depend on analytics succeeding.
+    const attr = attribution && typeof attribution === "object" ? attribution : null;
+    const visitorId =
+      attr && typeof attr.visitor_id === "string" ? attr.visitor_id.slice(0, 64) : null;
+
     const supabase = createAdminClient();
 
     const { data: inserted, error: dbError } = await supabase
@@ -57,6 +65,8 @@ export async function POST(req: NextRequest) {
         email: cleanEmail,
         whatsapp: cleanWhatsapp,
         source: cleanSource,
+        visitor_id: visitorId,
+        attribution: attr,
       })
       .select("id")
       .single();
@@ -80,6 +90,8 @@ export async function POST(req: NextRequest) {
       email: cleanEmail,
       whatsapp: cleanWhatsapp,
       source: cleanSource,
+      visitorId,
+      attribution: attr,
     });
 
     if (process.env.RESEND_API_KEY) {
@@ -123,6 +135,9 @@ async function forwardToHq(payload: {
   email: string;
   whatsapp: string;
   source: string;
+  /** CON-292 — carried through so the LEAD in HQ knows its origin too. */
+  visitorId: string | null;
+  attribution: Record<string, unknown> | null;
 }): Promise<void> {
   const base = process.env.CONAGENTES_APP_URL;
   const secret = process.env.DEMO_REQUEST_WEBHOOK_SECRET;

@@ -1,0 +1,32 @@
+# CI for the marketing site (CON-292).
+#
+# The site had no build or test gate at all — Vercel was the only thing that
+# ever compiled it, and only after a push to master. That was tolerable while
+# the repo was static copy. It is not tolerable now that it carries the
+# measurement spine, because the failure mode of broken analytics is a
+# dashboard that renders confident nonsense rather than one that visibly
+# breaks.
+#
+# Deliberately free and secretless: typecheck + unit tests only. `next build`
+# is NOT run here — it needs the Supabase environment, and a CI job that has to
+# hold production credentials to prove a page compiles is a worse trade than
+# letting Vercel's own preview build be that signal.
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test

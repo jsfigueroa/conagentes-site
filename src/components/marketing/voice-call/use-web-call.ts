@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { track, getAttributionPayload } from "@/lib/analytics/client";
+import { VOICE_MILESTONES } from "@/lib/analytics/events";
 
 /**
  * Drives one browser call with the conagentes sales agent (CON-260).
@@ -70,12 +72,43 @@ export function useWebCall(appUrl: string) {
   const micStreamRef = useRef<MediaStream | null>(null);
   const meterRef = useRef<{ ctx: AudioContext; raf: number } | null>(null);
 
+  /**
+   * The live duration, mirrored into a ref (CON-292).
+   *
+   * Every "the call ended" path is a callback captured long before the timer
+   * reached its final value, so reading the state variable there reports the
+   * duration as of when the handler was created — usually zero. The ref is
+   * what the analytics events read.
+   */
+  const secondsRef = useRef(0);
+  const milestonesFired = useRef<Set<number>>(new Set());
+
   // Call timer. Also how the visitor sees that a silent call is still alive.
   useEffect(() => {
     if (phase !== "live") return;
-    const id = window.setInterval(() => setSeconds((s) => s + 1), 1000);
+    const id = window.setInterval(() => {
+      setSeconds((s) => {
+        const next = s + 1;
+        secondsRef.current = next;
+        // Duration is the single best proxy for whether the conversation was
+        // any good: a 20-second call is a bounce, a 3-minute call is a
+        // prospect. Milestones make that a funnel instead of an average.
+        if (VOICE_MILESTONES.includes(next as (typeof VOICE_MILESTONES)[number]) && !milestonesFired.current.has(next)) {
+          milestonesFired.current.add(next);
+          track("voice_milestone", { seconds: next });
+        }
+        return next;
+      });
+    }, 1000);
     return () => window.clearInterval(id);
   }, [phase]);
+
+  // A microphone that never made a sound is a call that could not possibly
+  // have worked — and the visitor's experience is silence, not an error. It is
+  // invisible unless we report it.
+  useEffect(() => {
+    if (micSeemsDead) track("voice_mic_dead", { seconds: secondsRef.current });
+  }, [micSeemsDead]);
 
   /**
    * Watch the visitor's own input level.
@@ -154,6 +187,7 @@ export function useWebCall(appUrl: string) {
   useEffect(() => cleanup, [cleanup]);
 
   const hangUp = useCallback(() => {
+    track("voice_ended", { seconds: secondsRef.current, reason: "user" });
     cleanup();
     setPhase("ended");
     setAgentSpeaking(false);
@@ -162,8 +196,11 @@ export function useWebCall(appUrl: string) {
   const start = useCallback(async () => {
     setError(null);
     setSeconds(0);
+    secondsRef.current = 0;
+    milestonesFired.current.clear();
     setMuted(false);
     setPhase("requesting-mic");
+    track("voice_start_click", {});
 
     // Ask for the microphone FIRST. If the visitor declines, we have not spent
     // a cent and no agent is left sitting in an empty room.
@@ -179,10 +216,16 @@ export function useWebCall(appUrl: string) {
     try {
       micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch {
+      // The step nobody instruments. A browser that has previously been denied
+      // rejects this without showing a prompt at all, so from the visitor's
+      // side the button simply does not work — and without this event the
+      // whole cohort is invisible between "clicked" and "never connected".
+      track("voice_mic_denied", {});
       setError(MIC_DENIED);
       setPhase("error");
       return;
     }
+    track("voice_mic_granted", {});
     micStreamRef.current = micStream;
     startLevelMeter(micStream);
 
@@ -194,12 +237,21 @@ export function useWebCall(appUrl: string) {
         fetch(`${appUrl.replace(/\/$/, "")}/api/web-call`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({}),
+          // The attribution rides WITH the dispatch, not merely alongside it in
+          // the events table. A call becomes a `calls` row and then a lead in
+          // the CRM; if the snapshot does not travel on this request, the page
+          // that produced the lead is unrecoverable by the time anyone asks.
+          // Null whenever consent is pending or refused — the call still works.
+          body: JSON.stringify({ attribution: getAttributionPayload() }),
         }),
       ]);
 
       if (!res.ok) {
         const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        // Status, not the message: a 429 is our own daily cap turning people
+        // away and a 503 is the kill switch, and those need opposite responses
+        // from us. Lumping them into one "error" hides which one is happening.
+        track("voice_error", { stage: "dispatch", status: res.status });
         setError(data?.error || GENERIC_ERROR);
         setPhase("error");
         return;
@@ -243,6 +295,7 @@ export function useWebCall(appUrl: string) {
       room.on(RoomEvent.Disconnected, () => {
         // The agent hangs up its own end when the conversation is over, so this
         // is a normal ending, not a failure.
+        track("voice_ended", { seconds: secondsRef.current, reason: "agent" });
         cleanup();
         setPhase("ended");
         setAgentSpeaking(false);
@@ -258,8 +311,10 @@ export function useWebCall(appUrl: string) {
         await room.localParticipant.setMicrophoneEnabled(true);
       }
       setPhase("live");
+      track("voice_connected", {});
     } catch (err) {
       console.error("[web-call] connect failed:", err);
+      track("voice_error", { stage: "connect" });
       cleanup();
       setError(GENERIC_ERROR);
       setPhase("error");

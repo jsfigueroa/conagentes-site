@@ -2,6 +2,7 @@
 
 import { Phone } from "lucide-react";
 import { useVoiceCall } from "./voice-call-context";
+import { useCta } from "@/lib/analytics/use-cta";
 
 /**
  * «Hablar con un agente de IA» (CON-260).
@@ -29,6 +30,10 @@ export function TalkToAgentButton({
   label?: string;
 }) {
   const { open } = useVoiceCall();
+  // Impressions as well as clicks: this button is the front door of the voice
+  // funnel, and a low click rate means nothing until we know how often it was
+  // actually on screen.
+  const cta = useCta("hablar_con_agente", { source, variant });
 
   const base =
     "inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--orange)]";
@@ -40,7 +45,15 @@ export function TalkToAgentButton({
         : "border border-border bg-card text-foreground hover:bg-muted";
 
   return (
-    <button type="button" onClick={() => open(source)} className={`${base} ${skin} ${className}`}>
+    <button
+      type="button"
+      ref={cta.ref as React.RefObject<HTMLButtonElement>}
+      onClick={() => {
+        cta.clicked();
+        open(source);
+      }}
+      className={`${base} ${skin} ${className}`}
+    >
       <Phone className="h-[18px] w-[18px]" aria-hidden="true" />
       {label}
     </button>

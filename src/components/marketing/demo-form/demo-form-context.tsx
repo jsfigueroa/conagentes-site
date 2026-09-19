@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback } from "react";
+import { track } from "@/lib/analytics/client";
 
 interface DemoFormContextValue {
   isOpen: boolean;
@@ -21,8 +22,12 @@ export function DemoFormProvider({ children }: { children: React.ReactNode }) {
   const [source, setSource] = useState("landing");
 
   const open = useCallback((src?: string) => {
-    setSource(src || "landing");
+    const resolved = src || "landing";
+    setSource(resolved);
     setIsOpen(true);
+    // `source` is which CTA opened it, so the abandonment rate can be read per
+    // placement — the pricing page and the hero convert very differently.
+    track("form_open", { source: resolved });
   }, []);
 
   const close = useCallback(() => setIsOpen(false), []);
