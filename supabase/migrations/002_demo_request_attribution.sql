@@ -2,7 +2,7 @@
 --
 -- `demo_requests` is owned by this repo (see 001), so its columns live here
 -- even though the reporting surface is in the app. The companion table
--- `site_events` is created by the app repo's migration 00174.
+-- `site_events` is created by the app repo's migration 00176.
 --
 -- Without these two columns the only way to connect a submission to the pages
 -- that led to it is to guess from a timestamp, which fails the moment more
