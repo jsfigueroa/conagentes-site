@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { callInviteCopy, isHotelPath } from "../call-invite-copy";
+import { callInviteCopy, isHotelPath, shouldShowInvite } from "../call-invite-copy";
 
 /**
  * Each assertion is pinned BOTH ways — it must fail if the audience split
@@ -35,6 +35,31 @@ describe("isHotelPath", () => {
     // `startsWith`, not `includes` — `/negocios/para-hoteles` would otherwise
     // flip a generic page into hospedaje copy.
     expect(isHotelPath("/negocios/para-hoteles")).toBe(false);
+  });
+});
+
+describe("shouldShowInvite", () => {
+  it.each([
+    "/hoteles/blog",
+    "/hoteles/blog/como-vender-mas-directo",
+    "/hoteles/blog/categoria/revenue",
+  ])("stays off the blog at %s", (p) => {
+    expect(shouldShowInvite(p)).toBe(false);
+  });
+
+  it.each(["/", "/negocios", "/hoteles/precios", "/hoteles/pms", "/recursos"])(
+    "shows on the landing page %s",
+    (p) => {
+      expect(shouldShowInvite(p)).toBe(true);
+    }
+  );
+
+  it("only suppresses whole path segments", () => {
+    // A prefix test with no segment boundary would take `/hoteles/blogueros`
+    // — or any future route that merely starts with those letters — off the
+    // air, silently and forever.
+    expect(shouldShowInvite("/hoteles/blogueros")).toBe(true);
+    expect(shouldShowInvite("/hoteles/blog-de-ventas")).toBe(true);
   });
 });
 

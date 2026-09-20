@@ -7,7 +7,7 @@ import { Phone, X } from "lucide-react";
 import { useVoiceCall } from "./voice-call-context";
 import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
 import { track } from "@/lib/analytics/client";
-import { callInviteCopy } from "./call-invite-copy";
+import { callInviteCopy, shouldShowInvite } from "./call-invite-copy";
 
 /**
  * The call invitation (CON-293).
@@ -17,7 +17,7 @@ import { callInviteCopy } from "./call-invite-copy";
  * Reading the page is the slow path to believing us; hearing the agent answer a
  * question about their own hotel is the fast one, and it costs them one click.
  *
- * THREE DECISIONS WORTH KEEPING
+ * FOUR DECISIONS WORTH KEEPING
  *
  * 1. **It is a sheet on a phone, not an interstitial.** Below 768px the card
  *    docks to the bottom edge with no dimming backdrop and no scroll lock, so
@@ -35,6 +35,12 @@ import { callInviteCopy } from "./call-invite-copy";
  * 3. **It never lands on top of something else.** If the visitor already opened
  *    the call panel or the demo form inside that first second, the timer finds
  *    them busy and stands down permanently for the page load.
+ *
+ * 4. **It stays off the blog** (`shouldShowInvite`). Landing pages only —
+ *    somebody two paragraphs into an article is reading, not shopping. The
+ *    timer arms on the first ELIGIBLE route rather than only at mount, so that
+ *    reader still gets the invitation the moment they click through to a
+ *    product page: we are excluding the article, not the person.
  */
 
 /** Sebastián's spec, verbatim: one second after the page loads. */
@@ -84,25 +90,32 @@ export function CallInvitePopup() {
   // `false` these had at mount and open the popup on top of a live call.
   const busyRef = useRef(false);
   busyRef.current = callOpen || formOpen;
+  // Once per page load, full stop. The marketing layout survives client-side
+  // navigation, so without this the visitor would be re-invited on every route
+  // change — three pages deep, having already said no.
+  const armedRef = useRef(false);
 
   const copy = callInviteCopy(pathname || "/");
 
   // --- when to appear ------------------------------------------------------
 
   useEffect(() => {
+    if (armedRef.current) return;
     if (process.env.NEXT_PUBLIC_CALL_POPUP_ENABLED === "false") return;
+    // Not `return` on a suppressed route but no arming either: a reader who
+    // lands on a blog article and then clicks through to a product page gets
+    // the invitation there, which is the whole point of excluding the article
+    // rather than excluding the reader.
+    if (!shouldShowInvite(pathname || "/")) return;
     if (Date.now() < suppressedUntil()) return;
 
+    armedRef.current = true;
     const timer = window.setTimeout(() => {
       if (busyRef.current) return;
       setVisible(true);
     }, DELAY_MS);
     return () => window.clearTimeout(timer);
-    // Deliberately mount-only. The marketing layout survives client-side
-    // navigation, so re-running this per route would re-invite somebody who is
-    // already three pages deep and has clearly not needed inviting.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pathname]);
 
   // Media query in state rather than CSS: the modal SEMANTICS differ, not just
   // the looks, and `aria-modal` cannot be set from a stylesheet. Safe from

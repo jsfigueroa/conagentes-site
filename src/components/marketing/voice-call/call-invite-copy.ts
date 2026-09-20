@@ -35,6 +35,28 @@ export function isHotelPath(pathname: string): boolean {
   return pathname === "/" || pathname.startsWith("/hoteles");
 }
 
+/**
+ * Routes the invitation stays off (Sebastián's call, 2026-09-20: landing pages
+ * only).
+ *
+ * The hotel blog is the organic + GEO asset. Somebody two paragraphs into an
+ * article is reading, not shopping, and interrupting them is how a site teaches
+ * people to leave. They still get the invitation the moment they click through
+ * to a product page, because the timer arms on the first ELIGIBLE route rather
+ * than only on the first one.
+ *
+ * `/blog` (the old generic one) needs no entry here: it lives outside the
+ * `(marketing)` layout, so the popup is never mounted on it at all.
+ */
+const SUPPRESSED_PREFIXES = ["/hoteles/blog"];
+
+export function shouldShowInvite(pathname: string): boolean {
+  return !SUPPRESSED_PREFIXES.some(
+    // Exact match or a whole path segment — `/hoteles/blogueros` is not the blog.
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+  );
+}
+
 export function callInviteCopy(pathname: string): CallInviteCopy {
   return isHotelPath(pathname)
     ? {
