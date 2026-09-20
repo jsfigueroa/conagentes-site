@@ -19,8 +19,11 @@
 export const EVENT_NAMES = [
   // ---- Session & page ----------------------------------------------------
   "page_view",
-  /** Fired once per tab, before any id exists when consent is still pending. */
-  "session_start",
+  // There is deliberately no `session_start`. A session is already countable as
+  // a distinct `session_id` across the events that did happen, so the event
+  // would be a second, redundant way to say the same thing — and an entry in
+  // this list that nothing emits is how a taxonomy starts lying about what the
+  // product measures.
   /** props: { depth: 25 | 50 | 75 | 100 } */
   "scroll_depth",
   /** props: { section: string } — the five-act story on `/` is the core asset. */
@@ -85,6 +88,16 @@ export const EVENT_NAMES = [
   "nav_click",
   /** props: { question } — the questions people open ARE the content briefs. */
   "faq_open",
+
+  // ---- Server-side ---------------------------------------------------------
+  /**
+   * An AI or search crawler fetched a page. props: { bot, kind }
+   *
+   * Written by `src/middleware.ts`, never by the browser — crawlers do not run
+   * JavaScript. It leads human referral traffic by weeks and is the only
+   * evidence that the GEO work is being read at all before anyone arrives.
+   */
+  "crawler_hit",
 ] as const;
 
 export type EventName = (typeof EVENT_NAMES)[number];

@@ -18,6 +18,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/marketing/animation/scroll-reveal";
+import { track } from "@/lib/analytics/client";
 import { MagneticButton } from "@/components/marketing/animation/magnetic-button";
 import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
 import { TalkToAgentButton } from "@/components/marketing/voice-call/talk-to-agent-button";
@@ -233,7 +234,7 @@ export function HotelBody() {
           and the three levers as a divided list on the right. Varying the
           rhythm section to section is the single cheapest thing that stops a
           page reading as generated. */}
-      <section className="bg-background py-24 md:py-32">
+      <section data-track-section="capacidades" className="bg-background py-24 md:py-32">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
           <ScrollReveal className="lg:sticky lg:top-32 lg:self-start">
             <Eyebrow>Lo que hace por su hotel</Eyebrow>
@@ -278,7 +279,7 @@ export function HotelBody() {
       </section>
 
       {/* ——— THE REAL PROBLEM ——— */}
-      <section className="py-24 md:py-28 bg-[oklch(0.11_0.01_95)] text-white">
+      <section data-track-section="problema" className="py-24 md:py-28 bg-[oklch(0.11_0.01_95)] text-white">
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 md:grid-cols-2 md:gap-16">
           <ScrollReveal>
             <Eyebrow>El problema real</Eyebrow>
@@ -342,7 +343,7 @@ export function HotelBody() {
       <OmnichannelSection />
 
       {/* ——— REVENUE ENGINE (proactive recovery + upsell) ——— */}
-      <section className="py-24 md:py-32 bg-background">
+      <section data-track-section="motor-ingresos" className="py-24 md:py-32 bg-background">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal className="mx-auto mb-14 max-w-3xl text-center">
             <Eyebrow>El motor de ingresos</Eyebrow>
@@ -453,7 +454,7 @@ export function HotelBody() {
       </section>
 
       {/* ——— CAPABILITIES ——— */}
-      <section id="como-funciona" className="py-24 md:py-32 bg-background scroll-mt-20">
+      <section data-track-section="como-funciona" id="como-funciona" className="py-24 md:py-32 bg-background scroll-mt-20">
         <div className="mx-auto max-w-7xl px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
             <Eyebrow>Cómo trabaja su agente</Eyebrow>
@@ -489,7 +490,7 @@ export function HotelBody() {
       </section>
 
       {/* ——— COMPLIANCE ——— */}
-      <section className="py-20 md:py-24 bg-background">
+      <section data-track-section="colombia" className="py-20 md:py-24 bg-background">
         <div className="mx-auto max-w-5xl px-6">
           <ScrollReveal>
             <div className="rounded-3xl border border-[oklch(0.77_0.165_56/0.22)] bg-brand-tint-soft p-8 md:p-12">
@@ -534,7 +535,7 @@ export function HotelBody() {
       </section>
 
       {/* ——— PLANS (model, no numbers) ——— */}
-      <section className="py-24 md:py-32 bg-background">
+      <section data-track-section="precio" className="py-24 md:py-32 bg-background">
         <div className="mx-auto max-w-5xl px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-14">
             <Eyebrow>Cómo se paga</Eyebrow>
@@ -588,7 +589,7 @@ export function HotelBody() {
       </section>
 
       {/* ——— TRUST / CONTROL ——— */}
-      <section className="py-24 md:py-28 bg-secondary">
+      <section data-track-section="control" className="py-24 md:py-28 bg-secondary">
         <div className="mx-auto max-w-7xl px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
             <Eyebrow>Control y confianza</Eyebrow>
@@ -625,7 +626,7 @@ export function HotelBody() {
           The hub links out to every spoke page. Without this the flagship page
           is a dead end: the spokes would only be reachable through the header
           menu, which costs us both visitors and crawl depth. */}
-      <section className="py-24 md:py-32 bg-secondary/40">
+      <section data-track-section="plataforma" className="py-24 md:py-32 bg-secondary/40">
         <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal className="text-center mb-14">
             <Eyebrow>Toda la plataforma</Eyebrow>
@@ -676,7 +677,7 @@ export function HotelBody() {
       </section>
 
       {/* ——— FAQ ——— */}
-      <section className="py-24 md:py-32 bg-background">
+      <section data-track-section="faq" className="py-24 md:py-32 bg-background">
         <div className="mx-auto max-w-3xl px-6">
           <ScrollReveal className="text-center mb-14">
             <Eyebrow>Preguntas frecuentes</Eyebrow>
@@ -687,7 +688,19 @@ export function HotelBody() {
 
           <div className="divide-y divide-border rounded-2xl border border-border bg-card">
             {HOME_FAQ.map((f) => (
-              <details key={f.q} className="group px-6">
+              <details
+                key={f.q}
+                className="group px-6"
+                // Which questions people open is the cheapest content research
+                // on the site: every opened question is a doubt the page did not
+                // answer above the fold, and a brief for the next article.
+                // `onToggle` fires on close too, so only the opening counts.
+                onToggle={(e) => {
+                  if ((e.currentTarget as HTMLDetailsElement).open) {
+                    track("faq_open", { question: f.q.slice(0, 120) });
+                  }
+                }}
+              >
                 <summary className="flex cursor-pointer items-center justify-between gap-4 py-5 text-left font-semibold text-foreground list-none [&::-webkit-details-marker]:hidden">
                   {f.q}
                   <span className="text-[oklch(0.64_0.19_42)] transition-transform group-open:rotate-45 text-xl leading-none">
@@ -704,7 +717,7 @@ export function HotelBody() {
       </section>
 
       {/* ——— FINAL CTA ——— */}
-      <section className="py-24 md:py-32 bg-[oklch(0.08_0.01_95)] relative overflow-hidden">
+      <section data-track-section="cierre" className="py-24 md:py-32 bg-[oklch(0.08_0.01_95)] relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full bg-[oklch(0.74_0.185_50/0.10)] blur-[130px]" />
         <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <ScrollReveal>
