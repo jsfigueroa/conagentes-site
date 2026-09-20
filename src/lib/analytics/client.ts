@@ -379,8 +379,39 @@ function anonymousPing(): void {
  */
 function syncOptOut(): void {
   const intent = optOutIntent(location.search);
-  if (intent === "on") writeCookie(OPTOUT_COOKIE, "1", VISITOR_TTL_DAYS);
-  else if (intent === "off") deleteCookie(OPTOUT_COOKIE);
+
+  if (intent === "off") {
+    deleteCookie(OPTOUT_COOKIE);
+    try {
+      safeLocal()?.removeItem(OPTOUT_COOKIE);
+    } catch {
+      /* private mode */
+    }
+    return;
+  }
+
+  // Mirrored to localStorage and re-written on every load, the same trick
+  // `getVisitorId` uses and for the same reason: Safari caps a script-set
+  // cookie at 7 days. Without this the exclusion would expire a week after it
+  // was set, silently, and an iPhone would quietly start counting itself as
+  // market again — the exact failure this whole feature exists to prevent,
+  // just on a delay.
+  const alreadyOptedOut = (() => {
+    try {
+      return safeLocal()?.getItem(OPTOUT_COOKIE) === "1";
+    } catch {
+      return false;
+    }
+  })();
+
+  if (intent !== "on" && !alreadyOptedOut) return;
+
+  writeCookie(OPTOUT_COOKIE, "1", VISITOR_TTL_DAYS);
+  try {
+    safeLocal()?.setItem(OPTOUT_COOKIE, "1");
+  } catch {
+    /* private mode — the cookie alone still covers this session */
+  }
 }
 
 /** Wire the lifecycle listeners. Idempotent; called once by the provider. */
