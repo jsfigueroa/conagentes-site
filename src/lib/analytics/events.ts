@@ -67,6 +67,26 @@ export const EVENT_NAMES = [
   /** The visitor's mic never made a sound — a silent, total call failure. */
   "voice_mic_dead",
 
+  // ---- The invitation that opens Door A (CON-293) -------------------------
+  /**
+   * The call-invite popup was actually shown — not merely scheduled. It stands
+   * down when the visitor is already in a call or a form, and it stays quiet
+   * for a week after a dismissal, so "how many saw it" is a real number rather
+   * than a page-view count wearing a disguise.
+   * props: { promo, compact }
+   */
+  "promo_view",
+  /** props: { promo, seconds } — seconds on screen before they said yes. */
+  "promo_click",
+  /**
+   * props: { promo, how, seconds }
+   *
+   * `seconds` is the prop that decides what to change. A swat at 1s means the
+   * popup is too early; a no at 8s means the punchline is wrong. Without it a
+   * dismissal rate is a number you cannot act on.
+   */
+  "promo_dismiss",
+
   // ---- Door B: the demo form ---------------------------------------------
   "form_open",
   /** props: { field } — where they start tells you what the form is asking wrong. */
