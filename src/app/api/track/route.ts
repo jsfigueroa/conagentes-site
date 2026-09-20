@@ -26,6 +26,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { isEventName } from "@/lib/analytics/events";
 import { deriveChannelGroup, type AttributionSnapshot, type ChannelGroup } from "@/lib/analytics/attribution";
+import { hasOptOutCookie, isMeasurableHost } from "@/lib/analytics/internal";
 
 export const runtime = "nodejs";
 
@@ -78,6 +79,16 @@ function deviceFrom(ua: string): "mobile" | "tablet" | "desktop" {
   if (/ipad|tablet|playbook|silk/i.test(ua)) return "tablet";
   if (/mobi|android|iphone|ipod/i.test(ua)) return "mobile";
   return "desktop";
+}
+
+/** Vercel's geo headers are percent-encoded; a bad escape must not throw. */
+function decodeHeader(value: string | null): string | null {
+  if (!value) return null;
+  try {
+    return decodeURIComponent(value).trim().slice(0, 120) || null;
+  } catch {
+    return value.trim().slice(0, 120) || null;
+  }
 }
 
 function str(value: unknown, max = MAX_STRING_LEN): string | null {
@@ -139,6 +150,16 @@ export async function POST(req: NextRequest) {
     const ua = req.headers.get("user-agent") ?? "";
     if (BOT_UA.test(ua)) return ok();
 
+    // Only the real domains are measurable (CON-294). A dev server and a
+    // preview deploy both read the same `.env.local`, which holds the LIVE
+    // service key, so without this line every local page load writes straight
+    // into production analytics — which is exactly what happened on
+    // 2026-09-20, when 65% of every row in the table turned out to be an agent
+    // verifying a popup against `localhost:3103`. Dropped outright rather than
+    // kept as internal: a dev loop can emit thousands of rows and not one of
+    // them describes anything.
+    if (!isMeasurableHost(req.headers.get("host"))) return ok();
+
     const raw = await req.text();
     if (raw.length > MAX_BODY_BYTES) return ok();
 
@@ -172,8 +193,21 @@ export async function POST(req: NextRequest) {
     const sessionId = anonymous ? null : str(body.session_id, 64);
 
     const country = req.headers.get("x-vercel-ip-country");
+    // City and region come from the same Vercel edge lookup as the country and
+    // cost nothing extra (CON-294). They are IP-derived and approximate —
+    // useful for "is anyone in Cartagena reading the hotel pages", never for
+    // identifying anybody. The header is percent-encoded, so «Bogotá» arrives
+    // as `Bogot%C3%A1` and lands in the table mojibaked if you skip the decode.
+    const city = decodeHeader(req.headers.get("x-vercel-ip-city"));
+    const region = decodeHeader(req.headers.get("x-vercel-ip-country-region"));
     const device = deviceFrom(ua);
     const screen = str(body.screen, 20);
+
+    // Our own browsers, marked rather than dropped: an opt-out you cannot see
+    // working is an opt-out nobody trusts, and the volume is trivial. It is
+    // read from the request's OWN cookie header — the payload never gets to
+    // assert its own exclusion.
+    const internal = hasOptOutCookie(req.headers.get("cookie"));
 
     const rows = events
       .map((e) => {
@@ -209,6 +243,9 @@ export async function POST(req: NextRequest) {
 
           device,
           country,
+          city,
+          region,
+          internal,
           screen,
         };
       })

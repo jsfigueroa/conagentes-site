@@ -23,6 +23,7 @@
 
 import { buildSnapshot, isNewTouch, type AttributionSnapshot } from "./attribution";
 import type { EventName, EventProps } from "./events";
+import { isMeasurableHost, OPTOUT_COOKIE, optOutIntent } from "./internal";
 
 const VISITOR_COOKIE = "cga_vid";
 const CONSENT_COOKIE = "cga_consent";
@@ -295,6 +296,11 @@ function scheduleFlush(): void {
  */
 export function track(name: EventName, props: EventProps = {}): void {
   if (typeof window === "undefined") return;
+  // Belt to the ingest route's braces (CON-294). The server is the layer that
+  // cannot be bypassed, but stopping here means a dev loop never even makes the
+  // request — and the queue cannot quietly fill with events that would be
+  // thrown away on arrival anyway.
+  if (!isMeasurableHost(location.hostname)) return;
   const consent = getConsent();
   if (consent === "essential") return;
 
@@ -348,6 +354,7 @@ export function trackOnce(key: string, name: EventName, props: EventProps = {}):
  * so the denominator is true.
  */
 function anonymousPing(): void {
+  if (!isMeasurableHost(location.hostname)) return;
   const snap = buildSnapshot({ url: location.href, referrer: document.referrer || null });
   const body = JSON.stringify({
     anonymous: true,
@@ -362,10 +369,26 @@ function anonymousPing(): void {
   }).catch(() => {});
 }
 
+/**
+ * Honour `?nocount=1` (CON-294) — our own browsers, marked once and for good.
+ *
+ * The cookie is what the SERVER reads; this only writes it. `?nocount=0` turns
+ * it back off, which matters more than it looks: without an off switch, the one
+ * browser that most needs to see the site exactly as a customer does would be
+ * excluded from its own funnel with no way back short of clearing site data.
+ */
+function syncOptOut(): void {
+  const intent = optOutIntent(location.search);
+  if (intent === "on") writeCookie(OPTOUT_COOKIE, "1", VISITOR_TTL_DAYS);
+  else if (intent === "off") deleteCookie(OPTOUT_COOKIE);
+}
+
 /** Wire the lifecycle listeners. Idempotent; called once by the provider. */
 export function startAnalytics(): void {
   if (started || typeof window === "undefined") return;
   started = true;
+
+  syncOptOut();
 
   if (getConsent() === "granted") {
     ensureTouches();

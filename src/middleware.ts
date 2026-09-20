@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest, type NextFetchEvent } from "next/server";
+import { isMeasurableHost } from "@/lib/analytics/internal";
 
 /**
  * AI-crawler visibility (CON-292).
@@ -57,6 +58,16 @@ const AI_CRAWLERS: Array<{ pattern: RegExp; bot: string; kind: "retrieval" | "tr
 /** One cheap pre-filter so a human request does twenty fewer regex tests. */
 const ANY_BOT = /bot|crawler|spider|GPT|Claude|Perplexity|anthropic|cohere|Bytespider|MistralAI/i;
 
+/** Vercel's geo headers are percent-encoded; a bad escape must not throw. */
+function decodeGeo(value: string | null): string | null {
+  if (!value) return null;
+  try {
+    return decodeURIComponent(value).slice(0, 120) || null;
+  } catch {
+    return value.slice(0, 120) || null;
+  }
+}
+
 function identify(ua: string): { bot: string; kind: string } | null {
   if (!ANY_BOT.test(ua)) return null;
   for (const c of AI_CRAWLERS) {
@@ -69,6 +80,11 @@ export function middleware(request: NextRequest, event: NextFetchEvent) {
   const ua = request.headers.get("user-agent") ?? "";
   const hit = identify(ua);
   if (!hit) return NextResponse.next();
+
+  // Production domains only (CON-294) — the same gate the ingest route uses.
+  // A preview deploy runs this middleware too, and a crawler wandering into a
+  // preview URL would otherwise be filed as having read the real page.
+  if (!isMeasurableHost(request.headers.get("host"))) return NextResponse.next();
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -99,6 +115,12 @@ export function middleware(request: NextRequest, event: NextFetchEvent) {
         path: request.nextUrl.pathname.slice(0, 300),
         props: { bot: hit.bot, kind: hit.kind },
         country: request.headers.get("x-vercel-ip-country"),
+        // A crawler's "city" is its egress datacentre, never a reader's
+        // location — ChatGPT-User lands in GB whoever asked. Kept anyway
+        // because a bot suddenly fetching from somewhere new is a signal, and
+        // read as infrastructure rather than as an audience.
+        city: decodeGeo(request.headers.get("x-vercel-ip-city")),
+        region: decodeGeo(request.headers.get("x-vercel-ip-country-region")),
         device: "bot",
       }),
     }).catch(() => {}),
