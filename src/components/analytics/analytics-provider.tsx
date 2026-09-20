@@ -130,6 +130,57 @@ export function AnalyticsProvider() {
     };
   }, [pathname]);
 
+  // --- link clicks ----------------------------------------------------------
+  // One delegated listener instead of an onClick on every anchor. Links are
+  // added constantly — nav items, footer, blog body, CTAs inside copy — and any
+  // scheme that asks an author to remember a tracking call is a scheme that
+  // measures whatever was written last year.
+  //
+  // `outbound_click` is the one that matters commercially: a visitor leaving
+  // for wa.me or a mailto is not a bounce, it is a conversion we would
+  // otherwise record as abandonment.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement | null)?.closest?.("a");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href");
+      if (!href || href.startsWith("#")) return;
+
+      if (href.startsWith("https://wa.me") || href.startsWith("https://api.whatsapp.com")) {
+        track("outbound_click", { href: href.slice(0, 200), kind: "whatsapp" });
+        return;
+      }
+      if (href.startsWith("mailto:")) {
+        track("outbound_click", { href: href.slice(0, 200), kind: "email" });
+        return;
+      }
+      if (href.startsWith("tel:")) {
+        track("outbound_click", { href: href.slice(0, 200), kind: "tel" });
+        return;
+      }
+
+      let isExternal = false;
+      try {
+        isExternal = new URL(href, location.href).origin !== location.origin;
+      } catch {
+        isExternal = false;
+      }
+      if (isExternal) {
+        track("outbound_click", { href: href.slice(0, 200), kind: "external" });
+      } else {
+        // Internal navigation. The label is how a nav item is told from a link
+        // buried in body copy, which read very differently.
+        track("nav_click", {
+          href: href.slice(0, 200),
+          label: (anchor.textContent ?? "").trim().slice(0, 80),
+        });
+      }
+    };
+
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
+  }, []);
+
   return null;
 }
 
