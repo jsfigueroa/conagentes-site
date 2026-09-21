@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/brand/logo";
+import { BRAND_MARKS } from "@/components/marketing/hotel/brand-marks";
 import { CROSSLINK, NAV_GENERAL, NAV_HOTEL, type NavItem } from "@/content/nav";
+import { SOCIAL_PROFILES } from "@/content/social";
 
 /**
  * Footer — derived from the SAME nav config as the mega-menu.
@@ -51,6 +53,42 @@ const LEGAL = [
   { label: "Términos", href: "/terminos" },
 ];
 
+/**
+ * The brand's own profiles. Icon-only, so each carries its own label — and the
+ * 44px box is the hit target, not the 18px glyph: the icons sit next to each
+ * other, and a miss here opens the wrong network.
+ */
+function SocialRow() {
+  return (
+    <ul className="mt-6 flex items-center gap-1 -ml-2.5">
+      {SOCIAL_PROFILES.map((profile) => {
+        const mark = BRAND_MARKS[profile.mark];
+        return (
+          <li key={profile.href}>
+            <a
+              href={profile.href}
+              target="_blank"
+              rel="noopener noreferrer me"
+              aria-label={`conagentes en ${profile.label} (abre en una pestaña nueva)`}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--orange)]"
+            >
+              {mark && (
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="h-[18px] w-[18px] fill-current"
+                >
+                  <path d={mark.path} />
+                </svg>
+              )}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 export function Footer() {
   const pathname = usePathname();
   // Same rule as the header: the ROOT is the hospedaje experience.
@@ -78,6 +116,8 @@ export function Footer() {
             >
               {crosslink.label}
             </Link>
+
+            <SocialRow />
           </div>
 
           {columns.map((col) => (

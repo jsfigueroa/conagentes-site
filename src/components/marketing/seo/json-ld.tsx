@@ -1,4 +1,5 @@
 import { HOME_FAQ } from "@/content/hotel/home-faq";
+import { SOCIAL_PROFILES } from "@/content/social";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://conagentes.com";
 
@@ -72,10 +73,10 @@ export function MarketingJsonLd({
       availableLanguage: ["Spanish", "es-CO"],
       areaServed: "CO",
     },
-    sameAs: [
-      "https://www.instagram.com/conagentes",
-      "https://www.linkedin.com/company/conagentes",
-    ],
+    // Same list the footer links, from one const: the entity signal is only
+    // worth anything if the page a crawler reads and the page a person clicks
+    // are the same URL.
+    sameAs: SOCIAL_PROFILES.map((p) => p.href),
   };
 
   const software = {
