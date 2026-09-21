@@ -62,7 +62,10 @@ export const NAV_GENERAL: NavItem[] = [
         ],
       },
       {
-        heading: "Más",
+        // "Confianza", not "Más": this is the same column NAV_HOTEL already
+        // names that way, and the footer derives its headings from here — a
+        // catch-all heading read as a duplicate of the footer's own "Más".
+        heading: "Confianza",
         links: [
           { label: "Integraciones", href: "/integraciones" },
           { label: "Seguridad y cumplimiento", href: "/producto/seguridad" },
