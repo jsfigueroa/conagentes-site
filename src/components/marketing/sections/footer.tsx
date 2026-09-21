@@ -4,7 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/brand/logo";
 import { BRAND_MARKS } from "@/components/marketing/hotel/brand-marks";
-import { CROSSLINK, NAV_GENERAL, NAV_HOTEL, type NavItem } from "@/content/nav";
+import {
+  FOOTER_EXTRA_HEADING,
+  footerColumnsFrom,
+} from "@/content/footer-columns";
+import { CROSSLINK, NAV_GENERAL, NAV_HOTEL } from "@/content/nav";
 import { SOCIAL_PROFILES } from "@/content/social";
 
 /**
@@ -20,33 +24,6 @@ import { SOCIAL_PROFILES } from "@/content/social";
  * Deriving from NAV means a new page is reachable from the footer the moment it
  * is added to the nav, and no link can point at a route that does not exist.
  */
-
-/** Flatten one nav experience into footer columns, dropping anchors + dupes. */
-function columnsFrom(nav: NavItem[]) {
-  const cols: { heading: string; links: { label: string; href: string }[] }[] = [];
-
-  for (const item of nav) {
-    if (item.kind === "link") continue; // top-level links are covered elsewhere
-    for (const col of item.columns) {
-      const seen = new Set<string>();
-      const links = col.links.filter((l) => {
-        // On-page anchors are not footer material, and a repeated href inside
-        // one column reads as a mistake.
-        if (l.href.includes("#")) return false;
-        if (seen.has(l.href)) return false;
-        seen.add(l.href);
-        return true;
-      });
-      if (links.length) {
-        cols.push({
-          heading: col.heading,
-          links: links.map((l) => ({ label: l.label, href: l.href })),
-        });
-      }
-    }
-  }
-  return cols;
-}
 
 const LEGAL = [
   { label: "Privacidad", href: "/privacidad" },
@@ -94,7 +71,7 @@ export function Footer() {
   // Same rule as the header: the ROOT is the hospedaje experience.
   const isHotel = pathname === "/" || pathname.startsWith("/hoteles");
 
-  const columns = columnsFrom(isHotel ? NAV_HOTEL : NAV_GENERAL).slice(0, 3);
+  const columns = footerColumnsFrom(isHotel ? NAV_HOTEL : NAV_GENERAL);
   const crosslink = isHotel ? CROSSLINK.fromHotel : CROSSLINK.toHotel;
 
   return (
@@ -141,7 +118,9 @@ export function Footer() {
           ))}
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-white">Más</h4>
+            <h4 className="mb-4 text-sm font-semibold text-white">
+              {FOOTER_EXTRA_HEADING}
+            </h4>
             <ul className="space-y-2.5">
               <li>
                 <Link
