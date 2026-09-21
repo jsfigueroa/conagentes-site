@@ -3,7 +3,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { BedDouble, ShieldCheck } from "lucide-react";
 import { MagneticButton } from "@/components/marketing/animation/magnetic-button";
-import { useDemoForm } from "@/components/marketing/demo-form/demo-form-context";
 import { TalkToAgentButton } from "@/components/marketing/voice-call/talk-to-agent-button";
 import { ChannelOrbit } from "@/components/marketing/hotel/channel-orbit";
 import { GrainOverlay } from "@/components/marketing/hotel/grain-overlay";
@@ -55,8 +54,6 @@ function HeroPhone() {
 }
 
 export function HotelHero() {
-  const { open } = useDemoForm();
-
   return (
     <section className="relative overflow-hidden bg-[oklch(0.08_0.01_95)] pt-28 pb-20 md:pt-32 md:pb-28">
       {/* Atmosphere */}
@@ -120,27 +117,12 @@ export function HotelHero() {
             las OTAs, 24/7 y en 32 idiomas.
           </motion.p>
 
-          <motion.div variants={word} className="mt-9 flex flex-col gap-4 sm:flex-row">
+          {/* CON-260 / CON-298: ONE call to action. Reading about the agent is
+              the slow path; hearing it answer is the demo — so the call is not
+              one option among three, it is the only door on the hero. */}
+          <motion.div variants={word} className="mt-9 flex flex-col items-start gap-4">
             <MagneticButton strength={0.2}>
-              <button
-                onClick={() => open("hotel-hero")}
-                className="btn-brand inline-flex cursor-pointer items-center justify-center rounded-full px-8 py-4 text-base font-semibold"
-              >
-                Pruebe su agente IA
-              </button>
-            </MagneticButton>
-            {/* CON-260: the fastest possible proof. Reading about the agent is
-                the slow path; hearing it answer is the demo. */}
-            <MagneticButton strength={0.2}>
-              <TalkToAgentButton source="hotel-hero" variant="on-dark" />
-            </MagneticButton>
-            <MagneticButton strength={0.2}>
-              <a
-                href="#como-vende"
-                className="inline-flex items-center justify-center rounded-full border border-white/[0.14] px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-white/[0.05]"
-              >
-                Ver cómo vende
-              </a>
+              <TalkToAgentButton source="hotel-hero" variant="brand" />
             </MagneticButton>
           </motion.div>
 
