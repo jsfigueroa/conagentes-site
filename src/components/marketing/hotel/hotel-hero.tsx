@@ -11,7 +11,7 @@ import {
   useThreadAutoplay,
 } from "@/components/marketing/hotel/hotel-phone";
 
-const LINE1 = ["Más", "ingreso."];
+const LINE1 = ["El", "Sistema", "Operativo"];
 
 const container = {
   hidden: {},
@@ -100,11 +100,12 @@ export function HotelHero() {
             </span>{" "}
             {/* That space is load-bearing. Two sibling block spans with nothing
                 between them concatenate in textContent — the H1 read as
-                «Más ingreso.Menos trabajo.» to screen readers and to crawlers
-                that walk text nodes, even though it looks right on screen. It
-                renders as nothing (whitespace between two blocks collapses). */}
+                «El Sistema Operativocon IA para hoteles» to screen readers and
+                to crawlers that walk text nodes, even though it looks right on
+                screen. It renders as nothing (whitespace between two blocks
+                collapses). */}
             <motion.span variants={word} className="text-brand-gradient block">
-              Menos trabajo.
+              con IA para hoteles
             </motion.span>
           </h1>
 
@@ -112,9 +113,9 @@ export function HotelHero() {
             variants={word}
             className="mt-6 max-w-lg text-lg leading-relaxed text-[oklch(0.65_0.005_95)]"
           >
-            El agente IA que vende cada noche a su tarifa, cierra la reserva
-            directa y sube el valor de la estadía — por WhatsApp, Instagram y
-            las OTAs, 24/7 y en 32 idiomas.
+            No es un bot encima de su sistema. Es el sistema. Precios,
+            operaciones y atención al huésped gestionados por agentes de IA que
+            operan todo eso por WhatsApp, Instagram y por voz.
           </motion.p>
 
           {/* CON-260 / CON-298: ONE call to action. Reading about the agent is
