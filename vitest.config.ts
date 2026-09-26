@@ -12,9 +12,15 @@ import { defineConfig } from "vitest/config";
  * `resolve.tsconfigPaths` is Vite's native replacement for the old
  * `vite-tsconfig-paths` plugin; it makes `@/` resolve here exactly as it does
  * in Next, so tests import the real modules rather than a copy of them.
+ *
+ * `oxc.jsx`: tsconfig says `"jsx": "preserve"` because Next compiles JSX
+ * itself; Vite would inherit that and refuse to import a .tsx component. The
+ * automatic runtime lets a test render the real component (CON-323: the blog
+ * body sanitizer is asserted on what PostBody actually emits).
  */
 export default defineConfig({
   resolve: { tsconfigPaths: true },
+  oxc: { jsx: { runtime: "automatic" } },
   test: {
     include: ["src/**/__tests__/**/*.test.ts"],
     environment: "node",

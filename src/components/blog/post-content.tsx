@@ -1,4 +1,5 @@
 import type { BlogPost } from "@/lib/blog/types";
+import { sanitizePostHtml } from "@/lib/blog/sanitize";
 import Image from "next/image";
 import { CategoryBadge } from "./category-badge";
 import { Clock, Calendar } from "lucide-react";
@@ -157,10 +158,12 @@ export function KeyTakeaways({ items }: { items: string[] }) {
 }
 
 export function PostBody({ html }: { html: string }) {
-  // Wrap tables so a wide comparison table scrolls inside its own container
-  // instead of pushing the page sideways on a phone. The generated HTML always
-  // uses bare <table> tags (see docs/blog-hotel-playbook.md §9).
-  const withScrollableTables = html
+  // Sanitize first (lib/blog/sanitize.ts — the body is stored HTML rendered
+  // raw on our domain), THEN add our own wrapper, so the allowlist never has
+  // to admit <div class>. Wrap tables so a wide comparison table scrolls inside
+  // its own container instead of pushing the page sideways on a phone. The
+  // sanitizer leaves bare <table> tags (see docs/blog-hotel-playbook.md §9).
+  const withScrollableTables = sanitizePostHtml(html)
     .replace(/<table(\s|>)/g, '<div class="prose-table"><table$1')
     .replace(/<\/table>/g, "</table></div>");
 
