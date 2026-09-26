@@ -10,6 +10,7 @@ import {
   generateFaqJsonLd,
   generateBreadcrumbJsonLd,
 } from "@/lib/blog/structured-data";
+import { serializeJsonLd } from "@/lib/seo/json-ld";
 import { postPathForCategory, verticalForCategory } from "@/lib/blog/verticals";
 import { postMetaTitle } from "@/lib/blog/meta";
 import { PostView } from "@/components/blog/post-view";
@@ -83,16 +84,16 @@ export default async function BlogPostPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbLd) }}
       />
       {faqLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqLd) }}
         />
       )}
 

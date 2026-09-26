@@ -5,6 +5,7 @@ import { getPostsByCategory, getCategories } from "@/lib/blog/queries";
 import { PostCard } from "@/components/blog/post-card";
 import { CategoryBadge } from "@/components/blog/category-badge";
 import { generateBreadcrumbList } from "@/lib/blog/structured-data";
+import { serializeJsonLd } from "@/lib/seo/json-ld";
 import {
   HOTEL_CATEGORY_DESCRIPTIONS,
   categoryPath,
@@ -104,12 +105,12 @@ export default async function HotelCategoryPage({
     <div className="mx-auto max-w-7xl px-6 pt-28 pb-16 md:pt-32">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbLd) }}
       />
       {posts.length > 0 && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(itemListLd) }}
         />
       )}
 

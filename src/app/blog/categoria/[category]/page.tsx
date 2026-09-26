@@ -4,6 +4,7 @@ import { getCategoryLabel } from "@/components/blog/category-badge";
 import { PostCard } from "@/components/blog/post-card";
 import { CategoryBadge } from "@/components/blog/category-badge";
 import { generateBreadcrumbList } from "@/lib/blog/structured-data";
+import { serializeJsonLd } from "@/lib/seo/json-ld";
 import Link from "next/link";
 import { permanentRedirect } from "next/navigation";
 import { categoryPath, verticalForCategory } from "@/lib/blog/verticals";
@@ -83,7 +84,7 @@ export default async function CategoryPage({
     <div className="mx-auto max-w-7xl px-6 py-12">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbLd) }}
       />
       <header className="mb-12">
         <Link

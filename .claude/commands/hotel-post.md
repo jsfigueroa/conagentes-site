@@ -88,7 +88,10 @@ curl -s -o /dev/null -w "%{http_code}\n" https://conagentes.com/hoteles/blog/<sl
 - Otro código → revise el run: `gh run list --workflow=publish-post.yml --limit 1`
   y `gh run view <id> --log`. Un `400` con «Unknown category» significa categoría
   fuera de las siete; un `401`, que el secreto de publicación no coincide con
-  `REVALIDATION_SECRET` en Vercel.
+  `REVALIDATION_SECRET` en Vercel. Si el run falla en «Check the publish key is
+  configured», falta el secreto `PUBLISH_SECRET` del repositorio: no hay clave
+  de respaldo a propósito, así que el artículo queda en `_pending_posts/` hasta
+  que Sebastián lo configure. Repórtelo; no intente otra vía de publicación.
 
 ## 8. Informe (en 5 líneas, en español)
 
