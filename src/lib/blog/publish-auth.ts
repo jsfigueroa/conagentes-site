@@ -14,10 +14,15 @@ import { createHash, timingSafeEqual } from "node:crypto";
  *
  * Constant-time: both sides are hashed to the same length first, so the
  * compare leaks neither the key's content nor its length through timing.
+ *
+ * The caller passes `process.env.REVALIDATION_SECRET` explicitly. There is no
+ * default parameter on purpose: with one, `expected = undefined` silently fell
+ * back to the environment, so a test of the "not configured" case passed only
+ * because the test process happened to have no key.
  */
 export function isPublishAuthorized(
   authorization: string | null | undefined,
-  expected: string | undefined = process.env.REVALIDATION_SECRET
+  expected: string | undefined
 ): boolean {
   if (!expected) return false;
 

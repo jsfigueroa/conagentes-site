@@ -26,7 +26,12 @@ function getSupabase() {
 }
 
 export async function POST(request: NextRequest) {
-  if (!isPublishAuthorized(request.headers.get("authorization"))) {
+  if (
+    !isPublishAuthorized(
+      request.headers.get("authorization"),
+      process.env.REVALIDATION_SECRET
+    )
+  ) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

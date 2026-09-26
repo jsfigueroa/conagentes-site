@@ -64,10 +64,21 @@ describe("isPublishAuthorized", () => {
   });
 
   it("fails closed when the key is not configured", () => {
-    expect(isPublishAuthorized(null, undefined)).toBe(false);
-    expect(isPublishAuthorized(undefined, undefined)).toBe(false);
-    expect(isPublishAuthorized("Bearer ", "")).toBe(false);
-    expect(isPublishAuthorized("Bearer undefined", undefined)).toBe(false);
+    // The environment DOES hold a key here, so a helper that quietly fell back
+    // to process.env (it used to, through a default parameter) would accept
+    // it. The routes pass the variable explicitly; an absent one must refuse.
+    const original = process.env.REVALIDATION_SECRET;
+    process.env.REVALIDATION_SECRET = KEY;
+    try {
+      expect(isPublishAuthorized(null, undefined)).toBe(false);
+      expect(isPublishAuthorized(undefined, undefined)).toBe(false);
+      expect(isPublishAuthorized(`Bearer ${KEY}`, undefined)).toBe(false);
+      expect(isPublishAuthorized("Bearer ", "")).toBe(false);
+      expect(isPublishAuthorized("Bearer undefined", undefined)).toBe(false);
+    } finally {
+      if (original === undefined) delete process.env.REVALIDATION_SECRET;
+      else process.env.REVALIDATION_SECRET = original;
+    }
   });
 
   it("rejects a missing, malformed or wrong key", () => {
