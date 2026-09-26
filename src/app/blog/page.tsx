@@ -3,6 +3,7 @@ import { getAllPosts, getCategories } from "@/lib/blog/queries";
 import { PostCard } from "@/components/blog/post-card";
 import { CategoryBadge } from "@/components/blog/category-badge";
 import { generateBreadcrumbList } from "@/lib/blog/structured-data";
+import { serializeJsonLd } from "@/lib/seo/json-ld";
 import Link from "next/link";
 
 export const revalidate = 60;
@@ -54,7 +55,7 @@ export default async function BlogPage({
     <div className="mx-auto max-w-7xl px-6 py-12">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbLd) }}
       />
       <header className="mb-12">
         <h1 className="text-4xl font-extrabold tracking-tight text-foreground mb-3">
