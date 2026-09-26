@@ -5,10 +5,12 @@ name: Publish Blog Post
 # and then deletes the files it published, so the folder always shows what is
 # still waiting. A file that fails stays put and is retried on the next push.
 #
-# The publish secret comes from the PUBLISH_SECRET repository secret when it is
-# set, and falls back to the historical literal so publishing never breaks in
-# the middle of a rotation. Once REVALIDATION_SECRET is rotated on Vercel and
-# PUBLISH_SECRET is set here, drop the fallback.
+# The publish key comes ONLY from the PUBLISH_SECRET repository secret, which
+# must equal REVALIDATION_SECRET on Vercel (production). There is deliberately
+# no fallback: this repo is public, and the literal fallback it used to carry
+# was the live key for four months — readable by anyone and printed unmasked
+# in every run log (CON-323). If the secret is missing the run fails before
+# posting anything, and the pending files stay for the next run.
 
 on:
   push:
@@ -26,6 +28,19 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      # First, before the checkout and the 180s wait: a missing key is a
+      # configuration error, so say so at once instead of failing on every
+      # POST with a 401 that looks like a key mismatch.
+      - name: Check the publish key is configured
+        env:
+          PUBLISH_SECRET: ${{ secrets.PUBLISH_SECRET }}
+        run: |
+          if [ -z "$PUBLISH_SECRET" ]; then
+            echo "::error::PUBLISH_SECRET is not set. Add it under Settings → Secrets and variables → Actions with the same value as REVALIDATION_SECRET on Vercel (production). Nothing was published; the pending files stay for the next run."
+            exit 1
+          fi
+          echo "Publish key is configured."
+
       - uses: actions/checkout@v4
         with:
           # Two commits so we can tell a content-only push from one that also
@@ -53,7 +68,7 @@ jobs:
       - name: Find and publish new posts
         env:
           PUBLISH_URL: https://www.conagentes.com/api/publish
-          PUBLISH_SECRET: ${{ secrets.PUBLISH_SECRET || 'conagentes-revalidate-2026-secret' }}
+          PUBLISH_SECRET: ${{ secrets.PUBLISH_SECRET }}
         run: |
           published=0
           duplicates=0
