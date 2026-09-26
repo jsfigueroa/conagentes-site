@@ -2,6 +2,7 @@ import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { submitToIndexNow } from "@/lib/seo/indexnow";
+import { isPublishAuthorized } from "@/lib/blog/publish-auth";
 import {
   GENERAL_CATEGORIES,
   HOTEL_CATEGORIES,
@@ -25,9 +26,7 @@ function getSupabase() {
 }
 
 export async function POST(request: NextRequest) {
-  const secret = request.headers.get("authorization")?.replace("Bearer ", "");
-
-  if (secret !== process.env.REVALIDATION_SECRET) {
+  if (!isPublishAuthorized(request.headers.get("authorization"))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
